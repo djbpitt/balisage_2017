@@ -58,6 +58,10 @@
     </keywordset>
   </info>
   <section>
+    <title>Introduction</title>
+    <para><!--Add introductory paragraph here--></para>
+  </section>
+  <section>
     <title>Rationale for moving beyond XML</title>
     <para>Textual data is unstructured. Markups needs to be added to extract information from it.
       The most popular markup format to store textual data and markup is XML. XML follows a
