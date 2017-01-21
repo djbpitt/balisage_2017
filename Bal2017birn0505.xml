@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="balisage-1-3.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>The creature lives</title>
+  <info>
+    <abstract>
+      <para>Abstract text will go here</para>
+    </abstract>
+    <author>
+      <personname>
+        <firstname>David</firstname>
+        <othername>J.</othername>
+        <surname>Birnbaum</surname>
+      </personname>
+      <personblurb>
+        <para>David J. Birnbaum is Professor and Chair of the Department of Slavic Languages and
+          Literatures at the University of Pittsburgh. He has been involved in the study of
+          electronic text technology since the mid-1980s, has delivered presentations at a variety
+          of electronic text technology conferences, and has served on the board of the Association
+          for Computers and the Humanities, the editorial board of <emphasis role="ital">Markup
+            languages: Theory and practice</emphasis>, and the Text Encoding Initiative Council.
+          Much of his electronic text work intersects with his research in medieval Slavic
+          manuscript studies, but he also often writes about issues in the philosophy of
+          markup.</para>
+      </personblurb>
+      <affiliation>
+        <jobtitle>Professor and Chair</jobtitle>
+        <orgname>Department of Slavic Languages and Literatures, University of Pittsburgh</orgname>
+      </affiliation>
+      <email>djbpitt@gmail.com</email>
+      <link xlink:type="simple" xlink:show="new" xlink:actuate="onRequest"
+        >http://www.obdurodon.org</link>
+    </author>
+    <author>
+      <personname>
+        <firstname>Ronald</firstname>
+        <othername>Haentjens</othername>
+        <surname>Dekker</surname>
+      </personname>
+      <personblurb>
+        <para>Add blurb about Ronald</para>
+      </personblurb>
+      <affiliation>
+        <jobtitle><!-- job title goes here--></jobtitle>
+        <orgname><!-- organization name goes here--></orgname>
+      </affiliation>
+      <email><!-- email goes here --></email>
+      <link xlink:type="simple" xlink:show="new" xlink:actuate="onRequest"
+        ><!-- url to Ronalds main web presence goes here--></link>
+    </author>
+    <keywordset role="author">
+      <keyword>graph database</keyword>
+      <keyword>LMNL</keyword>
+      <keyword>overlap</keyword>
+      <keyword>discontinuity</keyword>
+      <keyword>mixed content</keyword>
+    </keywordset>
+  </info>
+
+</article>
