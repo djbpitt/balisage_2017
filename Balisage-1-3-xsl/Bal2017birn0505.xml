@@ -101,4 +101,19 @@
       before (GODDAG), but the model proposed in this paper differs in the fact that not just a
       directed graph is used, but a directed graph is used in combination with a hypergraph.</para>
   </section>
+  <section>
+    <title>Requirements for a text model</title>
+    <para>
+      Features: Support textual content and annotations. Overlapping annotations should be possible. Should allow annotations on annotations.
+      Hierarchical content should be possible but not required.
+      Read: queries for text or annotations.
+      Write: added or modifying textual content, adding or modifying annotations.
+      Scalability: The model should allow for large (needs to be defined better) documents.
+      With the range conceptual model it is inexpensive to add extra annotation layers, however modifying the textual content is very expensive, since all the ranges of annotations that come after the point of insertion have to be recalculated.
+      With the directed acyclic graph model it is inexpensive to add or change textual content, however since all the annotation nodes have to be connected to all the textual nodes involves this model scales badly with the number of textual nodes and the number of annotations.
+      In the traditional tree model it is cheap to add or modify textual content and to add annotations, however there is only a single hierarchy. On top of that having a hierarchy is required.
+      In the hypergraph approach it is inexpensive (we really should use O notations here) to add or modify textual content, adding annotations is not as cheap as it is with ranges, (a new set needs to be created and a bit needs to be set for every text node involved), but it cheaper than the DAG model, since hypergraphs can be stored as sets rather than having to model individual edges.
+    </para>
+  </section>
+
 </article>
