@@ -115,5 +115,12 @@
       In the hypergraph approach it is inexpensive (we really should use O notations here) to add or modify textual content, adding annotations is not as cheap as it is with ranges, (a new set needs to be created and a bit needs to be set for every text node involved), but it cheaper than the DAG model, since hypergraphs can be stored as sets rather than having to model individual edges.
     </para>
   </section>
-
+  <section>
+    <title>Example use case: tokenization with markup</title>
+    <para>
+      In natural language processing tokenization is the process of breaking a string of characters up into individual words. Tokenization is done using regular expressions. Regular expressions however only work on textual data and not on markup. (See the famous stackoverflow post for reference). On top of that the tokens themselves add another layer of information to file/model/data/document (not sure what the right word to use is here), which can overlap with the already existing hierarchy in the document.
+      A data model for text that can handle multiple overlapping hierarchies or layers of annotations and that allows read as well as write operations can help out here.
+      During tokenization all of the markup can be put 'aside' if it were and the tokenizer only pays attention to the textual content. The individual token are markup in a separate annotation layer. The existing markup layer are only ignored during tokenization, and still exist in the data.
+    </para>
+  </section>
 </article>
