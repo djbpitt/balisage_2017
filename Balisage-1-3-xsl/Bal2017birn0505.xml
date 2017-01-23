@@ -63,6 +63,7 @@
   </section>
   <section>
     <title>Rationale for moving beyond XML</title>
+    <note>Wendell himself discussed the relation between LMNL and OHCO in his 2014 Balisage paper here: <a ref="http://www.balisage.net/Proceedings/vol13/print/Piez01/BalisageVol13-Piez01.html">link to paper</a></note>
     <para>Textual data is unstructured. Markups needs to be added to extract information from it.
       The most popular markup format to store textual data and markup is XML. XML follows a
       hierarchial model that allows one to add structure to a file. This works well for dividing
