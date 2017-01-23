@@ -104,6 +104,7 @@
   </section>
   <section>
     <title>Requirements for a text model</title>
+    <note>Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice that it is mainly about modelling text using LMNL, querying (using xLMNL and xQuery extensions) and visualising data. These are all read only operations. The goal of the TAG model and its implementation in Alexandria is that it can be used to read as well as write textual data and annotations. This opens up a lot of new possibilities and makes it a 'complete' text repository system, comparable to XML databases albeit in a far more experimental state and a much lower level of maturity.</note>
     <para>
       Features: Support textual content and annotations. Overlapping annotations should be possible. Should allow annotations on annotations.
       Hierarchical content should be possible but not required.
