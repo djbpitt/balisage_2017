@@ -96,11 +96,46 @@
       based on ranges, based on offsets on textual content.</para>
   </section>
   <section>
-    <title>Text as a graph</title>
-    <para>This paper proposes to use a different data model than trees or ranges. It proposes to use
-      a graph based model, we call text as graph (TAG). Graph models for text have been proposed
-      before (GODDAG), but the model proposed in this paper differs in the fact that not just a
-      directed graph is used, but a directed graph is used in combination with a hypergraph.</para>
+    <title>LMNL conceptual model and how to map it to a hypergraph</title>
+    <note>It is very important that we explain what we kept of the original data model behind LMNL and what we changed
+      and why. The fact that Alexandria is a read-write system is very important in this consideration.</note>
+  <para>
+    LMNL data model
+
+    LMNL documents contain text.
+    Text can have ranges on them.
+    Ranges can overlap.
+    Ranges can be annotated on either the start tag or the end tag.
+    Annotations can contain text themselves, that can have ranges, that can have annotations etc.
+    Annotations can be annotated. Annotations on a range are ordered.
+
+    Text Graph Datamodel:
+
+    A text graph representing all the data contained in a LMNL document consists
+    of both a directed acyclic graph (DAG) and a hypergraph (HG). The DAG contains all the range nodes,
+    the annotation nodes, all the edges between them, and all the text nodes and the edges between them.
+    The HG contains all the hyperedges between the text nodes and the range nodes representing the many
+    to many relation between them. I.e. a text node has zero or more ranges on it, while a range can have zero
+    or more text nodes associated with it. A range can be annotated. An annotation can itself be annotated.
+  </para>
+  </section>
+  <section>
+    <title>Hypergraph model for text</title>
+    <note>Describe the model. Think of it as sets.
+    </note>
+    <para>
+      This paper proposes to use a hypergraph model for text and annotations.
+      <note>explain the differences between graph models and trees and ranges? Or leave that discussion out?</note>
+      Graph models for text have been proposed before (GODDAG, GrAF), but the model proposed in this paper differs in
+      the fact that a hypergraph is used, instead of directed acyclic graphs.
+      Hypergraphs are especially interesting for text modelling, because they can be implemented using sets.
+
+      The data model consists of a number of objects:
+      - Text nodes. Text nodes present segments of text, comparable to leaf nodes in a DOM tree.
+      The text nodes themselves are connected with directed edges.
+      - Range hyperedges. Range hyperedges represents the tags/markup present in the document.
+      - Annotation nodes. Annotation nodes represent metadata on range hyperedges or annotation on annotation.
+    </para>
   </section>
   <section>
     <title>Requirements for a text model</title>
