@@ -66,13 +66,13 @@
     <note>Wendell himself discussed the relation between LMNL and OHCO in his 2014 Balisage paper here: <a ref="http://www.balisage.net/Proceedings/vol13/print/Piez01/BalisageVol13-Piez01.html">link to paper</a></note>
     <para>Textual data is unstructured. Markups needs to be added to extract information from it.
       The most popular markup format to store textual data and markup is XML. XML follows a
-      hierarchial model that allows one to add structure to a file. This works well for dividing
+      hierarchical model that allows one to add structure to a file. This works well for dividing
       text into chapters and paragraphs. However there are limitations.</para>
-    <para>Adding a second hierarcy is difficult, since XML markup syntax requires that the last
+    <para>Adding a second hierarchy is difficult, since XML markup syntax requires that the last
       opened tag is closed first. Adding the structure of the pages for example overlaps with the
       stucture of the chapters and paragraphs. This can be worked around by adding a second
       hierarchy as milestones instead of start and end elements.</para>
-    <para>The problem here is that one hierarchiy is handled differently from the second hierarchy.
+    <para>The problem here is that one hierarchy is handled differently from the second hierarchy.
       The leading hierarchy is modeled using full start and elements.</para>
     <para>Modeling multiple hierarchies is possible in XML, but difficult because the second or
       third etc hierarchy needs to be modelled differently from the first hierarchy. This also leads
@@ -81,35 +81,34 @@
       poetry, stage plays.</para>
   </section>
   <section>
-    <title>LMNL markup file format</title>
-    <para>The LMNL markup file format removes the constraint that the last opened has to be closed
-      first. That means that it is possible to model overlapping hierarchies in LMNL. To be more
-      precise, it is possible to model annotations with one hierarchy, multiple hierarchies or no
-      hierarchy at all. This allows for a great freedom to model all kinds of information on textual
-      content. This is great from a content perspective. However LMNL is more expensive from a
-      computational perspective.</para>
-  </section>
-  <section>
-    <title>Conceptual model</title>
-    <para>The conceptual datamodel behind is XML is the Document Object Model (DOM). The DOM
-      represents a tree based data structure. The data model behind LMNL is different, in that it is
-      based on ranges, based on offsets on textual content.</para>
-  </section>
-  <section>
-    <title>LMNL conceptual model and how to map it to a hypergraph</title>
-    <note>It is very important that we explain what we kept of the original data model behind LMNL and what we changed
-      and why. The fact that Alexandria is a read-write system is very important in this consideration.</note>
-  <para>
-    LMNL data model
-
-    LMNL documents contain text.
-    Text can have ranges on them.
-    Ranges can overlap.
-    Ranges can be annotated on either the start tag or the end tag.
-    Annotations can contain text themselves, that can have ranges, that can have annotations etc.
-    Annotations can be annotated. Annotations on a range are ordered.
-
-    Text Graph Datamodel:
+    <title>Hypergraph model for text</title>
+    <note>Describe the model. Think of it as sets. The fact that Alexandria is a read-write system is very important
+    </note>
+      <note>explain the differences between graph models and trees and ranges? Or leave that discussion out?</note>
+    <para>
+      This paper introduces the Alexandria text repository system. It allows the user to store text files in either XML
+        or LMNL markup and allows for multiple layers of annotation the can overlap. The conceptual behind Alexandria
+        is a hypergraph model for text and annotations. Graph models for text have been proposed before (GODDAG, GrAF),
+        but the model proposed in this paper differs in the fact that a hypergraph is used, instead of directed acyclic
+        graphs.
+    </para>
+    <para>
+        Hypergraphs differ from traditional graphs in the fact that edges can more than two nodes with each
+    other, these are called hyperedges. Hypergraphs can have directed and undirected hyperedges. Undirected
+    hyperedges contain a set a nodes. Directed hyperedges contain two sets of nodes, one for the source and one
+    for the target. Hypergraphs are especially interesting for text modelling, because they can be implemented using sets.
+  </para>
+    <para>
+      The data model consists of a number of objects:
+      - Text nodes. Text nodes present segments of text, comparable to leaf nodes in a DOM tree.
+      The text nodes themselves are connected with directed edges.
+      - Markup hyperedges. Markup hyperedges represents the tags/markup present in the document.
+      - Annotation nodes. Annotation nodes represent metadata on markup hyperedges or annotation on annotation.
+        - Annotation directed hyperedge: connect annotation nodes with either markup hyperedges or annotations.
+    </para>
+ <para>
+    <!--
+     Text Graph Datamodel:
 
     A text graph representing all the data contained in a LMNL document consists
     of both a directed acyclic graph (DAG) and a hypergraph (HG). The DAG contains all the range nodes,
@@ -117,29 +116,37 @@
     The HG contains all the hyperedges between the text nodes and the range nodes representing the many
     to many relation between them. I.e. a text node has zero or more ranges on it, while a range can have zero
     or more text nodes associated with it. A range can be annotated. An annotation can itself be annotated.
+    -->
   </para>
   </section>
   <section>
-    <title>Hypergraph model for text</title>
-    <note>Describe the model. Think of it as sets.
-    </note>
-    <para>
-      This paper proposes to use a hypergraph model for text and annotations.
-      <note>explain the differences between graph models and trees and ranges? Or leave that discussion out?</note>
-      Graph models for text have been proposed before (GODDAG, GrAF), but the model proposed in this paper differs in
-      the fact that a hypergraph is used, instead of directed acyclic graphs.
-      Hypergraphs are especially interesting for text modelling, because they can be implemented using sets.
-
-      The data model consists of a number of objects:
-      - Text nodes. Text nodes present segments of text, comparable to leaf nodes in a DOM tree.
-      The text nodes themselves are connected with directed edges.
-      - Range hyperedges. Range hyperedges represents the tags/markup present in the document.
-      - Annotation nodes. Annotation nodes represent metadata on range hyperedges or annotation on annotation.
-    </para>
   </section>
   <section>
     <title>Requirements for a text model</title>
     <note>Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice that it is mainly about modelling text using LMNL, querying (using xLMNL and xQuery extensions) and visualising data. These are all read only operations. The goal of the TAG model and its implementation in Alexandria is that it can be used to read as well as write textual data and annotations. This opens up a lot of new possibilities and makes it a 'complete' text repository system, comparable to XML databases albeit in a far more experimental state and a much lower level of maturity.</note>
+    <title>LMNL conceptual model and how to map it to a hypergraph</title>
+    <note>It is very important that we explain what we kept of the original data model behind LMNL and what we changed
+      and why. </note>
+    <para>The conceptual datamodel behind is XML is the Document Object Model (DOM). The DOM
+      represents a tree based data structure. The data model behind LMNL is different, in that it is
+      based on ranges, based on offsets on textual content.</para>
+      <title>Comparison of the Hypergraph model with LMNL markup file format</title>
+      <para>The LMNL markup file format removes the constraint that the last opened has to be closed
+        first. That means that it is possible to model overlapping hierarchies in LMNL. To be more
+        precise, it is possible to model annotations with one hierarchy, multiple hierarchies or no
+        hierarchy at all. This allows for a great freedom to model all kinds of information on textual
+        content. This is great from a content perspective. However LMNL is more expensive from a
+        computational perspective.</para>
+    <para>
+      LMNL data model
+
+      LMNL documents contain text.
+      Text can have ranges on them.
+      Ranges can overlap.
+      Ranges can be annotated on either the start tag or the end tag.
+      Annotations can contain text themselves, that can have ranges, that can have annotations etc.
+      Annotations can be annotated. Annotations on a range are ordered.
+    </para>
     <para>
       Features: Support textual content and annotations. Overlapping annotations should be possible. Should allow annotations on annotations.
       Hierarchical content should be possible but not required.
