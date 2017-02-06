@@ -93,18 +93,20 @@
         graphs.
     </para>
     <para>
-        Hypergraphs differ from traditional graphs in the fact that edges can more than two nodes with each
-    other, these are called hyperedges. Hypergraphs can have directed and undirected hyperedges. Undirected
-    hyperedges contain a set a nodes. Directed hyperedges contain two sets of nodes, one for the source and one
-    for the target. Hypergraphs are especially interesting for text modelling, because they can be implemented using sets.
+      Hypergraphs differ from traditional graphs in the fact that edges can more than two nodes with each
+      other, these are called hyperedges. Hypergraphs can have directed and undirected hyperedges. Undirected
+      hyperedges contain a set a nodes. Directed hyperedges contain two sets of nodes, one for the source and one
+      for the target. Hypergraphs are especially interesting for text modelling, because they can be implemented using sets.
   </para>
     <para>
       The data model consists of a number of objects:
       - Text nodes. Text nodes present segments of text, comparable to leaf nodes in a DOM tree.
-      The text nodes themselves are connected with directed edges.
-      - Markup hyperedges. Markup hyperedges represents the tags/markup present in the document.
+      The text nodes themselves are connected with directed edges, i.e. they are ordered.
+      - Markup nodes: Markup nodes represent tags/markup present in the document.
       - Annotation nodes. Annotation nodes represent metadata on markup hyperedges or annotation on annotation.
-        - Annotation directed hyperedge: connect annotation nodes with either markup hyperedges or annotations.
+      - Markup directed hyperedges. Markup hyperedges connect the tags/markup nodes (source) to text nodes (target) tagged by the specific markup.
+      - Annotation directed edges: connect annotation nodes (source) with other annotation nodes (target) or connect
+      an annotation (source) with a markup/tag node (target).
     </para>
  <para>
     <!--
