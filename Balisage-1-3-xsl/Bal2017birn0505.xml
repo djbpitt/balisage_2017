@@ -82,40 +82,30 @@
   </section>
   <section>
     <title>Hypergraph model for text</title>
-    <note>Describe the model. Think of it as sets. The fact that Alexandria is a read-write system is very important
+    <note>Describe the model. Think of it as sets. The fact that Alexandria is a read-write system is very important.
     </note>
-      <note>explain the differences between graph models and trees and ranges? Or leave that discussion out?</note>
-    <para>
-      This paper introduces the Alexandria text repository system. It allows the user to store text files in either XML
-        or LMNL markup and allows for multiple layers of annotation the can overlap. The conceptual behind Alexandria
-        is a hypergraph model for text and annotations. Graph models for text have been proposed before (GODDAG, GrAF),
-        but the model proposed in this paper differs in the fact that a hypergraph is used, instead of directed acyclic
-        graphs.
+    <para>This paper introduces the Alexandria text repository system. It allows the user to store text files in either XML or LMNL markup and allows for multiple layers of annotation that can overlap. The conceptual model behind Alexandria is a hypergraph for text as well as annotations. Graph models for text and markup have been proposed before (GODDAG, GrAF), but the model proposed in this paper differs in the fact that a hypergraph is used.
+
+    Hypergraphs differ from traditional graphs, which contain edges that connect only two nodes with each other. The edges in a hypergraph, on the other hand,can connect more than two nodes with each other, for that reason they are called “hyperedges”. Hypergraphs can have directed and undirected hyperedges. Undirected hyperedges contain a set of nodes. Directed hyperedges contain two sets of nodes, one for the source and one for the target. The direction of the (hyper)edge implies the order or the hierarchy of the nodes. Hypergraphs are especially interesting for text modelling, because they can be implemented using sets.
+
+    The data model consists of a number of objects:
     </para>
     <para>
-      Hypergraphs differ from traditional graphs in the fact that edges can more than two nodes with each
-      other, these are called hyperedges. Hypergraphs can have directed and undirected hyperedges. Undirected
-      hyperedges contain a set a nodes. Directed hyperedges contain two sets of nodes, one for the source and one
-      for the target. Hypergraphs are especially interesting for text modelling, because they can be implemented using sets.
-  </para>
-    <para>
-      The data model consists of a number of objects:
-      Nodes:<lb/>
-      - Document nodes. Each document represents a single document stored in the graph.
-      - Text nodes. Text nodes present segments of text, comparable to leaf nodes in a DOM tree.
-      - Markup nodes: Markup nodes represent tags/markup present in the document.
-      - Annotation nodes. Annotation nodes represent metadata on markup hyperedges or annotation on annotation.
-      Edges:<lb/>
-      - Document to text directed edges. A document to text directed edge connects a document node with the first text node contained in that
-      document.
-      - Text node to text node directed edges. The text nodes themselves are connected with directed edges, i.e. they are ordered.
-      - Markup to text nodes directed hyperedges. Markup hyperedges connect the tags/markup nodes (source) to text
-      nodes (target) tagged by the specific markup.
-      - Annotation directed edges: connect annotation nodes (source) with other annotation nodes (target) or connect
-      an annotation (source) with a markup/tag node (target).
-      - Annotation to text directed edges: connect annotation nodes to the first text node contained in that annotation.
+    Nodes:
+    - Document nodes. Each document node represents a single document stored in the graph.
+    - Text nodes. Text nodes present segments of text, comparable to leaf nodes in a DOM tree.
+    - Markup nodes: Markup nodes represent tags/markup present in the document.
+    - Annotation nodes. Annotation nodes represent metadata on markup node. The model also allows for annotation nodes on annotation nodes.
     </para>
- <para>
+    <para>
+    Edges:
+    - Document to text directed edges. A document to text directed edge connects a document node (source) with the first text node (target) contained in that document.
+    - Text node to text node directed edges. The text nodes themselves are connected with directed edges, which order them, so that the linear order of the text is preserved.
+    - Markup to text nodes directed hyperedges. Markup hyperedges connect the tags/markup nodes (source) to text nodes (target) tagged with the markup in question. Note that the use of directed hyperedges allows us to connect n markup nodes with one text node and vice versa.
+    - Annotation to text directed edges: connect annotation nodes to the first text node contained in that annotation. Here, “text node” contains the text of the annotation, not the original text.
+    - Annotation directed edges: connect annotation nodes (source) with other annotation nodes (target) or connect an annotation (source) with a markup/tag node (target).
+    </para>
+    <para>
     <!--
      Text Graph Datamodel:
 
@@ -132,6 +122,7 @@
   </section>
   <section>
     <title>Requirements for a text model</title>
+    <note>explain the differences between graph models and trees and ranges? Or leave that discussion out?</note>
     <note>Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice that it is mainly about modelling text using LMNL, querying (using xLMNL and xQuery extensions) and visualising data. These are all read only operations. The goal of the TAG model and its implementation in Alexandria is that it can be used to read as well as write textual data and annotations. This opens up a lot of new possibilities and makes it a 'complete' text repository system, comparable to XML databases albeit in a far more experimental state and a much lower level of maturity.</note>
     <title>LMNL conceptual model and how to map it to a hypergraph</title>
     <note>It is very important that we explain what we kept of the original data model behind LMNL and what we changed
