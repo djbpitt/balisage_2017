@@ -205,6 +205,11 @@
   </section>
   <bibliography>
     <title>Works cited</title>
+    <bibliomixed xml:id="piez_2015" xreflabel="Piez 2015">Wendell Piez, <quote>TEI in LMNL:
+        implications for modeling</quote>, <emphasis role="ital">Journal of the Text Encoding
+        Initiative</emphasis> [Online], Issue 8 | December 2014 - December 2015, Online since 21
+      November 2015, connection on 08 March 2017. URL: <link>http://jtei.revues.org/1337</link>;
+      DOI: 10.4000/jtei.1337.</bibliomixed>
     <bibliomixed xml:id="sperberg-huitfeldt_2008" xreflabel="Sperberg-McQueen and Huitfeldt 2008"
       >Sperberg-McQueen, C. M., and Claus Huitfeldt. <quote>Markup Discontinued: Discontinuity in
         TexMecs, Goddag structures, and rabbit/duck grammars.</quote>
