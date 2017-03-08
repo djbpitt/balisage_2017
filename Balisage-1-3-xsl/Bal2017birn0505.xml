@@ -201,10 +201,16 @@
       operations can help out here. During tokenization all of the markup can be put 'aside' if it
       were and the tokenizer only pays attention to the textual content. The individual token are
       markup in a separate annotation layer. The existing markup layer are only ignored during
-      tokenization, and still exist in the data. </para>
+      tokenization, and still exist in the data.</para>
   </section>
   <bibliography>
     <title>Works cited</title>
+    <bibliomixed xml:id="piez_2014" xreflabel="Piez 2014">Piez, Wendell. <quote>Hierarchies within
+        range space: From LMNL to OHCO.</quote> Presented at <emphasis role="ital">Balisage: The
+        Markup Conference 2014, Washington, DC, August 5 - 8, 2014.</emphasis> In <emphasis
+        role="ital">Proceedings of Balisage: The Markup Conference 2014. Balisage series on markup
+        technologies,</emphasis> vol. 13 (2014). DOI: 10.4242/BalisageVol13.Piez01.
+        <link>http://www.balisage.net/Proceedings/vol13/html/Piez01/BalisageVol13-Piez01.html</link></bibliomixed>
     <bibliomixed xml:id="piez_2015" xreflabel="Piez 2015">Wendell Piez, <quote>TEI in LMNL:
         implications for modeling</quote>, <emphasis role="ital">Journal of the Text Encoding
         Initiative</emphasis> [Online], Issue 8 | December 2014 - December 2015, Online since 21
