@@ -203,4 +203,15 @@
       markup in a separate annotation layer. The existing markup layer are only ignored during
       tokenization, and still exist in the data. </para>
   </section>
+  <bibliography>
+    <title>Works cited</title>
+    <bibliomixed xml:id="sperberg-huitfeldt_2008" xreflabel="Sperberg-McQueen and Huitfeldt 2008"
+      >Sperberg-McQueen, C. M., and Claus Huitfeldt. <quote>Markup Discontinued: Discontinuity in
+        TexMecs, Goddag structures, and rabbit/duck grammars.</quote>
+      <emphasis role="ital">Presented at Balisage: The Markup Conference 2008, Montréal, Canada,
+        August 12 - 15, 2008.</emphasis> In <emphasis role="ital">Proceedings of Balisage: The
+        Markup Conference 2008. Balisage Series on Markup Technologies</emphasis>, vol. 1 (2008).
+      DOI: 10.4242/BalisageVol1.Sperberg-McQueen01.
+        <link>http://www.balisage.net/Proceedings/vol1/html/Sperberg-McQueen01/BalisageVol1-Sperberg-McQueen01.html</link></bibliomixed>
+  </bibliography>
 </article>
