@@ -58,9 +58,26 @@
     </keywordset>
   </info>
   <section>
-    <title>Introduction</title>
-    <para><!--Add introductory paragraph here--></para>
+    <title>General setup of this paper</title>
+    <para>
+      0. Introduction
+      1. Requirements for the ideal text model
+      1a. The goal is to add layers and layers of extra information to the text. These layers can be human (manually) or added by a computer using parsers. Or a mix of both.
+      1b. These layers can overlap each other of be discontinuous.
+      1c. Possibility to read as well as write.
+      1d. Possibility to defer decisions about relations between layers. I.e. a hierarchy can be applied later, just like a schema is used right now in XML to validate a document.
+      2. Introduce the hypergraph model for text as a processing model for the text and all layers of annotations.
+      3. Compare and contrast with previous models for text processing, such as DOM, GODDAG, LMNL data model (ranges)
+      4. Discuss use cases.
+      5. Work in progress (at the time of writing): Query language on top of data model
+    </para>
   </section>
+    <section>
+      <title>Introduction</title>
+      <para><!--Add introductory paragraph here--></para>
+    </section>
+
+
   <section>
     <title>Rationale for moving beyond XML</title>
     <note>
@@ -84,6 +101,28 @@
       to challenges when querying or transforming the data contained in the file.</para>
     <para>There are many real use cases where there are multiple hierarchies present in the data:
       poetry, stage plays.</para>
+  </section>
+  <section>
+    <title>Requirements for a text model</title>
+    <para>Features: Support textual content and annotations. Overlapping annotations should be
+      possible. Should allow annotations on annotations. Hierarchical content should be possible but
+      not required. Read: queries for text or annotations. Write: added or modifying textual
+      content, adding or modifying annotations. Scalability: The model should allow for large (needs
+      to be defined better) documents.
+     </para>
+    <note>
+      <para>explain the differences between graph models and trees and ranges? Or leave that
+        discussion out?</para>
+    </note>
+    <note>
+      <para>Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice
+        that it is mainly about modelling text using LMNL, querying (using xLMNL and xQuery
+        extensions) and visualising data. These are all read only operations. The goal of the TAG
+        model and its implementation in Alexandria is that it can be used to read as well as write
+        textual data and annotations. This opens up a lot of new possibilities and makes it a
+        'complete' text repository system, comparable to XML databases albeit in a far more
+        experimental state and a much lower level of maturity.</para>
+    </note>
   </section>
   <section>
     <title>Hypergraph model for text</title>
@@ -134,30 +173,26 @@
     </para>
   </section>
   <section>
-    <title>Requirements for a text model</title>
-    <note>
-      <para>explain the differences between graph models and trees and ranges? Or leave that
-        discussion out?</para>
-    </note>
-    <note>
-      <para>Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice
-        that it is mainly about modelling text using LMNL, querying (using xLMNL and xQuery
-        extensions) and visualising data. These are all read only operations. The goal of the TAG
-        model and its implementation in Alexandria is that it can be used to read as well as write
-        textual data and annotations. This opens up a lot of new possibilities and makes it a
-        'complete' text repository system, comparable to XML databases albeit in a far more
-        experimental state and a much lower level of maturity.</para>
-    </note>
-  </section>
-  <section>
-    <title>LMNL conceptual model and how to map it to a hypergraph</title>
-    <note>
-      <para>It is very important that we explain what we kept of the original data model behind LMNL
-        and what we changed and why.</para>
-    </note>
-    <para>The conceptual datamodel behind is XML is the Document Object Model (DOM). The DOM
-      represents a tree based data structure. The data model behind LMNL is different, in that it is
-      based on ranges, based on offsets on textual content.</para>
+    <title>
+      Comparison with other text models
+    </title>
+    <para>
+      Hypergraph versus ranges: With the range conceptual model it is inexpensive to add
+      extra annotation layers, however modifying the textual content is very expensive, since all
+      the ranges of annotations that come after the point of insertion have to be recalculated.
+      Hypergraph versus GODDAG: With
+      the directed acyclic graph model it is inexpensive to add or change textual content, however
+      since all the annotation nodes have to be connected to all the textual nodes involves this
+      model scales badly with the number of textual nodes and the number of annotations.
+      Hypergraph versus DOM: In the
+      traditional tree model it is cheap to add or modify textual content and to add annotations,
+      however there is only a single hierarchy. On top of that having a hierarchy is required.
+      Scalability of the hypergraph model versus all the other models:
+      In the hypergraph approach it is inexpensive (we really should use O notations here) to add or
+      modify textual content, adding annotations is not as cheap as it is with ranges, (a new set
+      needs to be created and a bit needs to be set for every text node involved), but it cheaper
+      than the DAG model, since hypergraphs can be stored as sets rather than having to model
+      individual edges. </para>
   </section>
   <section>
     <title>Comparison of the Hypergraph model with LMNL markup file format</title>
@@ -171,23 +206,16 @@
       overlap. Ranges can be annotated on either the start tag or the end tag. Annotations can
       contain text themselves, that can have ranges, that can have annotations etc. Annotations can
       be annotated. Annotations on a range are ordered. </para>
-    <para> Features: Support textual content and annotations. Overlapping annotations should be
-      possible. Should allow annotations on annotations. Hierarchical content should be possible but
-      not required. Read: queries for text or annotations. Write: added or modifying textual
-      content, adding or modifying annotations. Scalability: The model should allow for large (needs
-      to be defined better) documents. With the range conceptual model it is inexpensive to add
-      extra annotation layers, however modifying the textual content is very expensive, since all
-      the ranges of annotations that come after the point of insertion have to be recalculated. With
-      the directed acyclic graph model it is inexpensive to add or change textual content, however
-      since all the annotation nodes have to be connected to all the textual nodes involves this
-      model scales badly with the number of textual nodes and the number of annotations. In the
-      traditional tree model it is cheap to add or modify textual content and to add annotations,
-      however there is only a single hierarchy. On top of that having a hierarchy is required. In
-      the hypergraph approach it is inexpensive (we really should use O notations here) to add or
-      modify textual content, adding annotations is not as cheap as it is with ranges, (a new set
-      needs to be created and a bit needs to be set for every text node involved), but it cheaper
-      than the DAG model, since hypergraphs can be stored as sets rather than having to model
-      individual edges. </para>
+  </section>
+  <section>
+    <title>LMNL conceptual model and how to map it to a hypergraph</title>
+    <note>
+      <para>It is very important that we explain what we kept of the original data model behind LMNL
+        and what we changed and why.</para>
+    </note>
+    <para>The conceptual datamodel behind is XML is the Document Object Model (DOM). The DOM
+      represents a tree based data structure. The data model behind LMNL is different, in that it is
+      based on ranges, based on offsets on textual content.</para>
   </section>
   <section>
     <title>Example use case: tokenization with markup</title>
