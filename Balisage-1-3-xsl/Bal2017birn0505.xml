@@ -2,7 +2,7 @@
 <?xml-model href="balisage-1-3.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-stylesheet type="text/xsl" href="balisage-proceedings-html.xsl"?>
 <article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>The creature lives</title>
+  <title>It’s more than just overlap: text as graph</title>
   <info>
     <abstract>
       <para>The XML tree paradigm has several well-known limitations for document modeling and
@@ -62,6 +62,7 @@
     </author>
     <keywordset role="author">
       <keyword>graph database</keyword>
+      <keyword>TAG</keyword>
       <keyword>LMNL</keyword>
       <keyword>overlap</keyword>
       <keyword>discontinuity</keyword>
@@ -103,12 +104,13 @@
         </orderedlist>
       </listitem>
       <listitem>
-        <para>Introduce the TAG/hypergraph model for text as a processing model for the text and all
-          layers of annotations. Illustrate general functionality, without emphasis on overlap,
-          discontinuity, or white space, which are in focus below.</para>
+        <para><emphasis role="bold">[Added to body]</emphasis> Introduce the TAG/hypergraph model
+          for text as a processing model for the text and all layers of annotations. Illustrate
+          general functionality, without emphasis on overlap, discontinuity, or white space, which
+          are in focus below.</para>
       </listitem>
       <listitem>
-        <para>How TAG addresses structures that are awkward for XML (description, XML approach, TAG
+        <para><emphasis role="bold">[Added to body]</emphasis> How TAG addresses structures that are awkward for XML (description, XML approach, TAG
           approach, examples)</para>
         <orderedlist>
           <listitem>
@@ -243,17 +245,7 @@
     <para>An improved text model should have the following properties: <itemizedlist>
         <listitem>
           <para>It should support both textual (character data) content and annotations (of the sort
-            represented in XML through markup). Unlike with XML, a document that contians no
-            annotations (in XML terms, no markup) is valid. <!--
-              Do we want to say this? If I've understood correctly that Alexandria autmoatically 
-              creates edges that represent the order of textual objects, does this mean that are
-              always annotations, even if they are not created explicitly by the user? If I've
-              understood the graph theory correctly, is it the case that edges are optional, but
-              a document must have nodes, since edges are defined in terms of the nodes they
-              connect?
-            --><footnote>
-              <para/>
-            </footnote></para>
+            represented in XML through markup).</para>
         </listitem>
         <listitem>
           <para>Multiple layers of annotation should be possible. These layers may be created by a
@@ -327,56 +319,109 @@
     </note>
   </section>
   <section>
-    <title>Hypergraph model for text</title>
-    <note>
-      <para>Describe the model. Think of it as sets. The fact that Alexandria is a read-write system
-        is very important.</para>
-    </note>
-    <para>This paper introduces the Alexandria text repository system. It allows the user to store
-      text files in either XML or LMNL markup and allows for multiple layers of annotation that can
-      overlap. The conceptual model behind Alexandria is a hypergraph for text as well as
-      annotations. Graph models for text and markup have been proposed before (GODDAG, GrAF), but
-      the model proposed in this paper differs in the fact that a hypergraph is used. Hypergraphs
-      differ from traditional graphs, which contain edges that connect only two nodes with each
-      other. The edges in a hypergraph, on the other hand,can connect more than two nodes with each
-      other, for that reason they are called “hyperedges”. Hypergraphs can have directed and
-      undirected hyperedges. Undirected hyperedges contain a set of nodes. Directed hyperedges
-      contain two sets of nodes, one for the source and one for the target. The direction of the
-      (hyper)edge implies the order or the hierarchy of the nodes. Hypergraphs are especially
-      interesting for text modelling, because they can be implemented using sets. The data model
-      consists of a number of objects:</para>
-    <para> Nodes: - Document nodes. Each document node represents a single document stored in the
-      graph. - Text nodes. Text nodes present segments of text, comparable to leaf nodes in a DOM
-      tree. - Markup nodes: Markup nodes represent tags/markup present in the document. - Annotation
-      nodes. Annotation nodes represent metadata on markup node. The model also allows for
-      annotation nodes on annotation nodes.</para>
-    <para> Edges: - Document to text directed edges. A document to text directed edge connects a
-      document node (source) with the first text node (target) contained in that document. - Text
-      node to text node directed edges. The text nodes themselves are connected with directed edges,
-      which order them, so that the linear order of the text is preserved. - Markup to text nodes
-      directed hyperedges. Markup hyperedges connect the tags/markup nodes (source) to text nodes
-      (target) tagged with the markup in question. Note that the use of directed hyperedges allows
-      us to connect n markup nodes with one text node and vice versa. - Annotation to text directed
-      edges: connect annotation nodes to the first text node contained in that annotation. Here,
-      “text node” contains the text of the annotation, not the original text. - Annotation directed
-      edges: connect annotation nodes (source) with other annotation nodes (target) or connect an
-      annotation (source) with a markup/tag node (target).</para>
-    <para>
-      <!--
-     Text Graph Datamodel:
-
-    A text graph representing all the data contained in a LMNL document consists
-    of both a directed acyclic graph (DAG) and a hypergraph (HG). The DAG contains all the range nodes,
-    the annotation nodes, all the edges between them, and all the text nodes and the edges between them.
-    The HG contains all the hyperedges between the text nodes and the range nodes representing the many
-    to many relation between them. I.e. a text node has zero or more ranges on it, while a range can have zero
-    or more text nodes associated with it. A range can be annotated. An annotation can itself be annotated.
-    -->
-    </para>
+    <title>The TAG/hypergraph model for text</title>
+    <!--Describe the model. Think of it as sets. The fact that Alexandria is a read-write system
+        is very important.-->
+    <section>
+      <title>About the TAG/hypergraph model and the Alexandria implementation</title>
+      <para>This paper introduces the Alexandria text repository system, an open-source read/write
+        implementation of the TAG model. It allows the user to import and store text files in either
+        XML or LMNL markup, and it supports multiple layers of annotation that are permitted to
+        overlap. The conceptual model behind Alexandria is a hypergraph for text as well as
+        annotations.</para>
+      <para>Graph models for text and markup have been proposed before (GODDAG [see, e.g., <xref
+          linkend="sperberg-huitfeldt_2000"/>], GrAF [see, e.g., <xref linkend="ide_2007"/>]), but
+        the model proposed in this paper differs from those because it incorporates a <emphasis
+          role="bold">hypergraph</emphasis>. Hypergraphs differ from traditional graphs, which
+        contain edges that connect only two nodes with each other. The edges in a hypergraph, on the
+        other hand, can connect more than two nodes with one another, for that reason they are
+        called <emphasis role="bold">hyperedges</emphasis>. Hypergraphs can have directed and
+        undirected hyperedges. Undirected hyperedges contain a set of nodes. Directed hyperedges
+        contain two sets of nodes, one for the source and one for the target. The direction of the
+        (hyper)edge implies an order or a hierarchy of the nodes. Hypergraphs are especially
+        valuable for text modeling because they can be implemented using sets. The data model
+        consists of a number of node and edge objects of different types.</para>
+    </section>
+    <section>
+      <title>Nodes</title>
+      <para>The node types supported by the model are: <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Document nodes.</emphasis> Each document node represents a
+              single document stored in the graph.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Text nodes.</emphasis> Text nodes present segments of text,
+              comparable to <code>text()</code> nodes in a DOM tree.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes represent tags/markup
+              present in the document.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
+              metadata on markup node. The model also allows for annotation nodes on annotation
+              nodes.</para>
+          </listitem>
+        </itemizedlist></para>
+    </section>
+    <section>
+      <title>Edges</title>
+      <para>The edge types supported by the model are: <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Document to text directed edges.</emphasis> A document to
+              text directed edge connects a document node (source) with the first text node (target)
+              contained in that document.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Text node to text node directed edges.</emphasis> The text
+              nodes themselves are connected with directed edges, which order them, so that the
+              linear order of the text is preserved.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Markup to text nodes directed hyperedges.</emphasis> Markup
+              hyperedges connect the tags/markup nodes (source) to text nodes (target) tagged with
+              the markup in question. Note that the use of directed hyperedges allows us to connect
+                <emphasis role="ital">n</emphasis> markup nodes with one text node and vice
+              versa.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Annotation to text directed edges.</emphasis> These connect
+              annotation nodes to the first text node contained in that annotation. <quote>Text
+                node</quote> contains the text of the annotation, not the original text.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Annotation directed edges.</emphasis> These connect
+              annotation nodes (source) with other annotation nodes (target), or they connect an
+              annotation (source) with a markup/tag node (target).</para>
+          </listitem>
+        </itemizedlist></para>
+    </section>
   </section>
   <section>
-    <title> Comparison with other text models </title>
-    <para> Hypergraph versus ranges: With the range conceptual model it is inexpensive to add extra
+    <title>How TAG addresses structures that are awkward for XML</title>
+    <para>In this section we illustrate how three types of structures that are awkward for XML
+      because they contradict the tree model can be represented and navigated in a natural way in
+      TAG. For each we provide an abstract description of the problem, of one or more XML
+      workarounds, and of the TAG approach, followed by examples drawn from use cases in Digital
+      Humanities research projects.</para>
+    <section>
+      <title>Overlap</title>
+      <para><emphasis role="bold">TODO: Examples include enjambment in poetry, pages/paragraphs in
+          prose, Frankenstein.</emphasis></para>
+    </section>
+    <section>
+      <title>White space as crypto-overlap</title>
+      <para><emphasis role="bold">TODO: Examples include caesura in poetry</emphasis></para>
+    </section>
+    <section>
+      <title>Discontinuity</title>
+      <para><emphasis role="bold">TODO: Examples include divided or interrupted speech in
+          prose</emphasis></para>
+    </section>
+  </section>
+  <section>
+    <title>Comparison with other text models</title>
+    <para>Hypergraph versus ranges: With the range conceptual model it is inexpensive to add extra
       annotation layers, however modifying the textual content is very expensive, since all the
       ranges of annotations that come after the point of insertion have to be recalculated.
       Hypergraph versus GODDAG: With the directed acyclic graph model it is inexpensive to add or
@@ -392,7 +437,14 @@
       than having to model individual edges.</para>
   </section>
   <section>
-    <title>Comparison of the Hypergraph model with LMNL markup file format</title>
+    <title>Comparison of the hypergraph model with the LMNL markup file format</title>
+    <para>A text graph representing all the data contained in a LMNL document consists of both a
+      directed acyclic graph (DAG) and a hypergraph (HG). The DAG contains the range nodes, the
+      annotation nodes, the edges between them, and all the text nodes and the edges between them.
+      The HG contains all the hyperedges between the text nodes and the range nodes representing the
+      many-to-many relation between them. That is, a text node has zero or more ranges on it, while
+      a range can have zero or more text nodes associated with it. A range can be annotated, and an
+      annotation can itself be annotated.</para>
     <para>The LMNL markup file format removes the constraint that the last opened has to be closed
       first. That means that it is possible to model overlapping hierarchies in LMNL. To be more
       precise, it is possible to model annotations with one hierarchy, multiple hierarchies or no
@@ -443,6 +495,10 @@
       Mirco, Oliver Schonefeld, and Andreas Witt. <quote>Making CONCUR work.</quote>
       <emphasis role="ital">Proceedings of Extreme Markup Languages</emphasis> 2005.
         <link>http://conferences.idealliance.org/extreme/html/2005/Witt01/EML2005Witt01.xml#Horse</link></bibliomixed>
+    <bibliomixed xml:id="ide_2007" xreflabel="Ide and Suderman 2007">Ide, Nancy and Keith Suderman.
+        <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
+      Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
+        <link>https://www.cs.vassar.edu/~ide/papers/LAW.pdf</link></bibliomixed>
     <bibliomixed xml:id="piez_2014" xreflabel="Piez 2014">Piez, Wendell. <quote>Hierarchies within
         range space: From LMNL to OHCO.</quote> Presented at <emphasis role="ital">Balisage: The
         Markup Conference 2014, Washington, DC, August 5 - 8, 2014.</emphasis> In <emphasis
@@ -460,8 +516,17 @@
       <emphasis role="ital">Research in humanities computing</emphasis>, ed. Nancy Ide and Susan
       Hockey. Oxford: Oxford University Press. 1996.
         <link>http://cds.library.brown.edu/resources/stg/monographs/ohco.html#derose</link></bibliomixed>
+    <bibliomixed xml:id="sperberg-huitfeldt_2000" xreflabel="Sperberg-McQueen and Huitfeldt 2000"
+      >Sperberg-McQueen, C. M. and Claus Huitfeldt. <quote>GODDAG: a data structure for overlapping
+        hierarchies.</quote>
+      <emphasis role="ital">Digital documents: systems and principles: 8th international conference
+        on digital documents and electronic publishing, DDEP 2000, 5th international workshop on the
+        principles of digital document processing, PODDP 2000, Munich, Germany, September 13–15,
+        2000, revised papers</emphasis>, ed. Peter King and Ethan V. Munson. NY: Springer, 2004,
+      139–60. A revised version is available at
+      <link>http://cmsmcq.com/2000/poddp2000.html</link></bibliomixed>
     <bibliomixed xml:id="sperberg-huitfeldt_2008" xreflabel="Sperberg-McQueen and Huitfeldt 2008"
-      >Sperberg-McQueen, C. M., and Claus Huitfeldt. <quote>Markup Discontinued: Discontinuity in
+      >Sperberg-McQueen, C. M. and Claus Huitfeldt. <quote>Markup Discontinued: Discontinuity in
         TexMecs, Goddag structures, and rabbit/duck grammars.</quote>
       <emphasis role="ital">Presented at Balisage: The Markup Conference 2008, Montréal, Canada,
         August 12 - 15, 2008.</emphasis> In <emphasis role="ital">Proceedings of Balisage: The
