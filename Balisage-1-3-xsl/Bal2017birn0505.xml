@@ -3,6 +3,7 @@
 <?xml-stylesheet type="text/xsl" href="balisage-proceedings-html.xsl"?>
 <article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
   <title>It’s more than just overlap: text as graph</title>
+  <!-- Verify that all items in bibliography are cited in body -->
   <info>
     <abstract>
       <para>The XML tree paradigm has several well-known limitations for document modeling and
