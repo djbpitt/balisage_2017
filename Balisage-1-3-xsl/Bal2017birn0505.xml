@@ -15,7 +15,8 @@
         fit with the full range of document structures with which researchers need to interact both
         intellectually and programmatically. Proceeding from a high-level view of why XML has the
         limitations it has, this presentation explores how an alternative model of Text as Graph
-        might address these types of structures.</para>
+        might address these types of structures and tasks in a more natural and idiomatic way than
+        is available within an XML paradigm.</para>
     </abstract>
     <author>
       <personname>
