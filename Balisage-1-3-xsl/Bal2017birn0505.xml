@@ -4,6 +4,18 @@
 <article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
   <title>It’s more than just overlap: text as graph</title>
   <!-- Verify that all items in bibliography are cited in body -->
+  <!--
+    rhd: There is one more thing that we might have to discuss: a lot of scholars when they 
+    hear/read the word graph think of semantic networks. It is important to stress that a 
+    text graph is not a semantic network. In the markup of an annotation layer it is of 
+    course possible to link to persons, places, organisations, events etc in a semantic 
+    network. The main point is that although a text graph and a semantic network are both 
+    networks, and they can link to each other, there are not the same. I suspect the Balisage 
+    crowd is more aware of this than the average  scholars but still. There are some Balisage 
+    papers that advocate combining XML with semantic networks. A text graph approach is still 
+    different from that approach. So maybe it would good to explicitly mention that to avoid 
+    confusion.
+  -->
   <info>
     <abstract>
       <para>The XML tree paradigm has several well-known limitations for document modeling and
