@@ -1,4 +1,4 @@
-<style style="display: none;" type="text/css">
+<style type="text/css">
     ol > li > ol { list-style-type: lower-alpha; }
 </style>
 # Outline
