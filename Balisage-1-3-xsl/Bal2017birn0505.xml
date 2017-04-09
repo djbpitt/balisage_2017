@@ -70,109 +70,6 @@
     </keywordset>
   </info>
   <section>
-    <title>Outline (to be removed before submission)</title>
-    <orderedlist>
-      <listitem>
-        <para><emphasis role="bold">[Added to body]</emphasis> Where we are today: The XML tree
-          model has several well-known limitations, some of which have received a lot of attention
-          (overlap) and some of which have not (discontinuity; white space as crypto-overlap). All
-          of these have well-known work-arounds that have disadvantages, but because they work and
-          because XML has a large user community, it is difficult to overcome inertia and move to a
-          technology that does not require awkward work-arounds.</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">[Added to body]</emphasis> Requirements for an ideal (or, at
-          least, improved) text model (focus on features not well supported by XML [tree]
-          modeling)</para>
-        <orderedlist>
-          <listitem>
-            <para>The goal is to add layers and layers of extra information to the text. These
-              layers can be created by a human (manually) or added by a computer using parsers. Or a
-              mix of both.</para>
-          </listitem>
-          <listitem>
-            <para>These layers can overlap each other or be discontinuous.</para>
-          </listitem>
-          <listitem>
-            <para>Possibility to read as well as write.</para>
-          </listitem>
-          <listitem>
-            <para>Possibility to defer decisions about relations between layers. I.e., a hierarchy
-              can be applied later, just like a schema is used right now in XML to validate a
-              document.</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">[Added to body]</emphasis> Introduce the TAG/hypergraph model
-          for text as a processing model for the text and all layers of annotations. Illustrate
-          general functionality, without emphasis on overlap, discontinuity, or white space, which
-          are in focus below.</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">[Added to body]</emphasis> How TAG addresses structures that are awkward for XML (description, XML approach, TAG
-          approach, examples)</para>
-        <orderedlist>
-          <listitem>
-            <para>Overlap. Examples include enjambment in poetry, pages/paragraphs in prose,
-              Frankenstein.</para>
-          </listitem>
-          <listitem>
-            <para>White space as crypto-overlap. Examples include caesura in poetry.</para>
-          </listitem>
-          <listitem>
-            <para>Discontinuity. Examples include divided or interrupted speech in prose.</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-      <listitem>
-        <para>Compare and contrast TAG/hypergraph with previous models for text processing, such as
-          DOM, GODDAG, LMNL data model (ranges)</para>
-        <orderedlist>
-          <listitem>
-            <para>TAG and DOM</para>
-          </listitem>
-          <listitem>
-            <para>TAG and GODDAG</para>
-          </listitem>
-          <listitem>
-            <para>TAG and LMNL</para>
-            <orderedlist>
-              <listitem>
-                <para>The LMNL and TAG data models</para>
-              </listitem>
-              <listitem>
-                <para>LMNL syntax in a TAG environment</para>
-              </listitem>
-              <listitem>
-                <para>What LMNL syntax doesn't represent (apparently reserved for the limen, and not
-                  yet specified) that TAG requires</para>
-              </listitem>
-            </orderedlist>
-          </listitem>
-        </orderedlist>
-      </listitem>
-      <listitem>
-        <para>TAG in Alexandria (some of which may be plans or projections, rather than
-          implementation)</para>
-        <orderedlist>
-          <listitem>
-            <para>Introduction to Alexandria as a TAG implementation</para>
-          </listitem>
-          <listitem>
-            <para>Graph and hypergraph</para>
-          </listitem>
-          <listitem>
-            <para>Navigation and query</para>
-          </listitem>
-          <listitem>
-            <para>Import and export</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-    </orderedlist>
-  </section>
-  <section>
     <title>Introduction</title>
     <para>The XML tree paradigm has several well-known limitations for document modeling and
       processing, some of which have received a lot of attention (especially overlap) and some of
@@ -420,51 +317,101 @@
     </section>
   </section>
   <section>
-    <title>Comparison with other text models</title>
-    <para>Hypergraph versus ranges: With the range conceptual model it is inexpensive to add extra
-      annotation layers, however modifying the textual content is very expensive, since all the
-      ranges of annotations that come after the point of insertion have to be recalculated.
-      Hypergraph versus GODDAG: With the directed acyclic graph model it is inexpensive to add or
-      change textual content, however since all the annotation nodes have to be connected to all the
-      textual nodes involves this model scales badly with the number of textual nodes and the number
-      of annotations. Hypergraph versus DOM: In the traditional tree model it is cheap to add or
-      modify textual content and to add annotations, however there is only a single hierarchy. On
-      top of that having a hierarchy is required. Scalability of the hypergraph model versus all the
-      other models: In the hypergraph approach it is inexpensive (we really should use O notations
-      here) to add or modify textual content, adding annotations is not as cheap as it is with
-      ranges, (a new set needs to be created and a bit needs to be set for every text node
-      involved), but it cheaper than the DAG model, since hypergraphs can be stored as sets rather
-      than having to model individual edges.</para>
+    <title>Comparison of TAG/hypergraph to other text models</title>
+    <para>In this section we compare and contrast the TAG/hypergraph model with previous models for
+      text processing, such as DOM (tree), GODDAG (graph), and LMNL (range).</para>
+    <section>
+      <title>TAG and DOM</title>
+      <para><emphasis role="bold">TODO</emphasis></para>
+    </section>
+    <section>
+      <title>TAG and GODDAG</title>
+      <para><emphasis role="bold">TODO</emphasis></para>
+    </section>
+    <section>
+      <title>TAG and LMNL</title>
+      <para><emphasis role="bold">TODO: General comments about TAG and LMNL</emphasis></para>
+      <section>
+        <title>The LMNL and TAG data models</title>
+        <para><emphasis role="bold">TODO</emphasis></para>
+      </section>
+      <section>
+        <title>LMNL syntax in a TAG environment</title>
+        <para><emphasis role="bold">TODO</emphasis></para>
+      </section>
+      <section>
+        <title>What LMNL syntax doesn't represent</title>
+        <para><emphasis role="bold">TODO:</emphasis> (apparently reserved for the limen, and not yet
+          specified) that TAG requires</para>
+      </section>
+      <section>
+        <title>Hypergraph versus ranges</title>
+        <para>With the range conceptual model it is inexpensive to add extra annotation layers,
+          however modifying the textual content is very expensive, since all the ranges of
+          annotations that come after the point of insertion have to be recalculated. Hypergraph
+          versus GODDAG: With the directed acyclic graph model it is inexpensive to add or change
+          textual content, however since all the annotation nodes have to be connected to all the
+          textual nodes involves this model scales badly with the number of textual nodes and the
+          number of annotations. Hypergraph versus DOM: In the traditional tree model it is cheap to
+          add or modify textual content and to add annotations, however there is only a single
+          hierarchy. On top of that having a hierarchy is required. Scalability of the hypergraph
+          model versus all the other models: In the hypergraph approach it is inexpensive (we really
+          should use O notations here) to add or modify textual content, adding annotations is not
+          as cheap as it is with ranges, (a new set needs to be created and a bit needs to be set
+          for every text node involved), but it cheaper than the DAG model, since hypergraphs can be
+          stored as sets rather than having to model individual edges.</para>
+      </section>
+      <section>
+        <title>Comparison of the hypergraph model with the LMNL markup file format</title>
+        <para>A text graph representing all the data contained in a LMNL document consists of both a
+          directed acyclic graph (DAG) and a hypergraph (HG). The DAG contains the range nodes, the
+          annotation nodes, the edges between them, and all the text nodes and the edges between
+          them. The HG contains all the hyperedges between the text nodes and the range nodes
+          representing the many-to-many relation between them. That is, a text node has zero or more
+          ranges on it, while a range can have zero or more text nodes associated with it. A range
+          can be annotated, and an annotation can itself be annotated.</para>
+        <para>The LMNL markup file format removes the constraint that the last opened has to be
+          closed first. That means that it is possible to model overlapping hierarchies in LMNL. To
+          be more precise, it is possible to model annotations with one hierarchy, multiple
+          hierarchies or no hierarchy at all. This allows for a great freedom to model all kinds of
+          information on textual content. This is great from a content perspective. However LMNL is
+          more expensive from a computational perspective.</para>
+        <para> LMNL data model LMNL documents contain text. Text can have ranges on them. Ranges can
+          overlap. Ranges can be annotated on either the start tag or the end tag. Annotations can
+          contain text themselves, that can have ranges, that can have annotations etc. Annotations
+          can be annotated. Annotations on a range are ordered.</para>
+      </section>
+      <section>
+        <title>LMNL conceptual model and how to map it to a hypergraph</title>
+        <note>
+          <para>It is very important that we explain what we kept of the original data model behind
+            LMNL and what we changed and why.</para>
+        </note>
+        <para>The conceptual datamodel behind is XML is the Document Object Model (DOM). The DOM
+          represents a tree based data structure. The data model behind LMNL is different, in that
+          it is based on ranges, based on offsets on textual content.</para>
+      </section>
+    </section>
   </section>
   <section>
-    <title>Comparison of the hypergraph model with the LMNL markup file format</title>
-    <para>A text graph representing all the data contained in a LMNL document consists of both a
-      directed acyclic graph (DAG) and a hypergraph (HG). The DAG contains the range nodes, the
-      annotation nodes, the edges between them, and all the text nodes and the edges between them.
-      The HG contains all the hyperedges between the text nodes and the range nodes representing the
-      many-to-many relation between them. That is, a text node has zero or more ranges on it, while
-      a range can have zero or more text nodes associated with it. A range can be annotated, and an
-      annotation can itself be annotated.</para>
-    <para>The LMNL markup file format removes the constraint that the last opened has to be closed
-      first. That means that it is possible to model overlapping hierarchies in LMNL. To be more
-      precise, it is possible to model annotations with one hierarchy, multiple hierarchies or no
-      hierarchy at all. This allows for a great freedom to model all kinds of information on textual
-      content. This is great from a content perspective. However LMNL is more expensive from a
-      computational perspective.</para>
-    <para> LMNL data model LMNL documents contain text. Text can have ranges on them. Ranges can
-      overlap. Ranges can be annotated on either the start tag or the end tag. Annotations can
-      contain text themselves, that can have ranges, that can have annotations etc. Annotations can
-      be annotated. Annotations on a range are ordered.</para>
-  </section>
-  <section>
-    <title>LMNL conceptual model and how to map it to a hypergraph</title>
-    <note>
-      <para>It is very important that we explain what we kept of the original data model behind LMNL
-        and what we changed and why.</para>
-    </note>
-    <para>The conceptual datamodel behind is XML is the Document Object Model (DOM). The DOM
-      represents a tree based data structure. The data model behind LMNL is different, in that it is
-      based on ranges, based on offsets on textual content.</para>
+    <title>TAG in Alexandria</title>
+    <!--some of this may be plans or projections, rather than implementation-->
+    <section>
+      <title>Introduction to Alexandria as a TAG implementation</title>
+      <para><emphasis role="bold">TODO: write something</emphasis></para>
+    </section>
+    <section>
+      <title>Graph and hypergraph</title>
+      <para><emphasis role="bold">TODO: write something</emphasis></para>
+    </section>
+    <section>
+      <title>Navigation and query</title>
+      <para><emphasis role="bold">TODO: write something</emphasis></para>
+    </section>
+    <section>
+      <title>Import and export</title>
+      <para><emphasis role="bold">TODO: write something</emphasis></para>
+    </section>
   </section>
   <section>
     <title>Example use case: tokenization with markup</title>
