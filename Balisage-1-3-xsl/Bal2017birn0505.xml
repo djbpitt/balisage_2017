@@ -171,20 +171,52 @@
   </section>
   <section>
     <title>Introduction</title>
-    <para><!--Add introductory paragraph here--></para>
-  </section>
-  <section>
-    <title>Rationale for moving beyond XML</title>
-    <note>
-      <para>Wendell himself discussed the relation between LMNL and OHCO in his 2014 Balisage paper
-        here: <link
-          xlink:href="http://www.balisage.net/Proceedings/vol13/print/Piez01/BalisageVol13-Piez01.html"
-          >link to paper</link></para>
-    </note>
-    <para>Textual data is unstructured. Markups needs to be added to extract information from it.
-      The most popular markup format to store textual data and markup is XML. XML follows a
-      hierarchical model that allows one to add structure to a file. This works well for dividing
-      text into chapters and paragraphs. However there are limitations.</para>
+    <para>The XML tree paradigm has several well-known limitations for document modeling and
+      processing, some of which have received a lot of attention (especially overlap) and some of
+      which have not (e.g., discontinuity, white space as crypto-overlap). All of these have
+      work-arounds, also well known, that—as is implicit in the term <quote>work-around</quote>—have
+      disadvantages, but because they get the job done and because XML has a large user community
+      with diverse levels of technological competence, it is difficult to overcome inertia and move
+      to a technology that might offer a more comprehensive fit with the full range of document
+      structures with which researchers need to interact both intellectually and programmatically.
+      Proceeding from a high-level view of why XML has the limitations it has, this presentation
+      explores how an alternative model of Text as Graph might address these types of structures and
+      tasks in a more natural and idiomatic way than is available within an XML paradigm.</para>
+    <para>From an informatic perspective all documents are structured, including those are
+      traditionally identified as plain text. Some of the structural properties of plain-text
+      documents are expressed through formatting conventions (e.g., the use of blank lines to
+      separate paragraphs, or of indentation to mark the beginning of a paragraph; the use of
+      centering to mark a header; etc). Others depend on tacit contextual information (e.g., a
+      capitalized reference to <quote>London</quote> is formally marked as a proper noun by
+      capitalization, but whether it is a placename in England or the personal name of a US writer
+      is not represented formally). The conventions at work in plain text do not formally
+      differentiate the content of a document from the coded representation of its structure, which
+      complicates document processing (whether for data mining, publication, or other purposes), a
+      challenge that has come to be addressed by representing the structural properties through
+      markup (such as XML).</para>
+    <para>The XML data model is a tree, a rooted and ordered directed acyclic graph, which in the
+      document-processing community has come to be known as an Ordered Hierarchy of Content Objects
+      (OHCO). The OHCO model works well for describing structures that consist of single ordered
+      hierarchies, such as the division of a novel into chapters and the chapters into paragraphs.
+      It is not well suited to structures that cannot be modeled fully as a single tree.<footnote>
+        <para>The OHCO literature is already well known to the Balisage audience, and it is not our
+          goal to provide an exhaustive bibliography. The seminal papers that advocated for OHCO as
+          a document model are <xref linkend="coombs_1987"/> and <xref linkend="derose_1990"/>; the
+          seminal examination of the limitations of OHCO, by some of the same authors, is <xref
+            linkend="renear_1996"/> (first introduced as a conference presentation in 1992). Wendell
+          Piez discusses issues pertaining to overlap and OHCO, and the alternative range model
+          implemented in LMNL, in <xref linkend="piez_2014"/>.</para>
+      </footnote> The markup community has focused intensively on overlap as a challenge to the OHCO model,<footnote>
+        <para>Within the Balisage community, at present
+            <link>http://www.balisage.net/Proceedings/topics/Concurrent_Markup~Overlap.html</link>
+          lists twenty-five presentations from 2008 through 2016</para>
+      </footnote>, and with good reason, but we argue below that overlap is only one manifestation
+      of a higher level problem, and this perspective has implications for deciding how best to
+      overcome it.<!-- 
+        djb: If overlap were the problem, projecting multiple trees over the content would solve it,
+        as would ranges. If the problem is that a tree is inadequate for reasons that go beyond overlap
+        (e.g., discontinuity), we stop thinking that dealing with overlap will solve all of our problems.
+      --></para>
     <para>Adding a second hierarchy is difficult, since XML markup syntax requires that the last
       opened tag is closed first. Adding the structure of the pages for example overlaps with the
       stucture of the chapters and paragraphs. This can be worked around by adding a second
@@ -322,6 +354,15 @@
   </section>
   <bibliography>
     <title>Works cited</title>
+    <bibliomixed xml:id="coombs_1987" xreflabel="Coombs et al. 1987">Coombs, James H., Allen H.
+      Renear, and Steven J. DeRose. <quote>Markup systems and the future of scholarly text
+        processing.</quote> Communications of the Association for Computing Machinery, 30.11 (Nov.
+      1987): 933–47. doi:10.1145/32206.32209</bibliomixed>
+    <bibliomixed xml:id="derose_1990" xreflabel="DeRose et al. 1990">DeRose, Steven J., David G.
+      Durand, Elli Mylonas, and Allen H. Renear. <quote>What is text, really?</quote>, <emphasis
+        role="ital">Journal of computing in higher education</emphasis>, 1.2 (1990): 3–26.
+      doi:10.1007/BF02941632.
+        <link>http://www.cip.ifi.lmu.de/~langeh/test/1990%20-%20DeRose%20-%20What%20is%20Text,%20really%3F.pdf</link></bibliomixed>
     <bibliomixed xml:id="piez_2014" xreflabel="Piez 2014">Piez, Wendell. <quote>Hierarchies within
         range space: From LMNL to OHCO.</quote> Presented at <emphasis role="ital">Balisage: The
         Markup Conference 2014, Washington, DC, August 5 - 8, 2014.</emphasis> In <emphasis
@@ -333,6 +374,12 @@
         Initiative</emphasis> [Online], Issue 8 | December 2014 - December 2015, Online since 21
       November 2015, connection on 08 March 2017. URL: <link>http://jtei.revues.org/1337</link>;
       DOI: 10.4000/jtei.1337.</bibliomixed>
+    <bibliomixed xml:id="renear_1996" xreflabel="Renear, Mylonas, and Durand 1996">Renear, Allen H.,
+      Elli Mylonas, and David G. Durand. <quote>Refining our notion of what text really is: the
+        problem of overlapping hierarchies.</quote>
+      <emphasis role="ital">Research in humanities computing</emphasis>, ed. Nancy Ide and Susan
+      Hockey. Oxford: Oxford University Press. 1996.
+        <link>http://cds.library.brown.edu/resources/stg/monographs/ohco.html#derose</link></bibliomixed>
     <bibliomixed xml:id="sperberg-huitfeldt_2008" xreflabel="Sperberg-McQueen and Huitfeldt 2008"
       >Sperberg-McQueen, C. M., and Claus Huitfeldt. <quote>Markup Discontinued: Discontinuity in
         TexMecs, Goddag structures, and rabbit/duck grammars.</quote>
