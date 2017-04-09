@@ -69,19 +69,20 @@
     </keywordset>
   </info>
   <section>
-    <title>General setup of this paper</title>
+    <title>Outline (to be removed before submission)</title>
     <orderedlist>
       <listitem>
-        <para>Where we are today: The XML tree model has several well-known limitations, some of
-          which have received a lot of attention (overlap) and some of which have not
-          (discontinuity; white space as crypto-overlap). All of these have well-known work-arounds
-          that have disadvantages, but because they work and because XML has a large user community,
-          it is difficult to overcome inertia and move to a technology that does not require awkward
-          work-arounds.</para>
+        <para><emphasis role="bold">[Added to body]</emphasis> Where we are today: The XML tree
+          model has several well-known limitations, some of which have received a lot of attention
+          (overlap) and some of which have not (discontinuity; white space as crypto-overlap). All
+          of these have well-known work-arounds that have disadvantages, but because they work and
+          because XML has a large user community, it is difficult to overcome inertia and move to a
+          technology that does not require awkward work-arounds.</para>
       </listitem>
       <listitem>
-        <para>Requirements for an ideal (or, at least, improved) text model (focus on features not
-          well supported by XML [tree] modeling)</para>
+        <para><emphasis role="bold">[Added to body]</emphasis> Requirements for an ideal (or, at
+          least, improved) text model (focus on features not well supported by XML [tree]
+          modeling)</para>
         <orderedlist>
           <listitem>
             <para>The goal is to add layers and layers of extra information to the text. These
@@ -180,8 +181,9 @@
       to a technology that might offer a more comprehensive fit with the full range of document
       structures with which researchers need to interact both intellectually and programmatically.
       Proceeding from a high-level view of why XML has the limitations it has, this presentation
-      explores how an alternative model of Text as Graph might address these types of structures and
-      tasks in a more natural and idiomatic way than is available within an XML paradigm.</para>
+      explores how an alternative model of Text as Graph (TAG) might address these types of
+      structures and tasks in a more natural and idiomatic way than is available within an XML
+      paradigm.</para>
     <para>From an informatic perspective all documents are structured, including those are
       traditionally identified as plain text. Some of the structural properties of plain-text
       documents are expressed through formatting conventions, such as the use of blank lines to
@@ -227,12 +229,78 @@
       that higher level.</para>
   </section>
   <section>
-    <title>Requirements for a text model</title>
-    <para>Features: Support textual content and annotations. Overlapping annotations should be
-      possible. Should allow annotations on annotations. Hierarchical content should be possible but
-      not required. Read: queries for text or annotations. Write: added or modifying textual
-      content, adding or modifying annotations. Scalability: The model should allow for large (needs
-      to be defined better) documents.</para>
+    <title>Desiderata for an improved text model</title>
+    <para>The principal limitation of XML as a model of text is that text has structural properties
+      that humans care about that cannot be modeled directly as a tree, or, at least, as a tree
+      constructed from the seven types of nodes that constitute the XML data model. Overlap is one
+      such property. Another is discontinuity, where a single unit of information, such as a
+      sentence spoken by a character in a play, might be interrupted (in this case, perhaps by the
+      speech of another character) and then continue. Another, rooted not so much in the abstract
+      tree model as in the way its implementation interacts with XML processing, is the inability to
+      apply string functions to mixed content without atomizing the content. These challenges, which
+      are met with workarounds in XML modeling and processing, find a natural solution in the TAG
+      model described here, and are discussed in greater detail below.</para>
+    <para>An improved text model should have the following properties: <itemizedlist>
+        <listitem>
+          <para>It should support both textual (character data) content and annotations (of the sort
+            represented in XML through markup). Unlike with XML, a document that contians no
+            annotations (in XML terms, no markup) is valid. <!--
+              Do we want to say this? If I've understood correctly that Alexandria autmoatically 
+              creates edges that represent the order of textual objects, does this mean that are
+              always annotations, even if they are not created explicitly by the user? If I've
+              understood the graph theory correctly, is it the case that edges are optional, but
+              a document must have nodes, since edges are defined in terms of the nodes they
+              connect?
+            --><footnote>
+              <para/>
+            </footnote></para>
+        </listitem>
+        <listitem>
+          <para>Multiple layers of annotation should be possible. These layers may be created by a
+            human (manually) or added by a computer using parsers, or through a combination of
+            manual and automatic actions.</para>
+        </listitem>
+        <listitem>
+          <para>Overlapping annotations should be possible, as should discontinuous
+            annotations.</para>
+        </listitem>
+        <listitem>
+          <para>Annotations on annotations should be
+            possible.<!-- Give an example of why this is desirable --></para>
+        </listitem>
+        <listitem>
+          <para>Hierarchical structures should be possible, but not required, and the system should
+            permit multiple, partial, or overlapping hierarchies or annotations.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to reading, the model should support queries for text, annotations, or
+            a combination of the two.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to writing, the model should support creating, inserting, deleting, or
+            otherwise modifying both textual content and annotations.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to workflow, it should be possible to defer decisions about relations
+            among layers. For example, it should be possible to create annotations without hierarchy
+            and apply a hierarchy only later. This deferral might be compared to the way XML
+            documents may be validated against schemas that may be created and associated only after
+            a fully functional well-formed document has been created.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to scalability, the model should enable, in a computationaly efficient
+            way, the types of documents and processing required by the digital text
+            community.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to I/O, a system that implements the model should support serialization
+            as plain text on export and the parsing of such serializations on import.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to user interaction, a system that implements the model should provide
+            a legible interface that enables reading and writing by human users.</para>
+        </listitem>
+      </itemizedlist></para>
     <para>dding a second or subsequent hierarchy is difficult, since XML markup syntax requires that
       the last opened tag is closed first. Adding the structure of the pages for example overlaps
       with the stucture of the chapters and paragraphs. This can be worked around by adding a second
