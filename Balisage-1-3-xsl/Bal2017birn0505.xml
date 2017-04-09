@@ -5,7 +5,17 @@
   <title>The creature lives</title>
   <info>
     <abstract>
-      <para>Abstract text will go here</para>
+      <para>The XML tree paradigm has several well-known limitations for document modeling and
+        processing, some of which have received a lot of attention (especially overlap) and some of
+        which have not (e.g., discontinuity, white space as crypto-overlap). All of these have
+        work-arounds, also well known, that—as is implicit in the term
+        <quote>work-around</quote>—have disadvantages, but because they get the job done and because
+        XML has a large user community with diverse levels of technological competence, it is
+        difficult to overcome inertia and move to a technology that might offer a more comprehensive
+        fit with the full range of document structures with which researchers need to interact both
+        intellectually and programmatically. Proceeding from a high-level view of why XML has the
+        limitations it has, this presentation explores how an alternative model of Text as Graph
+        might address these types of structures.</para>
     </abstract>
     <author>
       <personname>
@@ -39,7 +49,7 @@
         <surname>Dekker</surname>
       </personname>
       <personblurb>
-        <para>Add blurb about Ronald</para>
+        <para>[Add blurb about Ronald]</para>
       </personblurb>
       <affiliation>
         <jobtitle><!-- job title goes here--></jobtitle>
@@ -162,8 +172,6 @@
     <title>Introduction</title>
     <para><!--Add introductory paragraph here--></para>
   </section>
-
-
   <section>
     <title>Rationale for moving beyond XML</title>
     <note>
