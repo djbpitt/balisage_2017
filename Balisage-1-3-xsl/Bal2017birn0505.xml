@@ -201,19 +201,15 @@
       to challenges when querying or transforming the data contained in the file.</para>
     <para>There are many real use cases where there are multiple hierarchies present in the data:
       poetry, stage plays.</para>
-    <note>
-      <para>explain the differences between graph models and trees and ranges? Or leave that
-        discussion out?</para>
-    </note>
-    <note>
-      <para>Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice
+    <!--explain the differences between graph models and trees and ranges? Or leave that
+        discussion out?-->
+    <!--Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice
         that it is mainly about modelling text using LMNL, querying (using xLMNL and xQuery
         extensions) and visualising data. These are all read only operations. The goal of the TAG
         model and its implementation in Alexandria is that it can be used to read as well as write
         textual data and annotations. This opens up a lot of new possibilities and makes it a
         'complete' text repository system, comparable to XML databases albeit in a far more
-        experimental state and a much lower level of maturity.</para>
-    </note>
+        experimental state and a much lower level of maturity.-->
   </section>
   <section>
     <title>The TAG/hypergraph model for text</title>
@@ -383,10 +379,8 @@
       </section>
       <section>
         <title>LMNL conceptual model and how to map it to a hypergraph</title>
-        <note>
-          <para>It is very important that we explain what we kept of the original data model behind
-            LMNL and what we changed and why.</para>
-        </note>
+        <!--It is very important that we explain what we kept of the original data model behind
+            LMNL and what we changed and why.-->
         <para>The conceptual datamodel behind is XML is the Document Object Model (DOM). The DOM
           represents a tree based data structure. The data model behind LMNL is different, in that
           it is based on ranges, based on offsets on textual content.</para>
