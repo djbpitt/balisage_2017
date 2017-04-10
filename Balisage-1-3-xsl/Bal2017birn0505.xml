@@ -33,6 +33,23 @@
     </abstract>
     <author>
       <personname>
+        <firstname>Ronald</firstname>
+        <othername>Haentjens</othername>
+        <surname>Dekker</surname>
+      </personname>
+      <personblurb>
+        <para>[Add blurb about Ronald]</para>
+      </personblurb>
+      <affiliation>
+        <jobtitle><!-- job title goes here--></jobtitle>
+        <orgname><!-- organization name goes here--></orgname>
+      </affiliation>
+      <email><!-- email goes here --></email>
+      <link xlink:type="simple" xlink:show="new" xlink:actuate="onRequest"
+        ><!-- url to Ronalds main web presence goes here--></link>
+    </author>
+    <author>
+      <personname>
         <firstname>David</firstname>
         <othername>J.</othername>
         <surname>Birnbaum</surname>
@@ -55,23 +72,6 @@
       <email>djbpitt@gmail.com</email>
       <link xlink:type="simple" xlink:show="new" xlink:actuate="onRequest"
         >http://www.obdurodon.org</link>
-    </author>
-    <author>
-      <personname>
-        <firstname>Ronald</firstname>
-        <othername>Haentjens</othername>
-        <surname>Dekker</surname>
-      </personname>
-      <personblurb>
-        <para>[Add blurb about Ronald]</para>
-      </personblurb>
-      <affiliation>
-        <jobtitle><!-- job title goes here--></jobtitle>
-        <orgname><!-- organization name goes here--></orgname>
-      </affiliation>
-      <email><!-- email goes here --></email>
-      <link xlink:type="simple" xlink:show="new" xlink:actuate="onRequest"
-        ><!-- url to Ronalds main web presence goes here--></link>
     </author>
     <keywordset role="author">
       <keyword>graph database</keyword>
@@ -127,8 +127,8 @@
         <para>Within the Balisage community, at present
             <link>http://www.balisage.net/Proceedings/topics/Concurrent_Markup~Overlap.html</link>
           lists twenty-five presentations from 2008 through 2016</para>
-      </footnote> and with good reason, but we argue below that overlap is only one manifestation
-      of a higher-level problem, and this perspective has implications for deciding how best to
+      </footnote> and with good reason, but we argue below that overlap is only one manifestation of
+      a higher-level problem, and this perspective has implications for deciding how best to
       overcome it. If overlap were <emphasis role="ital">the</emphasis> problem, projecting multiple
       trees over the content might solve it (e.g., through the SGML <emphasis role="bold"
         >CONCUR</emphasis> feature<footnote>
@@ -203,10 +203,10 @@
             a legible interface that enables reading and writing by human users.</para>
         </listitem>
       </itemizedlist></para>
-    <para>Adding a second or subsequent hierarchy is difficult, since XML markup syntax requires that
-      the last opened tag is closed first. Adding the structure of the pages for example overlaps
-      with the stucture of the chapters and paragraphs. This can be worked around by adding a second
-      hierarchy as milestones instead of start and end elements.</para>
+    <para>Adding a second or subsequent hierarchy is difficult, since XML markup syntax requires
+      that the last opened tag is closed first. Adding the structure of the pages for example
+      overlaps with the stucture of the chapters and paragraphs. This can be worked around by adding
+      a second hierarchy as milestones instead of start and end elements.</para>
     <para>The problem here is that one hierarchy is handled differently from the second hierarchy.
       The leading hierarchy is modeled using full start and elements.</para>
     <para>Modeling multiple hierarchies is possible in XML, but difficult because the second or
