@@ -127,7 +127,7 @@
         <para>Within the Balisage community, at present
             <link>http://www.balisage.net/Proceedings/topics/Concurrent_Markup~Overlap.html</link>
           lists twenty-five presentations from 2008 through 2016</para>
-      </footnote>, and with good reason, but we argue below that overlap is only one manifestation
+      </footnote> and with good reason, but we argue below that overlap is only one manifestation
       of a higher-level problem, and this perspective has implications for deciding how best to
       overcome it. If overlap were <emphasis role="ital">the</emphasis> problem, projecting multiple
       trees over the content might solve it (e.g., through the SGML <emphasis role="bold"
@@ -190,7 +190,7 @@
             a fully functional well-formed document has been created.</para>
         </listitem>
         <listitem>
-          <para>With respect to scalability, the model should enable, in a computationaly efficient
+          <para>With respect to scalability, the model should enable, in a computationally efficient
             way, the types of documents and processing required by the digital text
             community.</para>
         </listitem>
@@ -203,7 +203,7 @@
             a legible interface that enables reading and writing by human users.</para>
         </listitem>
       </itemizedlist></para>
-    <para>dding a second or subsequent hierarchy is difficult, since XML markup syntax requires that
+    <para>Adding a second or subsequent hierarchy is difficult, since XML markup syntax requires that
       the last opened tag is closed first. Adding the structure of the pages for example overlaps
       with the stucture of the chapters and paragraphs. This can be worked around by adding a second
       hierarchy as milestones instead of start and end elements.</para>
