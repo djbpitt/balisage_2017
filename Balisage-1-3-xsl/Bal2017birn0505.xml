@@ -367,7 +367,10 @@
     </section>
     <section>
       <title>TAG and GODDAG</title>
-      <para><emphasis role="bold">TODO</emphasis></para>
+      <para>The GODDAG datastructure allows for the storage of multiple hierarchies. Markup written in the MECS format can be parsed and read into memory.
+        Elements that fully overlap are presumed to be dominating. Hierarchical structures are implied. Discontinuity is not supported.
+        The graph is directed from the root node. The order of the text nodes is derived from the traversal of the element nodes. TAG differs in the sense that the order of text nodes is derived from explicit directed edges between the text segments. TAG differs in another way in the sense that relations between elements do not have to be one of domination. Relations between elements can be expressed by adding extra edges that are typed. The kind of relations can be determined later through the use of a schema. GODDAG and TAG are similar in the sense that they both support a N to N relation between elements (called markup in TAG) and PC-DATA nodes (called text nodes in TAG).
+      </para>
     </section>
     <section>
       <title>TAG and LMNL</title>
