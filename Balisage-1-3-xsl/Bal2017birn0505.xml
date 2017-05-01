@@ -329,9 +329,41 @@
     <title>Comparison of TAG/hypergraph to other text models</title>
     <para>In this section we compare and contrast the TAG/hypergraph model with previous models for
       text processing, such as DOM (tree), GODDAG (graph), and LMNL (range).</para>
+    <para>The document is written in a text serialization format, like XML or LMNL. It is then processed by a processor into memory model, like DOM. TAG is a replacement of DOM, competes with DOM, or with the Datamodel behind LMNL, based on ranges.
+
+      NOTE: maybe a picture showing the use of XML markup to DOM and LMNL to TAG should be made to make clear what it is we are actually presenting here.
+
+      The DOM (Document Object Model) is an API for XML processing.
+      The alternative is XML Event processing.
+      The DOM can contain both HTML and XML markup.
+
+      The DOM contains a Node tree consisting of the following nodes:
+      Document, DocumentType, DocumentFragment, Element, Text, ProcessingInstruction and Comment.
+    </para>
     <section>
       <title>TAG and DOM</title>
-      <para><emphasis role="bold">TODO</emphasis></para>
+      <para>Just like the DOM model the TAG model contains numerous types of nodes:
+        TAG has a Document node, just like the Document Node in DOM.
+        In the place of the Element nodes of the DOM comes the Markup node of the TAG model.
+        Text nodes in the DOM model are part of the TAG model as well.
+        NOTE: ProcessingInstruction and Comments are skipped for now in Alexandria, but could be added later. That is just an implementation detail.
+      </para>
+      <para>
+        The difference between DOM and TAG lays in the way the nodes are laid out.
+        The DOM model uses a tree based model, where there is a root node, which can have children, which are ordered sets. Every node can only have one parent node, and can only be child of one parent node. Thus representing a 1 to n relation between the parent and the childnodes. The TAG model uses a hypergraph instead, where nodes are connected through the use of hyperedges, allowing for n to n relations between text segments and markup nodes.
+      </para>
+      <para>
+        In contrast with the DOM model there does not need to be a root element/node in the TAG model. A root node would simply be a markup node that is connected through a hyperedge with all the text nodes of the document. In fact there is no requirement to have a hierarchy at all.
+      </para>
+      <para>
+        Also relations between markup nodes and text nodes or other markup nodes do not strictly have to be hierarchical. There can be multiple types of relationships between markup nodes. One of the differences with the DOM model is that the type of relation between the markup nodes can be deferred to a later stage. LMNL has the same idea, see the comparison with LMNl for more information.
+      </para>
+      <para>
+        In the TAG hypergraph model de hyperedge that connects the text nodes with the markup nodes can be discontinuous. This is a clear difference with the DOM model, where all the text nodes are leaf nodes of the subtree underneath the element node. Thus the nodes underneath an element are continuous.
+      </para>
+      <para>
+        The DOM and the TAG model agree on one thing, the fact that adding new text element or new markup is a local operation, there it differs from the LMNL model see the comparison with the LMNL model.
+      </para>
     </section>
     <section>
       <title>TAG and GODDAG</title>
