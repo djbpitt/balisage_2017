@@ -329,48 +329,57 @@
     <title>Comparison of TAG/hypergraph to other text models</title>
     <para>In this section we compare and contrast the TAG/hypergraph model with previous models for
       text processing, such as DOM (tree), GODDAG (graph), and LMNL (range).</para>
-    <para>The document is written in a text serialization format, like XML or LMNL. It is then processed by a processor into memory model, like DOM. TAG is a replacement of DOM, competes with DOM, or with the Datamodel behind LMNL, based on ranges.
-
-      NOTE: maybe a picture showing the use of XML markup to DOM and LMNL to TAG should be made to make clear what it is we are actually presenting here.
-
-      The DOM (Document Object Model) is an API for XML processing.
-      The alternative is XML Event processing.
-      The DOM can contain both HTML and XML markup.
-
-      The DOM contains a Node tree consisting of the following nodes:
-      Document, DocumentType, DocumentFragment, Element, Text, ProcessingInstruction and Comment.
-    </para>
+    <para>The document is written in a text serialization format, like XML or LMNL. It is then
+      processed by a processor into memory model, like DOM. TAG is a replacement of DOM, competes
+      with DOM, or with the Datamodel behind LMNL, based on ranges. NOTE: maybe a picture showing
+      the use of XML markup to DOM and LMNL to TAG should be made to make clear what it is we are
+      actually presenting here. The DOM (Document Object Model) is an API for XML processing. The
+      alternative is XML Event processing. The DOM can contain both HTML and XML markup. The DOM
+      contains a Node tree consisting of the following nodes: Document, DocumentType,
+      DocumentFragment, Element, Text, ProcessingInstruction and Comment. </para>
     <section>
       <title>TAG and DOM</title>
-      <para>Just like the DOM model the TAG model contains numerous types of nodes:
-        TAG has a Document node, just like the Document Node in DOM.
-        In the place of the Element nodes of the DOM comes the Markup node of the TAG model.
-        Text nodes in the DOM model are part of the TAG model as well.
-        NOTE: ProcessingInstruction and Comments are skipped for now in Alexandria, but could be added later. That is just an implementation detail.
-      </para>
-      <para>
-        The difference between DOM and TAG lays in the way the nodes are laid out.
-        The DOM model uses a tree based model, where there is a root node, which can have children, which are ordered sets. Every node can only have one parent node, and can only be child of one parent node. Thus representing a 1 to n relation between the parent and the childnodes. The TAG model uses a hypergraph instead, where nodes are connected through the use of hyperedges, allowing for n to n relations between text segments and markup nodes.
-      </para>
-      <para>
-        In contrast with the DOM model there does not need to be a root element/node in the TAG model. A root node would simply be a markup node that is connected through a hyperedge with all the text nodes of the document. In fact there is no requirement to have a hierarchy at all.
-      </para>
-      <para>
-        Also relations between markup nodes and text nodes or other markup nodes do not strictly have to be hierarchical. There can be multiple types of relationships between markup nodes. One of the differences with the DOM model is that the type of relation between the markup nodes can be deferred to a later stage. LMNL has the same idea, see the comparison with LMNl for more information.
-      </para>
-      <para>
-        In the TAG hypergraph model de hyperedge that connects the text nodes with the markup nodes can be discontinuous. This is a clear difference with the DOM model, where all the text nodes are leaf nodes of the subtree underneath the element node. Thus the nodes underneath an element are continuous.
-      </para>
-      <para>
-        The DOM and the TAG model agree on one thing, the fact that adding new text element or new markup is a local operation, there it differs from the LMNL model see the comparison with the LMNL model.
-      </para>
+      <para>Just like the DOM model the TAG model contains numerous types of nodes: TAG has a
+        Document node, just like the Document Node in DOM. In the place of the Element nodes of the
+        DOM comes the Markup node of the TAG model. Text nodes in the DOM model are part of the TAG
+        model as well. NOTE: ProcessingInstruction and Comments are skipped for now in Alexandria,
+        but could be added later. That is just an implementation detail. </para>
+      <para> The difference between DOM and TAG lays in the way the nodes are laid out. The DOM
+        model uses a tree based model, where there is a root node, which can have children, which
+        are ordered sets. Every node can only have one parent node, and can only be child of one
+        parent node. Thus representing a 1 to n relation between the parent and the childnodes. The
+        TAG model uses a hypergraph instead, where nodes are connected through the use of
+        hyperedges, allowing for n to n relations between text segments and markup nodes. </para>
+      <para> In contrast with the DOM model there does not need to be a root element/node in the TAG
+        model. A root node would simply be a markup node that is connected through a hyperedge with
+        all the text nodes of the document. In fact there is no requirement to have a hierarchy at
+        all. </para>
+      <para> Also relations between markup nodes and text nodes or other markup nodes do not
+        strictly have to be hierarchical. There can be multiple types of relationships between
+        markup nodes. One of the differences with the DOM model is that the type of relation between
+        the markup nodes can be deferred to a later stage. LMNL has the same idea, see the
+        comparison with LMNl for more information. </para>
+      <para> In the TAG hypergraph model de hyperedge that connects the text nodes with the markup
+        nodes can be discontinuous. This is a clear difference with the DOM model, where all the
+        text nodes are leaf nodes of the subtree underneath the element node. Thus the nodes
+        underneath an element are continuous. </para>
+      <para> The DOM and the TAG model agree on one thing, the fact that adding new text element or
+        new markup is a local operation, there it differs from the LMNL model see the comparison
+        with the LMNL model. </para>
     </section>
     <section>
       <title>TAG and GODDAG</title>
-      <para>The GODDAG datastructure allows for the storage of multiple hierarchies. Markup written in the MECS format can be parsed and read into memory.
-        Elements that fully overlap are presumed to be dominating. Hierarchical structures are implied. Discontinuity is not supported.
-        The graph is directed from the root node. The order of the text nodes is derived from the traversal of the element nodes. TAG differs in the sense that the order of text nodes is derived from explicit directed edges between the text segments. TAG differs in another way in the sense that relations between elements do not have to be one of domination. Relations between elements can be expressed by adding extra edges that are typed. The kind of relations can be determined later through the use of a schema. GODDAG and TAG are similar in the sense that they both support a N to N relation between elements (called markup in TAG) and PC-DATA nodes (called text nodes in TAG).
-      </para>
+      <para>The GODDAG datastructure allows for the storage of multiple hierarchies. Markup written
+        in the MECS format can be parsed and read into memory. Elements that fully overlap are
+        presumed to be dominating. Hierarchical structures are implied. Discontinuity is not
+        supported. The graph is directed from the root node. The order of the text nodes is derived
+        from the traversal of the element nodes. TAG differs in the sense that the order of text
+        nodes is derived from explicit directed edges between the text segments. TAG differs in
+        another way in the sense that relations between elements do not have to be one of
+        domination. Relations between elements can be expressed by adding extra edges that are
+        typed. The kind of relations can be determined later through the use of a schema. GODDAG and
+        TAG are similar in the sense that they both support a N to N relation between elements
+        (called markup in TAG) and PC-DATA nodes (called text nodes in TAG). </para>
     </section>
     <section>
       <title>TAG and LMNL</title>
@@ -473,13 +482,26 @@
     <title>Works cited</title>
     <bibliomixed xml:id="coombs_1987" xreflabel="Coombs et al. 1987">Coombs, James H., Allen H.
       Renear, and Steven J. DeRose. <quote>Markup systems and the future of scholarly text
-        processing.</quote> Communications of the Association for Computing Machinery, 30.11 (Nov.
-      1987): 933–47. doi:10.1145/32206.32209</bibliomixed>
+        processing.</quote>
+      <emphasis role="ital">Communications of the association for computing machinery</emphasis>,
+      30.11 (Nov. 1987): 933–47. doi:10.1145/32206.32209</bibliomixed>
+    <bibliomixed xml:id="derose_2004" xreflabel="DeRose 2004">DeRose, Steven U. <quote>Markup
+        overlap: a review and a horse.</quote> Extreme Markup Languages 2004.
+        <link>http://xml.coverpages.org/DeRoseEML2004.pdf</link></bibliomixed>
     <bibliomixed xml:id="derose_1990" xreflabel="DeRose et al. 1990">DeRose, Steven J., David G.
       Durand, Elli Mylonas, and Allen H. Renear. <quote>What is text, really?</quote>, <emphasis
         role="ital">Journal of computing in higher education</emphasis>, 1.2 (1990): 3–26.
       doi:10.1007/BF02941632.
         <link>http://www.cip.ifi.lmu.de/~langeh/test/1990%20-%20DeRose%20-%20What%20is%20Text,%20really%3F.pdf</link></bibliomixed>
+    <bibliomixed xml:id="durusau">Durusau, Patrick and Matthew Brook O’Donnell. <quote>JITTs
+        (Just-In-Time-Trees)</quote>, presentation at New York XML SIG, January 2002. (Slides for
+        <quote>Just-In-Time-Trees (JITTs): Next Step in the Evolution of Markup?</quote>, <emphasis
+        role="ital">InterCharge: newsletter of the international SGML/XML users’ group</emphasis>,
+      8.4 (2002): 21–26.
+      <link>http://www.durusau.net/publications/NY_xml_sig.pdf</link></bibliomixed>
+    <bibliomixed xml:id="erjavec_2007" xreflabel="Erjavec 2007">Erjavec, Tomaž. <quote>XML and
+        overlapping hierarchies.</quote> Presentation at Tsujii Lab, Tokyo, 2007-09-01.
+        <link>http://nl.ijs.si/et/talks/tsujiilab-crossing/crossing.pdf</link></bibliomixed>
     <bibliomixed xml:id="hilbert_2005" xreflabel="Hilbert, Schonefeld, and Witt 2005">Hilbert,
       Mirco, Oliver Schonefeld, and Andreas Witt. <quote>Making CONCUR work.</quote>
       <emphasis role="ital">Proceedings of Extreme Markup Languages</emphasis> 2005.
