@@ -20,16 +20,16 @@
     <abstract>
       <para>The XML tree paradigm has several well-known limitations for document modeling and
         processing, some of which have received a lot of attention (especially overlap) and some of
-        which have not (e.g., discontinuity, white space as crypto-overlap). All of these have
-        work-arounds, also well known, that—as is implicit in the term
-        <quote>work-around</quote>—have disadvantages, but because they get the job done and because
-        XML has a large user community with diverse levels of technological competence, it is
-        difficult to overcome inertia and move to a technology that might offer a more comprehensive
-        fit with the full range of document structures with which researchers need to interact both
-        intellectually and programmatically. Proceeding from a high-level view of why XML has the
-        limitations it has, this presentation explores how an alternative model of Text as Graph
-        might address these types of structures and tasks in a more natural and idiomatic way than
-        is available within an XML paradigm.</para>
+        which have received less (e.g., discontinuity, simultaneity, white space as crypto-overlap).
+        All of these have work-arounds, also well known, that—as is implicit in the term
+          <quote>work-around</quote>—have disadvantages, but because they get the job done and
+        because XML has a large user community with diverse levels of technological competence, it
+        is difficult to overcome inertia and move to a technology that might offer a more
+        comprehensive fit with the full range of document structures with which researchers need to
+        interact both intellectually and programmatically. Proceeding from a high-level view of why
+        XML has the limitations it has, this presentation explores how an alternative model of Text
+        as Graph (TAG) might address these types of structures and tasks in a more natural and
+        idiomatic way than is available within an XML paradigm.</para>
     </abstract>
     <author>
       <personname>
@@ -76,26 +76,27 @@
     <keywordset role="author">
       <keyword>graph database</keyword>
       <keyword>TAG</keyword>
-      <keyword>LMNL</keyword>
+      <keyword>simultaneity</keyword>
       <keyword>overlap</keyword>
       <keyword>discontinuity</keyword>
       <keyword>mixed content</keyword>
+      <keyword>white space</keyword>
     </keywordset>
   </info>
   <section>
     <title>Introduction</title>
     <para>The XML tree paradigm has several well-known limitations for document modeling and
       processing, some of which have received a lot of attention (especially overlap) and some of
-      which have not (e.g., discontinuity, white space as crypto-overlap). All of these have
-      work-arounds, also well known, that—as is implicit in the term <quote>work-around</quote>—have
-      disadvantages, but because they get the job done and because XML has a large user community
-      with diverse levels of technological competence, it is difficult to overcome inertia and move
-      to a technology that might offer a more comprehensive fit with the full range of document
-      structures with which researchers need to interact both intellectually and programmatically.
-      Proceeding from a high-level view of why XML has the limitations it has, this presentation
-      explores how an alternative model of Text as Graph (TAG) might address these types of
-      structures and tasks in a more natural and idiomatic way than is available within an XML
-      paradigm.</para>
+      which have received less (e.g., discontinuity, simultaneity, white space as crypto-overlap).
+      All of these have work-arounds, also well known, that—as is implicit in the term
+        <quote>work-around</quote>—have disadvantages, but because they get the job done and because
+      XML has a large user community with diverse levels of technological competence, it is
+      difficult to overcome inertia and move to a technology that might offer a more comprehensive
+      fit with the full range of document structures with which researchers need to interact both
+      intellectually and programmatically. Proceeding from a high-level view of why XML has the
+      limitations it has, this presentation explores how an alternative model of Text as Graph (TAG)
+      might address these types of structures and tasks in a more natural and idiomatic way than is
+      available within an XML paradigm.</para>
     <para>From an informatic perspective all documents are structured, including those are
       traditionally identified as plain text. Some of the structural properties of plain-text
       documents are expressed through formatting conventions, such as the use of blank lines to
@@ -104,11 +105,11 @@
       reference to <quote>London</quote> is formally marked as a proper noun by capitalization, but
       whether it is a placename in England or the personal name of a US writer is not represented
       formally. The conventions at work in plain text do not formally, completely, unambiguously, or
-      in a standardized way differentiate the content of a document from the coded representation of
-      its structure, which complicates document processing (whether for data mining, publication, or
-      other purposes). This challenge has come to be addressed by representing the structural
-      properties not with plain-text characters (which might be considered pseudo-markup), but
-      through standardized, formal markup, such as XML.</para>
+      in a wholly standardized way differentiate the content of a document from the coded
+      representation of its structure, which complicates document processing (whether for data
+      mining, publication, or other purposes). This challenge has come to be addressed by
+      representing the structural properties not with plain-text characters (which might be
+      considered pseudo-markup), but through standardized, formal markup, such as XML.</para>
     <para>The XML data model is a tree, or, more specifically, a rooted and ordered directed acyclic
       graph, which in the document-processing community has come to be known as an Ordered Hierarchy
       of Content Objects (OHCO). The OHCO model works well for describing structures that consist of
