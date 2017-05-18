@@ -19,17 +19,18 @@
   <info>
     <abstract>
       <para>The XML tree paradigm has several well-known limitations for document modeling and
-        processing, some of which have received a lot of attention (especially overlap) and some of
-        which have received less (e.g., discontinuity, simultaneity, white space as crypto-overlap).
-        All of these have work-arounds, also well known, that—as is implicit in the term
-          <quote>work-around</quote>—have disadvantages, but because they get the job done and
-        because XML has a large user community with diverse levels of technological competence, it
-        is difficult to overcome inertia and move to a technology that might offer a more
-        comprehensive fit with the full range of document structures with which researchers need to
-        interact both intellectually and programmatically. Proceeding from a high-level view of why
-        XML has the limitations it has, this presentation explores how an alternative model of Text
-        as Graph (TAG) might address these types of structures and tasks in a more natural and
-        idiomatic way than is available within an XML paradigm.</para>
+        processing, some of which have received a lot of attention (especially overlap; see the
+        overviews in <xref linkend="sperberg-huitfeldt_2000"/> and <xref linkend="derose_2004"/>)
+        and some of which have received less (e.g., discontinuity, simultaneity, transposition white
+        space as crypto-overlap). All of these have work-arounds, also well known, that—as is
+        implicit in the term <quote>work-around</quote>—have disadvantages, but because they get the
+        job done and because XML has a large user community with diverse levels of technological
+        competence, it is difficult to overcome inertia and move to a technology that might offer a
+        more comprehensive fit with the full range of document structures with which researchers
+        need to interact both intellectually and programmatically. Proceeding from a high-level view
+        of why XML has the limitations it has, this presentation explores how an alternative model
+        of Text as Graph (TAG) might address these types of structures and tasks in a more natural
+        and idiomatic way than is available within an XML paradigm.</para>
     </abstract>
     <author>
       <personname>
@@ -86,11 +87,12 @@
   <section>
     <title>Introduction</title>
     <para>The XML tree paradigm has several well-known limitations for document modeling and
-      processing, some of which have received a lot of attention (especially overlap) and some of
-      which have received less (e.g., discontinuity, simultaneity, white space as crypto-overlap).
-      All of these have work-arounds, also well known, that—as is implicit in the term
-        <quote>work-around</quote>—have disadvantages, but because they get the job done and because
-      XML has a large user community with diverse levels of technological competence, it is
+      processing, some of which have received a lot of attention (especially overlap; see the
+      overviews in <xref linkend="sperberg-huitfeldt_2000"/> and <xref linkend="derose_2004"/>) and
+      some of which have received less (e.g., discontinuity, simultaneity, transposition white space
+      as crypto-overlap). All of these have work-arounds, also well known, that—as is implicit in
+      the term <quote>work-around</quote>—have disadvantages, but because they get the job done and
+      because XML has a large user community with diverse levels of technological competence, it is
       difficult to overcome inertia and move to a technology that might offer a more comprehensive
       fit with the full range of document structures with which researchers need to interact both
       intellectually and programmatically. Proceeding from a high-level view of why XML has the
@@ -152,8 +154,8 @@
     <para>The principal limitation of XML as a model of text is that text has structural properties
       that humans care about that cannot be modeled directly as a tree, or, at least, as a tree
       constructed from the seven types of nodes that constitute the XQuery and XPath data
-        model.<xref linkend="xdm6"/> Overlap is one such property. Another is discontinuity, where a
-      single unit of information, such as a sentence spoken by a character in a play, might be
+        model.[<xref linkend="xdm6"/>] Overlap is one such property. Another is discontinuity, where
+      a single unit of information, such as a sentence spoken by a character in a play, might be
       interrupted (in this case, perhaps by the speech of another character) and then continue.
       Another, rooted not so much in the abstract tree model as in the way its implementation
       interacts with XML processing, is the inability to apply string functions to mixed content
@@ -320,8 +322,8 @@
       Humanities research projects.</para>
     <section>
       <title>Overlap</title>
-      <para><emphasis role="bold">TODO: Examples include enjambment in poetry, pages/paragraphs in
-          prose, Frankenstein.</emphasis></para>
+      <para><emphasis role="bold">TODO: Examples include enjambment and caesura in poetry,
+          pages/paragraphs in prose, Frankenstein.</emphasis></para>
     </section>
     <section>
       <title>White space as crypto-overlap</title>
@@ -331,6 +333,16 @@
       <title>Discontinuity</title>
       <para><emphasis role="bold">TODO: Examples include divided or interrupted speech in
           prose</emphasis></para>
+    </section>
+    <section>
+      <title>Simultaneity</title>
+      <para><emphasis role="bold">TODO: Examples include parallel readings in critical texts,
+          simultaneous speech</emphasis></para>
+    </section>
+    <section>
+      <title>Transposition</title>
+      <para><emphasis role="bold">TODO: Examples include reordering across witnesses in criticial
+          texts</emphasis></para>
     </section>
   </section>
   <section>
@@ -563,6 +575,8 @@
         Markup Conference 2008. Balisage Series on Markup Technologies</emphasis>, vol. 1 (2008).
       DOI: 10.4242/BalisageVol1.Sperberg-McQueen01.
         <link>http://www.balisage.net/Proceedings/vol1/html/Sperberg-McQueen01/BalisageVol1-Sperberg-McQueen01.html</link></bibliomixed>
+    <bibliomixed xml:id="xmlinfoset" xreflabel="XML InfoSet">XML Information Set (second edition).
+        <link>https://www.w3.org/TR/xml-infoset/</link></bibliomixed>
     <bibliomixed xml:id="xdm6" xreflabel="XDM §6">XQuery and XPath Data Model 3.1. §6. Nodes.
         <link>https://www.w3.org/TR/xpath-datamodel-3/#Node</link></bibliomixed>
   </bibliography>
