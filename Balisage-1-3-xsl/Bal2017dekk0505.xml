@@ -101,16 +101,22 @@
       traditionally identified as plain text. Some of the structural properties of plain-text
       documents are expressed through formatting conventions, such as the use of blank lines to
       separate paragraphs, or of indentation to mark the beginning of a paragraph, or of centering
-      to mark a header. Others depend on tacit contextual information; for example, a capitalized
-      reference to <quote>London</quote> is formally marked as a proper noun by capitalization, but
-      whether it is a placename in England or the personal name of a US writer is not represented
-      formally. The conventions at work in plain text do not formally, completely, unambiguously, or
-      in a wholly standardized way differentiate the content of a document from the coded
-      representation of its structure, which complicates document processing (whether for data
-      mining, publication, or other purposes). This challenge has come to be addressed by
-      representing the structural properties not with plain-text characters (which might be
-      considered pseudo-markup), but through standardized, formal markup, such as XML.</para>
-    <para>The XML data model is a tree, or, more specifically, a rooted and ordered directed acyclic
+      to mark a header. The sequence of words in a text, delimited in a complex way that involves
+      white space, punctuation, and other symbols, constitutes, on a certain level, an
+      organizational tier above the sequence of characters.<footnote>
+        <para>Others properties, often more lexical than structural, may depend on contextual
+          information that is not always expressed explicitly. For example, a capitalized reference
+          to <quote>London</quote> is formally marked as a proper noun by capitalization, but
+          whether it is a placename in England (or Ohio or Ontario or elsewhere) or the personal
+          name of a US writer may not be represented formally.</para>
+      </footnote> The conventions at work in plain text do not formally, completely, unambiguously,
+      or in a wholly standardized way differentiate the content of a document from the coded
+      representation of its structure (or, perhaps more accurately, structures), which complicates
+      document processing (whether for data mining, publication, or other purposes). The challenge
+      this poses has come to be addressed by representing the structural properties of a document
+      not with plain-text characters (which might be considered pseudo-markup), but through
+      standardized, formal markup, such as XML.</para>
+    <para>The XML data model is a tree, or, more precisely, a rooted and ordered directed acyclic
       graph, which in the document-processing community has come to be known as an Ordered Hierarchy
       of Content Objects (OHCO). The OHCO model works well for describing structures that consist of
       single ordered hierarchies, such as the exhaustive tesselated division of a novel into
@@ -135,7 +141,7 @@
         >CONCUR</emphasis> feature<footnote>
         <para>See, e.g., <xref linkend="hilbert_2005"/>.</para>
       </footnote>), as might the adoption of a model that permits but does not require hierarchy,
-      such as the range model exemplified by LMNL.<footnote>
+      including multiple hierarchies, such as the range model exemplified by LMNL.<footnote>
         <para>See especially <xref linkend="piez_2014"/>.</para>
       </footnote> But if the problem is that a tree is inadequate for higher-level reasons that are
       only partially exemplified by overlap, we might have more success if we address the issue at
@@ -145,14 +151,15 @@
     <title>Desiderata for an improved text model</title>
     <para>The principal limitation of XML as a model of text is that text has structural properties
       that humans care about that cannot be modeled directly as a tree, or, at least, as a tree
-      constructed from the seven types of nodes that constitute the XML data model. Overlap is one
-      such property. Another is discontinuity, where a single unit of information, such as a
-      sentence spoken by a character in a play, might be interrupted (in this case, perhaps by the
-      speech of another character) and then continue. Another, rooted not so much in the abstract
-      tree model as in the way its implementation interacts with XML processing, is the inability to
-      apply string functions to mixed content without atomizing the content. These challenges, which
-      are met with workarounds in XML modeling and processing, find a natural solution in the TAG
-      model described here, and are discussed in greater detail below.</para>
+      constructed from the seven types of nodes that constitute the XQuery and XPath data
+        model.<xref linkend="xdm6"/> Overlap is one such property. Another is discontinuity, where a
+      single unit of information, such as a sentence spoken by a character in a play, might be
+      interrupted (in this case, perhaps by the speech of another character) and then continue.
+      Another, rooted not so much in the abstract tree model as in the way its implementation
+      interacts with XML processing, is the inability to apply string functions to mixed content
+      without atomizing the content. These challenges, which are met with workarounds in XML
+      modeling and processing, find a natural solution in the TAG model described here, and are
+      discussed in greater detail below.</para>
     <para>An improved text model should have the following properties: <itemizedlist>
         <listitem>
           <para>It should support both textual (character data) content and annotations (of the sort
@@ -344,7 +351,18 @@
         Document node, just like the Document Node in DOM. In the place of the Element nodes of the
         DOM comes the Markup node of the TAG model. Text nodes in the DOM model are part of the TAG
         model as well. NOTE: ProcessingInstruction and Comments are skipped for now in Alexandria,
-        but could be added later. That is just an implementation detail. </para>
+        but could be added later. That is just an implementation detail.</para>
+      <figure xml:id="XML_specs">
+        <title>The XML document ecosystem</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="xml-spec.jpg" width="50%"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>Blah blah blah<!-- er ... change this --></para>
+        </caption>
+      </figure>
       <para> The difference between DOM and TAG lays in the way the nodes are laid out. The DOM
         model uses a tree based model, where there is a root node, which can have children, which
         are ordered sets. Every node can only have one parent node, and can only be child of one
@@ -486,7 +504,7 @@
         processing.</quote>
       <emphasis role="ital">Communications of the association for computing machinery</emphasis>,
       30.11 (Nov. 1987): 933–47. doi:10.1145/32206.32209</bibliomixed>
-    <bibliomixed xml:id="derose_2004" xreflabel="DeRose 2004">DeRose, Steven U. <quote>Markup
+    <bibliomixed xml:id="derose_2004" xreflabel="DeRose 2004">DeRose, Steven J. <quote>Markup
         overlap: a review and a horse.</quote> Extreme Markup Languages 2004.
         <link>http://xml.coverpages.org/DeRoseEML2004.pdf</link></bibliomixed>
     <bibliomixed xml:id="derose_1990" xreflabel="DeRose et al. 1990">DeRose, Steven J., David G.
@@ -494,12 +512,12 @@
         role="ital">Journal of computing in higher education</emphasis>, 1.2 (1990): 3–26.
       doi:10.1007/BF02941632.
         <link>http://www.cip.ifi.lmu.de/~langeh/test/1990%20-%20DeRose%20-%20What%20is%20Text,%20really%3F.pdf</link></bibliomixed>
-    <bibliomixed xml:id="durusau">Durusau, Patrick and Matthew Brook O’Donnell. <quote>JITTs
-        (Just-In-Time-Trees)</quote>, presentation at New York XML SIG, January 2002. (Slides for
-        <quote>Just-In-Time-Trees (JITTs): Next Step in the Evolution of Markup?</quote>, <emphasis
-        role="ital">InterCharge: newsletter of the international SGML/XML users’ group</emphasis>,
-      8.4 (2002): 21–26.
-      <link>http://www.durusau.net/publications/NY_xml_sig.pdf</link></bibliomixed>
+    <bibliomixed xml:id="durusau" xreflabel="Durusau and O’Donnell 2002">Durusau, Patrick and
+      Matthew Brook O’Donnell. <quote>JITTs (Just-In-Time-Trees)</quote>, presentation at New York
+      XML SIG, January 2002. (Slides for <quote>Just-In-Time-Trees (JITTs): Next Step in the
+        Evolution of Markup?</quote>, <emphasis role="ital">InterCharge: newsletter of the
+        international SGML/XML users’ group</emphasis>, 8.4 (2002): 21–26.
+        <link>http://www.durusau.net/publications/NY_xml_sig.pdf</link></bibliomixed>
     <bibliomixed xml:id="erjavec_2007" xreflabel="Erjavec 2007">Erjavec, Tomaž. <quote>XML and
         overlapping hierarchies.</quote> Presentation at Tsujii Lab, Tokyo, 2007-09-01.
         <link>http://nl.ijs.si/et/talks/tsujiilab-crossing/crossing.pdf</link></bibliomixed>
@@ -545,5 +563,7 @@
         Markup Conference 2008. Balisage Series on Markup Technologies</emphasis>, vol. 1 (2008).
       DOI: 10.4242/BalisageVol1.Sperberg-McQueen01.
         <link>http://www.balisage.net/Proceedings/vol1/html/Sperberg-McQueen01/BalisageVol1-Sperberg-McQueen01.html</link></bibliomixed>
+    <bibliomixed xml:id="xdm6" xreflabel="XDM §6">XQuery and XPath Data Model 3.1. §6. Nodes.
+        <link>https://www.w3.org/TR/xpath-datamodel-3/#Node</link></bibliomixed>
   </bibliography>
 </article>
