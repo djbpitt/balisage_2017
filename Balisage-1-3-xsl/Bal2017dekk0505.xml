@@ -152,21 +152,18 @@
   <section>
     <title>Desiderata for an improved text model</title>
     <para>The principal limitation of XML as a model of text is that text has structural properties
-      that humans care about that cannot be modeled directly as a tree, or, at least, as a tree
-      constructed from the seven types of nodes that constitute the XQuery and XPath data
-        model.[<xref linkend="xdm6"/>] Although overlap has received most of the attention, it is
-      only one such property, and regarding overlap as the problem, instead of as a symptom of the
-      problem, has led us to think narrowly about alternatives to OCHO. If what text “really is” is
-      not an ordered hierarchy of content objects, what is it instead? These issues are well known
-      to the XML community, so why have they come large to be eclipsed by overlap in discussions of
-      what’s difficult about model documents in XML?</para>
-    <para>where a single unit of information, such as a sentence spoken by a character in a play,
-      might be interrupted (in this case, perhaps by the speech of another character) and then
-      continue. Another, rooted not so much in the abstract tree model as in the way its
-      implementation interacts with XML processing, is the inability to apply string functions to
-      mixed content without atomizing the content. These challenges, which are met with workarounds
-      in XML modeling and processing, find a natural solution in the TAG model described here, and
-      are discussed in greater detail below.</para>
+      that humans care about that cannot be modeled directly as a tree, or, at least, as a rooted
+      and ordered directed acyclic graph constructed from the seven types of nodes that constitute
+      the XQuery and XPath data model.[<xref linkend="xdm6"/>] Although overlap has received most of
+      the attention, it is only one such property, and regarding overlap as <emphasis role="ital"
+        >the problem</emphasis>, instead of as <emphasis role="ital">a symptom of the
+        problem</emphasis>, has led us to think narrowly about alternatives to OHCO. If what text
+        <quote>really is</quote> is not an ordered hierarchy of content objects, what is it instead?
+      The issues are well known to the XML community, so why have they come largely to be eclipsed
+      by overlap in discussions of what’s difficult about modeling documents in XML? These
+      challenges, which are largely been managed with workarounds in XML modeling and processing,
+      find a natural solution in the TAG model described here, and are discussed in greater detail
+      below.</para>
     <para>An improved text model should have the following properties: <itemizedlist>
         <listitem>
           <para>It should support both textual (character data) content and annotations (of the sort
@@ -180,6 +177,11 @@
         <listitem>
           <para>Overlapping annotations should be possible, as should discontinuous
             annotations.</para>
+        </listitem>
+        <listitem>
+          <para>It should make it possible to represent text that is not ordered without imposing an
+            arbitrary order. It should also be possible make it possible to represent
+            transpositions, or reorderings, e.g., in a critical text with variants.</para>
         </listitem>
         <listitem>
           <para>Annotations on annotations should be
