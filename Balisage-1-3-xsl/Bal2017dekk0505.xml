@@ -353,10 +353,10 @@
         model as well. NOTE: ProcessingInstruction and Comments are skipped for now in Alexandria,
         but could be added later. That is just an implementation detail.</para>
       <figure xml:id="XML_specs">
-        <title>The XML document ecosystem</title>
+        <title>The XML document-processing ecosystem</title>
         <mediaobject>
           <imageobject>
-            <imagedata format="png" fileref="xml-spec.jpg" width="50%"/>
+            <imagedata format="png" fileref="xml-spec.png"/>
           </imageobject>
         </mediaobject>
         <caption>

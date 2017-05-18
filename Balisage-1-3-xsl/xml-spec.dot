@@ -2,17 +2,18 @@ digraph G {
 	{ node [shape=box] 
 		{ rank = same; 
 			XML[label=<XML Document<BR /><FONT POINT-SIZE="10">[serialization]</FONT>>];
-			InfoSet[label=<XML InfoSet<BR /><FONT POINT-SIZE="10">[concept]</FONT>>]
+			InfoSet[label=<XML InfoSet<BR /><FONT POINT-SIZE="10">[concept; also PSVI]</FONT>>]
 		}
 		{ rank = same; 
 			DOM[label=<DOM API<BR /><FONT POINT-SIZE="10">[modify]</FONT>>]; 
 			SAX[label=<SAX<BR /><FONT POINT-SIZE="10">[pull, push]</FONT>>]; 
-			XDM[label=<XDM<BR /><FONT POINT-SIZE="10">[XPath, XQuery, XSLT]</FONT>>] }
+			XDM[label=<XDM<BR /><FONT POINT-SIZE="10">[XPath, XQuery, XSLT]</FONT>>] 
+		}
 		{ OHCO[label=<OHCO<BR /><FONT POINT-SIZE="10">[philosophy]</FONT>>]; }
 	}
-	OHCO -> InfoSet
-	InfoSet -> XML
-	XML -> InfoSet
+	OHCO -> InfoSet;
+	{ edge [label=serialize] InfoSet -> XML }
+	{ edge [label=parse] XML -> InfoSet }
 	{ edge [label=tree] InfoSet -> DOM }
 	{ edge [label=event] InfoSet -> SAX }
 	{ edge [label=sequence] InfoSet -> XDM }
