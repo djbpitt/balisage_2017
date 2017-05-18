@@ -38,15 +38,15 @@
         <surname>Dekker</surname>
       </personname>
       <personblurb>
-        <para>[Add blurb about Ronald]</para>
+        <para><!-- blurb about Ronald goes here --></para>
       </personblurb>
       <affiliation>
         <jobtitle><!-- job title goes here--></jobtitle>
-        <orgname><!-- organization name goes here--></orgname>
+        <orgname>Huygens ING</orgname>
       </affiliation>
-      <email><!-- email goes here --></email>
+      <email>ronald.dekker@huygens.knaw.nl</email>
       <link xlink:type="simple" xlink:show="new" xlink:actuate="onRequest"
-        ><!-- url to Ronalds main web presence goes here--></link>
+        >https://www.huygens.knaw.nl/dekker/</link>
     </author>
     <author>
       <personname>
