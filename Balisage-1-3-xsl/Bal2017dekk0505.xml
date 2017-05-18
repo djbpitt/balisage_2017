@@ -154,14 +154,19 @@
     <para>The principal limitation of XML as a model of text is that text has structural properties
       that humans care about that cannot be modeled directly as a tree, or, at least, as a tree
       constructed from the seven types of nodes that constitute the XQuery and XPath data
-        model.[<xref linkend="xdm6"/>] Overlap is one such property. Another is discontinuity, where
-      a single unit of information, such as a sentence spoken by a character in a play, might be
-      interrupted (in this case, perhaps by the speech of another character) and then continue.
-      Another, rooted not so much in the abstract tree model as in the way its implementation
-      interacts with XML processing, is the inability to apply string functions to mixed content
-      without atomizing the content. These challenges, which are met with workarounds in XML
-      modeling and processing, find a natural solution in the TAG model described here, and are
-      discussed in greater detail below.</para>
+        model.[<xref linkend="xdm6"/>] Although overlap has received most of the attention, it is
+      only one such property, and regarding overlap as the problem, instead of as a symptom of the
+      problem, has led us to think narrowly about alternatives to OCHO. If what text “really is” is
+      not an ordered hierarchy of content objects, what is it instead? These issues are well known
+      to the XML community, so why have they come large to be eclipsed by overlap in discussions of
+      what’s difficult about model documents in XML?</para>
+    <para>where a single unit of information, such as a sentence spoken by a character in a play,
+      might be interrupted (in this case, perhaps by the speech of another character) and then
+      continue. Another, rooted not so much in the abstract tree model as in the way its
+      implementation interacts with XML processing, is the inability to apply string functions to
+      mixed content without atomizing the content. These challenges, which are met with workarounds
+      in XML modeling and processing, find a natural solution in the TAG model described here, and
+      are discussed in greater detail below.</para>
     <para>An improved text model should have the following properties: <itemizedlist>
         <listitem>
           <para>It should support both textual (character data) content and annotations (of the sort
@@ -356,7 +361,7 @@
       actually presenting here. The DOM (Document Object Model) is an API for XML processing. The
       alternative is XML Event processing. The DOM can contain both HTML and XML markup. The DOM
       contains a Node tree consisting of the following nodes: Document, DocumentType,
-      DocumentFragment, Element, Text, ProcessingInstruction and Comment. </para>
+      DocumentFragment, Element, Text, ProcessingInstruction and Comment.</para>
     <section>
       <title>TAG and DOM</title>
       <para>Just like the DOM model the TAG model contains numerous types of nodes: TAG has a
@@ -375,28 +380,28 @@
           <para>Blah blah blah<!-- er ... change this --></para>
         </caption>
       </figure>
-      <para> The difference between DOM and TAG lays in the way the nodes are laid out. The DOM
-        model uses a tree based model, where there is a root node, which can have children, which
-        are ordered sets. Every node can only have one parent node, and can only be child of one
-        parent node. Thus representing a 1 to n relation between the parent and the childnodes. The
-        TAG model uses a hypergraph instead, where nodes are connected through the use of
-        hyperedges, allowing for n to n relations between text segments and markup nodes. </para>
-      <para> In contrast with the DOM model there does not need to be a root element/node in the TAG
+      <para>The difference between DOM and TAG lays in the way the nodes are laid out. The DOM model
+        uses a tree based model, where there is a root node, which can have children, which are
+        ordered sets. Every node can only have one parent node, and can only be child of one parent
+        node. Thus representing a 1 to n relation between the parent and the childnodes. The TAG
+        model uses a hypergraph instead, where nodes are connected through the use of hyperedges,
+        allowing for n to n relations between text segments and markup nodes.</para>
+      <para>In contrast with the DOM model there does not need to be a root element/node in the TAG
         model. A root node would simply be a markup node that is connected through a hyperedge with
         all the text nodes of the document. In fact there is no requirement to have a hierarchy at
-        all. </para>
-      <para> Also relations between markup nodes and text nodes or other markup nodes do not
-        strictly have to be hierarchical. There can be multiple types of relationships between
-        markup nodes. One of the differences with the DOM model is that the type of relation between
-        the markup nodes can be deferred to a later stage. LMNL has the same idea, see the
-        comparison with LMNl for more information. </para>
-      <para> In the TAG hypergraph model de hyperedge that connects the text nodes with the markup
+        all.</para>
+      <para>Also relations between markup nodes and text nodes or other markup nodes do not strictly
+        have to be hierarchical. There can be multiple types of relationships between markup nodes.
+        One of the differences with the DOM model is that the type of relation between the markup
+        nodes can be deferred to a later stage. LMNL has the same idea, see the comparison with LMNl
+        for more information.</para>
+      <para>In the TAG hypergraph model de hyperedge that connects the text nodes with the markup
         nodes can be discontinuous. This is a clear difference with the DOM model, where all the
         text nodes are leaf nodes of the subtree underneath the element node. Thus the nodes
-        underneath an element are continuous. </para>
-      <para> The DOM and the TAG model agree on one thing, the fact that adding new text element or
+        underneath an element are continuous.</para>
+      <para>The DOM and the TAG model agree on one thing, the fact that adding new text element or
         new markup is a local operation, there it differs from the LMNL model see the comparison
-        with the LMNL model. </para>
+        with the LMNL model.</para>
     </section>
     <section>
       <title>TAG and GODDAG</title>
@@ -410,7 +415,7 @@
         domination. Relations between elements can be expressed by adding extra edges that are
         typed. The kind of relations can be determined later through the use of a schema. GODDAG and
         TAG are similar in the sense that they both support a N to N relation between elements
-        (called markup in TAG) and PC-DATA nodes (called text nodes in TAG). </para>
+        (called markup in TAG) and PC-DATA nodes (called text nodes in TAG).</para>
     </section>
     <section>
       <title>TAG and LMNL</title>
@@ -460,7 +465,7 @@
           hierarchies or no hierarchy at all. This allows for a great freedom to model all kinds of
           information on textual content. This is great from a content perspective. However LMNL is
           more expensive from a computational perspective.</para>
-        <para> LMNL data model LMNL documents contain text. Text can have ranges on them. Ranges can
+        <para>LMNL data model LMNL documents contain text. Text can have ranges on them. Ranges can
           overlap. Ranges can be annotated on either the start tag or the end tag. Annotations can
           contain text themselves, that can have ranges, that can have annotations etc. Annotations
           can be annotated. Annotations on a range are ordered.</para>
@@ -473,6 +478,11 @@
           represents a tree based data structure. The data model behind LMNL is different, in that
           it is based on ranges, based on offsets on textual content.</para>
       </section>
+    </section>
+    <section>
+      <title>TAG and linguistic corpora</title>
+      <para><emphasis role="bold">TODO: Linguistic corpora are not recursive; there’s a single text
+          stream</emphasis></para>
     </section>
   </section>
   <section>
@@ -497,7 +507,7 @@
   </section>
   <section>
     <title>Example use case: tokenization with markup</title>
-    <para> In natural language processing tokenization is the process of breaking a string of
+    <para>In natural language processing tokenization is the process of breaking a string of
       characters up into individual words. Tokenization is done using regular expressions. Regular
       expressions however only work on textual data and not on markup. (See the famous stackoverflow
       post for reference). On top of that the tokens themselves add another layer of information to
