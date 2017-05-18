@@ -311,15 +311,64 @@
   </section>
   <section>
     <title>How TAG addresses structures that are awkward for XML</title>
-    <para>In this section we illustrate how three types of structures that are awkward for XML
-      because they contradict the tree model can be represented and navigated in a natural way in
-      TAG. For each we provide an abstract description of the problem, of one or more XML
-      workarounds, and of the TAG approach, followed by examples drawn from use cases in Digital
-      Humanities research projects.</para>
+    <para>In this section we illustrate how several types of structures that are awkward for XML
+      because they contradict the tree model can be represented in a natural way in TAG. For each we
+      provide an abstract description of the problem, of one or more XML workarounds, and of the TAG
+      approach, followed by examples drawn from use cases in Digital Humanities research
+      projects.</para>
     <section>
       <title>Overlap</title>
       <para><emphasis role="bold">TODO: Examples include enjambment and caesura in poetry,
           pages/paragraphs in prose, Frankenstein.</emphasis></para>
+      <para>The challenge to modeling texts in XML that has attracted the most attention is overlap,
+        but overlap is sometimes described as a property of XML serialization, rather than of the
+        XML data model. Or, more precisely, overlap is one thing in the XML data model and a
+        different but related thing in an XML serialization. In the data model, overlap refers to
+        multiple concurrent trees or partial trees, which is not possible in XML because XML is
+        defined as a single tree. Notice in the image below how the phrase <quote>Two vast and
+          trunkless legs of stone Stand in the desart</quote> begins in the middle of line 2 and
+        ends in the middle of line 3, so that a tree of phrases overlaps a tree of lines:</para>
+      <figure xml:id="ozymandius" xreflabel="Ozymandius (Shelley)">
+        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="ozymandius.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>[Image from
+              <link>http://piez.org/wendell/papers/dh2010/clix-sonnets/ozymandias-map.svg</link>,
+            which is part of <xref linkend="piez_2010"/>. The overlap is even easier to see in the
+            original SVG, which is animated, and highlights portions of the document in response to
+            mouse events.]</para>
+        </caption>
+      </figure>
+      <para>Piez’s illustration is actually of LMNL ranges (see below), rather than of XML element
+        trees. The same structure might be visualized as overlapping trees as follows, where cyan
+        represents the tree of metrical lines and green the tree of linguistic phrases:</para>
+      <figure xml:id="ozymandius_trees" xreflabel="Ozymandius (Shelley)">
+        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="ozymandius_trees.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>Projecting two independent trees over a common set of words. In XML the words would
+            be grouped because XML does not support adjacent sibling text nodes. This visualization
+            omit the edges that would connect the words at the beginning and the end to phrases
+            before and after the one included in the image.</para>
+        </caption>
+      </figure>
+      <para>in a serialized representation is a well-formedness violation, while there is no such
+        thing The term <emphasis role="bold">overlap</emphasis> is rooted in the serialization of
+        XML as a single continuous stream of characters, some of which represent textual content and
+        others of which represent markup, including start and end tags. Overlap is thus a potential
+        issue in serialized XML, and whether we understand <quote>the XML data model</quote> to mean
+        the XML InfoSet, the XML DOM, or the XDM (see <xref linkend="XML_specs"/>), none of those
+        models allows for overlap because overlap is a property not of the tree (DOM, XDM) or of the
+        InfoSet (because tags are not <emphasis role="bold">information items</emphasis> in the XML
+        InfoSet), but of the serialization.</para>
       <para>Adding a second or subsequent hierarchy is difficult, since XML markup syntax requires
         that the last opened tag is closed first. Adding the structure of the pages for example
         overlaps with the stucture of the chapters and paragraphs. This can be worked around by
@@ -371,7 +420,7 @@
         DOM comes the Markup node of the TAG model. Text nodes in the DOM model are part of the TAG
         model as well. NOTE: ProcessingInstruction and Comments are skipped for now in Alexandria,
         but could be added later. That is just an implementation detail.</para>
-      <figure xml:id="XML_specs">
+      <figure xml:id="XML_specs" xreflabel="XML ecosystem">
         <title>The XML document-processing ecosystem</title>
         <mediaobject>
           <imageobject>
@@ -553,6 +602,11 @@
         <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
       Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
         <link>https://www.cs.vassar.edu/~ide/papers/LAW.pdf</link></bibliomixed>
+    <bibliomixed xml:id="piez_2010" xreflabel="Piez 2010">Piez, Wendell. <quote>Towards hermeneutic
+        markup. An architectural outline.</quote> Presentation at Digital Humanities 2010, King’s
+      College, London. <link>http://piez.org/wendell/papers/dh2010/</link> The screen shot in this
+      paper is taken from
+        <link>http://piez.org/wendell/papers/dh2010/clix-sonnets/ozymandias-map.svg</link>.</bibliomixed>
     <bibliomixed xml:id="piez_2014" xreflabel="Piez 2014">Piez, Wendell. <quote>Hierarchies within
         range space: From LMNL to OHCO.</quote> Presented at <emphasis role="ital">Balisage: The
         Markup Conference 2014, Washington, DC, August 5 - 8, 2014.</emphasis> In <emphasis
