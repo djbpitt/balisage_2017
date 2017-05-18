@@ -155,13 +155,13 @@
       that humans care about that cannot be modeled directly as a tree, or, at least, as a rooted
       and ordered directed acyclic graph constructed from the seven types of nodes that constitute
       the XQuery and XPath data model.[<xref linkend="xdm6"/>] Although overlap has received most of
-      the attention, it is only one such property, and regarding overlap as <emphasis role="ital"
-        >the problem</emphasis>, instead of as <emphasis role="ital">a symptom of the
-        problem</emphasis>, has led us to think narrowly about alternatives to OHCO. If what text
-        <quote>really is</quote> is not an ordered hierarchy of content objects, what is it instead?
-      The issues are well known to the XML community, so why have they come largely to be eclipsed
-      by overlap in discussions of what’s difficult about modeling documents in XML? These
-      challenges, which are largely been managed with workarounds in XML modeling and processing,
+      the attention, overlap is only one such challenge to XML modeling, and regarding overlap as
+        <emphasis role="ital">the problem</emphasis>, instead of as <emphasis role="ital">a symptom
+        of the problem</emphasis>, has led us to think narrowly about alternatives to OHCO. If what
+      text <quote>really is</quote> is not an ordered hierarchy of content objects, what is it
+      instead? The issues are well known to the XML community, so why have they come largely to be
+      eclipsed by overlap in discussions of what’s difficult about modeling documents in XML? These
+      challenges, which have largely been managed with workarounds in XML modeling and processing,
       find a natural solution in the TAG model described here, and are discussed in greater detail
       below.</para>
     <para>An improved text model should have the following properties: <itemizedlist>
@@ -180,8 +180,8 @@
         </listitem>
         <listitem>
           <para>It should make it possible to represent text that is not ordered without imposing an
-            arbitrary order. It should also be possible make it possible to represent
-            transpositions, or reorderings, e.g., in a critical text with variants.</para>
+            arbitrary order. It should also be possible to represent transpositions, or reorderings,
+            e.g., in a critical text with variants.</para>
         </listitem>
         <listitem>
           <para>Annotations on annotations should be
@@ -220,17 +220,6 @@
             a legible interface that enables reading and writing by human users.</para>
         </listitem>
       </itemizedlist></para>
-    <para>Adding a second or subsequent hierarchy is difficult, since XML markup syntax requires
-      that the last opened tag is closed first. Adding the structure of the pages for example
-      overlaps with the stucture of the chapters and paragraphs. This can be worked around by adding
-      a second hierarchy as milestones instead of start and end elements.</para>
-    <para>The problem here is that one hierarchy is handled differently from the second hierarchy.
-      The leading hierarchy is modeled using full start and elements.</para>
-    <para>Modeling multiple hierarchies is possible in XML, but difficult because the second or
-      third etc hierarchy needs to be modelled differently from the first hierarchy. This also leads
-      to challenges when querying or transforming the data contained in the file.</para>
-    <para>There are many real use cases where there are multiple hierarchies present in the data:
-      poetry, stage plays.</para>
     <!--explain the differences between graph models and trees and ranges? Or leave that
         discussion out?-->
     <!--Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice
@@ -331,6 +320,17 @@
       <title>Overlap</title>
       <para><emphasis role="bold">TODO: Examples include enjambment and caesura in poetry,
           pages/paragraphs in prose, Frankenstein.</emphasis></para>
+      <para>Adding a second or subsequent hierarchy is difficult, since XML markup syntax requires
+        that the last opened tag is closed first. Adding the structure of the pages for example
+        overlaps with the stucture of the chapters and paragraphs. This can be worked around by
+        adding a second hierarchy as milestones instead of start and end elements.</para>
+      <para>The problem here is that one hierarchy is handled differently from the second hierarchy.
+        The leading hierarchy is modeled using full start and elements.</para>
+      <para>Modeling multiple hierarchies is possible in XML, but difficult because the second or
+        third etc hierarchy needs to be modelled differently from the first hierarchy. This also
+        leads to challenges when querying or transforming the data contained in the file.</para>
+      <para>There are many real use cases where there are multiple hierarchies present in the data:
+        poetry, stage plays.</para>
     </section>
     <section>
       <title>White space as crypto-overlap</title>
