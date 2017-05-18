@@ -492,11 +492,16 @@
     <!--some of this may be plans or projections, rather than implementation-->
     <section>
       <title>Introduction to Alexandria as a TAG implementation</title>
+
+
+
       <para><emphasis role="bold">TODO: write something</emphasis></para>
     </section>
     <section>
       <title>Graph and hypergraph</title>
-      <para><emphasis role="bold">TODO: write something</emphasis></para>
+      <para><emphasis role="bold">TODO: write something</emphasis>
+        The implementation in the current Alexandria markup system stores the nodes and hyperedges in a key-value store.
+      </para>
     </section>
     <section>
       <title>Navigation and query</title>
@@ -504,7 +509,15 @@
     </section>
     <section>
       <title>Import and export</title>
-      <para><emphasis role="bold">TODO: write something</emphasis></para>
+      <para>        The Alexandria Markup system  contains a parser that can import LMNL files and convert into an implementation of the TAG model in memory.
+        How serialization works
+        A serialization of the TAG data model into a LMNL file is an example of an traversal over an instance.
+        Start with the Document node. A document node has an outgoing edge to the first text node. Now we follow the hyperedges that are connect to this text node. There can be zero or more hyperedges present on a text nodes. Each hyperedge connects to one markup node.
+        We collect all the markup nodes that are connected to the text node. For each of them we write a start tag. Then we go the next text node by following the outgoing edge to the next text node.
+        Like before we collect all the markup node connected to this text node. We calculate the differences between the sets. For the intersection we do nothing. For markup nodes that are only the set of the previous nodes we write close tags.
+        For the set of markup nodes that is only in the current set of markup nodes we write open tags.
+
+        <emphasis role="bold">TODO: write something</emphasis></para>
     </section>
   </section>
   <section>
