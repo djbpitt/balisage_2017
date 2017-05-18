@@ -21,8 +21,8 @@
       <para>The XML tree paradigm has several well-known limitations for document modeling and
         processing, some of which have received a lot of attention (especially overlap; see the
         overviews in <xref linkend="sperberg-huitfeldt_2000"/> and <xref linkend="derose_2004"/>)
-        and some of which have received less (e.g., discontinuity, simultaneity, transposition white
-        space as crypto-overlap). All of these have work-arounds, also well known, that—as is
+        and some of which have received less (e.g., discontinuity, simultaneity, transposition,
+        white space as crypto-overlap). Many of these have work-arounds, also well known, that—as is
         implicit in the term <quote>work-around</quote>—have disadvantages, but because they get the
         job done and because XML has a large user community with diverse levels of technological
         competence, it is difficult to overcome inertia and move to a technology that might offer a
@@ -89,16 +89,16 @@
     <para>The XML tree paradigm has several well-known limitations for document modeling and
       processing, some of which have received a lot of attention (especially overlap; see the
       overviews in <xref linkend="sperberg-huitfeldt_2000"/> and <xref linkend="derose_2004"/>) and
-      some of which have received less (e.g., discontinuity, simultaneity, transposition white space
-      as crypto-overlap). All of these have work-arounds, also well known, that—as is implicit in
-      the term <quote>work-around</quote>—have disadvantages, but because they get the job done and
-      because XML has a large user community with diverse levels of technological competence, it is
-      difficult to overcome inertia and move to a technology that might offer a more comprehensive
-      fit with the full range of document structures with which researchers need to interact both
-      intellectually and programmatically. Proceeding from a high-level view of why XML has the
-      limitations it has, this presentation explores how an alternative model of Text as Graph (TAG)
-      might address these types of structures and tasks in a more natural and idiomatic way than is
-      available within an XML paradigm.</para>
+      some of which have received less (e.g., discontinuity, simultaneity, transposition, white
+      space as crypto-overlap). Many of these have work-arounds, also well known, that—as is
+      implicit in the term <quote>work-around</quote>—have disadvantages, but because they get the
+      job done and because XML has a large user community with diverse levels of technological
+      competence, it is difficult to overcome inertia and move to a technology that might offer a
+      more comprehensive fit with the full range of document structures with which researchers need
+      to interact both intellectually and programmatically. Proceeding from a high-level view of why
+      XML has the limitations it has, this presentation explores how an alternative model of Text as
+      Graph (TAG) might address these types of structures and tasks in a more natural and idiomatic
+      way than is available within an XML paradigm.</para>
     <para>From an informatic perspective all documents are structured, including those are
       traditionally identified as plain text. Some of the structural properties of plain-text
       documents are expressed through formatting conventions, such as the use of blank lines to
