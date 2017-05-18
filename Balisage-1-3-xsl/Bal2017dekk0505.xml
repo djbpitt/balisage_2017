@@ -255,6 +255,16 @@
         consists of a number of node and edge objects of different types.</para>
     </section>
     <section>
+      <para> Text. The textual content is stored in a sequence of nodes. The order of the sequence is determined by directed edges between each of the text nodes. The first text node is designated by the fact that there is a link from the document node to that specific text node.
+      Markup (called Elements in XML). All markup have their own node. Markup nodes are connected to the text nodes that they belong to by the use of hyperedge. Each markup node is connected to one or more text nodes.
+        Annotations (called Attributes in XML). All annotations have their own node. Annotation nodes are connected ..
+
+        Overlap: Overlap can be naturally be modelled in a graph, since multiple parents are allowed.
+
+
+      </para>
+    </section>
+    <section>
       <title>Nodes</title>
       <para>The node types supported by the model are: <itemizedlist>
           <listitem>
@@ -509,7 +519,10 @@
     </section>
     <section>
       <title>Import and export</title>
-      <para>        The Alexandria Markup system  contains a parser that can import LMNL files and convert into an implementation of the TAG model in memory.
+<para>        The Alexandria Markup system  contains a parser that can import LMNL files and convert into an implementation of the TAG model in memory.
+    Given the following LMNL markup "Hello World". We save this plain text transcription in a LMNL file. When we import this file into Alexandria a graph is created. The graph is very simple: it only consists of 2 nodes and 1 edge. One Document node is created. One Text node is created, containing all of the text. An edge is created from the Document node to the text node associating the text with the document.
+        When we change the LMNL markup to "[doc}Hello World{doc]"
+
         How serialization works
         A serialization of the TAG data model into a LMNL file is an example of an traversal over an instance.
         Start with the Document node. A document node has an outgoing edge to the first text node. Now we follow the hyperedges that are connect to this text node. There can be zero or more hyperedges present on a text nodes. Each hyperedge connects to one markup node.
