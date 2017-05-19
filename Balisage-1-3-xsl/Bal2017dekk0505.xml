@@ -151,6 +151,9 @@
   </section>
   <section>
     <title>Desiderata for an improved text model</title>
+    <!-- Michael and Claus 2008 emphasize that TEI markup requires semantics, while ours is in the model
+      TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser -->
+    <!-- TexMECS requires quotations to be divided in the model, while we don't -->
     <para>The principal limitation of XML as a model of text is that text has structural properties
       that humans care about that cannot be modeled directly as a tree, or, at least, as a rooted
       and ordered directed acyclic graph constructed from the seven types of nodes that constitute
@@ -255,14 +258,15 @@
         consists of a number of node and edge objects of different types.</para>
     </section>
     <section>
-      <para> Text. The textual content is stored in a sequence of nodes. The order of the sequence is determined by directed edges between each of the text nodes. The first text node is designated by the fact that there is a link from the document node to that specific text node.
-      Markup (called Elements in XML). All markup have their own node. Markup nodes are connected to the text nodes that they belong to by the use of hyperedge. Each markup node is connected to one or more text nodes.
-        Annotations (called Attributes in XML). All annotations have their own node. Annotation nodes are connected ..
-
-        Overlap: Overlap can be naturally be modelled in a graph, since multiple parents are allowed.
-
-
-      </para>
+      <title><emphasis role="bold">This section needs a title</emphasis></title>
+      <para> Text. The textual content is stored in a sequence of nodes. The order of the sequence
+        is determined by directed edges between each of the text nodes. The first text node is
+        designated by the fact that there is a link from the document node to that specific text
+        node. Markup (called Elements in XML). All markup have their own node. Markup nodes are
+        connected to the text nodes that they belong to by the use of hyperedge. Each markup node is
+        connected to one or more text nodes. Annotations (called Attributes in XML). All annotations
+        have their own node. Annotation nodes are connected .. Overlap: Overlap can be naturally be
+        modelled in a graph, since multiple parents are allowed. </para>
     </section>
     <section>
       <title>Nodes</title>
@@ -558,9 +562,8 @@
     </section>
     <section>
       <title>Graph and hypergraph</title>
-      <para><emphasis role="bold">TODO: write something</emphasis>
-        The implementation in the current Alexandria markup system stores the nodes and hyperedges in a key-value store.
-      </para>
+      <para><emphasis role="bold">TODO: write something</emphasis> The implementation in the current
+        Alexandria markup system stores the nodes and hyperedges in a key-value store. </para>
     </section>
     <section>
       <title>Navigation and query</title>
@@ -568,18 +571,24 @@
     </section>
     <section>
       <title>Import and export</title>
-<para>        The Alexandria Markup system  contains a parser that can import LMNL files and convert into an implementation of the TAG model in memory.
-    Given the following LMNL markup "Hello World". We save this plain text transcription in a LMNL file. When we import this file into Alexandria a graph is created. The graph is very simple: it only consists of 2 nodes and 1 edge. One Document node is created. One Text node is created, containing all of the text. An edge is created from the Document node to the text node associating the text with the document.
-        When we change the LMNL markup to "[doc}Hello World{doc]"
-
-        How serialization works
-        A serialization of the TAG data model into a LMNL file is an example of an traversal over an instance.
-        Start with the Document node. A document node has an outgoing edge to the first text node. Now we follow the hyperedges that are connect to this text node. There can be zero or more hyperedges present on a text nodes. Each hyperedge connects to one markup node.
-        We collect all the markup nodes that are connected to the text node. For each of them we write a start tag. Then we go the next text node by following the outgoing edge to the next text node.
-        Like before we collect all the markup node connected to this text node. We calculate the differences between the sets. For the intersection we do nothing. For markup nodes that are only the set of the previous nodes we write close tags.
-        For the set of markup nodes that is only in the current set of markup nodes we write open tags.
-
-        <emphasis role="bold">TODO: write something</emphasis></para>
+      <para> The Alexandria Markup system contains a parser that can import LMNL files and convert
+        into an implementation of the TAG model in memory. Given the following LMNL markup "Hello
+        World". We save this plain text transcription in a LMNL file. When we import this file into
+        Alexandria a graph is created. The graph is very simple: it only consists of 2 nodes and 1
+        edge. One Document node is created. One Text node is created, containing all of the text. An
+        edge is created from the Document node to the text node associating the text with the
+        document. When we change the LMNL markup to "[doc}Hello World{doc]" How serialization works
+        A serialization of the TAG data model into a LMNL file is an example of an traversal over an
+        instance. Start with the Document node. A document node has an outgoing edge to the first
+        text node. Now we follow the hyperedges that are connect to this text node. There can be
+        zero or more hyperedges present on a text nodes. Each hyperedge connects to one markup node.
+        We collect all the markup nodes that are connected to the text node. For each of them we
+        write a start tag. Then we go the next text node by following the outgoing edge to the next
+        text node. Like before we collect all the markup node connected to this text node. We
+        calculate the differences between the sets. For the intersection we do nothing. For markup
+        nodes that are only the set of the previous nodes we write close tags. For the set of markup
+        nodes that is only in the current set of markup nodes we write open tags. <emphasis
+          role="bold">TODO: write something</emphasis></para>
     </section>
   </section>
   <section>
@@ -624,6 +633,10 @@
       Mirco, Oliver Schonefeld, and Andreas Witt. <quote>Making CONCUR work.</quote>
       <emphasis role="ital">Proceedings of Extreme Markup Languages</emphasis> 2005.
         <link>http://conferences.idealliance.org/extreme/html/2005/Witt01/EML2005Witt01.xml#Horse</link></bibliomixed>
+    <bibliomixed xml:id="huitfeldt_2003">Huitfeldt, Claus and C. Michael Sperberg-McQueen.
+        <quote>TexMECS. An experimental markup meta-language for complex documents.</quote> Revision
+      of 5 October 2003.
+      <link>http://mlcd.blackmesatech.com/mlcd/2003/Papers/texmecs.html</link></bibliomixed>
     <bibliomixed xml:id="ide_2007" xreflabel="Ide and Suderman 2007">Ide, Nancy and Keith Suderman.
         <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
       Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
