@@ -163,37 +163,45 @@
         of the problem</emphasis>, has led us to think more narrowly than we should about
       alternatives to OHCO. If what text <quote>really is</quote> is not an ordered hierarchy of
       content objects, what is it instead? The issues are well known to the XML community, so why
-      have they come largely to be eclipsed by overlap in discussions of what’s difficult about
-      modeling documents in XML? These challenges, which have largely been managed with workarounds
-      in XML modeling and processing, find a natural solution in the TAG model described here, and
-      are discussed in greater detail below.</para>
-    <para>A second challenge of using XML as a model of text involves not the limitation of OHCO,
-      but its tyranny. If text is ineluctably an ordered hierarchy of content objects, are there
-      aspects of text that are not ordered, are there aspects that are not hierarchical, and does
-      the model create content objects artifactually, that is, where they are not perceived as
-      inherent properties of the object being modeled? XML requires us to model all content as both
-      ordered and hierarchical, and it represents content objects as elements (at least as content
-      objects are described in <xref linkend="derose_1990"/>). The GODDAG and LMNL alternatives to
-      XML, which are discussed below, both grew out of a recognition that text may have multiple
-      simultaneous hierarchies, and their focus is not limited to that issue, but they differ in the
-      extent to which they interrogate aspects of text that may not be hierarchical, that may not be
-      ordered, and that may not involve what a human would consider a content object.</para>
+      have they come largely (although not entirely) to be eclipsed by overlap in discussions of
+      what’s difficult about modeling documents in XML? These challenges, which have been negotiated
+      in XML modeling and processing through workarounds, find a natural solution in the TAG model
+      described here, as well as, at least in some respects, in LMNL and GODDAG/TexMECS.</para>
+    <para>A second challenge of using XML as a model of text involves not the <emphasis role="ital"
+        >limitations</emphasis> of OHCO, but its <emphasis role="ital">tyranny</emphasis>. If text
+      is understood as an ordered hierarchy of content objects, are there aspects of text that are
+      not ordered, are there aspects that are not hierarchical, and does the model create content
+      objects artifactually, that is, where they are not perceived as inherent properties of the
+      text being modeled? XML requires us to model all content as both ordered and hierarchical, and
+      it represents content objects as elements (at least as content objects are described in <xref
+        linkend="derose_1990"/>). The GODDAG and LMNL alternatives to XML, which are discussed
+      below, both grew out of a recognition that not all properties of text can be modeled
+      effectively as a single hierarchy, and their focus is not limited to that issue, but they
+      differ in the extent to which they interrogate aspects of text that may not be hierarchical,
+      that may not be ordered, and that may not involve what a human would consider a content
+      object.</para>
     <para>A third challenge of discussing XML as a model of text is distinguishing XML as a data
       model from XML as a syntax, and the same applies to the LMNL data model vs the LMNL sawtooth
       syntax and the GODDAG data structure vs (Tex)MECS syntax. Perhaps a bit surprisingly in the
       context of Balisage, which describes itself as <quote>the markup conference</quote>, our focus
       here is not on markup (that is, on syntax and serialization), but on the data models that may
-      be expressed through markup languages. Our somewhat simplified <xref linkend="XML_specs"/>
-      illustration, below, regards the XML document, the version that contains markup annotations,
-      as related to the XML InfoSet by the operations of serialization in one direction and parsing
-      in the other. This matters because the serialization is, by virtue of the meaning of the term
-        <quote>serialization</quote>, ordered in ways that other representations of XML may not be,
-      and the same is true of other data models and their associated syntactic expressions through
-      markup. If, for example, a paragraph is exactly coextensive with a quotation, in XML syntqx,
-      LMNL sawtooth syntax, and (Tex)MECS syntax, the beginning of either the paragraph or the
+      be expressed through markup. Our somewhat simplified <xref linkend="XML_specs"/> illustration,
+      below, regards the XML document, the version that contains markup annotations, as related to
+      the XML InfoSet by the operations of serialization in one direction and parsing in the other.
+      This matters because the serialization is, as is clear from the etymology of the term,
+      committed to an ordered expression in ways that other representations of XML may not be, and
+      the same is true of other data models and their associated syntactic expressions through
+      markup. If, for example, a paragraph is exactly coextensive with a quotation, in XML syntax,
+      LMNL sawtooth syntax, and (Tex)MECS syntax, the start tag of either the paragraph or the
       quotation must come first in linear order. But in LMNL that order is not part of the model,
-      according to which two ranges begin at the same location in the stream of atoms. In XML,
-      though, one element must contain the other.</para>
+      according to which the two ranges begin at the same location in the stream of atoms.<footnote>
+        <para>LMNL is able to represent hierarchy, but it is not obligatory, and <quote>flat</quote>
+          LMNL does not express hierarchy.</para>
+      </footnote> In XML, though, one element must contain the other, and the order of the start
+      tags reflects the hierarchy. TexMECS is capable of distinguishing when the order of the start
+      tags is informational and when it is not.<footnote>
+        <para>STAGO vs STAGSO and ETAGO vs ETAGSO [<xref linkend="huitfeldt_2003"/>, §2.3.]</para>
+      </footnote></para>
     <figure xml:id="XML_specs" xreflabel="XML ecosystem">
       <title>The XML document-processing ecosystem</title>
       <mediaobject>
@@ -202,42 +210,55 @@
         </imageobject>
       </mediaobject>
       <caption>
-        <para>Blah blah blah<!-- er ... change this --></para>
+        <para>The term <quote>XML</quote> may be used to refer to the data model or to its syntactic
+          expressions.</para>
       </caption>
     </figure>
+    <para>One final issue, which intersects with the ones above, involves distinguishing properties
+      that are implicit in and intrinsic to the model from those that can be expressed only with
+      higher-level information. Expressed in markup terms, this might distinguish structures that
+      are wholly described by syntax from those whose meaning also requires access to semantics. For
+      example, the pairing of start and end tags in XML (or LMNL sawtooth or TexMECS) markup is
+      inherent in the markup itself. In contrast, the pairing of XML milestones that are used to
+      simulate container tags (see the discussion of Trojan markup in <xref linkend="derose_2004"/>)
+      relies on semantics.</para>
     <para>An improved text model should have the following properties: <itemizedlist>
+        <!-- Add one-sentence examples of each of these -->
         <listitem>
           <para>It should support both textual (character data) content and annotations (of the sort
-            represented in XML through markup).</para>
+            represented in XML through element and attribute markup).</para>
         </listitem>
         <listitem>
-          <para>Multiple layers of annotation should be possible. These layers may be created by a
-            human (manually) or added by a computer using parsers, or through a combination of
-            manual and automatic actions.</para>
+          <para>It should support multiple layers of annotation.</para>
         </listitem>
         <listitem>
-          <para>Overlapping annotations should be possible, as should discontinuous
-            annotations.</para>
+          <para>It should be able to represent overlapping annotations.</para>
         </listitem>
         <listitem>
-          <para>It should make it possible to represent text that is not ordered without imposing an
-            arbitrary order. It should also be possible to represent transpositions, or reorderings,
-            e.g., in a critical text with variants.</para>
+          <para>It should be able to represent discontinuous annotations.</para>
         </listitem>
         <listitem>
-          <para>Annotations on annotations should be
-            possible.<!-- Give an example of why this is desirable --></para>
+          <para>It should be able to represent components that are not logically ordered without
+            imposing an arbitrary order that must then be ignored.</para>
         </listitem>
         <listitem>
-          <para>Hierarchical structures should be possible, but not required, and the system should
-            permit multiple, partial, or overlapping hierarchies or annotations.</para>
+          <para>It should be able to represent transpositions, or reorderings, e.g., in a critical
+            text with variants that differ only in order.</para>
         </listitem>
         <listitem>
-          <para>With respect to reading, the model should support queries for text, annotations, or
-            a combination of the two.</para>
+          <para>It should support annotations on
+            annotations.<!-- Give an example of why this is desirable --></para>
         </listitem>
         <listitem>
-          <para>With respect to writing, the model should support creating, inserting, deleting, or
+          <para>It should support but not require the representation of hierarchy, including
+            multiple, partial, or overlapping hierarchies or annotations.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to reading, it should support queries for text, annotations, or a
+            combination of the two.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to writing, it should support creating, inserting, deleting, or
             otherwise modifying both textual content and annotations.</para>
         </listitem>
         <listitem>
@@ -248,17 +269,20 @@
             a fully functional well-formed document has been created.</para>
         </listitem>
         <listitem>
-          <para>With respect to scalability, the model should enable, in a computationally efficient
-            way, the types of documents and processing required by the digital text
-            community.</para>
+          <para>With respect to scalability, it should enable, in a computationally efficient way,
+            the types of documents and processing required by the digital text community.</para>
         </listitem>
         <listitem>
           <para>With respect to I/O, a system that implements the model should support serialization
-            as plain text on export and the parsing of such serializations on import.</para>
+            as plain text on export and the parsing of such serializations on import. TAG does not
+            currently have its own syntax; it can read and write LMNL syntax (although not all TAG
+            properties currently have a defined representation in LMNL syntax), and is intended to
+            be able to read and write TexMECS.</para>
         </listitem>
         <listitem>
           <para>With respect to user interaction, a system that implements the model should provide
-            a legible interface that enables reading and writing by human users.</para>
+            a legible interface that enables reading and writing by human
+            users.<!-- should we specify that the interface is out of scope for us, since we aren't offering a syntax --></para>
         </listitem>
       </itemizedlist></para>
     <!--explain the differences between graph models and trees and ranges? Or leave that
@@ -660,22 +684,42 @@
       Mirco, Oliver Schonefeld, and Andreas Witt. <quote>Making CONCUR work.</quote>
       <emphasis role="ital">Proceedings of Extreme Markup Languages</emphasis> 2005.
         <link>http://conferences.idealliance.org/extreme/html/2005/Witt01/EML2005Witt01.xml#Horse</link></bibliomixed>
-    <bibliomixed xml:id="huitfeldt_2003">Huitfeldt, Claus and C. Michael Sperberg-McQueen.
-        <quote>TexMECS. An experimental markup meta-language for complex documents.</quote> Revision
-      of 5 October 2003.
-      <link>http://mlcd.blackmesatech.com/mlcd/2003/Papers/texmecs.html</link></bibliomixed>
-    <bibliomixed>Iacob, Ionut Emil and Alex Dekhtyar. <quote>Concurrent markup hierarchies: a
-        computer science approach.</quote>
+    <bibliomixed xml:id="huitfeldt_2003" xreflabel="Huitfeldt and Sperberg-McQueen 2003">Huitfeldt,
+      Claus and C. Michael Sperberg-McQueen. <quote>TexMECS. An experimental markup meta-language
+        for complex documents.</quote> Revision of 5 October 2003.
+        <link>http://mlcd.blackmesatech.com/mlcd/2003/Papers/texmecs.html</link></bibliomixed>
+    <bibliomixed xml:id="iacob_2005" xreflabel="Iacob and Dekhtyar 2005">Iacob, Ionut Emil and Alex
+      Dekhtyar. <quote>Concurrent markup hierarchies: a computer science approach.</quote>
       <link>http://tomcat-stable.hcmc.uvic.ca:8080/ach/site/xhtml.xq?id=174</link>
     </bibliomixed>
+    <bibliomixed xml:id="iacob_2004" xreflabel="Iacob et al 2004">Iacob, Ionut E., Alex Dekhtyar and
+      Kazuyo Kaneko. <quote>Parsing concurrent XML.</quote>
+      <emphasis role="ital">Workshop on Web Information Management (WIDM’04) at ACM CIKM’04
+        Proceedings</emphasis>, Washington DC., November 12, 2004, 23–30.
+        <link>http://digitalcommons.calpoly.edu/csse_fac/129</link></bibliomixed>
     <bibliomixed xml:id="ide_2007" xreflabel="Ide and Suderman 2007">Ide, Nancy and Keith Suderman.
         <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
       Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
         <link>https://www.cs.vassar.edu/~ide/papers/LAW.pdf</link></bibliomixed>
+    <bibliomixed>Marcoux, Yves. <quote>Graph characterization of overlap-only TexMECS and other
+        overlapping markup formalisms.</quote> Presented at Balisage: The Markup Conference 2008,
+      Montréal, Canada, August 12 - 15, 2008. In <emphasis role="ital">Proceedings of Balisage: The
+        Markup Conference</emphasis> 2008. Balisage Series on Markup Technologies, vol. 1 (2008).
+      DOI: 10.4242/BalisageVol1.Marcoux01.
+        <link>http://www.balisage.net/Proceedings/vol1/html/Marcoux01/BalisageVol1-Marcoux01.html</link></bibliomixed>
     <bibliomixed>Marinelli, Paolo Fabio Vitali, and Stefano Zacchiroli. <quote>Towards the
         unification of formats for overlapping markup.</quote>
       <emphasis role="ital">New review of hypermedia and multimedia</emphasis>, 14.1 (2008): 57–94.
         <link>https://hal-univ-diderot.archives-ouvertes.fr/hal-00340578/document</link></bibliomixed>
+    <bibliomixed>Peroni, Silvio, Francesco Poggi and Fabio Vitali. <quote>Overlapproaches in
+        documents: a definitive classification (in OWL, 2!).</quote> Presented at Balisage: The
+      Markup Conference 2014, Washington, DC, August 5 - 8, 2014. In <emphasis role="ital"
+        >Proceedings of Balisage: The Markup Conference 2014. Balisage Series on Markup
+        Technologies</emphasis>, 13 (2014). DOI: 10.4242/BalisageVol13.Peroni01.
+        <link>https://www.balisage.net/Proceedings/vol13/html/Peroni01/BalisageVol13-Peroni01.html</link></bibliomixed>
+    <bibliomixed xml:id="piez_2008" xreflabel="Piez 2008">Piez, Wendell. <quote>LMNL in miniature.
+        An introduction.</quote> Amsterdam Goddag Workshop, 1–5 December 2008.
+        <link>http://piez.org/wendell/LMNL/Amsterdam2008/presentation-slides.html</link></bibliomixed>
     <bibliomixed xml:id="piez_2010" xreflabel="Piez 2010">Piez, Wendell. <quote>Towards hermeneutic
         markup. An architectural outline.</quote> Presentation at Digital Humanities 2010, King’s
       College, London. <link>http://piez.org/wendell/papers/dh2010/</link> The screen shot in this
