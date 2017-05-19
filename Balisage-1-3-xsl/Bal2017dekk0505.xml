@@ -160,13 +160,51 @@
       the XQuery and XPath data model.[<xref linkend="xdm6"/>] Although overlap has received most of
       the attention, overlap is only one such challenge to XML modeling, and regarding overlap as
         <emphasis role="ital">the problem</emphasis>, instead of as <emphasis role="ital">a symptom
-        of the problem</emphasis>, has led us to think narrowly about alternatives to OHCO. If what
-      text <quote>really is</quote> is not an ordered hierarchy of content objects, what is it
-      instead? The issues are well known to the XML community, so why have they come largely to be
-      eclipsed by overlap in discussions of what’s difficult about modeling documents in XML? These
-      challenges, which have largely been managed with workarounds in XML modeling and processing,
-      find a natural solution in the TAG model described here, and are discussed in greater detail
-      below.</para>
+        of the problem</emphasis>, has led us to think more narrowly than we should about
+      alternatives to OHCO. If what text <quote>really is</quote> is not an ordered hierarchy of
+      content objects, what is it instead? The issues are well known to the XML community, so why
+      have they come largely to be eclipsed by overlap in discussions of what’s difficult about
+      modeling documents in XML? These challenges, which have largely been managed with workarounds
+      in XML modeling and processing, find a natural solution in the TAG model described here, and
+      are discussed in greater detail below.</para>
+    <para>A second challenge of using XML as a model of text involves not the limitation of OHCO,
+      but its tyranny. If text is ineluctably an ordered hierarchy of content objects, are there
+      aspects of text that are not ordered, are there aspects that are not hierarchical, and does
+      the model create content objects artifactually, that is, where they are not perceived as
+      inherent properties of the object being modeled? XML requires us to model all content as both
+      ordered and hierarchical, and it represents content objects as elements (at least as content
+      objects are described in <xref linkend="derose_1990"/>). The GODDAG and LMNL alternatives to
+      XML, which are discussed below, both grew out of a recognition that text may have multiple
+      simultaneous hierarchies, and their focus is not limited to that issue, but they differ in the
+      extent to which they interrogate aspects of text that may not be hierarchical, that may not be
+      ordered, and that may not involve what a human would consider a content object.</para>
+    <para>A third challenge of discussing XML as a model of text is distinguishing XML as a data
+      model from XML as a syntax, and the same applies to the LMNL data model vs the LMNL sawtooth
+      syntax and the GODDAG data structure vs (Tex)MECS syntax. Perhaps a bit surprisingly in the
+      context of Balisage, which describes itself as <quote>the markup conference</quote>, our focus
+      here is not on markup (that is, on syntax and serialization), but on the data models that may
+      be expressed through markup languages. Our somewhat simplified <xref linkend="XML_specs"/>
+      illustration, below, regards the XML document, the version that contains markup annotations,
+      as related to the XML InfoSet by the operations of serialization in one direction and parsing
+      in the other. This matters because the serialization is, by virtue of the meaning of the term
+        <quote>serialization</quote>, ordered in ways that other representations of XML may not be,
+      and the same is true of other data models and their associated syntactic expressions through
+      markup. If, for example, a paragraph is exactly coextensive with a quotation, in XML syntqx,
+      LMNL sawtooth syntax, and (Tex)MECS syntax, the beginning of either the paragraph or the
+      quotation must come first in linear order. But in LMNL that order is not part of the model,
+      according to which two ranges begin at the same location in the stream of atoms. In XML,
+      though, one element must contain the other.</para>
+    <figure xml:id="XML_specs" xreflabel="XML ecosystem">
+      <title>The XML document-processing ecosystem</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata format="png" fileref="xml-spec.png"/>
+        </imageobject>
+      </mediaobject>
+      <caption>
+        <para>Blah blah blah<!-- er ... change this --></para>
+      </caption>
+    </figure>
     <para>An improved text model should have the following properties: <itemizedlist>
         <listitem>
           <para>It should support both textual (character data) content and annotations (of the sort
@@ -434,17 +472,6 @@
         DOM comes the Markup node of the TAG model. Text nodes in the DOM model are part of the TAG
         model as well. NOTE: ProcessingInstruction and Comments are skipped for now in Alexandria,
         but could be added later. That is just an implementation detail.</para>
-      <figure xml:id="XML_specs" xreflabel="XML ecosystem">
-        <title>The XML document-processing ecosystem</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="xml-spec.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>Blah blah blah<!-- er ... change this --></para>
-        </caption>
-      </figure>
       <para>The difference between DOM and TAG lays in the way the nodes are laid out. The DOM model
         uses a tree based model, where there is a root node, which can have children, which are
         ordered sets. Every node can only have one parent node, and can only be child of one parent
@@ -637,10 +664,18 @@
         <quote>TexMECS. An experimental markup meta-language for complex documents.</quote> Revision
       of 5 October 2003.
       <link>http://mlcd.blackmesatech.com/mlcd/2003/Papers/texmecs.html</link></bibliomixed>
+    <bibliomixed>Iacob, Ionut Emil and Alex Dekhtyar. <quote>Concurrent markup hierarchies: a
+        computer science approach.</quote>
+      <link>http://tomcat-stable.hcmc.uvic.ca:8080/ach/site/xhtml.xq?id=174</link>
+    </bibliomixed>
     <bibliomixed xml:id="ide_2007" xreflabel="Ide and Suderman 2007">Ide, Nancy and Keith Suderman.
         <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
       Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
         <link>https://www.cs.vassar.edu/~ide/papers/LAW.pdf</link></bibliomixed>
+    <bibliomixed>Marinelli, Paolo Fabio Vitali, and Stefano Zacchiroli. <quote>Towards the
+        unification of formats for overlapping markup.</quote>
+      <emphasis role="ital">New review of hypermedia and multimedia</emphasis>, 14.1 (2008): 57–94.
+        <link>https://hal-univ-diderot.archives-ouvertes.fr/hal-00340578/document</link></bibliomixed>
     <bibliomixed xml:id="piez_2010" xreflabel="Piez 2010">Piez, Wendell. <quote>Towards hermeneutic
         markup. An architectural outline.</quote> Presentation at Digital Humanities 2010, King’s
       College, London. <link>http://piez.org/wendell/papers/dh2010/</link> The screen shot in this
