@@ -336,9 +336,9 @@
         consists of a number of node and edge objects of different types.</para>
     </section>
     <section>
-      <title><emphasis role="bold">This section needs a title</emphasis></title>
-      <para> Text. The textual content is stored in a sequence of nodes. The order of the sequence
-        is determined by directed edges between each of the text nodes. The first text node is
+      <title>Text</title>
+      <para>The textual content is stored in a sequence of nodes. The order of the sequence is
+        determined by directed edges between each of the text nodes. The first text node is
         designated by the fact that there is a link from the document node to that specific text
         node. Markup (called Elements in XML). All markup have their own node. Markup nodes are
         connected to the text nodes that they belong to by the use of hyperedge. Each markup node is
