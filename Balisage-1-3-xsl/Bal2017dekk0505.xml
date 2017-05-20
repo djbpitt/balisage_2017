@@ -404,10 +404,12 @@
   <section>
     <title>How TAG addresses structures that are awkward for XML</title>
     <para>In this section we illustrate how several types of structures that are awkward for XML
-      because they contradict the tree model can be represented in a natural way in TAG. For each we
-      provide an abstract description of the problem, of one or more XML workarounds, and of the TAG
-      approach, followed by examples drawn from use cases in Digital Humanities research
-      projects.</para>
+      because they contradict the OHCO tree model can be represented in a natural way in TAG. For
+      each we provide an abstract description of the problem, of one or more XML workarounds, and of
+      the TAG approach, followed by examples drawn from use cases in Digital Humanities research
+      projects. The issues do not all pertain to the “H” (hierarchy) of OHCO; some involve “O”
+      (order) or “CO” (content objects). And those that do pertain to hierarchy do not all involve
+      overlap.</para>
     <section>
       <title>Overlap</title>
       <para><emphasis role="bold">TODO: Examples include enjambment and caesura in poetry,
