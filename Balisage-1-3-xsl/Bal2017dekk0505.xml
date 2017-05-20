@@ -446,9 +446,9 @@
         but overlap is sometimes described as a property of XML serialization, rather than of the
         XML data model. Or, more precisely, overlap is one thing in the XML data model and a
         different, but related thing in an XML serialization. In the data model, overlap refers to
-        multiple concurrent trees or partial trees, which is not possible in XML because XML is
-        defined as a single tree. Notice in the image below how the phrase <quote>Two vast and
-          trunkless legs of stone Stand in the desart</quote> begins in the middle of line 2 and
+        multiple concurrent trees or partial trees, a situation that is not possible in XML because
+        XML is defined as a single tree. Notice in the image below how the phrase <quote>Two vast
+          and trunkless legs of stone Stand in the desart</quote> begins in the middle of line 2 and
         ends in the middle of line 3, so that a tree of phrases overlaps a tree of lines:</para>
       <figure xml:id="ozymandius">
         <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
