@@ -154,27 +154,29 @@
     <!-- Michael and Claus 2008 emphasize that TEI markup requires semantics, while ours is in the model
       TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser -->
     <!-- TexMECS requires quotations to be divided in the model, while we don't -->
-    <para>The principal limitation of XML as a model of text is that text has structural properties
-      that humans care about that cannot be modeled directly as a tree, or, at least, as a rooted
-      and ordered directed acyclic graph constructed from the seven types of nodes that constitute
-      the XQuery and XPath data model.[<xref linkend="xdm6"/>] Although overlap has received most of
-      the attention, overlap is only one such challenge to XML modeling, and regarding overlap as
-        <emphasis role="ital">the problem</emphasis>, instead of as <emphasis role="ital">a symptom
-        of the problem</emphasis>, has led us to think more narrowly than we should about
-      alternatives to OHCO. If what text <quote>really is</quote> is not an ordered hierarchy of
-      content objects, what is it instead? The issues are well known to the XML community, so why
-      have they come largely (although not entirely) to be eclipsed by overlap in discussions of
-      what’s difficult about modeling documents in XML? These challenges, which have been negotiated
-      in XML modeling and processing through workarounds, find a natural solution in the TAG model
-      described here, as well as, at least in some respects, in LMNL and GODDAG/TexMECS.</para>
+    <para>The principal limitation of XML as a model of text is generally regarded as overlap, that
+      is, that text has structural properties that humans care about that cannot be modeled directly
+      as a tree, or, at least, as a rooted and ordered directed acyclic graph constructed from the
+      seven types of nodes that constitute the XQuery and XPath data model.[<xref linkend="xdm6"/>]
+      Although overlap has received most of the attention, overlap is only one such challenge to XML
+      modeling, and regarding overlap as <emphasis role="ital">the problem</emphasis>, instead of as
+        <emphasis role="ital">a symptom of the problem</emphasis>, has led us to think more narrowly
+      than we should about alternatives to OHCO. If what text <quote>really is</quote> is not an
+      ordered hierarchy of content objects, what is it instead? The issues are well known to the XML
+      community, so why have they come largely (although not entirely) to be eclipsed by overlap in
+      discussions of what’s difficult about modeling documents in XML? These challenges, which have
+      been negotiated in XML modeling and processing through workarounds, find a natural solution in
+      the TAG model described here, as well as, at least in some respects, in LMNL and
+      GODDAG/TexMECS.</para>
     <para>A second challenge of using XML as a model of text involves not the <emphasis role="ital"
         >limitations</emphasis> of OHCO, but its <emphasis role="ital">tyranny</emphasis>. If text
       is understood as an ordered hierarchy of content objects, are there aspects of text that are
-      not ordered, are there aspects that are not hierarchical, and does the model create content
-      objects artifactually, that is, where they are not perceived as inherent properties of the
-      text being modeled? XML requires us to model all content as both ordered and hierarchical, and
-      it represents content objects as elements (at least as content objects are described in <xref
-        linkend="derose_1990"/>). The GODDAG and LMNL alternatives to XML, which are discussed
+      not ordered, are there aspects that are not hierarchical (by which mean not just that they are
+      not mono-hierarchical, but that they are not hierarchical at all), and does the model create
+      content objects artifactually, that is, where they are not perceived as inherent properties of
+      the text being modeled? XML requires us to model all content as both ordered and hierarchical,
+      and it represents content objects as elements (at least as content objects are described in
+        <xref linkend="derose_1990"/>). The GODDAG and LMNL alternatives to XML, which are discussed
       below, both grew out of a recognition that not all properties of text can be modeled
       effectively as a single hierarchy, and their focus is not limited to that issue, but they
       differ in the extent to which they interrogate aspects of text that may not be hierarchical,
@@ -182,17 +184,17 @@
       object.</para>
     <para>A third challenge of discussing XML as a model of text is distinguishing XML as a data
       model from XML as a syntax, and the same applies to the LMNL data model vs the LMNL sawtooth
-      syntax and the GODDAG data structure vs (Tex)MECS syntax. Perhaps a bit surprisingly in the
-      context of Balisage, which describes itself as <quote>the markup conference</quote>, our focus
-      here is not on markup (that is, on syntax and serialization), but on the data models that may
-      be expressed through markup. Our somewhat simplified <xref linkend="XML_specs"/> illustration,
-      below, regards the XML document, the version that contains markup annotations, as related to
-      the XML InfoSet by the operations of serialization in one direction and parsing in the other.
-      This matters because the serialization is, as is clear from the etymology of the term,
-      committed to an ordered expression in ways that other representations of XML may not be, and
-      the same is true of other data models and their associated syntactic expressions through
+      syntax and the GODDAG data structure vs TexMECS syntax. Perhaps a bit surprisingly in the
+      context of Balisage, which describes itself as <quote>the <emphasis role="ital"
+          >markup</emphasis> conference</quote>, our focus here is not on markup (that is, on syntax
+      and serialization), but on the data models that may be expressed through markup. Our somewhat
+      simplified <xref linkend="XML_specs"/> illustration, below, regards the marked-up XML document
+      as related to the XML InfoSet by the operations of serialization in one direction and parsing
+      in the other. This matters because the serialization is, as is clear from the etymology of the
+      term, committed to an ordered expression in ways that other representations of XML may not be,
+      and the same is true of other data models and their associated syntactic expressions through
       markup. If, for example, a paragraph is exactly coextensive with a quotation, in XML syntax,
-      LMNL sawtooth syntax, and (Tex)MECS syntax, the start tag of either the paragraph or the
+      LMNL sawtooth syntax, and TexMECS syntax, the start tag of either the paragraph or the
       quotation must come first in linear order. But in LMNL that order is not part of the model,
       according to which the two ranges begin at the same location in the stream of atoms.<footnote>
         <para>LMNL is able to represent hierarchy, but it is not obligatory, and <quote>flat</quote>
@@ -211,7 +213,7 @@
       </mediaobject>
       <caption>
         <para>The term <quote>XML</quote> may be used to refer to the data model or to its syntactic
-          expressions.</para>
+          or other expressions.</para>
       </caption>
     </figure>
     <para>One final issue, which intersects with the ones above, involves distinguishing properties
@@ -224,9 +226,10 @@
       relies on semantics.</para>
     <para>An improved text model should have the following properties: <itemizedlist>
         <!-- Add one-sentence examples of each of these -->
+        <!-- Do we need to explain more clearly what we mean by "annotation" here? -->
         <listitem>
           <para>It should support both textual (character data) content and annotations (of the sort
-            represented in XML through element and attribute markup).</para>
+            expressed in XML through element and attribute markup).</para>
         </listitem>
         <listitem>
           <para>It should support multiple layers of annotation.</para>
@@ -276,13 +279,26 @@
           <para>With respect to I/O, a system that implements the model should support serialization
             as plain text on export and the parsing of such serializations on import. TAG does not
             currently have its own syntax; it can read and write LMNL syntax (although not all TAG
-            properties currently have a defined representation in LMNL syntax), and is intended to
-            be able to read and write TexMECS.</para>
+            properties currently have a defined representation in LMNL syntax), and it is intended
+            to be able to read and write TexMECS.<footnote>
+              <para>Neither LMNL sawtooth syntax nor TexMECS can represent all features of TAG. For
+                example, LMNL supports annotations on annotations, while TexMECS doesn’t. TexMECS
+                supports hierarchy, while LMNL sawtooth syntax does not. LMNL can represent
+                hierarchy through the <emphasis role="ital">limen</emphasis>, but the limen
+                currently has no defined representation in the syntax. [<xref linkend="piez_2008"/>]
+                We leave unresolved for now the question of how to serialize fully all information
+                in a TAG document.</para>
+            </footnote></para>
         </listitem>
         <listitem>
           <para>With respect to user interaction, a system that implements the model should provide
-            a legible interface that enables reading and writing by human
-            users.<!-- should we specify that the interface is out of scope for us, since we aren't offering a syntax --></para>
+            a legible interface that enables reading and writing by human users.<footnote>
+              <para>We leave unresolved for now the design and implementation of such an interface,
+                except to say that it might not require a specialized, TAG-aware editor. One
+                approach might involve the selective export of TAG information for manipulation in a
+                third-party editor, followed by its reimport and reintegration into the TAG
+                document.</para>
+            </footnote></para>
         </listitem>
       </itemizedlist></para>
     <!--explain the differences between graph models and trees and ranges? Or leave that
@@ -475,6 +491,12 @@
       <title>Transposition</title>
       <para><emphasis role="bold">TODO: Examples include reordering across witnesses in criticial
           texts</emphasis></para>
+    </section>
+    <section>
+      <title>Artifactual content objects</title>
+      <para><emphasis role="bold">The &lt;app&gt; wrapper around readings in TEI parallel
+          segmentation isn’t in the variant graph. Why should it be in the model of a critical
+          text?</emphasis></para>
     </section>
   </section>
   <section>
