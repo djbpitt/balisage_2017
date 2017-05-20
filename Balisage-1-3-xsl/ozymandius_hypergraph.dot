@@ -5,7 +5,7 @@ digraph G {
 		line1[label=line];
 		line2[label=line];
 	}
-	{	edge [fillcolor=cyan2, style=filled];
+	{	edge [style=invis];
 		lines -> line1;
 		lines -> line2;
 	}
@@ -36,7 +36,7 @@ digraph G {
 			comma1[label=","]
 		}
 	{ node [style=filled fillcolor=green]; phrase; phrase0; phrase1; phrase2;}
-	{ edge [fillcolor=cyan2, style=filled];
+	{ edge [style=invis];
 		line1 -> Who;
 		line1 -> said;
 		line1 -> dash;
@@ -68,13 +68,13 @@ digraph G {
 		phrase1[label=phrase]; 
 		phrase2[label=phrase];
 	}
-	{ edge [fillcolor=green, style=filled, dir=back];
+	{ edge [style=invis];
 		phrase -> phrases;
 		phrase0 -> phrases;
 		phrase1 -> phrases;
 		phrase2 -> phrases;
 	}
-	{ edge [fillcolor=green, style=filled, dir=back];
+	{ edge [style=invis];
 		open_quote -> phrase;
 		Two -> phrase;
 		vast -> phrase;
