@@ -216,15 +216,45 @@
           or other expressions.</para>
       </caption>
     </figure>
-    <para>One final issue, which intersects with the ones above, involves distinguishing properties
-      that are implicit in and intrinsic to the model from those that can be expressed only with
-      higher-level information. Expressed in markup terms, this might distinguish structures that
-      are wholly described by syntax from those whose meaning also requires access to semantics. For
-      example, the pairing of start and end tags in XML (or LMNL sawtooth or TexMECS) markup is
-      inherent in the markup itself. In contrast, the pairing of XML milestones that are used to
-      simulate container tags (see the discussion of Trojan markup in <xref linkend="derose_2004"/>)
-      relies on semantics.</para>
-    <para>An improved text model should have the following properties: <itemizedlist>
+    <para>A fourth issue, which intersects with the three above, involves distinguishing properties
+      that inhere in the text being modeled from those that depend on semantics that must be
+      interpreted at a higher (application) level. A failure to make this distinction may have two
+      types of consequences: either the application must know that some properties of the model are
+      not informational or the application must know that there is information that is not
+      represented entirely by the model. If, however, the model explicitly represents the properties
+      of the text and nothing else, the application level is freed from having to supplement the
+      model, and can concentrate on features that are truly application-specific. Here are two
+      illustrations of this issue:<itemizedlist>
+        <listitem>
+          <para>The pairing of start and end tags in XML (or LMNL sawtooth or TexMECS) markup is
+            inherent in the markup itself. In contrast, the pairing of XML milestones that are used
+            to simulate container tags as a work-around for overlap (see the discussion of Trojan
+            markup in <xref linkend="derose_2004"/>) relies on semantics. This means that
+            applications do not have to know that regular start and end tags delimit an element, but
+            they do have to know when empty tags are being used to simulate the beginning and end of
+            a content. Insofar as whether something is a content object is a property of the text
+            being modeled, a robust and efficient strategy would represent it as part of the model
+            itself.</para>
+        </listitem>
+        <listitem>
+          <para>Because XML models an ordered hierarchy, sibling elements always have order, which
+            requires the application layer to distinguish situations where order is semantically
+            meaningful from situations where it isn’t. For example, the TEI
+              <code>&lt;choice&gt;</code> elements has the semantics of associating content objects
+            that do not have a natural order simultaneously, such as an abbreviation and its
+            expansion or an error and its correction. How those should be handled is the business of
+            the application layer, but whether one option proceeds or follows the other is not.
+            Because the model does not distinguish ordered from unordered siblings, that distinction
+            falls on the application. A more robust and efficient strategy would not impose order
+            when it must then be ignored, so that an application will be able to regard the presence
+            or absence of order in the model as informational without recourse to semantics.</para>
+        </listitem>
+      </itemizedlist></para>
+    <para>An improved text model should have the following properties. In all instances where we
+      write that <quote>the model should be able to X</quote>, we mean that it should be able to X
+      without requiring access to semantic information at the application level. In other words, the
+      components of the model should fully represent the properties of the text being modeled, with
+      no extraneous artifactual properties that an application must then know to ignore:<itemizedlist>
         <!-- Add one-sentence examples of each of these -->
         <!-- Do we need to explain more clearly what we mean by "annotation" here? -->
         <listitem>
