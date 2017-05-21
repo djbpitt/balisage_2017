@@ -540,8 +540,33 @@
     </section>
     <section>
       <title>Discontinuity</title>
-      <para><emphasis role="bold">TODO: Examples include divided or interrupted speech in
-          prose</emphasis></para>
+      <para><xref linkend="sperberg-huitfeldt_2008"/> discusses the following paragraph from Lewis
+        Carroll’s <emphasis role="ital">Alice in Wonderland</emphasis> as an example of
+        discontinuity:</para>
+      <blockquote>
+        <para>Alice was beginning to get very tired of sitting by her sister on the bank, and of
+          having nothing to do: once or twice she had peeped into the book her sister was reading,
+          but it had no pictures or conversations in it, <quote>and what is the use of a
+            book,</quote> thought Alice <quote>without pictures or conversation?</quote></para>
+      </blockquote>
+      <para>There is no way to mark up this passage in XML without either fragmenting the quotation
+        into two elements (and relying on semantics to stitch together the pieces in the application
+        layer), yet our human intuition is that there is a single quotation, and that the model,
+        therefore, should represent it as a single object.<footnote>
+          <para>It is possible to interpret the entire quotation as an element with three child
+            nodes: a <code>text()</code> node, an intervening element that holds the narrative
+            interjection, and then another <code>text()</code>. <xref
+              linkend="sperberg-huitfeldt_2008"/> explains why this is unsatisfactory (see
+            especially their footnote 2).</para>
+        </footnote> As <xref linkend="sperberg-huitfeldt_2008"/> also observe, there is a sense in
+        which <quote>book</quote> and <quote>without</quote> are adjacent and a different sense in
+        which <quote>book</quote> and <quote>thought</quote> are adjacent. The XML data model cannot
+        represent both of these realities simultaneously, which means that at least one of them must
+        be handed off to the application layer.</para>
+      <para>
+        <xref linkend="sperberg-huitfeldt_2008"/> situate this type of structure in a GODDAG
+        context, where it intersects with the distinction between <emphasis role="ital"
+          >containment</emphasis> and <emphasis role="ital">dominance</emphasis>.</para>
     </section>
     <section>
       <title>White space as crypto-overlap</title>
@@ -757,6 +782,10 @@
       were and the tokenizer only pays attention to the textual content. The individual token are
       markup in a separate annotation layer. The existing markup layer are only ignored during
       tokenization, and still exist in the data.</para>
+  </section>
+  <section>
+    <title>Conclusions</title>
+    <para>Tree models are top down. TAG is bottom up. LMNL is flat.</para>
   </section>
   <bibliography>
     <title>Works cited</title>
