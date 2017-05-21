@@ -120,11 +120,11 @@
       not with plain-text characters (which might be considered pseudo-markup), but through
       standardized, formal markup, such as XML.</para>
     <para>The XML data model is a tree, or, more precisely, a rooted and ordered directed acyclic
-      graph, which in the document-processing community has come to be known as an Ordered Hierarchy
-      of Content Objects (OHCO). The OHCO model works well for describing structures that consist of
-      single ordered hierarchies, such as the exhaustive tesselated division of a novel into
-      chapters and the chapters into paragraphs. It is not well suited to structures that cannot be
-      modeled fully as a single tree.<footnote>
+      graph that prohibits multiple parentage, which in the document-processing community has come
+      to be known as an Ordered Hierarchy of Content Objects (OHCO). The OHCO model works well for
+      describing structures that consist of single ordered hierarchies, such as the exhaustive
+      tesselated division of a novel into chapters and the chapters into paragraphs. It is not well
+      suited to structures that cannot be modeled fully as a single tree.<footnote>
         <para>The OHCO literature is already well known to the Balisage audience, and it is not our
           goal to provide an exhaustive bibliography. The seminal papers that advocated for OHCO as
           a document model are <xref linkend="coombs_1987"/> and <xref linkend="derose_1990"/>; the
