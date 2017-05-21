@@ -1,0 +1,102 @@
+digraph G {
+	subgraph {
+		node[rank=max, fillcolor=cyan, style=filled];
+		lines;
+		line1[label=line];
+		line2[label=line];
+	}
+	{	edge [style=invis];
+		lines -> line1;
+		lines -> line2;
+	}
+	{
+		node [rank=same, fillcolor=pink style=filled];
+			Who[label=Who];
+			said[label=said];
+			dash[label="—"];
+			open_quote[label="“"];
+			Two[label=Two];
+			vast[label=vast];
+			and[label=and];
+			trunkless[label=trunkless];
+			legs[label=legs]; 
+			of[label=of]; 
+			stone[label=stone]; 
+			Stand[label=Stand]; 
+			in[label=in]; 
+			the[label=the]; 
+			desart[label=desart]; 
+			ellipsis[label="...."]; 
+			Near[label=Near]; 
+			them[label=them]
+			comma[label=","]; 
+			on[label=on]; 
+			the1[label=the]; 
+			sand[label=sand]
+			comma1[label=","]
+		}
+	{ node [style=filled fillcolor=green]; phrase; phrase0; phrase1; phrase2;}
+	{ edge [style=invis];
+		line1 -> Who;
+		line1 -> said;
+		line1 -> dash;
+		line1 -> open_quote;
+		line1 -> Two;
+		line1 -> vast;
+		line1 -> and;
+		line1 -> trunkless;
+		line1 -> legs;
+		line1 -> of;
+		line1 -> stone;
+		line2 -> Stand;
+		line2 -> in;
+		line2 -> the;
+		line2 -> desart;
+		line2 -> ellipsis;
+		line2 -> Near;
+		line2 -> them;
+		line2 -> comma;
+		line2 -> on;
+		line2 -> the1;
+		line2 -> sand;
+		line2 -> comma1;
+	}
+	{ rank=sink; node[style=filled, fillcolor=green]; phrases }
+	{ 	
+		phrase; 
+		phrase0[label=phrase]; 
+		phrase1[label=phrase]; 
+		phrase2[label=phrase];
+	}
+	{ edge [style=invis];
+		phrase -> phrases;
+		phrase0 -> phrases;
+		phrase1 -> phrases;
+		phrase2 -> phrases;
+	}
+	{ edge [style=invis];
+		open_quote -> phrase;
+		Two -> phrase;
+		vast -> phrase;
+		and -> phrase;
+		trunkless -> phrase;
+		legs -> phrase;
+		of -> phrase;
+		stone -> phrase;
+		Stand -> phrase;
+		in -> phrase;
+		the -> phrase;
+		desart -> phrase;
+		ellipsis -> phrase;
+		Who -> phrase0;
+		said -> phrase0;
+		dash -> phrase0;
+		Near -> phrase1;
+		them -> phrase1;
+		comma -> phrase1;
+		on -> phrase2;
+		the1 -> phrase2;
+		sand -> phrase2;
+		comma1 -> phrase2;
+	}
+}

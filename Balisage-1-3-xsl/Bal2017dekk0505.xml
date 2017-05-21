@@ -20,17 +20,18 @@
     <abstract>
       <para>The XML tree paradigm has several well-known limitations for document modeling and
         processing, some of which have received a lot of attention (especially overlap; see the
-        overviews in <xref linkend="sperberg-huitfeldt_2000"/> and <xref linkend="derose_2004"/>)
-        and some of which have received less (e.g., discontinuity, simultaneity, transposition,
-        white space as crypto-overlap). Many of these have work-arounds, also well known, that—as is
-        implicit in the term <quote>work-around</quote>—have disadvantages, but because they get the
-        job done and because XML has a large user community with diverse levels of technological
-        competence, it is difficult to overcome inertia and move to a technology that might offer a
-        more comprehensive fit with the full range of document structures with which researchers
-        need to interact both intellectually and programmatically. Proceeding from a high-level view
-        of why XML has the limitations it has, this presentation explores how an alternative model
-        of Text as Graph (TAG) might address these types of structures and tasks in a more natural
-        and idiomatic way than is available within an XML paradigm.</para>
+        overviews in <xref linkend="sperberg-huitfeldt_2000"/>, <xref linkend="derose_2004"/>, and
+          <xref linkend="peroni_2014"/>) and some of which have received less (e.g., discontinuity,
+        simultaneity, transposition, white space as crypto-overlap). Many of these have
+        work-arounds, also well known, that—as is implicit in the term
+        <quote>work-around</quote>—have disadvantages, but because they get the job done and because
+        XML has a large user community with diverse levels of technological competence, it is
+        difficult to overcome inertia and move to a technology that might offer a more comprehensive
+        fit with the full range of document structures with which researchers need to interact both
+        intellectually and programmatically. Proceeding from a high-level view of why XML has the
+        limitations it has, this presentation explores how an alternative model of Text as Graph
+        (TAG) might address these types of structures and tasks in a more natural and idiomatic way
+        than is available within an XML paradigm.</para>
     </abstract>
     <author>
       <personname>
@@ -460,7 +461,7 @@
         <caption>
           <para>[Image from
               <link>http://piez.org/wendell/papers/dh2010/clix-sonnets/ozymandias-map.svg</link>,
-            which is part of <xref linkend="piez_2010"/>. The overlap is even easier to see in the
+            which is part of <xref linkend="piez_2010"/>. The overlap is easier to see in the
             original SVG, which is animated, and highlights portions of the document in response to
             mouse events.]</para>
         </caption>
@@ -500,8 +501,8 @@
         serializes the GODDAG model. LMNL sawtooth syntax may look like XML syntax with the
         prohibition against overlapping tags removed, but the real difference is at the level of the
         data model: LMNL <emphasis role="ital">ranges</emphasis> may overlap, and the content
-        between XML start and end tags is a sequence of descendant nodes in a tree, and not a
-        range.</para>
+        between XML start and end tags is a sequence of descendant nodes in a tree, and not a range
+        of atoms.</para>
       <para>TAG represents overlap naturally because the TAG counterpart to an XML element is a
         directed hyperedge that associates a head markup node with a set of tail nodes. To tag a
         line of poetry in the example above, TAG would create a hyperedge from a markup node with
@@ -511,8 +512,9 @@
         which record the continuous order of the text stream (comparable to the sequence of atoms in
         the LMNL model), the textual content of the line is fully specified by (= can be retrieved
         by examining) the membership of the set of tail nodes and the sequence edges between them.
-        In the illustration below, the irregular colored bounding lines demarcate the sets of tail
-        nodes and a similarly colored arrow points into them from their markup node heads:</para>
+        In the illustration below, the black arrows represent regular edges that connect text nodes
+        in order, the irregular colored bounding lines demarcate the sets of tail nodes, and a
+        similarly colored arrow points into them from their markup node heads:</para>
       <figure xml:id="overlap_hypergraph">
         <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
         <mediaobject>
@@ -811,11 +813,12 @@
         unification of formats for overlapping markup.</quote>
       <emphasis role="ital">New review of hypermedia and multimedia</emphasis>, 14.1 (2008): 57–94.
         <link>https://hal-univ-diderot.archives-ouvertes.fr/hal-00340578/document</link></bibliomixed>
-    <bibliomixed>Peroni, Silvio, Francesco Poggi and Fabio Vitali. <quote>Overlapproaches in
-        documents: a definitive classification (in OWL, 2!).</quote> Presented at Balisage: The
-      Markup Conference 2014, Washington, DC, August 5 - 8, 2014. In <emphasis role="ital"
-        >Proceedings of Balisage: The Markup Conference 2014. Balisage Series on Markup
-        Technologies</emphasis>, 13 (2014). DOI: 10.4242/BalisageVol13.Peroni01.
+    <bibliomixed xml:id="peroni_2014" xreflabel="Peroni et al. 2014">Peroni, Silvio, Francesco Poggi
+      and Fabio Vitali. <quote>Overlapproaches in documents: a definitive classification (in OWL,
+        2!).</quote> Presented at Balisage: The Markup Conference 2014, Washington, DC, August 5 -
+      8, 2014. In <emphasis role="ital">Proceedings of Balisage: The Markup Conference 2014.
+        Balisage Series on Markup Technologies</emphasis>, 13 (2014). DOI:
+      10.4242/BalisageVol13.Peroni01.
         <link>https://www.balisage.net/Proceedings/vol13/html/Peroni01/BalisageVol13-Peroni01.html</link></bibliomixed>
     <bibliomixed xml:id="piez_2008" xreflabel="Piez 2008">Piez, Wendell. <quote>LMNL in miniature.
         An introduction.</quote> Amsterdam Goddag Workshop, 1–5 December 2008.
