@@ -579,18 +579,27 @@
   </section>
   <section>
     <title>Comparison of TAG/hypergraph to other text models</title>
-    <para>In this section we compare and contrast the TAG/hypergraph model with previous models for
-      text processing, such as DOM (tree), GODDAG (graph), and LMNL (range).</para>
+    <para>In this section we compare and contrast the TAG data model with previous models for
+      text modelling and processing, such as Information Set as implemented in DOM (tree), GODDAG (forrest/graph), and the LMNL data model(range).</para>
+
+    <!-- This is a very generic overview... maybe not here -->
     <para>The document is written in a text serialization format, like XML or LMNL. It is then
       processed by a processor into memory model, like DOM. TAG is a replacement of DOM, competes
       with DOM, or with the Datamodel behind LMNL, based on ranges. NOTE: maybe a picture showing
       the use of XML markup to DOM and LMNL to TAG should be made to make clear what it is we are
       actually presenting here. The DOM (Document Object Model) is an API for XML processing. The
-      alternative is XML Event processing. The DOM can contain both HTML and XML markup. The DOM
-      contains a Node tree consisting of the following nodes: Document, DocumentType,
-      DocumentFragment, Element, Text, ProcessingInstruction and Comment.</para>
+      alternative is XML Event processing. The DOM can contain both HTML and XML markup. </para>
     <section>
       <title>TAG and DOM</title>
+
+      <para>DOM is an API for XML processing containing a data model based on the XML Information Set.
+        
+        The DOM
+        contains a Node tree consisting of the following nodes: Document, DocumentType,
+        DocumentFragment, Element, Text, ProcessingInstruction and Comment.
+      </para>
+
+
       <para>Just like the DOM model the TAG model contains numerous types of nodes: TAG has a
         Document node, just like the Document Node in DOM. In the place of the Element nodes of the
         DOM comes the Markup node of the TAG model. Text nodes in the DOM model are part of the TAG
