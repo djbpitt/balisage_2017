@@ -549,15 +549,16 @@
           but it had no pictures or conversations in it, <quote>and what is the use of a
             book,</quote> thought Alice <quote>without pictures or conversation?</quote></para>
       </blockquote>
-      <para>There is no way to mark up this passage in XML without either fragmenting the quotation
-        into two elements (and relying on semantics to stitch together the pieces in the application
+      <para>There is no way to mark up this passage in XML without fragmenting the quotation into
+        two elements (and relying on semantics to stitch together the pieces in the application
         layer), yet our human intuition is that there is a single quotation, and that the model,
         therefore, should represent it as a single object.<footnote>
           <para>It is possible to interpret the entire quotation as an element with three child
             nodes: a <code>text()</code> node, an intervening element that holds the narrative
-            interjection, and then another <code>text()</code>. <xref
-              linkend="sperberg-huitfeldt_2008"/> explains why this is unsatisfactory (see
-            especially their footnote 2).</para>
+            interjection, and then another <code>text()</code>, and in that sense the quotation is
+            one object, although that object incorporates something that is not part of what a human
+            understands as the quotation. <xref linkend="sperberg-huitfeldt_2008"/> explains why
+            this is unsatisfactory (see especially their footnote 2).</para>
         </footnote> As <xref linkend="sperberg-huitfeldt_2008"/> also observe, there is a sense in
         which <quote>book</quote> and <quote>without</quote> are adjacent and a different sense in
         which <quote>book</quote> and <quote>thought</quote> are adjacent. The XML data model cannot
@@ -566,7 +567,27 @@
       <para>
         <xref linkend="sperberg-huitfeldt_2008"/> situate this type of structure in a GODDAG
         context, where it intersects with the distinction between <emphasis role="ital"
-          >containment</emphasis> and <emphasis role="ital">dominance</emphasis>.</para>
+          >containment</emphasis> and <emphasis role="ital">dominance</emphasis>. Concerning LMNL,
+        they write that </para>
+      <blockquote>
+        <para>[with respect to] the unity of discontinuous elements: such a unity may be asserted by
+          the application layer (that is, by the definition of a LMNL vocabulary), but it is not
+          visible on the LMNL level, and thus need not be accounted for at the level of LMNL
+          itself.</para>
+        <para>The design of LMNL thus seems to require that any account of dominance (as distinct
+          from containment), and any account of discontinuous elements, be handled in the
+          application layer. LMNL itself achieves a degree of simplicity and regularity as a result,
+          at the expense of complexity in the application.</para>
+      </blockquote>
+      <para><xref linkend="piez_2008"/> describes discontinuity as modeled by the <emphasis
+          role="ital">limen</emphasis>, where the example provided
+          (<link>http://piez.org/wendell/LMNL/Amsterdam2008/presentation-slides.html#page23</link>)
+        records it through coindexed annotations. That dependency seems to locate discontinuity in
+        an application layer, since whether coindexed annotations represent discontinuity is not an
+        inherent property of the coindexing.</para>
+      <para>TAG prioritizes the representation of text structures, including discontinuity, in the
+        model, without dependency on application-layer semantics. The example from Alice in
+        Wonderland described above would have the following form in our graph:</para>
     </section>
     <section>
       <title>White space as crypto-overlap</title>
@@ -606,8 +627,9 @@
   </section>
   <section>
     <title>Comparison of TAG/hypergraph to other text models</title>
-    <para>In this section we compare and contrast the TAG data model with previous models for
-      text modelling and processing, such as Information Set as implemented in DOM (tree), GODDAG (forrest/graph), and the LMNL data model(range).</para>
+    <para>In this section we compare and contrast the TAG data model with previous models for text
+      modelling and processing, such as Information Set as implemented in DOM (tree), GODDAG
+      (forrest/graph), and the LMNL data model(range).</para>
 
     <!-- This is a very generic overview... maybe not here -->
     <para>The document is written in a text serialization format, like XML or LMNL. It is then
@@ -619,12 +641,9 @@
     <section>
       <title>TAG and DOM</title>
 
-      <para>DOM is an API for XML processing containing a data model based on the XML Information Set.
-        
-        The DOM
-        contains a Node tree consisting of the following nodes: Document, DocumentType,
-        DocumentFragment, Element, Text, ProcessingInstruction and Comment.
-      </para>
+      <para>DOM is an API for XML processing containing a data model based on the XML Information
+        Set. The DOM contains a Node tree consisting of the following nodes: Document, DocumentType,
+        DocumentFragment, Element, Text, ProcessingInstruction and Comment. </para>
 
 
       <para>Just like the DOM model the TAG model contains numerous types of nodes: TAG has a
