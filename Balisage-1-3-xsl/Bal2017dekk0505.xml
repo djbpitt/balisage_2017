@@ -20,17 +20,18 @@
     <abstract>
       <para>The XML tree paradigm has several well-known limitations for document modeling and
         processing, some of which have received a lot of attention (especially overlap; see the
-        overviews in <xref linkend="sperberg-huitfeldt_2000"/> and <xref linkend="derose_2004"/>)
-        and some of which have received less (e.g., discontinuity, simultaneity, transposition,
-        white space as crypto-overlap). Many of these have work-arounds, also well known, that—as is
-        implicit in the term <quote>work-around</quote>—have disadvantages, but because they get the
-        job done and because XML has a large user community with diverse levels of technological
-        competence, it is difficult to overcome inertia and move to a technology that might offer a
-        more comprehensive fit with the full range of document structures with which researchers
-        need to interact both intellectually and programmatically. Proceeding from a high-level view
-        of why XML has the limitations it has, this presentation explores how an alternative model
-        of Text as Graph (TAG) might address these types of structures and tasks in a more natural
-        and idiomatic way than is available within an XML paradigm.</para>
+        overviews in <xref linkend="sperberg-huitfeldt_2000"/>, <xref linkend="derose_2004"/>, and
+          <xref linkend="peroni_2014"/>) and some of which have received less (e.g., discontinuity,
+        simultaneity, transposition, white space as crypto-overlap). Many of these have
+        work-arounds, also well known, that—as is implicit in the term
+        <quote>work-around</quote>—have disadvantages, but because they get the job done and because
+        XML has a large user community with diverse levels of technological competence, it is
+        difficult to overcome inertia and move to a technology that might offer a more comprehensive
+        fit with the full range of document structures with which researchers need to interact both
+        intellectually and programmatically. Proceeding from a high-level view of why XML has the
+        limitations it has, this presentation explores how an alternative model of Text as Graph
+        (TAG) might address these types of structures and tasks in a more natural and idiomatic way
+        than is available within an XML paradigm.</para>
     </abstract>
     <author>
       <personname>
@@ -460,7 +461,7 @@
         <caption>
           <para>[Image from
               <link>http://piez.org/wendell/papers/dh2010/clix-sonnets/ozymandias-map.svg</link>,
-            which is part of <xref linkend="piez_2010"/>. The overlap is even easier to see in the
+            which is part of <xref linkend="piez_2010"/>. The overlap is easier to see in the
             original SVG, which is animated, and highlights portions of the document in response to
             mouse events.]</para>
         </caption>
@@ -500,8 +501,8 @@
         serializes the GODDAG model. LMNL sawtooth syntax may look like XML syntax with the
         prohibition against overlapping tags removed, but the real difference is at the level of the
         data model: LMNL <emphasis role="ital">ranges</emphasis> may overlap, and the content
-        between XML start and end tags is a sequence of descendant nodes in a tree, and not a
-        range.</para>
+        between XML start and end tags is a sequence of descendant nodes in a tree, and not a range
+        of atoms.</para>
       <para>TAG represents overlap naturally because the TAG counterpart to an XML element is a
         directed hyperedge that associates a head markup node with a set of tail nodes. To tag a
         line of poetry in the example above, TAG would create a hyperedge from a markup node with
@@ -511,8 +512,9 @@
         which record the continuous order of the text stream (comparable to the sequence of atoms in
         the LMNL model), the textual content of the line is fully specified by (= can be retrieved
         by examining) the membership of the set of tail nodes and the sequence edges between them.
-        In the illustration below, the irregular colored bounding lines demarcate the sets of tail
-        nodes and a similarly colored arrow points into them from their markup node heads:</para>
+        In the illustration below, the black arrows represent regular edges that connect text nodes
+        in order, the irregular colored bounding lines demarcate the sets of tail nodes, and a
+        similarly colored arrow points into them from their markup node heads:</para>
       <figure xml:id="overlap_hypergraph">
         <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
         <mediaobject>
@@ -538,8 +540,33 @@
     </section>
     <section>
       <title>Discontinuity</title>
-      <para><emphasis role="bold">TODO: Examples include divided or interrupted speech in
-          prose</emphasis></para>
+      <para><xref linkend="sperberg-huitfeldt_2008"/> discusses the following paragraph from Lewis
+        Carroll’s <emphasis role="ital">Alice in Wonderland</emphasis> as an example of
+        discontinuity:</para>
+      <blockquote>
+        <para>Alice was beginning to get very tired of sitting by her sister on the bank, and of
+          having nothing to do: once or twice she had peeped into the book her sister was reading,
+          but it had no pictures or conversations in it, <quote>and what is the use of a
+            book,</quote> thought Alice <quote>without pictures or conversation?</quote></para>
+      </blockquote>
+      <para>There is no way to mark up this passage in XML without either fragmenting the quotation
+        into two elements (and relying on semantics to stitch together the pieces in the application
+        layer), yet our human intuition is that there is a single quotation, and that the model,
+        therefore, should represent it as a single object.<footnote>
+          <para>It is possible to interpret the entire quotation as an element with three child
+            nodes: a <code>text()</code> node, an intervening element that holds the narrative
+            interjection, and then another <code>text()</code>. <xref
+              linkend="sperberg-huitfeldt_2008"/> explains why this is unsatisfactory (see
+            especially their footnote 2).</para>
+        </footnote> As <xref linkend="sperberg-huitfeldt_2008"/> also observe, there is a sense in
+        which <quote>book</quote> and <quote>without</quote> are adjacent and a different sense in
+        which <quote>book</quote> and <quote>thought</quote> are adjacent. The XML data model cannot
+        represent both of these realities simultaneously, which means that at least one of them must
+        be handed off to the application layer.</para>
+      <para>
+        <xref linkend="sperberg-huitfeldt_2008"/> situate this type of structure in a GODDAG
+        context, where it intersects with the distinction between <emphasis role="ital"
+          >containment</emphasis> and <emphasis role="ital">dominance</emphasis>.</para>
     </section>
     <section>
       <title>White space as crypto-overlap</title>
@@ -765,6 +792,10 @@
       markup in a separate annotation layer. The existing markup layer are only ignored during
       tokenization, and still exist in the data.</para>
   </section>
+  <section>
+    <title>Conclusions</title>
+    <para>Tree models are top down. TAG is bottom up. LMNL is flat.</para>
+  </section>
   <bibliography>
     <title>Works cited</title>
     <bibliomixed xml:id="coombs_1987" xreflabel="Coombs et al. 1987">Coombs, James H., Allen H.
@@ -820,11 +851,12 @@
         unification of formats for overlapping markup.</quote>
       <emphasis role="ital">New review of hypermedia and multimedia</emphasis>, 14.1 (2008): 57–94.
         <link>https://hal-univ-diderot.archives-ouvertes.fr/hal-00340578/document</link></bibliomixed>
-    <bibliomixed>Peroni, Silvio, Francesco Poggi and Fabio Vitali. <quote>Overlapproaches in
-        documents: a definitive classification (in OWL, 2!).</quote> Presented at Balisage: The
-      Markup Conference 2014, Washington, DC, August 5 - 8, 2014. In <emphasis role="ital"
-        >Proceedings of Balisage: The Markup Conference 2014. Balisage Series on Markup
-        Technologies</emphasis>, 13 (2014). DOI: 10.4242/BalisageVol13.Peroni01.
+    <bibliomixed xml:id="peroni_2014" xreflabel="Peroni et al. 2014">Peroni, Silvio, Francesco Poggi
+      and Fabio Vitali. <quote>Overlapproaches in documents: a definitive classification (in OWL,
+        2!).</quote> Presented at Balisage: The Markup Conference 2014, Washington, DC, August 5 -
+      8, 2014. In <emphasis role="ital">Proceedings of Balisage: The Markup Conference 2014.
+        Balisage Series on Markup Technologies</emphasis>, 13 (2014). DOI:
+      10.4242/BalisageVol13.Peroni01.
         <link>https://www.balisage.net/Proceedings/vol13/html/Peroni01/BalisageVol13-Peroni01.html</link></bibliomixed>
     <bibliomixed xml:id="piez_2008" xreflabel="Piez 2008">Piez, Wendell. <quote>LMNL in miniature.
         An introduction.</quote> Amsterdam Goddag Workshop, 1–5 December 2008.
