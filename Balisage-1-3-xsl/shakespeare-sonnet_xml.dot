@@ -1,0 +1,61 @@
+digraph G {
+	{ node [style=filled, fillcolor=beige, label="/"] document }
+	{ node [style=filled, fillcolor=yellow] poem }
+	document -> poem
+	{ node [rank=same, style=filled, fillcolor=green]; 
+		quatrain1[label=quatrain];
+		quatrain2[label=quatrain];
+		quatrain3[label=quatrain];
+		couplet }
+	poem -> { quatrain1 quatrain2 quatrain3 couplet }
+	{ node [rank=same, style=filled, fillcolor=cyan]; 
+		line1[label=line];
+		line2[label=line];
+		line3[label=line];
+		line4[label=line];
+		line5[label=line];
+		line6[label=line];
+		line7[label=line];
+		line8[label=line];
+		line9[label=line];
+		line10[label=line];
+		line11[label=line];
+		line12[label=line];
+		line13[label=line];
+		line14[label=line];
+	}
+	quatrain1 -> { line1 line2 line3 line4 }
+	quatrain2 -> { line5 line6 line7 line8 }
+	quatrain3 -> { line9 line10 line11 line12 }
+	couplet -> { line13 line14 }
+	{ node [rank=same, style=filled, fillcolor=pink]
+		text1[label="No …"]
+		text2[label="Than …"]
+		text3[label="Give …"]
+		text4[label="From …"]
+		text5[label="Nay …"]
+		text6[label="The …"]
+		text7[label="That …"]
+		text8[label="If …"]
+		text9[label="O …"]
+		text10[label="When …"]
+		text11[label="Do …"]
+		text12[label="But …"]
+		text13[label="Lest …"]
+		text14[label="And …"]
+	}
+	line1 -> text1
+	line2 -> text2
+	line3 -> text3
+	line4 -> text4
+	line5 -> text5
+	line6 -> text6
+	line7 -> text7
+	line8 -> text8
+	line9 -> text9
+	line10 -> text10
+	line11 -> text11
+	line12 -> text12
+	line13 -> text13
+	line14 -> text14
+}

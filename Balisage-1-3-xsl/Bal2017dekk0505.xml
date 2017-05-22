@@ -372,6 +372,81 @@
         consists of a number of node and edge objects of different types.</para>
     </section>
     <section>
+      <title>Example of TAG hypergraph and its XML counterpart</title>
+      <figure xml:id="shakespeare_hypergraph">
+        <title>William Shakespeare, Sonnet 71</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="shakespeare-sonnet-71_hypergraph.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>The document node is beige, the text nodes are pink, and the markup nodes are green
+            (those with the <code>name</code> property of <quote>quatrain</quote> or
+              <quote>couplet</quote>) and cyan (those with the <code>name</code> property of
+              <quote>line</quote>). Text nodes in this case are entire lines of text, but they could
+            also be smaller units; see the discussion of Overlap, below.</para>
+        </caption>
+      </figure>
+      <para>The illustration of a TAG hypergraph of William Shakespearea’s Sonnet 71 (<xref
+          linkend="sonnet-71_text"/>), above, includes a document node, fourteen text nodes, and
+        eighteen markup nodes (fourteen with their <code>name</code> property value equal to
+          <quote>line</quote>, three to <quote>quatrain</quote>, and one to <quote>couplet</quote>).
+        Regular (one-to-one) edges start at the document node and connect all text nodes in textual
+        order (see below about simultaneity and transposition). Hyperedges point from the markup
+        nodes into sets of text nodes. In this case, hyperedges that start in markup nodes with the
+          <code>name</code> property of <quote>line</quote> point to a set that consists of a single
+        text node, and those with <code>name</code> property values of <quote>quatrain</quote> and
+          <quote>couplet</quote> point to sets of four and two text nodes, respectively.</para>
+      <para>As with any system for the representation of text, the choice of markup depends on a
+        combination of properties inherent in the text and those that are of interest to the person
+        creating the markup. For example, we could also have created <quote>sentence</quote> markup
+        nodes, about which see the discussion of overlap, below. Note that in TAG, in contrast to an
+        XML representation, there is no markup node corresponding to the XML root element, and the
+        quatrain and couplet markup nodes point directly to the text nodes, and not to line
+        elements. Here is the corresponding XML in markup and tree representations:</para>
+      <programlisting>&lt;poem&gt;
+    &lt;quatrain&gt;
+        &lt;line&gt;No longer mourn for me when I am dead&lt;/line&gt;
+        &lt;line&gt;Than you shall hear the surly sullen bell&lt;/line&gt;
+        &lt;line&gt;Give warning to the world that I am fled&lt;/line&gt;
+        &lt;line&gt;From this vile world with vilest worms to dwell:&lt;/line&gt;
+    &lt;/quatrain&gt;
+    &lt;quatrain&gt;
+        &lt;line&gt;Nay, if you read this line, remember not&lt;/line&gt;
+        &lt;line&gt;The hand that writ it, for I love you so,&lt;/line&gt;
+        &lt;line&gt;That I in your sweet thoughts would be forgot,&lt;/line&gt;
+        &lt;line&gt;If thinking on me then should make you woe.&lt;/line&gt;
+    &lt;/quatrain&gt;
+    &lt;quatrain&gt;
+        &lt;line&gt;O! if,—I say you look upon this verse,&lt;/line&gt;
+        &lt;line&gt;When I perhaps compounded am with clay,&lt;/line&gt;
+        &lt;line&gt;Do not so much as my poor name rehearse;&lt;/line&gt;
+        &lt;line&gt;But let your love even with my life decay;&lt;/line&gt;
+    &lt;/quatrain&gt;
+    &lt;couplet&gt;
+        &lt;line&gt;Lest the wise world should look into your moan,&lt;/line&gt;
+        &lt;line&gt;And mock you with me after I am gone.&lt;/line&gt;
+    &lt;/couplet&gt;
+&lt;/poem&gt;</programlisting>
+      <figure xml:id="shakespeare_xml">
+        <title>William Shakespeare, Sonnet 71</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="shakespeare-sonnet_xml.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>The XML tree includes a <code>&lt;poem&gt;</code> root node, which is not present in
+            the TAG hypergraph. Additionally, the <code>&lt;quatrain&gt;</code> and
+              <code>&lt;couplet&gt;</code> elements are parents of <code>&lt;line&gt;</code>
+            elements, which are parents of <code>text()</code> nodes. In TAG the
+              <quote>quatrain</quote>, <quote>couplet</quote>, and <quote>line</quote> markup nodes
+            all point directly to sets of text nodes.</para>
+        </caption>
+      </figure>
+    </section>
+    <section>
       <title>Nodes</title>
       <para>The following types of nodes are supported by TAG:<itemizedlist>
           <listitem>
@@ -388,9 +463,9 @@
           </listitem>
           <listitem>
             <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes correspond roughly to
-              element nodes in XML, and each instance of markup is represented by its own node. Markup
-              nodes are connected to the one or more text nodes to which they apply by a hyperedge,
-              where the markup node is the head and the set of text nodes is the tail. <!-- Do markup nodes point only to text nodes? XML elements may contain other elements rather than text.  -->
+              element nodes in XML, and each instance of markup is represented by its own node.
+              Markup nodes are connected to the one or more text nodes to which they apply by a
+              hyperedge, where the markup node is the head and the set of text nodes is the tail. <!-- Do markup nodes point only to text nodes? XML elements may contain other elements rather than text.  -->
               <!-- What is the tag representation of an XML empty element, which contains neither text nor elements? --></para>
           </listitem>
           <listitem>
@@ -403,7 +478,8 @@
               metadata on markup node. The model also allows for annotation nodes on annotation
               nodes.</para>
           </listitem>
-        </itemizedlist></para>
+        </itemizedlist>
+      </para>
     </section>
     <section>
       <title>Edges</title>
@@ -658,7 +734,7 @@
       alternative is XML Event processing. The DOM can contain both HTML and XML markup. </para>
     <section>
       <title>TAG and DOM</title>
-      <para>Document Object Model (DOM)  is an application programming interface (API) for XML
+      <para>Document Object Model (DOM) is an application programming interface (API) for XML
         processing that contains a data model based on the XML Information Set. </para>
       <para>Both the DOM and TAG data models are node based. In both models the nodes are typed. The
         DOM consists of the following nodes: Document, DocumentType, DocumentFragment, Element,
@@ -731,8 +807,8 @@
         <para><emphasis role="bold">TODO:</emphasis> (apparently reserved for the limen, and not yet
           specified) that TAG requires</para>
       </section>
-        
-  
+
+
       <section>
         <title>Hypergraph versus ranges</title>
         <para>With the range conceptual model it is inexpensive to add extra annotation layers,
@@ -844,6 +920,26 @@
     <title>Conclusions</title>
     <para>Tree models are top down. TAG is bottom up. LMNL is flat.</para>
   </section>
+  <appendix xml:id="sonnet-71_text" xreflabel="Appendix A">
+    <title>William Shakespeare, Sonnet 71</title>
+    <programlisting>No longer mourn for me when I am dead
+Than you shall hear the surly sullen bell
+Give warning to the world that I am fled
+From this vile world with vilest worms to dwell:
+
+Nay, if you read this line, remember not
+The hand that writ it, for I love you so,
+That I in your sweet thoughts would be forgot,
+If thinking on me then should make you woe.
+
+O! if,—I say you look upon this verse,
+When I perhaps compounded am with clay,
+Do not so much as my poor name rehearse;
+But let your love even with my life decay;
+
+Lest the wise world should look into your moan,
+And mock you with me after I am gone.</programlisting>
+  </appendix>
   <bibliography>
     <title>Works cited</title>
     <bibliomixed xml:id="coombs_1987" xreflabel="Coombs et al. 1987">Coombs, James H., Allen H.
