@@ -471,14 +471,11 @@
             </para>
           </listitem>
           <listitem>
-            <para> Annotations (called Attributes in XML). All annotations have their own node.
-              Annotation nodes are connected .. Overlap: Overlap can be naturally be modelled in a
-              graph, since multiple parents are allowed.</para>
-          </listitem>
-          <listitem>
-            <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
-              metadata on markup node. The model also allows for annotation nodes on annotation
-              nodes.</para>
+            <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes correspond
+              roughly to attribute nodes in XML, and represent represent metadata about markup
+              nodes. The model also allows for annotation nodes on annotation nodes. There are no
+              annotation nodes in the Shakespearean sonnet example above, but see the discussion of
+              Scope of reference, below.</para>
           </listitem>
         </itemizedlist>
       </para>
@@ -706,7 +703,7 @@
           texts</emphasis></para>
     </section>
     <section>
-      <title>Reference scope</title>
+      <title>Scope of reference</title>
       <para><emphasis role="ital">Footnotes in XML are usually milestones, but they should be
           annotations on elements, since milestones don’t have scope. But XML doesn’t permit markup
           in attributes. XML could make a footnote a child element, the parent of which is its
