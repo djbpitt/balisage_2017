@@ -465,8 +465,10 @@
             <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes correspond roughly to
               element nodes in XML, and each instance of markup is represented by its own node.
               Markup nodes are connected to the one or more text nodes to which they apply by a
-              hyperedge, where the markup node is the head and the set of text nodes is the tail. <!-- Do markup nodes point only to text nodes? XML elements may contain other elements rather than text.  -->
-              <!-- What is the tag representation of an XML empty element, which contains neither text nor elements? --></para>
+              hyperedge, where the markup node is the head and the set of text nodes is the tail.
+                <emphasis role="bital">@rhd: What is the tag representation of an XML empty
+                element?</emphasis>
+            </para>
           </listitem>
           <listitem>
             <para> Annotations (called Attributes in XML). All annotations have their own node.
