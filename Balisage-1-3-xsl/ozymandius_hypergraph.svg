@@ -140,13 +140,13 @@
      inkscape:window-height="692"
      id="namedview114"
      showgrid="false"
-     inkscape:zoom="0.45132503"
-     inkscape:cx="822.16045"
-     inkscape:cy="168.82746"
+     inkscape:zoom="1.27654"
+     inkscape:cx="258.1358"
+     inkscape:cy="-19.180756"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2">
+     inkscape:current-layer="g4704">
     <sodipodi:guide
        position="0,0"
        orientation="0,1103.75"
@@ -577,7 +577,7 @@
        inkscape:connector-curvature="0" />
     <path
        d="m 58.286197,128.24751 5.986736,-15.6578 5.583352,15.80614 c -3.383266,-2.5571 -8.05643,-2.60253 -11.570088,-0.14834 z"
-       style="fill-rule:evenodd;stroke-width:0.62500000000000000;stroke-linejoin:round;fill:#00ff00;fill-opacity:1"
+       style="fill-rule:evenodd;stroke-width:0.8;stroke-linejoin:round;fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        id="path4710"
        inkscape:connector-curvature="0" />
   </g>

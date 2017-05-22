@@ -18,7 +18,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="shakespeare-sonnet-71_hypergraph.svg">
+   sodipodi:docname="shakespeare-sonnet-71_hypergraph.svg"
+   inkscape:export-filename="/Users/djb/balisage_2017/Balisage-1-3-xsl/shakespeare-sonnet-71_hypergraph.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <metadata
      id="metadata342">
     <rdf:RDF>
@@ -27,6 +30,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -210,8 +214,8 @@
      inkscape:window-height="724"
      id="namedview338"
      showgrid="false"
-     inkscape:zoom="0.99421202"
-     inkscape:cx="768.98735"
+     inkscape:zoom="0.70301406"
+     inkscape:cx="283.33369"
      inkscape:cy="89.051073"
      inkscape:window-x="0"
      inkscape:window-y="0"
