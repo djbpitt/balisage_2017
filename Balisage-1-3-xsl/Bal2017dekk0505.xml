@@ -484,24 +484,38 @@
       <title>Edges</title>
       <para>The following edge types are supported by the model. All edges are directed; some are
         normal (one-to-one) edges and others are hyperedges. In TAG, hyperedges have a single head
-        node and a set of one or more tail nodes. <emphasis role="bital">[@rhd: Is this
-          correct?]</emphasis><itemizedlist>
+        node and a set of one or more tail nodes.<footnote>
+          <para>Critical texts with witness variation may have multiple labeled regular edges from
+            the document node to the first text node and from one text node to another. See the
+            discussion below.</para>
+        </footnote>
+        <emphasis role="bital">[@rhd: Is this correct?]</emphasis><itemizedlist>
           <listitem>
             <para><emphasis role="bold">Document to text directed edges.</emphasis> A document to
-              text directed edge connects a document node (source) with the first text node (target)
-              contained in that document.</para>
+              text directed edge points from a document node (head) with the first text node (tail)
+              contained in that document. In the Shakespearean sonnet example above, a single
+              document to text directed edge points from the document node to the first text node,
+              which in this case represents the first line of the poem.</para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">Text node to text node directed edges.</emphasis> The text
-              nodes themselves are connected with directed edges, which order them, so that the
-              linear order of the text is preserved.</para>
+              nodes themselves are connected with directed edges, which chain and therefore order
+              them, so that the linear order of the text is preserved. In the Shakespearean sonnet
+              example above, text node to text node directed edges point from the first text node to
+              the second, from the second and third, etc., until the end of the text.</para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">Markup to text nodes directed hyperedges.</emphasis> Markup
-              hyperedges connect the tags/markup nodes (source) to text nodes (target) tagged with
-              the markup in question. Note that the use of directed hyperedges allows us to connect
-                <emphasis role="ital">n</emphasis> markup nodes with one text node and vice
-              versa.</para>
+              hyperedges connect the tags/markup nodes (head) to text nodes (tail) as a way of
+              tagging them with the markup in question. Note that the use of directed hyperedges
+              allows us to connect <emphasis role="ital">n</emphasis> markup nodes with one text
+              node and vice versa. In the Shakespearean sonnet example above, the fourteen
+                <quote>line</quote> hyperedges each point to a single text node, the three
+                <quote>quatrain</quote> markup nodes each point to four text nodes, and the one
+                <quote>couplet</quote> markup points to two text nodes. Note that the
+                <quote>quatrain</quote> and <quote>couplet</quote> markup nodes point to text nodes,
+              and not to the <quote>line</quote> markup nodes. This is an important difference from
+              the XML tree structure.</para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">Annotation to text directed edges.</emphasis> These connect
