@@ -3,6 +3,7 @@
 <?xml-stylesheet type="text/xsl" href="balisage-proceedings-html.xsl"?>
 <article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
   <title>It’s more than just overlap: text as graph</title>
+  <subtitle>Refining our notion of what text really is—this time for sure!</subtitle>
   <!-- Verify that all items in bibliography are cited in body -->
   <!--
     rhd: There is one more thing that we might have to discuss: a lot of scholars when they 
@@ -121,10 +122,10 @@
       standardized, formal markup, such as XML.</para>
     <para>The XML data model is a tree, or, more precisely, a rooted and ordered directed acyclic
       graph that prohibits multiple parentage, which in the document-processing community has come
-      to be known as an Ordered Hierarchy of Content Objects (OHCO). The OHCO model works well for
-      describing structures that consist of single ordered hierarchies, such as the exhaustive
-      tesselated division of a novel into chapters and the chapters into paragraphs. It is not well
-      suited to structures that cannot be modeled fully as a single tree.<footnote>
+      to be understood as representing an Ordered Hierarchy of Content Objects (OHCO). The OHCO
+      model works well for describing structures that consist of single ordered hierarchies, such as
+      the exhaustive tesselated division of a novel into chapters and the chapters into paragraphs.
+      It is not well suited to structures that cannot be modeled fully as a single tree.<footnote>
         <para>The OHCO literature is already well known to the Balisage audience, and it is not our
           goal to provide an exhaustive bibliography. The seminal papers that advocated for OHCO as
           a document model are <xref linkend="coombs_1987"/> and <xref linkend="derose_1990"/>; the
@@ -155,34 +156,34 @@
     <!-- Michael and Claus 2008 emphasize that TEI markup requires semantics, while ours is in the model
       TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser -->
     <!-- TexMECS requires quotations to be divided in the model, while we don't -->
-    <para>The principal limitation of XML as a model of text is generally regarded as overlap, that
+    <para>The principal challenge to XML as a model of text is generally regarded as overlap, that
       is, that text has structural properties that humans care about that cannot be modeled directly
-      as a tree, or, at least, as a rooted and ordered directed acyclic graph constructed from the
-      seven types of nodes that constitute the XQuery and XPath data model.[<xref linkend="xdm6"/>]
-      Although overlap has received most of the attention, overlap is only one such challenge to XML
-      modeling, and regarding overlap as <emphasis role="ital">the problem</emphasis>, instead of as
-        <emphasis role="ital">a symptom of the problem</emphasis>, has led us to think more narrowly
-      than we should about alternatives to OHCO. If what text <quote>really is</quote> is not an
-      ordered hierarchy of content objects, what is it instead? The issues are well known to the XML
-      community, so why have they come largely (although not entirely) to be eclipsed by overlap in
-      discussions of what’s difficult about modeling documents in XML? These challenges, which have
-      been negotiated in XML modeling and processing through workarounds, find a natural solution in
-      the TAG model described here, as well as, at least in some respects, in LMNL and
-      GODDAG/TexMECS.</para>
+      as a tree, or, at least, as a rooted and ordered directed acyclic graph that does not permit
+      multiple parentage and that is constructed from the seven types of nodes that constitute the
+      XQuery and XPath data model.[<xref linkend="xdm6"/>] Although overlap has received most of the
+      attention, overlap is only one challenge to XML modeling, and regarding overlap as <emphasis
+        role="ital">the problem</emphasis>, instead of as <emphasis role="ital">a symptom of the
+        problem</emphasis>, has led us to think more narrowly than we should about alternatives to
+      OHCO. If what text <quote>really is</quote> is not an ordered hierarchy of content objects,
+      what is it instead? The issues are well known to the XML community, so why have they come
+      largely (although not entirely) to be eclipsed by overlap in discussions of what’s difficult
+      about modeling documents in XML? These challenges, which have been negotiated in XML modeling
+      and processing through workarounds, find a natural solution in the TAG model described here,
+      as well as, at least in some respects, in LMNL and GODDAG/TexMECS.</para>
     <para>A second challenge of using XML as a model of text involves not the <emphasis role="ital"
         >limitations</emphasis> of OHCO, but its <emphasis role="ital">tyranny</emphasis>. If text
       is understood as an ordered hierarchy of content objects, are there aspects of text that are
-      not ordered, are there aspects that are not hierarchical (by which mean not just that they are
-      not mono-hierarchical, but that they are not hierarchical at all), and does the model create
-      content objects artifactually, that is, where they are not perceived as inherent properties of
-      the text being modeled? XML requires us to model all content as both ordered and hierarchical,
-      and it represents content objects as elements (at least as content objects are described in
-        <xref linkend="derose_1990"/>). The GODDAG and LMNL alternatives to XML, which are discussed
-      below, both grew out of a recognition that not all properties of text can be modeled
-      effectively as a single hierarchy, and their focus is not limited to that issue, but they
-      differ in the extent to which they interrogate aspects of text that may not be hierarchical,
-      that may not be ordered, and that may not involve what a human would consider a content
-      object.</para>
+      not ordered, are there aspects that are not hierarchical (by which we mean not just that they
+      are not mono-hierarchical, but that they are not hierarchical at all), and does the model
+      create content objects artifactually, that is, where they are not perceived as inherent
+      properties of the text being modeled? XML requires us to model all content as both ordered and
+      hierarchical, and it represents content objects as elements (at least as content objects are
+      described in <xref linkend="derose_1990"/>). The GODDAG and LMNL alternatives to XML, which
+      are discussed below, both grew out of a recognition that not all properties of text can be
+      modeled effectively as a single hierarchy, and their focus is not limited to that issue, but
+      they differ in the extent to which they interrogate aspects of text that may not be
+      hierarchical, that may not be ordered, and that may not involve what a human would consider a
+      content object.</para>
     <para>A third challenge of discussing XML as a model of text is distinguishing XML as a data
       model from XML as a syntax, and the same applies to the LMNL data model vs the LMNL sawtooth
       syntax and the GODDAG data structure vs TexMECS syntax. Perhaps a bit surprisingly in the
@@ -196,8 +197,8 @@
       and the same is true of other data models and their associated syntactic expressions through
       markup. If, for example, a paragraph is exactly coextensive with a quotation, in XML syntax,
       LMNL sawtooth syntax, and TexMECS syntax, the start tag of either the paragraph or the
-      quotation must come first in linear order. But in LMNL that order is not part of the model,
-      according to which the two ranges begin at the same location in the stream of atoms.<footnote>
+      quotation must come first in linear order. But in LMNL that order is not an obligatory part of
+      the model, according to which the two ranges begin at the same location in the stream of atoms.<footnote>
         <para>LMNL is able to represent hierarchy, but it is not obligatory, and <quote>flat</quote>
           LMNL does not express hierarchy.</para>
       </footnote> In XML, though, one element must contain the other, and the order of the start
@@ -233,29 +234,31 @@
             markup in <xref linkend="derose_2004"/>) relies on semantics. This means that
             applications do not have to know that regular start and end tags delimit an element, but
             they do have to know when empty tags are being used to simulate the beginning and end of
-            a content. Insofar as whether something is a content object is a property of the text
-            being modeled, a robust and efficient strategy would represent it as part of the model
-            itself.</para>
+            a content object. Insofar as whether something is a content object is a property of the
+            text being modeled, a robust and efficient strategy would represent it as part of the
+            model itself, instead of requiring that it be handled through semantic information that
+            is available only at the application level.</para>
         </listitem>
         <listitem>
-          <para>Because XML models an ordered hierarchy, sibling elements always have order, which
-            requires the application layer to distinguish situations where order is semantically
-            meaningful from situations where it isn’t. For example, the TEI
-              <code>&lt;choice&gt;</code> elements has the semantics of associating content objects
-            that do not have a natural order simultaneously, such as an abbreviation and its
-            expansion or an error and its correction. How those should be handled is the business of
-            the application layer, but whether one option proceeds or follows the other is not.
-            Because the model does not distinguish ordered from unordered siblings, that distinction
-            falls on the application. A more robust and efficient strategy would not impose order
-            when it must then be ignored, so that an application will be able to regard the presence
-            or absence of order in the model as informational without recourse to semantics.</para>
+          <para>Because XML models an ordered hierarchy, elements always have order, which requires
+            the application layer to distinguish situations where order is semantically meaningful
+            from situations where it isn’t. For example, the TEI <code>&lt;choice&gt;</code>
+            elements has the semantics of associating content objects that do not have a natural
+            order with respect to one another, such as an abbreviation and its expansion or an error
+            and its correction. How those should be handled is the business of the application
+            layer, but the model requires that one option proceed or follow the other even when the
+            order does not represent an inherent property of the text being modeled. A more robust
+            and efficient strategy would not impose order when it must then be ignored, so that an
+            application will be able to regard the presence or absence of order in the model as
+            informational without recourse to semantics.</para>
         </listitem>
       </itemizedlist></para>
     <para>An improved text model should have the following properties. In all instances where we
       write that <quote>the model should be able to X</quote>, we mean that it should be able to X
       without requiring access to semantic information at the application level. In other words, the
       components of the model should fully represent the properties of the text being modeled, with
-      no extraneous artifactual properties that an application must then know to ignore:<itemizedlist>
+      no extraneous artifactual properties that an application must then know to ignore. The
+      following are characteristics we might ask of an improved text model:<itemizedlist>
         <!-- Add one-sentence examples of each of these -->
         <!-- Do we need to explain more clearly what we mean by "annotation" here? -->
         <listitem>
@@ -304,7 +307,8 @@
         </listitem>
         <listitem>
           <para>With respect to scalability, it should enable, in a computationally efficient way,
-            the types of documents and processing required by the digital text community.</para>
+            the types of documents and processing likely to be required by the digital text
+            community.</para>
         </listitem>
         <listitem>
           <para>With respect to I/O, a system that implements the model should support serialization
@@ -549,15 +553,16 @@
           but it had no pictures or conversations in it, <quote>and what is the use of a
             book,</quote> thought Alice <quote>without pictures or conversation?</quote></para>
       </blockquote>
-      <para>There is no way to mark up this passage in XML without either fragmenting the quotation
-        into two elements (and relying on semantics to stitch together the pieces in the application
+      <para>There is no way to mark up this passage in XML without fragmenting the quotation into
+        two elements (and relying on semantics to stitch together the pieces in the application
         layer), yet our human intuition is that there is a single quotation, and that the model,
         therefore, should represent it as a single object.<footnote>
           <para>It is possible to interpret the entire quotation as an element with three child
             nodes: a <code>text()</code> node, an intervening element that holds the narrative
-            interjection, and then another <code>text()</code>. <xref
-              linkend="sperberg-huitfeldt_2008"/> explains why this is unsatisfactory (see
-            especially their footnote 2).</para>
+            interjection, and then another <code>text()</code>, and in that sense the quotation is
+            one object, although that object incorporates something that is not part of what a human
+            understands as the quotation. <xref linkend="sperberg-huitfeldt_2008"/> explains why
+            this is unsatisfactory (see especially their footnote 2).</para>
         </footnote> As <xref linkend="sperberg-huitfeldt_2008"/> also observe, there is a sense in
         which <quote>book</quote> and <quote>without</quote> are adjacent and a different sense in
         which <quote>book</quote> and <quote>thought</quote> are adjacent. The XML data model cannot
@@ -566,7 +571,40 @@
       <para>
         <xref linkend="sperberg-huitfeldt_2008"/> situate this type of structure in a GODDAG
         context, where it intersects with the distinction between <emphasis role="ital"
-          >containment</emphasis> and <emphasis role="ital">dominance</emphasis>.</para>
+          >containment</emphasis> and <emphasis role="ital">dominance</emphasis>. Concerning LMNL,
+        they write that </para>
+      <blockquote>
+        <para>[with respect to] the unity of discontinuous elements: such a unity may be asserted by
+          the application layer (that is, by the definition of a LMNL vocabulary), but it is not
+          visible on the LMNL level, and thus need not be accounted for at the level of LMNL
+          itself.</para>
+        <para>The design of LMNL thus seems to require that any account of dominance (as distinct
+          from containment), and any account of discontinuous elements, be handled in the
+          application layer. LMNL itself achieves a degree of simplicity and regularity as a result,
+          at the expense of complexity in the application.</para>
+      </blockquote>
+      <para><xref linkend="piez_2008"/> describes discontinuity as modeled by the <emphasis
+          role="ital">limen</emphasis>, where the example provided
+          (<link>http://piez.org/wendell/LMNL/Amsterdam2008/presentation-slides.html#page23</link>)
+        records it through coindexed annotations. That dependency seems to locate discontinuity in
+        an application layer, since whether coindexed annotations represent discontinuity is not an
+        inherent property of the coindexing.</para>
+      <para>TAG prioritizes the representation of text structures, including discontinuity, in the
+        model, without dependency on application-layer semantics. The example from Alice in
+        Wonderland described above would have the following form in our graph:</para>
+      <figure xml:id="discontinuity_hypergraph">
+        <title>Lewis Carroll, <quote>Alice in Wonderland</quote></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="discontinuity_hypergraph.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>Each hyperedge points from a markup node head (identifying the type of text
+            structure) to a tail set of text nodes. Normal edges connect the text nodes in
+            order.</para>
+        </caption>
+      </figure>
     </section>
     <section>
       <title>White space as crypto-overlap</title>
@@ -606,9 +644,16 @@
   </section>
   <section>
     <title>Comparison of TAG/hypergraph to other text models</title>
+<<<<<<< HEAD
     <para>In this section we compare and contrast the TAG data model with previous models for
       text modelling and processing, such as Information Set as implemented in DOM (tree), GODDAG (forrest/graph), and the LMNL data model(range).</para>
     
+=======
+    <para>In this section we compare and contrast the TAG data model with previous models for text
+      modelling and processing, such as Information Set as implemented in DOM (tree), GODDAG
+      (forrest/graph), and the LMNL data model(range).</para>
+
+>>>>>>> fa5cbe36058c9a06924c58cdcb02c4d331d2d207
     <!-- This is a very generic overview... maybe not here -->
     <para>The document is written in a text serialization format, like XML or LMNL. It is then
       processed by a processor into memory model, like DOM. TAG is a replacement of DOM, competes
@@ -618,6 +663,7 @@
       alternative is XML Event processing. The DOM can contain both HTML and XML markup. </para>
     <section>
       <title>TAG and DOM</title>
+<<<<<<< HEAD
       
       <para>Document Object Model (DOM)  is an application programming interface (API) for XML
         processing that contains a data model based on the XML Information Set. </para>
@@ -643,6 +689,29 @@
         model. A root element in TAG would simply be a markup node that is connected through a
         hyperedge with all the text nodes of the document. In fact there is no requirement to have a
         hierarchy at all.</para>
+=======
+
+      <para>DOM is an API for XML processing containing a data model based on the XML Information
+        Set. The DOM contains a Node tree consisting of the following nodes: Document, DocumentType,
+        DocumentFragment, Element, Text, ProcessingInstruction and Comment. </para>
+
+
+      <para>Just like the DOM model the TAG model contains numerous types of nodes: TAG has a
+        Document node, just like the Document Node in DOM. In the place of the Element nodes of the
+        DOM comes the Markup node of the TAG model. Text nodes in the DOM model are part of the TAG
+        model as well. NOTE: ProcessingInstruction and Comments are skipped for now in Alexandria,
+        but could be added later. That is just an implementation detail.</para>
+      <para>The difference between DOM and TAG lays in the way the nodes are laid out. The DOM model
+        uses a tree based model, where there is a root node, which can have children, which are
+        ordered sets. Every node can only have one parent node, and can only be child of one parent
+        node. Thus representing a 1 to n relation between the parent and the childnodes. The TAG
+        model uses a hypergraph instead, where nodes are connected through the use of hyperedges,
+        allowing for n to n relations between text segments and markup nodes.</para>
+      <para>In contrast with the DOM model there does not need to be a root element/node in the TAG
+        model. A root node would simply be a markup node that is connected through a hyperedge with
+        all the text nodes of the document. In fact there is no requirement to have a hierarchy at
+        all.</para>
+>>>>>>> fa5cbe36058c9a06924c58cdcb02c4d331d2d207
       <para>Also relations between markup nodes and text nodes or other markup nodes do not strictly
         have to be hierarchical. There can be multiple types of relationships between markup nodes.
         In DOM the relationship between a parent and a child is always one of dominance. By default

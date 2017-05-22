@@ -1,0 +1,28 @@
+digraph G {
+	{ node [style=filled, fillcolor=cyan];
+		 p;
+	}
+	{ node [rank=same, style=filled, fillcolor=pink];
+	node1[label="Alice was beginning to get very tired\nof sitting by her sister on thebank,\nand of having nothing to do: once or\ntwice she had peeped into the book her\nsister was reading, but it had no pictures\nor conversations in it, "];
+	node2[label="and what is the use of a book,"];
+	node3[label="thought Alice"];
+	node4[label="without pictures or conversation?"];
+	}
+	{edge [style=invis];
+		p -> node1;
+		p -> node2;
+		p -> node3;
+		p -> node4;
+	}
+	{ edge [constraint=false, minlen=2];
+	node1 -> node2 -> node3 -> node4;}
+	{ node [style=filled, fillcolor=green];
+		q;
+	}
+	{ edge [style=invis];
+		node1 -> q;
+		node2 -> q;
+		node3 -> q;
+		node4 -> q;
+	}
+}
