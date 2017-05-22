@@ -41,10 +41,17 @@
         <surname>Dekker</surname>
       </personname>
       <personblurb>
-        <para><!-- blurb about Ronald goes here --></para>
+        <para>Ronald Haentjens Dekker is a software architect and consultant at the Huygens
+          Institute for the History of the Netherlands. As a software architect, he is responsible
+          for translating research questions into technology or algorithms and explaining to
+          researchers and management how a certain technology will influence their research. He has
+          worked on transcription and annotation software, collation software, and repository
+          software, and he is the lead developer of the CollateX collation tool. He also conducts
+          workshops to teach researchers how to use scripting languages in combination with digital
+          editions to enhance their research.</para>
       </personblurb>
       <affiliation>
-        <jobtitle><!-- job title goes here--></jobtitle>
+        <jobtitle>Head of Research and Development and Software Architect</jobtitle>
         <orgname>Huygens ING</orgname>
       </affiliation>
       <email>ronald.dekker@huygens.knaw.nl</email>
@@ -395,16 +402,40 @@
         Regular (one-to-one) edges start at the document node and connect all text nodes in textual
         order (see below about simultaneity and transposition). Hyperedges point from the markup
         nodes into sets of text nodes. In this case, hyperedges that start in markup nodes with the
-          <code>name</code> property of <quote>line</quote> point to a set that consists of a single
-        text node, and those with <code>name</code> property values of <quote>quatrain</quote> and
-          <quote>couplet</quote> point to sets of four and two text nodes, respectively.</para>
+          <code>name</code> property of <quote>line</quote> happen to point to a set that consists
+        of a single text node, and those with <code>name</code> property values of
+          <quote>quatrain</quote> and <quote>couplet</quote> happen to point to sets of four and two
+        text nodes, respectively. Note that in TAG, in contrast to an XML representation, a markup
+        node corresponding to the XML root element, although permitted, is not required, and we’ve
+        omitted it here. Also in contrast to XML, the quatrain and couplet markup nodes point
+        directly to the text nodes, and not to line markup nodes (although that, too, is
+        possible).</para>
+      <para>The XML data model does not distinguish containment from dominance, which Tennison
+        explains as follows: <blockquote>
+          <para>Containment is a happenstance relationship between ranges while dominance is one
+            that has a meaningful semantic. A page may happen to <emphasis role="ital"
+              >contain</emphasis> a stanza, but a poem <emphasis role="ital">domainates</emphasis>
+            the stanzas that it contains.[<xref linkend="tennison_2008"/>]</para>
+        </blockquote> In TAG, hyperedges between a markup node (equivalent to an XML element) and a
+        set of text nodes represent containment. In this emphasis on containment, rather than
+        dominance, TAG is similar to flat LMNL, except that LMNL ranges must be continuous (LMNL
+        handles discontinuity separately), while contiguity is not relevant in defining the set of
+        text nodes that may serve as the tail of a hyperedge in TAG (see the discussion of
+        Discontinuity, below). In the example above, we have chosen not to encode dominance, but
+        should we wish to do that, we can use markup-to-markup edges, about which see below.
+        Similarly, we have chosen not to make the three quatrains and the couplet children of what
+        in XML terms would be a root <code>&lt;poem&gt;</code> element, but, should we wish, we
+        could create one (which would point, through a hyperedge, to the set of all text nodes in
+        the poem), and add a one-to-many markup-to-markup hyperedge from it to the quatrains and
+        couplet. In other words, hyperedges that point to sets of text nodes model containment,
+        rather than dominance, and where the developer needs to distinguish dominance from
+        containment, the TAG model supports this through markup-to-markup hyperedges.</para>
       <para>As with any system for the representation of text, the choice of markup depends on a
-        combination of properties inherent in the text and those that are of interest to the person
-        creating the markup. For example, we could also have created <quote>sentence</quote> markup
-        nodes, about which see the discussion of overlap, below. Note that in TAG, in contrast to an
-        XML representation, there is no markup node corresponding to the XML root element, and the
-        quatrain and couplet markup nodes point directly to the text nodes, and not to line
-        elements. Here is the corresponding XML in markup and tree representations:</para>
+        combination of properties inherent in the text and the features that are of interest to the
+        person creating the markup. For example, we could also have created <quote>sentence</quote>
+        markup nodes (and we do that in the discussion of Overlap, below), but for illustrative
+        purposes the graph is easier to read without them.</para>
+      <para>Here is the corresponding XML in markup and tree representations:</para>
       <programlisting>&lt;poem&gt;
     &lt;quatrain&gt;
         &lt;line&gt;No longer mourn for me when I am dead&lt;/line&gt;
@@ -460,6 +491,7 @@
               in textual order (see below about alternative order and unordered text nodes). The
               first text node can be recognized because there is a link to it from the document
               node.</para>
+            <para>Text nodes may be empty; pointing to an empty text node </para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes correspond roughly to
@@ -1060,6 +1092,9 @@ And mock you with me after I am gone.</programlisting>
         Markup Conference 2008. Balisage Series on Markup Technologies</emphasis>, vol. 1 (2008).
       DOI: 10.4242/BalisageVol1.Sperberg-McQueen01.
         <link>http://www.balisage.net/Proceedings/vol1/html/Sperberg-McQueen01/BalisageVol1-Sperberg-McQueen01.html</link></bibliomixed>
+    <bibliomixed xml:id="tennison_2008" xreflabel="Tennison 2008">Tennison, Jeni. <quote>Overlap,
+        containment and dominance. <emphasis role="ital">Jeni’s musings</emphasis>, 2008-12-06. </quote>
+      <link>http://www.jenitennison.com/2008/12/06/overlap-containment-and-dominance.html</link></bibliomixed>
     <bibliomixed xml:id="xmlinfoset" xreflabel="XML InfoSet">XML Information Set (second edition).
         <link>https://www.w3.org/TR/xml-infoset/</link></bibliomixed>
     <bibliomixed xml:id="xdm6" xreflabel="XDM §6">XQuery and XPath Data Model 3.1. §6. Nodes.
