@@ -1,0 +1,58 @@
+digraph G {
+	{ rank=same
+		document[style=filled, fillcolor=beige]
+		quatrain1[label=quatrain, style=filled, fillcolor=green]
+		fake2[style=invis]
+		fake3[style=invis]
+		fake10[style=invis]
+		quatrain2[label=quatrain, style=filled, fillcolor=green]
+		fake4[style=invis]
+		fake5[style=invis]
+		fake9[style=invis]
+		quatrain3[label=quatrain, style=filled, fillcolor=green]
+		fake6[style=invis]
+		couplet[style=filled, fillcolor=green]
+	} -> 
+	{ rank=same
+		text1[label="No …", style=filled, fillcolor=pink]
+		text2[label="Than …", style=filled, fillcolor=pink]
+		text3[label="Give …", style=filled, fillcolor=pink]
+		text4[label="From …", style=filled, fillcolor=pink]
+		text5[label="Nay …", style=filled, fillcolor=pink]
+		text6[label="The …", style=filled, fillcolor=pink]
+		text7[label="That …", style=filled, fillcolor=pink]
+		text8[label="If …", style=filled, fillcolor=pink]
+		text9[label="O …", style=filled, fillcolor=pink]
+		text10[label="When …", style=filled, fillcolor=pink]
+		text11[label="Do …", style=filled, fillcolor=pink]
+		text12[label="But …", style=filled, fillcolor=pink]
+		text13[label="Lest …", style=filled, fillcolor=pink]
+		text14[label="And …", style=filled, fillcolor=pink]
+	} ->
+	{ rank=same
+		line1[label=line, style=filled, fillcolor=cyan]
+		line2[label=line, style=filled, fillcolor=cyan]
+		line3[label=line, style=filled, fillcolor=cyan]
+		line4[label=line, style=filled, fillcolor=cyan]
+		line5[label=line, style=filled, fillcolor=cyan]
+		line6[label=line, style=filled, fillcolor=cyan]
+		line7[label=line, style=filled, fillcolor=cyan]
+		line8[label=line, style=filled, fillcolor=cyan]
+		line9[label=line, style=filled, fillcolor=cyan]
+		line10[label=line, style=filled, fillcolor=cyan]
+		line11[label=line, style=filled, fillcolor=cyan]
+		line12[label=line, style=filled, fillcolor=cyan]
+		line13[label=line, style=filled, fillcolor=cyan]
+		line14[label=line, style=filled, fillcolor=cyan]
+	}  [style=invis]
+	{ document -> text1 }
+	{ edge [minlen=3, style=invis];
+		line1->line2->line3->line4->line5->line6->line7->line8->line9->line10->line11->line12->line13->line14;
+	}
+	{ edge [minlen=2];
+		text1->text2->text3->text4->text5->text6->text7->text8->text9->text10->text11->text12->text13->text14;
+	}
+	{ edge [minlen = 2, style=invis];
+		document->quatrain1->fake2->fake3->fake10->quatrain2->fake4->fake5->fake9->quatrain3->fake6->couplet;
+	}
+}
