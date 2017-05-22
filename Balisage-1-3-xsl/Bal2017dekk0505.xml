@@ -646,10 +646,16 @@
   </section>
   <section>
     <title>Comparison of TAG/hypergraph to other text models</title>
+<<<<<<< HEAD
+    <para>In this section we compare and contrast the TAG data model with previous models for
+      text modelling and processing, such as Information Set as implemented in DOM (tree), GODDAG (forrest/graph), and the LMNL data model(range).</para>
+    
+=======
     <para>In this section we compare and contrast the TAG data model with previous models for text
       modelling and processing, such as Information Set as implemented in DOM (tree), GODDAG
       (forrest/graph), and the LMNL data model(range).</para>
 
+>>>>>>> fa5cbe36058c9a06924c58cdcb02c4d331d2d207
     <!-- This is a very generic overview... maybe not here -->
     <para>The document is written in a text serialization format, like XML or LMNL. It is then
       processed by a processor into memory model, like DOM. TAG is a replacement of DOM, competes
@@ -659,6 +665,33 @@
       alternative is XML Event processing. The DOM can contain both HTML and XML markup. </para>
     <section>
       <title>TAG and DOM</title>
+<<<<<<< HEAD
+      
+      <para>Document Object Model (DOM)  is an application programming interface (API) for XML
+        processing that contains a data model based on the XML Information Set. </para>
+      <para>Both the DOM and TAG data models are node based. In both models the nodes are typed. The
+        DOM consists of the following nodes: Document, DocumentType, DocumentFragment, Element,
+        Text, ProcessingInstruction and Comment. Here is how the types in DOM and in TAG map to one
+        another: the TAG Document node maps to the DOM Document node. In the place of the Element
+        nodes of the DOM comes the Markup node of the TAG model. Text nodes in the DOM model are
+        part of the TAG model as well. XML Attribute nodes map to TAG annotations. NOTE:
+        ProcessingInstruction and Comments have no equivalent in TAG at the moment and are skipped
+        for now in Alexandria, but could be added later. That is just an implementation
+        detail.</para>
+      <para>The difference between DOM and TAG lays in the way the nodes are laid out. In DOM the
+        nodes are ordered in a tree hierarchy, while in TAG nodes are placed in a graph. The DOM
+        model uses a tree based model, where there is a root node, which can have children, which
+        are ordered sets. Every node can only have one parent node, and can only be child of one
+        parent node. Thus representing a 1 to n relation between the parent and the childnodes. The
+        TAG model uses a hypergraph instead, where nodes are connected through the use of
+        hyperedges. Markup nodes can contain multiple Text nodes, while Text nodes can be part of
+        multiple Markup nodes, thus allowing for n to n relations between text segments and markup
+        nodes.</para>
+      <para>In contrast with the DOM model there does not need to be a root element in the TAG
+        model. A root element in TAG would simply be a markup node that is connected through a
+        hyperedge with all the text nodes of the document. In fact there is no requirement to have a
+        hierarchy at all.</para>
+=======
 
       <para>DOM is an API for XML processing containing a data model based on the XML Information
         Set. The DOM contains a Node tree consisting of the following nodes: Document, DocumentType,
@@ -680,18 +713,20 @@
         model. A root node would simply be a markup node that is connected through a hyperedge with
         all the text nodes of the document. In fact there is no requirement to have a hierarchy at
         all.</para>
+>>>>>>> fa5cbe36058c9a06924c58cdcb02c4d331d2d207
       <para>Also relations between markup nodes and text nodes or other markup nodes do not strictly
         have to be hierarchical. There can be multiple types of relationships between markup nodes.
-        One of the differences with the DOM model is that the type of relation between the markup
-        nodes can be deferred to a later stage. LMNL has the same idea, see the comparison with LMNl
-        for more information.</para>
-      <para>In the TAG hypergraph model de hyperedge that connects the text nodes with the markup
+        In DOM the relationship between a parent and a child is always one of dominance. By default
+        there is no relation between markup nodes. Dominance relations can be expressed but have to
+        be explicitly indicated by adding a edge between the two markup nodes of type Dominance.
+        Containment relations can be calculated from the intersection of the text nodes of two
+        markup nodes and does not have to be explicitly modelled.</para>
+      <para>In the TAG hypergraph model a hyperedge that connects the text nodes with the markup
         nodes can be discontinuous. This is a clear difference with the DOM model, where all the
         text nodes are leaf nodes of the subtree underneath the element node. Thus the nodes
         underneath an element are continuous.</para>
-      <para>The DOM and the TAG model agree on one thing, the fact that adding new text element or
-        new markup is a local operation, there it differs from the LMNL model see the comparison
-        with the LMNL model.</para>
+      <para>In both the DOM and the TAG model adding a new text element or a new markup is a local
+        operation.</para>
     </section>
     <section>
       <title>TAG and GODDAG</title>
@@ -710,6 +745,11 @@
     <section>
       <title>TAG and LMNL</title>
       <para><emphasis role="bold">TODO: General comments about TAG and LMNL</emphasis></para>
+      <para>One of the differences with the DOM model is that the type of relation between the
+        markup nodes can be deferred to a later stage. LMNL has the same idea, see the comparison
+        with LMNL for more information.</para>
+      <para> Modification is not a local operation: there it differs from the LMNL model see the
+        comparison with the LMNL model.</para>
       <section>
         <title>The LMNL and TAG data models</title>
         <para><emphasis role="bold">TODO</emphasis></para>
@@ -723,6 +763,8 @@
         <para><emphasis role="bold">TODO:</emphasis> (apparently reserved for the limen, and not yet
           specified) that TAG requires</para>
       </section>
+        
+  
       <section>
         <title>Hypergraph versus ranges</title>
         <para>With the range conceptual model it is inexpensive to add extra annotation layers,
