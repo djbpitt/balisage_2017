@@ -482,7 +482,8 @@
       <para>The following types of nodes are supported by TAG:<itemizedlist>
           <listitem>
             <para><emphasis role="bold">Document nodes.</emphasis> Each document node represents a
-              single document stored in the graph.</para>
+              single document stored in the graph. It is connected by a regular edge to the first
+              text node in the document.</para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">Text nodes.</emphasis> The textual content of a TAG document
@@ -490,17 +491,17 @@
               nodes. The order of the text nodes is represented by directed edges that connect them
               in textual order (see below about alternative order and unordered text nodes). The
               first text node can be recognized because there is a link to it from the document
-              node.</para>
-            <para>Text nodes may be empty; pointing to an empty text node </para>
+              node. Text nodes may be empty; pointing from a markup node to an empty text node
+              provides functionality comparable to that of empty elements in XML. Because TAG does
+              not problematize overlap, it does not suffer from the XML use of empty elements to
+              simulate the start and end tags of a subordinate hierarchy.</para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes correspond roughly to
               element nodes in XML, and each instance of markup is represented by its own node.
               Markup nodes are connected to the one or more text nodes to which they apply by a
-              hyperedge, where the markup node is the head and the set of text nodes is the tail.
-                <emphasis role="bital">@rhd: What is the tag representation of an XML empty
-                element?</emphasis>
-            </para>
+              hyperedge, where the markup node is the head and the set of text nodes is the
+              tail.</para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes correspond
@@ -558,6 +559,34 @@
             <para><emphasis role="bold">Annotation directed edges.</emphasis> These connect
               annotation nodes (source) with other annotation nodes (target), or they connect an
               annotation (source) with a markup/tag node (target).</para>
+          </listitem>
+        </itemizedlist></para>
+    </section>
+    <section>
+      <title>Constraints</title>
+      <para>An implementation should raise an error if:<itemizedlist>
+          <listitem>
+            <para>a document does not have a single document node, which is connected by regular
+              edges to one or more text nodes (more than one in case of variant readings at the
+              beginning of the document content)</para>
+          </listitem>
+          <listitem>
+            <para>the head of a hyperedge contains anything other than a single markup node</para>
+          </listitem>
+          <listitem>
+            <para>the tail of a hyperedge contains anything except just text nodes or just markup
+              nodes</para>
+          </listitem>
+          <listitem>
+            <para>the head of a regular edge points is anything other than a text node or a document
+              node</para>
+          </listitem>
+          <listitem>
+            <para>the tail of a regular edge is anything other than a text node</para>
+          </listitem>
+          <listitem>
+            <para>any two edges or hyperedges have the same type, the same head, and the same
+              tail</para>
           </listitem>
         </itemizedlist></para>
     </section>
