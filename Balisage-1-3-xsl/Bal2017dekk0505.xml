@@ -482,7 +482,10 @@
     </section>
     <section>
       <title>Edges</title>
-      <para>The edge types supported by the model are: <itemizedlist>
+      <para>The following edge types are supported by the model. All edges are directed; some are
+        normal (one-to-one) edges and others are hyperedges. In TAG, hyperedges have a single head
+        node and a set of one or more tail nodes. <emphasis role="bital">[@rhd: Is this
+          correct?]</emphasis><itemizedlist>
           <listitem>
             <para><emphasis role="bold">Document to text directed edges.</emphasis> A document to
               text directed edge connects a document node (source) with the first text node (target)
