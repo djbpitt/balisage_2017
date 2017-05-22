@@ -354,47 +354,49 @@
       <title>About the TAG/hypergraph model and the Alexandria implementation</title>
       <para>This paper introduces the Alexandria text repository system, an open-source read/write
         implementation of the TAG model. It allows the user to import and store text files in either
-        XML or LMNL markup, and it supports multiple layers of annotation that are permitted to
-        overlap. The conceptual model behind Alexandria is a hypergraph for text as well as
-        annotations.</para>
+        XML or LMNL markup (with support planned for TexMECS), and it supports multiple layers of
+        annotation that are permitted to overlap. The conceptual model behind Alexandria is a
+        hypergraph for text as well as annotations.</para>
       <para>Graph models for text and markup have been proposed before (GODDAG [see, e.g., <xref
           linkend="sperberg-huitfeldt_2000"/>], GrAF [see, e.g., <xref linkend="ide_2007"/>]), but
         the model proposed in this paper differs from those because it incorporates a <emphasis
-          role="bold">hypergraph</emphasis>. Hypergraphs differ from traditional graphs, which
-        contain edges that connect only two nodes with each other. The edges in a hypergraph, on the
-        other hand, can connect more than two nodes with one another, for that reason they are
-        called <emphasis role="bold">hyperedges</emphasis>. Hypergraphs can have directed and
-        undirected hyperedges. Undirected hyperedges contain a set of nodes. Directed hyperedges
-        contain two sets of nodes, one for the source and one for the target. The direction of the
+          role="bold">hypergraph</emphasis>. Hypergraphs differ from traditional graphs, the edges
+        of which can connect only two nodes with each other. The edges in a hypergraph, on the other
+        hand, can connect more than two nodes with one another, for that reason they are called
+          <emphasis role="bold">hyperedges</emphasis>. Hypergraphs can have directed and undirected
+        hyperedges. Undirected hyperedges contain a set of nodes. Directed hyperedges contain two
+        sets of nodes, one for the source (called the <emphasis role="bold">head</emphasis>) and one
+        for the target (called the <emphasis role="bold">tail</emphasis>). The direction of a
         (hyper)edge implies an order or a hierarchy of the nodes. Hypergraphs are especially
-        valuable for text modeling because they can be implemented using sets. The data model
+        valuable for text modeling because they can be implemented using sets. The TAG data model
         consists of a number of node and edge objects of different types.</para>
     </section>
     <section>
-      <title>Text</title>
-      <para>The textual content is stored in a sequence of nodes. The order of the sequence is
-        determined by directed edges between each of the text nodes. The first text node is
-        designated by the fact that there is a link from the document node to that specific text
-        node. Markup (called Elements in XML). All markup have their own node. Markup nodes are
-        connected to the text nodes that they belong to by the use of hyperedge. Each markup node is
-        connected to one or more text nodes. Annotations (called Attributes in XML). All annotations
-        have their own node. Annotation nodes are connected .. Overlap: Overlap can be naturally be
-        modelled in a graph, since multiple parents are allowed. </para>
-    </section>
-    <section>
       <title>Nodes</title>
-      <para>The node types supported by the model are: <itemizedlist>
+      <para>The following types of nodes are supported by TAG:<itemizedlist>
           <listitem>
             <para><emphasis role="bold">Document nodes.</emphasis> Each document node represents a
               single document stored in the graph.</para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Text nodes.</emphasis> Text nodes present segments of text,
-              comparable to <code>text()</code> nodes in a DOM tree.</para>
+            <para><emphasis role="bold">Text nodes.</emphasis> The textual content of a TAG document
+              is stored in one or more text nodes, roughly comparable to XML <code>text()</code>
+              nodes. The order of the text nodes is represented by directed edges that connect them
+              in textual order (see below about alternative order and unordered text nodes). The
+              first text node can be recognized because there is a link to it from the document
+              node.</para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes represent tags/markup
-              present in the document.</para>
+            <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes correspond roughly to
+              element nodes in XML, and each instance of markup is represented by its own node. Markup
+              nodes are connected to the one or more text nodes to which they apply by a hyperedge,
+              where the markup node is the head and the set of text nodes is the tail. <!-- Do markup nodes point only to text nodes? XML elements may contain other elements rather than text.  -->
+              <!-- What is the tag representation of an XML empty element, which contains neither text nor elements? --></para>
+          </listitem>
+          <listitem>
+            <para> Annotations (called Attributes in XML). All annotations have their own node.
+              Annotation nodes are connected .. Overlap: Overlap can be naturally be modelled in a
+              graph, since multiple parents are allowed.</para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
