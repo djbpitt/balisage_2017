@@ -1058,6 +1058,10 @@ And mock you with me after I am gone.</programlisting>
     <bibliomixed xml:id="erjavec_2007" xreflabel="Erjavec 2007">Erjavec, Tomaž. <quote>XML and
         overlapping hierarchies.</quote> Presentation at Tsujii Lab, Tokyo, 2007-09-01.
         <link>http://nl.ijs.si/et/talks/tsujiilab-crossing/crossing.pdf</link></bibliomixed>
+    <bibliomixed xml:id="hasibi_2014" xreflabel="Hasibi and Bratsberg 2014">Hasibi, Faegheh and
+      Svein Erik Bratsberg. <quote>Non-hierarchical structures: how to model and index
+        overlaps?</quote> Presented at Balisage: The Markup Conference. August 2014.
+      <link/></bibliomixed>
     <bibliomixed xml:id="hilbert_2005" xreflabel="Hilbert, Schonefeld, and Witt 2005">Hilbert,
       Mirco, Oliver Schonefeld, and Andreas Witt. <quote>Making CONCUR work.</quote>
       <emphasis role="ital">Proceedings of Extreme Markup Languages</emphasis> 2005.
