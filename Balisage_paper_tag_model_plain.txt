@@ -1,9 +1,8 @@
 This section describes the Text as Graph (TAG) data model.
 
-The TAG model consists of a directed property hypergraph. A hypergraph consists of a set of nodes and a set of hyperedges. Nodes and edges have types and can have properties on them.
-
 <in general>
-In XDM a dominance hierarchy is assumed, same in GODDAG (only multiple), in TAG no hierarchy is assumed but can added later (locally). Only order is assumed in text. No order is assumed between markup, but it can be added later (locally). 
+
+
 
 
 <documents>
@@ -11,15 +10,11 @@ Every document is represented by a one node of the type "Document" in the graph.
 
 
 <overlap and self overlap>
-Overlap between different text nodes in two or more markup nodes is not a problem. Each markup node is connected to text nodes with each own hyperedge.
-Self overlap is also not a problem, two markup nodes with the same name each have their own hyperedge. If both hyperedges contain the same textnodes that is not a problem.
 
 
 
 
 <discontinuity>
-In a Markup language such as XML, TexMECS and LMNL discontinuity is expressed with more than 1 element or range.  In TAG discontinuity does not pose a problem, and fits naturally to the hyperedge concept. The sets of text nodes in the tail do not have to be continuous.
-So there is only one markup node for all the text nodes in the discontinuous markup. No partition in segments takes place.
 
 
 
@@ -29,7 +24,7 @@ So there is only one markup node for all the text nodes in the discontinuous mar
 
 Critical text:
 TODO: describe how to store a critical text
-variance and multiple orders of text, transpositons
+variance and multiple orders of text, transpositions
 Multiple order over the same text can be added.
  
 

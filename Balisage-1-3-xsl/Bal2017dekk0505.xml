@@ -358,11 +358,9 @@
         is very important.-->
     <section>
       <title>About the TAG/hypergraph model and the Alexandria implementation</title>
-      <para>This paper introduces the Alexandria text repository system, an open-source read/write
-        implementation of the TAG model. It allows the user to import and store text files in either
-        XML or LMNL markup (with support planned for TexMECS), and it supports multiple layers of
-        annotation that are permitted to overlap. The conceptual model behind Alexandria is a
-        hypergraph for text as well as annotations.</para>
+      <para>The Text As Graph (TAG) model consists of a directed property hypergraph for modelling
+        text, markup as well as annotations. A hypergraph consists of a set of nodes and a set of
+        hyperedges. Nodes and edges have types and can have properties on them.</para>
       <para>Graph models for text and markup have been proposed before (GODDAG [see, e.g., <xref
           linkend="sperberg-huitfeldt_2000"/>], GrAF [see, e.g., <xref linkend="ide_2007"/>]), but
         the model proposed in this paper differs from those because it incorporates a <emphasis
@@ -382,7 +380,7 @@
       <para>An important feature of the TAG model is that textual content is ordered, but markup is not. This is an important distinction from XDM and GODDAG were the order of text nodes is derived from the parent nodes. Textual content has an order in the TAG model. The textual content is represented by nodes of the type "Text" that each represent a part of the textual content. The order of the text is stored through directed edges between text nodes. The first text node is connected to the document through a directed edge from the Document Node to the text node.</para> 
     </section>
     <section>
-      <title>Markup and attributes</title>
+      <title>Markup and annotations</title>
       <para>Markup is represented by nodes of type "Markup". The Markup nodes and the Text nodes are
         connected through the use of directed hyperedges. Directed hyperedges consists of two sets
         called the head and the tail. In the TAG model all the markup node to text nodes hyperedges
@@ -397,10 +395,29 @@
         distinction from XDM (single hierarchy) and GODDAG (one or more hierarchies). TAG supports
         overlap between markup. GODDAG presupposes an order, while TAG assumes no order, but can add
         order later.</para>
+      <para>In DOM and XDM a dominance hierarchy is assumed, same in GODDAG (only multiple rather
+        than one), in TAG no hierarchy is required but one can be added optionally.  </para>
       <para>Dominance between two markup nodes can be expressed by added a directed edge from the
         nodes that dominates the second note. Containment does not have to be modelled explicitly,
         it can be calculated from the intersections between the sets of text nodes that are in the
         hyperedges. </para>
+    </section>
+    <section>
+      <title>Overlap and self overlap</title>
+      <para>Overlap between different text nodes in two or more markup nodes does not require a
+        special construct to be modelled in TAG. Each markup node is connected to text nodes with
+        each own hyperedge.</para>
+      <para>Self overlap is also not a problem, two markup nodes with the same name each have their
+        own hyperedge. If both hyperedges contain the same text nodes that is not a problem.</para>
+    </section>
+    <section>
+      <title>Discontinuity</title>
+      <para>In the Markup languages XML, TexMECS and LMNL discontinuity is expressed with more than
+        one element (XML/TexMECS) or range (LMNL). In TAG discontinuity does require a special
+        construct, and fits naturally to the hyperedge concept. The sets of text nodes in the tail
+        do not have to be continuous.</para>
+      <para>This means there is only one markup node for all the text nodes in the discontinuous
+        markup. No partition in segments takes place.</para>
     </section>
     <section>
       <title>Example of TAG hypergraph and its XML counterpart</title>
@@ -990,6 +1007,10 @@
     <!--some of this may be plans or projections, rather than implementation-->
     <section>
       <title>Introduction to Alexandria as a TAG implementation</title>
+      <para>This paper introduces the Alexandria text repository system, an open-source read/write
+        implementation of the TAG model. It allows the user to import and store text files in either
+        XML or LMNL markup (with support planned for TexMECS), and it supports multiple layers of
+        annotation that are permitted to overlap. </para>
 
 
 
