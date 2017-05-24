@@ -868,8 +868,14 @@
     </section>
     <section>
       <title>Artifactual hierarchy and datatyping</title>
-      <para>Consider the following XML structure, represented here in markup and as
-        hierarchy:</para>
+      <para>In XML, markup is (among other things) a form of datatyping, and the XML spec uses the
+        word <quote>type</quote> to say this:<blockquote>
+          <para>Each element has a type, identified by name, sometimes called its <quote>generic
+              identifier</quote> (GI) [<xref linkend="xml"/> §3]</para>
+        </blockquote>This means that XML cannot assign a type to part of a document (other than an
+        attribute, and there only through a schema specification) except by making it an element,
+        and therefore a node in the document hierarchy. Consider the following XML structure,
+        represented here in markup and as hierarchy:</para>
       <programlisting>&lt;title&gt;&lt;name&gt;Romeo&lt;/name&gt; and &lt;name&gt;Juliet&lt;/name&gt;&lt;/title&gt;</programlisting>
       <figure xml:id="romeo_xml">
         <title>Romeo and Juliet (XML)</title>
@@ -884,7 +890,24 @@
             nodes.</para>
         </caption>
       </figure>
-      <para>Here is the TAG representation of the same content:</para>
+      <para>If we wish to specify in XML that the first and third words of the title are of type
+          <quote>name</quote>, we can tag them as elements of that type, with the result that the
+          <code>text()</code> nodes they contain wind up on a different level of the hierarchy than
+        the conjunction between them.<footnote>
+          <para>It is possible to tag the conjunction, as well, so as to push the word
+              <quote>and</quote> down to the same hierarchical level as the names, but we have not
+            observed that in practice. If the markup process involves tagging what the user
+            considers informational, it should be possible to say that some text in this title is of
+            a particular type <emphasis role="ital">that we care about sufficiently to specify the
+              type in our markup</emphasis>, and other text is not, and to tag the former, but not
+            the latter.</para>
+        </footnote> This contradicts our intuition that the title contains three words, two of which
+        have the type <quote>name</quote>, replacing it with a model in which the title contains two
+        objects of type <quote>name</quote> with a word between them, and it is the
+          <quote>name</quote> objects that contain the first and third words.</para>
+      <para>TAG separates the use of markup in hierarchy and its use for datatyping, so that it is
+        possible to assign a type to text without distorting the hierarhcy. Here is the TAG
+        representation of the same content:</para>
       <figure xml:id="romeo_hypergraph">
         <title>Romeo and Juliet (TAG)</title>
         <mediaobject>
@@ -893,19 +916,17 @@
           </imageobject>
         </mediaobject>
         <caption>
-          <para>In TAG, the markup on names specifies their type without imposing a hierarchy. The
-            title contains three text nodes, represented by pink ellipses. Markup nodes are green
-            (for names) and cyan (for titles), and the document node is beige.</para>
+          <para>In this TAG example, the markup on names specifies their type without imposing a
+            hierarchy. The title contains three text nodes, represented by pink ellipses. Markup
+            nodes are green (for names) and cyan (for titles), and the document node is
+            beige.</para>
         </caption>
       </figure>
-      <para>The XML spec regards the generic identifiers of elements as an expression of datatyping: <blockquote>
-          <para>Each element has a type, identified by name, sometimes called its <quote>generic
-              identifier</quote> (GI)</para>
-        </blockquote>which means that it cannot assign a type to a string of text without also
-        creating a hierarchical layer. Markup of text nodes in the TAG model, on the other hand,
-        does not create a hierarchical layer as a side effect of datatyping. In TAG, hierarchy can
-        be created with markup to markup hyperedges, but hierarchy is not an inescapable consequence
-        of all markup, as it is in XML.</para>
+      <para>As illustrated in the example above, markup of text nodes in the TAG model, unlike in
+        XML, does not create a hierarchical layer as a side effect of datatyping. As we have seen
+        earlier, in TAG, it is possible to represent hierarchy by creating hyperedges that point
+        from one markup node to a set of markup nodes, but hierarchy is not an inescapable
+        consequence of all markup in TAG, as it is in XML.</para>
     </section>
   </section>
   <section>
@@ -995,8 +1016,6 @@
         <para><emphasis role="bold">TODO:</emphasis> (apparently reserved for the limen, and not yet
           specified) that TAG requires</para>
       </section>
-
-
       <section>
         <title>Hypergraph versus ranges</title>
         <para>With the range conceptual model it is inexpensive to add extra annotation layers,
@@ -1058,9 +1077,6 @@
         implementation of the TAG model. It allows the user to import and store text files in either
         XML or LMNL markup (with support planned for TexMECS), and it supports multiple layers of
         annotation that are permitted to overlap. </para>
-
-
-
       <para><emphasis role="bold">TODO: write something</emphasis></para>
     </section>
     <section>
@@ -1110,7 +1126,13 @@
   </section>
   <section>
     <title>Conclusions</title>
-    <para>Tree models are top down. TAG is bottom up. LMNL is flat.</para>
+    <para>Tree models are top down. TAG is bottom up. LMNL is flat. XML conflates not only
+      containment and dominance (hierarchy), but it also mixes in datatyping. A model that contains
+      artifactual structures that must then be ignored by the application has poor design, even if
+      there are no consequences for the output of processing. Oh, and did we mention order? XML is
+      an ordered tree (as is GODDAG, and LMNL is an ordered sequence of atoms); TAG establishes text
+      order with normal edges and derives markup order from the order of the text nodes to which the
+      markup points, so order is separate from markup.</para>
   </section>
   <appendix xml:id="sonnet-71_text" xreflabel="Appendix A">
     <title>William Shakespeare, Sonnet 71</title>
@@ -1243,6 +1265,8 @@ And mock you with me after I am gone.</programlisting>
     <bibliomixed xml:id="tennison_2008" xreflabel="Tennison 2008">Tennison, Jeni. <quote>Overlap,
         containment and dominance. <emphasis role="ital">Jeni’s musings</emphasis>, 2008-12-06. </quote>
       <link>http://www.jenitennison.com/2008/12/06/overlap-containment-and-dominance.html</link></bibliomixed>
+    <bibliomixed xml:id="xml" xreflabel="XML">Extensible Markup Language (XML) 1.0 (Fifth Edition).
+        <link>http://www.w3.org/TR/xml/</link></bibliomixed>
     <bibliomixed xml:id="xmlinfoset" xreflabel="XML InfoSet">XML Information Set (second edition).
         <link>https://www.w3.org/TR/xml-infoset/</link></bibliomixed>
     <bibliomixed xml:id="xdm6" xreflabel="XDM §6">XQuery and XPath Data Model 3.1. §6. Nodes.
