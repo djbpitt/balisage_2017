@@ -377,7 +377,13 @@
     </section>
     <section>
       <title>Textual content</title>
-      <para>An important feature of the TAG model is that textual content is ordered, but markup is not. This is an important distinction from XDM and GODDAG were the order of text nodes is derived from the parent nodes. Textual content has an order in the TAG model. The textual content is represented by nodes of the type "Text" that each represent a part of the textual content. The order of the text is stored through directed edges between text nodes. The first text node is connected to the document through a directed edge from the Document Node to the text node.</para> 
+      <para>An important feature of the TAG model is that textual content is ordered, but markup is
+        not. This is an important distinction from XDM and GODDAG were the order of text nodes is
+        derived from the parent nodes. Textual content has an order in the TAG model. The textual
+        content is represented by nodes of the type "Text" that each represent a part of the textual
+        content. The order of the text is stored through directed edges between text nodes. The
+        first text node is connected to the document through a directed edge from the Document Node
+        to the text node.</para>
     </section>
     <section>
       <title>Markup and annotations</title>
@@ -396,7 +402,7 @@
         overlap between markup. GODDAG presupposes an order, while TAG assumes no order, but can add
         order later.</para>
       <para>In DOM and XDM a dominance hierarchy is assumed, same in GODDAG (only multiple rather
-        than one), in TAG no hierarchy is required but one can be added optionally.  </para>
+        than one), in TAG no hierarchy is required but one can be added optionally. </para>
       <para>Dominance between two markup nodes can be expressed by added a directed edge from the
         nodes that dominates the second note. Containment does not have to be modelled explicitly,
         it can be calculated from the intersections between the sets of text nodes that are in the
@@ -674,11 +680,11 @@
         XML is defined as a single tree. Notice in the image below how the phrase <quote>Two vast
           and trunkless legs of stone Stand in the desart</quote> begins in the middle of line 2 and
         ends in the middle of line 3, so that a tree of phrases overlaps a tree of lines:</para>
-      <figure xml:id="ozymandius">
+      <figure xml:id="ozymandias">
         <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
         <mediaobject>
           <imageobject>
-            <imagedata format="png" fileref="ozymandius.png"/>
+            <imagedata format="png" fileref="ozymandias.png"/>
           </imageobject>
         </mediaobject>
         <caption>
@@ -693,11 +699,11 @@
         trees. The same structure might be visualized as overlapping trees as follows, where cyan
         represents the tree of metrical lines and green represents the tree of linguistic
         phrases:</para>
-      <figure xml:id="ozymandius_trees">
+      <figure xml:id="ozymandias_trees">
         <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
         <mediaobject>
           <imageobject>
-            <imagedata format="png" fileref="ozymandius_trees.png"/>
+            <imagedata format="png" fileref="ozymandias_trees.png"/>
           </imageobject>
         </mediaobject>
         <caption>
@@ -742,7 +748,7 @@
         <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
         <mediaobject>
           <imageobject>
-            <imagedata format="png" fileref="ozymandius_hypergraph.png"/>
+            <imagedata format="png" fileref="ozymandias_hypergraph.png"/>
           </imageobject>
         </mediaobject>
         <caption>
@@ -866,21 +872,40 @@
         hierarchy:</para>
       <programlisting>&lt;title&gt;&lt;name&gt;Romeo&lt;/name&gt; and &lt;name&gt;Juliet&lt;/name&gt;&lt;/title&gt;</programlisting>
       <figure xml:id="romeo_xml">
-        <title>Romeo and Juliet (titleL</title>
+        <title>Romeo and Juliet (XML)</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="romeo_xml.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>In XML, the three words of the title are spread over two levels of the hierarchy.
+            Cyan ellipses are element nodes and pink rectangles are <code>text()</code>
+            nodes.</para>
+        </caption>
+      </figure>
+      <para>Here is the TAG representation of the same content:</para>
+      <figure xml:id="romeo_hypergraph">
+        <title>Romeo and Juliet (TAG)</title>
         <mediaobject>
           <imageobject>
             <imagedata format="png" fileref="romeo_hypergraph.png"/>
           </imageobject>
         </mediaobject>
         <caption>
-          <para>In XML, the three words of the title are spread over two levels of the
-            hierarchy.</para>
+          <para>In TAG, the markup on names specifies their type without imposing a hierarchy. The
+            title contains three text nodes, represented by pink ellipses. Markup nodes are green
+            (for names) and cyan (for titles), and the document node is beige.</para>
         </caption>
       </figure>
       <para>The XML spec regards the generic identifiers of elements as an expression of datatyping: <blockquote>
           <para>Each element has a type, identified by name, sometimes called its <quote>generic
               identifier</quote> (GI)</para>
-        </blockquote></para>
+        </blockquote>which means that it cannot assign a type to a string of text without also
+        creating a hierarchical layer. Markup of text nodes in the TAG model, on the other hand,
+        does not create a hierarchical layer as a side effect of datatyping. In TAG, hierarchy can
+        be created with markup to markup hyperedges, but hierarchy is not an inescapable consequence
+        of all markup, as it is in XML.</para>
     </section>
   </section>
   <section>
