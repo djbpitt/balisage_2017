@@ -1,0 +1,7 @@
+digraph G {
+	{ document[style=filled, fillcolor=beige] title[style=filled, fillcolor=cyan] fake2[style=invis] } ->  
+		{ rank=same Romeo[style=filled, fillcolor=pink]  and[style=filled, fillcolor=pink] Juliet[style=filled, fillcolor=pink]} -> 
+		{ rank=same name1[label=name, style=filled, fillcolor=green] fake3[style=invis] name2[label=name, style=filled, fillcolor=green]} [style=invis]
+		
+	{ edge[minlen=2]; document -> Romeo -> and -> Juliet;}
+}

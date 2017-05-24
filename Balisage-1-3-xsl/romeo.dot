@@ -1,0 +1,8 @@
+digraph G {
+	title[style=filled, fillcolor=cyan]
+	title -> { name1[label=name, style=filled, fillcolor=cyan] }
+	title -> { and[shape=box, style=filled, fillcolor=pink] }
+	title -> { name2[label=name, style=filled, fillcolor=cyan] }
+	name1 -> { Romeo [shape=box, style=filled, fillcolor=pink] }
+	name2 -> { Juliet[shape=box, style=filled, fillcolor=pink] }
+}

@@ -813,6 +813,28 @@
           segmentation isn’t in the variant graph. Why should it be in the model of a critical
           text?</emphasis></para>
     </section>
+    <section>
+      <title>Artifactual hierarchy and datatyping</title>
+      <para>Consider the following XML structure, represented here in markup and as
+        hierarchy:</para>
+      <programlisting>&lt;title&gt;&lt;name&gt;Romeo&lt;/name&gt; and &lt;name&gt;Juliet&lt;/name&gt;&lt;/title&gt;</programlisting>
+      <figure xml:id="romeo_xml">
+        <title>Romeo and Juliet (titleL</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="romeo_xml.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>In XML, the three words of the title are spread over two levels of the
+            hierarchy.</para>
+        </caption>
+      </figure>
+      <para>The XML spec regards the generic identifiers of elements as an expression of datatyping: <blockquote>
+          <para>Each element has a type, identified by name, sometimes called its <quote>generic
+              identifier</quote> (GI)</para>
+        </blockquote></para>
+    </section>
   </section>
   <section>
     <title>Comparison of TAG/hypergraph to other text models</title>
