@@ -378,6 +378,31 @@
         consists of a number of node and edge objects of different types.</para>
     </section>
     <section>
+      <title>Textual content</title>
+      <para>An important feature of the TAG model is that textual content is ordered, but markup is not. This is an important distinction from XDM and GODDAG were the order of text nodes is derived from the parent nodes. Textual content has an order in the TAG model. The textual content is represented by nodes of the type "Text" that each represent a part of the textual content. The order of the text is stored through directed edges between text nodes. The first text node is connected to the document through a directed edge from the Document Node to the text node.</para> 
+    </section>
+    <section>
+      <title>Markup and attributes</title>
+      <para>Markup is represented by nodes of type "Markup". The Markup nodes and the Text nodes are
+        connected through the use of directed hyperedges. Directed hyperedges consists of two sets
+        called the head and the tail. In the TAG model all the markup node to text nodes hyperedges
+        have one Markup node for the head and one or more Text nodes in the tail. Text nodes can
+        have multiple incoming hyper edges on them, so that textual content can have multiple markup
+        on it.</para>
+    </section>
+    <section>
+      <title>Markup hierarchy</title>
+      <para>Markup can have an optional hierarchy, so that it is able to express dominance relations
+        as well as containment. The fact that having an hierarchy is optional is another important
+        distinction from XDM (single hierarchy) and GODDAG (one or more hierarchies). TAG supports
+        overlap between markup. GODDAG presupposes an order, while TAG assumes no order, but can add
+        order later.</para>
+      <para>Dominance between two markup nodes can be expressed by added a directed edge from the
+        nodes that dominates the second note. Containment does not have to be modelled explicitly,
+        it can be calculated from the intersections between the sets of text nodes that are in the
+        hyperedges. </para>
+    </section>
+    <section>
       <title>Example of TAG hypergraph and its XML counterpart</title>
       <figure xml:id="shakespeare_hypergraph">
         <title>William Shakespeare, Sonnet 71</title>
@@ -570,6 +595,12 @@
               node is comparable to adding an attribute to an XML element. Pointing to an annotation
               node from an annotation node, which is borrowed from LMNL annotations on annotations,
               can be used to encode metadata (<emphasis role="bital">ADD EXAMPLE</emphasis>).</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Markup to markup directed hyperedges.</emphasis> These
+              connect a single markup node (head) to a homogeneous set of markup nodes (tail) to
+              indicate a domaninance relationship between the head node and the tail nodes. These
+              are used to model hierarchical structures.</para>
           </listitem>
         </itemizedlist></para>
     </section>

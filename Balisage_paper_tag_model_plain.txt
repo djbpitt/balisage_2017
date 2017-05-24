@@ -9,18 +9,6 @@ In XDM a dominance hierarchy is assumed, same in GODDAG (only multiple), in TAG 
 <documents>
 Every document is represented by a one node of the type "Document" in the graph. 
 
-<textual content>
-An important feature of the TAG model is that textual content is ordered, but markup is not. This is an important distinction from XDM and GODDAG were the order of text nodes is derived from the parent nodes. Textual content has an order in the TAG model. The textual content is represented by nodes of the type "Text" that each represent a part of the textual content. The order of the text is stored through directed edges between text nodes. The first text node is connected to the document through a directed edge from the Document Node to the text node. 
-
-<markup and attributes>
-Markup is represented by nodes of type "Markup". The Markup nodes and the Text nodes are 
-connected through the use of directed hyperedges. Directed hyperedges consists of two sets called the head and the tail. In the TAG model all the markup node to text nodes hyperedges have one Markup node for the head and one or more Text nodes in the tail. 
-Text nodes can have multiple incoming hyper edges on them, so that textual content can have multiple markup on it.
-
-<markup hierarchy>
-Markup can have an optional hierarchy, so that it is able to express dominance relations as well as containment. The fact that having an hierarchy is optional is another important distinction from XDM (1 hierarchy) and GODDAG (1 or more hierarchies). TAG supports overlap between markup. GODDAG presupposes an order, while TAG assumes no order, but can add order later.
-Dominance between two markup nodes can be expressed by added a directed edge from the nodes that dominates the second note.
-Containment does not have to be modelled explicitly, it can be calculated from the intersections between the sets of text nodes that are in the hyperedges. 
 
 <overlap and self overlap>
 Overlap between different text nodes in two or more markup nodes is not a problem. Each markup node is connected to text nodes with each own hyperedge.
