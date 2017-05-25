@@ -1,0 +1,14 @@
+/*
+[sonneteer [id}ozymandias{id]}[meta [author}Percy Bysshe Shelley{author] [title}Ozymandias{title]]
+[sonnet} ... {sonnet]{sonneteer]
+*/
+digraph G {
+	{rank=same document article author1[style=filled, fillcolor=yellow, label="author[0]"] author2[style=filled, fillcolor=yellow, label="author[1]"]}
+	document[style=filled, fillcolor=beige]
+	document -> { rank=same text1[style=filled, fillcolor=pink] text2[style=filled, fillcolor=pink] text3[style=filled, fillcolor=pink]} [style=invis]
+	{ edge [minlen=2, label=order, fontcolor=blue, color=blue]; text1 -> text2 -> text3}
+	{ edge [color=blue, fontcolor=blue, label=order]; document -> text1 } 
+	article[style=filled, fillcolor=green]
+	{ edge [dir=back, minlen=2, label=A2M, color=red, fontcolor=red]; article -> author1; article -> author2; }
+	{ edge [minlen=2, label=order, color=blue, fontcolor=blue] article -> author1 -> author2; }
+}

@@ -674,7 +674,28 @@
                         from an Annotation node to the Markup or Annotation node that is being
                         annotated.</para>
                     </listitem>
-                  </itemizedlist>These can be illustrated as follows:</para>
+                  </itemizedlist>These can be illustrated as follows: <figure
+                    xml:id="edge_types_hypergraph">
+                    <title>Article with two authors</title>
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata format="png" fileref="edge_types_hypergraph.png"/>
+                      </imageobject>
+                    </mediaobject>
+                    <caption>
+                      <para>The Document node is beige, the Text nodes are pink, and the Markup node
+                        with the Name property value <quote>article</quote>is green. Annotation
+                        nodes, both with a Name property of <quote>author</quote>, are yellow. Edges
+                        that represent order are blue, Annotation-to-Markup edges are red.</para>
+                    </caption>
+                  </figure>In this illustration, a hypothetical has a first and second author, who
+                  are represented as metadata with Annotation nodes, which are both point to the
+                    <quote>article</quote> Markup node with Annotation-to-Markup edges (red). The
+                  order of the two authors is represented by Markup-to-Annotation and
+                  Annotation-to-Annotation order edges (blue), which distinguish the first and
+                  second (zeroeth and first in zero-based enumeration) author. In a real hypergraph,
+                  there would not be three separate Text nodes unless they were marked up
+                  differently; that markup has been omitted here to simplify the image.</para>
               </listitem>
             </itemizedlist>
             <itemizedlist>
@@ -704,10 +725,8 @@
               </listitem>
               <listitem>
                 <para><emphasis role="bold">Annotation-to-Markup directed edges.</emphasis> These
-                  connect a single Annotation node (head) to a single Markup node, and is comparable
-                  to adding an attribute to an XML element. Pointing to an Annotation node from an
-                  Annotation node, which is borrowed from LMNL annotations on annotations, can be
-                  used to encode metadata about annotations.</para>
+                  connect a single Annotation node to a single Markup node, and are comparable to
+                  adding an attribute to an XML element. </para>
               </listitem>
               <listitem>
                 <para><emphasis role="bold">Annotation-to-Annotation directed edges.</emphasis>
