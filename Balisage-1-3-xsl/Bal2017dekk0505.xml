@@ -968,16 +968,6 @@
           and dominate the other</emphasis></para>
     </section>
     <section>
-      <title>Simultaneity</title>
-      <para><emphasis role="bold">TODO: Examples include parallel readings in critical texts,
-          simultaneous speech</emphasis></para>
-    </section>
-    <section>
-      <title>Transposition</title>
-      <para><emphasis role="bold">TODO: Examples include reordering across witnesses in criticial
-          texts</emphasis></para>
-    </section>
-    <section>
       <title>Scope of reference</title>
       <para><emphasis role="ital">Footnotes in XML are usually milestones, but they should be
           annotations on elements, since milestones don’t have scope. But XML doesn’t permit markup
@@ -1285,20 +1275,26 @@ And mock you with me after I am gone.</programlisting>
     <title>Features of text not represented in TAG</title>
     <section>
       <title>Order</title>
-      <para>All Text nodes in TAG are ordered, but modeling text as a partially ordered set, rather
-        than as an ordered set, would reflect the nature of text more precisely. For example, the
-        TEI XML <code>&lt;choice&gt;</code> element wraps child elements that do not have a logical
-        mutual order, such as an abbreviation and its expansion or an error and its correction. In
-        XML, artifactual order of this sort cannot be excluded from the model, and must therefore be
-        ignored at the application level, and TAG, as described above, currently has the same
-        limitation. Ideally, sets of Text nodes that are not mutually ordered logically would not
-        have order in the model.</para>
-      <para>A traditional challenge for markup languages involves transpositions, of the sort that
-        occur when creating critical editions in which the textual witnesses may contain some of the
-        same words, but with reordering. This is part of the <emphasis role="bold">variant
-          graph</emphasis> structure used to model textual variation in the open-source CollateX
-        collation tool [<xref linkend="collatex"/>], but it is not currently possible in TAG to
-        model transposition directly as order.</para>
+      <section>
+        <title>Simultaneity</title>
+        <para>All Text nodes in TAG are ordered, but modeling text as a partially ordered set,
+          rather than as an ordered set, would reflect the nature of text more correctly. For
+          example, the TEI XML <code>&lt;choice&gt;</code> element wraps child elements that do not
+          have a logical mutual order, such as an abbreviation and its expansion or an error and its
+          correction. In XML, artifactual order of this sort cannot be excluded from the model, and
+          must therefore be ignored at the application level, and TAG, as described above, currently
+          has the same limitation. Ideally, sets of Text nodes that are not mutually ordered
+          logically would not have order in the model.</para>
+      </section>
+      <section>
+        <title>Transposition</title>
+        <para>A traditional challenge for markup languages involves transpositions, of the sort that
+          occur when creating critical editions in which the textual witnesses may contain some of
+          the same words, but with reordering. This is part of the <emphasis role="bold">variant
+            graph</emphasis> structure used to model textual variation in the open-source CollateX
+          collation tool [<xref linkend="collatex"/>], but because currently text nodes in TAG are
+          fully ordered, it is not possible to model transpositions as alternative orders.</para>
+      </section>
     </section>
   </appendix>
   <appendix xml:id="snark" xreflabel="Appendix C">
