@@ -1331,6 +1331,9 @@ And mock you with me after I am gone.</programlisting>
         Markup Conference 2008. Balisage Series on Markup Technologies</emphasis>, vol. 1 (2008).
       DOI: 10.4242/BalisageVol1.Sperberg-McQueen01.
         <link>http://www.balisage.net/Proceedings/vol1/html/Sperberg-McQueen01/BalisageVol1-Sperberg-McQueen01.html</link></bibliomixed>
+    <bibliomixed xml:id="tennison_2007" xreflabel="Tennison 2007">Tennison, Jeni. <quote>Creole:
+        validating overlapping markup.</quote> Presented at XTech 2007.
+        <link>http://www.princexml.com/howcome/2007/xtech/papers/output/0077-30.pdf</link></bibliomixed>
     <bibliomixed xml:id="tennison_2008" xreflabel="Tennison 2008">Tennison, Jeni. <quote>Overlap,
         containment and dominance. <emphasis role="ital">Jeni’s musings</emphasis>, 2008-12-06. </quote>
       <link>http://www.jenitennison.com/2008/12/06/overlap-containment-and-dominance.html</link></bibliomixed>
