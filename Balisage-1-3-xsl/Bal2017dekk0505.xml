@@ -660,9 +660,9 @@
                   same Markup or Annotation are chained similarly to the way the Text nodes are
                   chained; in this case the Markup node points to the first Annotation node with a
                   Markup-to-Annotation directed edge.</para>
-                <para>Note that there are two types of one-to-one edges the connect Markup and
+                <para>Note that there are two types of one-to-one edges that connect Markup and
                   Annotation nodes and Annotation and Annotation nodes, and these have different
-                  Type specification in the model:<itemizedlist>
+                  Type specifications:<itemizedlist>
                     <listitem>
                       <para>The ordering edges specify the order of annotations on the same Markup
                         or Annotation node. They begin in the Markup or Annotation node being
@@ -1286,6 +1286,31 @@ And mock you with me after I am gone.</programlisting>
         collation tool [<xref linkend="collatex"/>], but it is not currently possible in TAG to
         model transposition directly as order.</para>
     </section>
+  </appendix>
+  <appendix xml:id="snark" xreflabel="Appendix C">
+    <title>Hypergraph visualization</title>
+    <para>The image below visualize hypergraph properties of part of Lewis Carroll’s <quote>Hunting
+        of the Snark</quote>. The Document node, represented by a black circle, is at the top. Text
+      nodes are hexagons outlined in white and filled in black, and they are connected by black
+      lines that begin at the Document node. Markup nodes of type <quote>Line</quote> are
+      represented by horizontal white lines; a new verse line begins after an old one ends. Markup
+      nodes of type <quote>Voice</quote>, <quote>Stanza</quote>, and <quote>Phrase</quote> are
+      represented by irregular backgrounds of chartreuse yellow, magenta, and purple, respectively.
+      A Markup node of type <quote>Page</quote>, in orange, contains all of the Text nodes. The
+      image models containment with no statement of dominance, although dominance could be asserted
+      by adding Markup-to-Markup edges.</para>
+    <figure xml:id="snark_hypergraph">
+      <title>Lewis Carroll, <quote>The hunting of the Snark</quote> (excerpt)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata format="png" fileref="snark.png"/>
+        </imageobject>
+      </mediaobject>
+      <caption>
+        <para>This hypergraph models the containment and order of the text, with no statement of
+          hierarchy (dominance).</para>
+      </caption>
+    </figure>
   </appendix>
   <bibliography>
     <title>Works cited</title>

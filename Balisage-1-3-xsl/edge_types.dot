@@ -3,12 +3,17 @@
 [sonnet} ... {sonnet]{sonneteer]
 */
 digraph G {
-	{rank=same document article author1[style=filled, fillcolor=yellow, label="author[0]"] author2[style=filled, fillcolor=yellow, label="author[1]"]}
+	{rank=same document article author1[style=filled, fillcolor=yellow, label="author[0]"] }
+	{ node [style=filled, fillcolor=yellow]; author2[label="author[1]"]}
 	document[style=filled, fillcolor=beige]
-	document -> { rank=same text1[style=filled, fillcolor=pink] text2[style=filled, fillcolor=pink] text3[style=filled, fillcolor=pink]} [style=invis]
+	document -> { rank=same text1[style=filled, fillcolor=pink, label="Part 1"] text2[style=filled, fillcolor=pink, label="Part 2"] text3[style=filled, fillcolor=pink, label="Part 3"]} [style=invis]
 	{ edge [minlen=2, label=order, fontcolor=blue, color=blue]; text1 -> text2 -> text3}
-	{ edge [color=blue, fontcolor=blue, label=order]; document -> text1 } 
+	{ edge [color=blue, fontcolor=blue, label=order, minlen=2]; document -> text1 }
+	{ edge [color=blue, fontcolor=blue, label=order] article -> author1} 
+	{ edge [label=order, color=blue, fontcolor=blue] author1 -> author2 }
+	{ node [rank=same, style=filled fillcolor=cyan] part1[label=part] part2[label=part] part3[label=part]}
+	text1 -> part1 [style=invis]
+	text2 -> part2 [style=invis]
+	text3 -> part3 [style=invis]
 	article[style=filled, fillcolor=green]
-	{ edge [dir=back, minlen=2, label=A2M, color=red, fontcolor=red]; article -> author1; article -> author2; }
-	{ edge [minlen=2, label=order, color=blue, fontcolor=blue] article -> author1 -> author2; }
 }
