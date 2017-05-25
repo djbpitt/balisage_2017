@@ -674,31 +674,24 @@
                 to encode metadata about annotations.</para>
             </listitem>
             <listitem>
-              <para><emphasis role="bold">Annotation-to-Annotation directed edges.</emphasis> There
-                are two types of Annotation-to-Annotation directed edges:<itemizedlist>
-                  <listitem>
-                    <para><emphasis role="bold">Regular Annotation-to-Annotation</emphasis> directed
-                      edges make it possible to add annotations to annotations, that is, to
-                      represent metadata about annotations. This feature is borrowed from
-                      LMNL.</para>
-                  </listitem>
-                  <listitem>
-                    <para>Annotations on the same Markup or Annotation node are ordered because they
-                      can represent the same type of information in situations where order is
-                      informational (e.g., first vs second author of a coauthored academic article).
-                        <emphasis role="bold">Ordering Annotation-to-Annotation</emphasis> directed
-                      edges connect the Annotations on the same Markup or Annotation node in order,
-                      much as Text-to-Text directed edges specify the order of Text nodes in the
-                      text.</para>
-                  </listitem>
-                </itemizedlist>
-              </para>
+              <para><emphasis role="bold">Annotation-to-Annotation directed edges.</emphasis> These
+                make it possible to add annotations to annotations, that is, to represent metadata
+                about annotations. This feature is borrowed from LMNL. The head is the annotation
+                being added and the tail is the annotation to which the new annotation is being
+                added.</para>
             </listitem>
             <listitem>
-              <para><emphasis role="bold">Markup-to-Markup directed hyperedges.</emphasis> These
-                connect a single Markup node (head) to a homogeneous set of Markup nodes (tail) to
-                indicate a dominance relationship between the head and the tail. Markup-to-Markup
-                hyperedges are used to model hierarchical structures.</para>
+              <para><emphasis role="bold">Markup-to-Annotation-Ordering and
+                  Annotation-to-Annotation-Ordering directed edges.</emphasis> The annotations on a
+                Markup or Annotation node are ordered, which is needed because multiple annotations
+                of the same type may be added to the same node in situations where their relative
+                order is informational, such as to provide metadata about the first and second
+                authors of an academic publication. Multiple annotations on the same Markup or
+                Annotation are chained similarly to the way the Text nodes are chained; in this case
+                the Markup node points to the first Annotation node with a
+                Markup-to-Annotation-Ordering directed edge, and each annotation in the chain then
+                points to the following one with an Annotation-to-Annotation-Ordering directed
+                edge.</para>
             </listitem>
           </itemizedlist></para>
       </section>
@@ -706,12 +699,12 @@
         <title>Constraints</title>
         <para>An implementation should raise an error if:<itemizedlist>
             <listitem>
-              <para>a document does not have a single document node, which is connected by regular
-                edges to one or more text nodes (more than one in case of variant readings at the
-                beginning of the document content)</para>
+              <para>a document does not have a single Document node, which is connected by regular
+                edges to exactly one Text node</para>
             </listitem>
             <listitem>
-              <para>the head of a hyperedge contains anything other than a single markup node</para>
+              <para>the head of a hyperedge contains anything other than a single Markup or
+                Annotation node</para>
             </listitem>
             <listitem>
               <para>the tail of a hyperedge contains anything except just text nodes or just markup
