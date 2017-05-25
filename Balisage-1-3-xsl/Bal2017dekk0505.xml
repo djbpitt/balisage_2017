@@ -392,20 +392,6 @@
           nodes) is at least partially derived from the order of their parent nodes. In this respect
           TAG is closer to LMNL, where order in the document also inheres at the lowest level, which
           in LMNL is the atoms that make up the content.</para>
-        <para>Some subsets of Text nodes in TAG are not mutually ordered. For example, the TEI XML
-            <code>&lt;choice&gt;</code> element wraps child elements that do not have a logical
-          mutual order, such as an abbreviation and its expansion or an error and its correction. In
-          XML, artifactual order of this sort cannot be excluded from the model, and must therefore
-          be ignored at the application level. Order in TAG is not artifactual, and sets of Text
-          nodes that are not mutually ordered logically do not have order in the model.</para>
-        <para>Some subsets of Text nodes in TAG may have contradictory order. A traditional
-          challenge for markup languages involves transpositions, of the sort that occur when
-          creating critical editions in which the textual witnesses may contain some of the same
-          words, but with reordering. Drawing on the <emphasis role="bold">variant graph</emphasis>
-          structure used to model textual variation in the open-source CollateX collation tool
-            [<xref linkend="collatex"/>], TAG models transposition through labeled normal edges
-          between Text nodes. The order of the text in any witness can thus be identified by
-          following the labeled edges.</para>
       </section>
       <section>
         <title>Textual content</title>
