@@ -516,20 +516,25 @@
             that has a meaningful semantic. A page may happen to <emphasis role="ital"
               >contain</emphasis> a stanza, but a poem <emphasis role="ital">domainates</emphasis>
             the stanzas that it contains.[<xref linkend="tennison_2008"/>]</para>
-        </blockquote> In TAG, hyperedges between a Markup node (equivalent to an XML element) and a
-        set of Text nodes represent containment. In this emphasis on containment, rather than
-        dominance, TAG is similar to flat LMNL, except that LMNL ranges must be continuous (LMNL
-        handles discontinuity separately), while contiguity is not relevant in defining the set of
-        text nodes that may serve as the tail of a hyperedge in TAG (see the discussion of
-        Discontinuity, below). In the example above, we have chosen not to encode dominance, but
-        should we wish to do that, we can use Markup-to-Markup hyperedges, about which see below.
-        Similarly, we have chosen not to make the three quatrains and the couplet children of what
-        in XML terms would be a root <code>&lt;poem&gt;</code> element, but, should we wish, we
-        could create one (which would point, through a hyperedge, to the set of all text nodes in
-        the poem), and add a one-to-many markup-to-markup hyperedge from it to the quatrains and
-        couplet. In other words, hyperedges that point to sets of text nodes model containment,
-        rather than dominance, and where the developer needs to distinguish dominance from
-        containment, the TAG model supports this through markup-to-markup hyperedges.</para>
+        </blockquote>In TAG, a Markup-to-Text hyperedge defines the tail as a set of Text nodes and
+        and labels (datatypes) it. Containment is modeled by subset relations among the tails of
+        Markup nodes. In this example, all quatrain and line Markup-to-Text edges point to sets of
+        Text nodes. Where the Text nodes that constitute the tail of a line Markup-to-Text edge form
+        a subset of the nodes that constitute the tail of a quatrain Markup-to-Text edge, the
+        quatrain contains the line. In this emphasis on containment, rather than dominance, TAG is
+        similar to flat LMNL, except that LMNL ranges must be continuous (LMNL handles discontinuity
+        separately), while contiguity is not relevant in defining the set of Text nodes that may
+        serve as the tail of a hyperedge in TAG (see the discussion of Discontinuity, below). In the
+        example above, we have chosen not to encode dominance, but should we wish to do that, we can
+        use Markup-to-Markup hyperedges, about which see below. Similarly, we have chosen not to
+        make the three quatrains and the couplet children of what in XML terms would be a root
+          <code>&lt;poem&gt;</code> element, but, should we wish, we could create a Markup-to-Text
+        hyperedge with a Name property value of <quote>poem</quote> (which would point, through a
+        hyperedge, to the set of all Text nodes in the poem), and add a one-to-many Markup-to-Markup
+        hyperedge from it to the Markup nodes with <quote>quatrain</quote> and
+          <quote>couplet</quote> Name property values . In other words, Markup-to-Text nodes model
+        containment, rather than dominance, and where the developer needs to distinguish dominance
+        from containment, the TAG model supports this through Markup-to-Markup hyperedges.</para>
       <para>As with any system for the representation of text, the choice of markup depends on a
         combination of properties inherent in the text and the features that are of interest to the
         person creating the markup. For example, we could also have created <quote>sentence</quote>
@@ -568,14 +573,17 @@
           </imageobject>
         </mediaobject>
         <caption>
-          <para>The XML tree includes a <code>&lt;poem&gt;</code> root node, which is not present in
-            the TAG hypergraph. Additionally, the <code>&lt;quatrain&gt;</code> and
-              <code>&lt;couplet&gt;</code> elements are parents of <code>&lt;line&gt;</code>
-            elements, which are parents of <code>text()</code> nodes. In TAG the
-              <quote>quatrain</quote>, <quote>couplet</quote>, and <quote>line</quote> markup nodes
-            all point directly to sets of text nodes.</para>
+          <para>The XML tree encodes containment and hierarchy in the same way.</para>
         </caption>
       </figure>
+      <para>The XML tree includes a <code>&lt;poem&gt;</code> root node, which is not present in the
+        TAG hypergraph, although, as explained above, we could have created one had we wished to do
+        so. The root node is not optional in XML because a tree requires a root. Additionally, the
+        XML <code>&lt;quatrain&gt;</code> and <code>&lt;couplet&gt;</code> elements are parents of
+          <code>&lt;line&gt;</code> elements, which are parents of <code>text()</code> nodes. In our
+        TAG example, the <quote>quatrain</quote>, <quote>couplet</quote>, and <quote>line</quote>
+        Markup nodes all point directly to sets of Text nodes, and have no hierarchical relationship
+        (although, as explained above, we could create one if we wished).</para>
     </section>
     <section>
       <title>TAG components</title>
