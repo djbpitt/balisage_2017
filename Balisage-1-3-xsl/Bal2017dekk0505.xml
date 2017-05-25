@@ -697,7 +697,11 @@
                   there would not be three separate Text nodes unless they were marked up
                   differently; that markup has been omitted here to simplify the image.</para>
               </listitem>
-            </itemizedlist>
+            </itemizedlist></para>
+        </section>
+        <section>
+          <title>Hyperedges that express containment</title>
+          <para>
             <itemizedlist>
               <listitem>
                 <para><emphasis role="bold">Markup-to-Text directed hyperedges.</emphasis>
@@ -713,6 +717,11 @@
                   hyperedges can be added if that is important). This is an important difference
                   from the XML tree structure.</para>
               </listitem>
+            </itemizedlist></para>
+        </section>
+        <section>
+          <title>Edges that express dominance</title>
+          <para><itemizedlist>
               <listitem>
                 <para><emphasis role="bold">Markup-to-Markup directed hyperedges.</emphasis>
                   Markup-to-Markup hyperedges connect a single Markup node (head) to a set of Markup
@@ -723,6 +732,11 @@
                     <quote>quatrain</quote> Markup node and its four <quote>line</quote> Markup
                   nodes.</para>
               </listitem>
+            </itemizedlist></para>
+        </section>
+        <section>
+          <title>Edges that express targets of annotation</title>
+          <para><itemizedlist>
               <listitem>
                 <para><emphasis role="bold">Annotation-to-Markup directed edges.</emphasis> These
                   connect a single Annotation node to a single Markup node, and are comparable to
