@@ -615,85 +615,110 @@
       </section>
       <section>
         <title>Edges</title>
-        <para>The following edge types are supported by the model. All edges are directed; some are
-          normal (one-to-one) edges and others are hyperedges. In TAG, hyperedges have a single head
-          node and a set of one or more tail nodes.<itemizedlist>
-            <listitem>
-              <para><emphasis role="bold">Document-to-Text directed edges.</emphasis> A
-                Document-to-Text directed edge points from a Document node (head) to the first Text
-                node (tail) contained in that document. In the Shakespearean sonnet example above, a
-                single Document-to-Text directed edge points from the Document node to the first
-                Text node, which in this case represents the first line of the poem.</para>
-            </listitem>
-            <listitem>
-              <para><emphasis role="bold">Text-to-Text directed edges.</emphasis> The Text nodes
-                themselves are connected with directed edges, which chain and therefore order them,
-                so that the linear order of the text is preserved. In the Shakespearean sonnet
-                example above, Text-to-Text directed edges point from the first Text node to the
-                second, from the second and third, etc., until the end of the text.</para>
-            </listitem>
-            <listitem>
-              <para><emphasis role="bold">Markup-to-Text directed hyperedges.</emphasis>
-                Markup-to-Text hyperedges connect a single Markup node (head) to a set of Text nodes
-                (tail). In the Shakespearean sonnet example above, fourteen Markup-to-Text
-                hyperedges each point from a single Markup node with a Name property value of
-                  <quote>line</quote> to a set of one Text node, three Markup-to-Markup hyperedges
-                with a Name property value of <quote>quatrain</quote> each point to a set of four
-                Text nodes, and one Markup-to-Markup hyperedte with a Name property value of
-                  <quote>couplet</quote> points to a set of two Text nodes. Note that the
-                  <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes point to Text
-                nodes, and not to the <quote>line</quote> Markup nodes (although Markup-to-Markup
-                hyperedges can be added if that is important). This is an important difference from
-                the XML tree structure.</para>
-            </listitem>
-            <listitem>
-              <para><emphasis role="bold">Markup-to-Markup directed hyperedges.</emphasis>
-                Markup-to-Markup hyperedges connect a single Markup node (head) to a set of Markup
-                nodes (tail). The Shakespearean sonnet example above does not include any
-                Markup-to-Markup hyperedges, but if we wished to encode, for example, that a
-                quatrain dominates its lines hierarchically, and does not merely contain their Text
-                nodes, we could express that with a Markup-to-Markup hyperedge between a
-                  <quote>quatrain</quote> Markup node and its four <quote>line</quote> Markup
-                nodes.</para>
-            </listitem>
-            <listitem>
-              <para><emphasis role="bold">Annotation-to-Text directed edges.</emphasis> These
-                connect an Annotation node to the first Text node contained in that annotation,
-                where the chain of Text nodes is comparable to an XML attribute value, except that
-                it can be marked up. The chain of Text nodes contains the Text of the annotation,
-                not the original Text. Separating the chain of Text nodes in the document from those
-                in the annotations is comparable to the fact that the values of attribute nodes in
-                XML are not part of the string value of the document node. The Text nodes that make
-                up an annotation may also serve as the tail of Markup-to-Text hyperedges.</para>
-            </listitem>
-            <listitem>
-              <para><emphasis role="bold">Annotation-to-Markup directed edges.</emphasis> These
-                connect a single Annotation node (head) to a single Markup node, and is comparable
-                to adding an attribute to an XML element. Pointing to an Annotation node from an
-                Annotation node, which is borrowed from LMNL annotations on annotations, can be used
-                to encode metadata about annotations.</para>
-            </listitem>
-            <listitem>
-              <para><emphasis role="bold">Annotation-to-Annotation directed edges.</emphasis> These
-                make it possible to add annotations to annotations, that is, to represent metadata
-                about annotations. This feature is borrowed from LMNL. The head is the annotation
-                being added and the tail is the annotation to which the new annotation is being
-                added.</para>
-            </listitem>
-            <listitem>
-              <para><emphasis role="bold">Markup-to-Annotation-Ordering and
-                  Annotation-to-Annotation-Ordering directed edges.</emphasis> The annotations on a
-                Markup or Annotation node are ordered, which is needed because multiple annotations
-                of the same type may be added to the same node in situations where their relative
-                order is informational, such as to provide metadata about the first and second
-                authors of an academic publication. Multiple annotations on the same Markup or
-                Annotation are chained similarly to the way the Text nodes are chained; in this case
-                the Markup node points to the first Annotation node with a
-                Markup-to-Annotation-Ordering directed edge, and each annotation in the chain then
-                points to the following one with an Annotation-to-Annotation-Ordering directed
-                edge.</para>
-            </listitem>
-          </itemizedlist></para>
+        <section>
+          <title>Overview</title>
+          <para>The following edge types are supported by the model. All edges are directed; some
+            are normal (one-to-one) edges and others are hyperedges. In TAG, hyperedges have a
+            single head node and a set of one or more tail nodes.</para>
+        </section>
+        <section>
+          <title>Edges that express order</title>
+          <para>Text nodes, as well as Annotation nodes on the same Markup or Annotation nodes, are
+            ordered with the following regular (one-to-one) edge types: <itemizedlist>
+              <listitem>
+                <para><emphasis role="bold">Document-to-Text directed edges.</emphasis> A
+                  Document-to-Text directed edge points from a Document node (head) to the first
+                  Text node (tail) contained in that document. In the Shakespearean sonnet example
+                  above, a single Document-to-Text directed edge points from the Document node to
+                  the first Text node, which in this case represents the first line of the
+                  poem.</para>
+              </listitem>
+              <listitem>
+                <para><emphasis role="bold">Text-to-Text directed edges.</emphasis> The Text nodes
+                  themselves are connected with directed edges, which chain and therefore order
+                  them, so that the linear order of the text is preserved. In the Shakespearean
+                  sonnet example above, Text-to-Text directed edges point from the first Text node
+                  to the second, from the second and third, etc., until the end of the text.</para>
+              </listitem>
+              <listitem>
+                <para><emphasis role="bold">Annotation-to-Text directed edges.</emphasis> These
+                  connect an Annotation node to the first Text node contained in that annotation,
+                  where the chain of Text nodes is comparable to an XML attribute value, except that
+                  it can be marked up. The chain of Text nodes contains the Text of the annotation,
+                  not the Text being annotated. Separating the chain of Text nodes in the document
+                  from those in the annotations is comparable to the fact that the values of
+                  attribute nodes in XML are not part of the string value of the document node. The
+                  Text nodes that make up an annotation may also serve as the tail of Markup-to-Text
+                  hyperedges.</para>
+              </listitem>
+              <listitem>
+                <para><emphasis role="bold">Markup-to-Annotation directed edges.</emphasis> The
+                  annotations on a Markup or Annotation node are ordered, which is needed because
+                  multiple annotations of the same type may be added to the same node in situations
+                  where their relative order is informational, such as to provide metadata about the
+                  first and second authors of an academic publication. Multiple annotations on the
+                  same Markup or Annotation are chained similarly to the way the Text nodes are
+                  chained; in this case the Markup node points to the first Annotation node with a
+                  Markup-to-Annotation directed edge.</para>
+                <para>Note that there are two types of one-to-one edges the connect Markup and
+                  Annotation nodes and Annotation and Annotation nodes, and these have different
+                  Type specification in the model:<itemizedlist>
+                    <listitem>
+                      <para>The ordering edges specify the order of annotations on the same Markup
+                        or Annotation node. They begin in the Markup or Annotation node being
+                        annotated and point to the first annotation on it, which points to the next
+                        annotation on the same original head, etc. This is similar to the way chains
+                        of Text nodes begin at a Document or Annotation node and point to the first
+                        Text node in the chain, which points to the next, etc.</para>
+                      <para>As described below, there are also normal (one-to-one) edges that point
+                        from an Annotation node to the Markup or Annotation node that is being
+                        annotated.</para>
+                    </listitem>
+                  </itemizedlist>These can be illustrated as follows:</para>
+              </listitem>
+            </itemizedlist>
+            <itemizedlist>
+              <listitem>
+                <para><emphasis role="bold">Markup-to-Text directed hyperedges.</emphasis>
+                  Markup-to-Text hyperedges connect a single Markup node (head) to a set of Text
+                  nodes (tail). In the Shakespearean sonnet example above, fourteen Markup-to-Text
+                  hyperedges each point from a single Markup node with a Name property value of
+                    <quote>line</quote> to a set of one Text node, three Markup-to-Markup hyperedges
+                  with a Name property value of <quote>quatrain</quote> each point to a set of four
+                  Text nodes, and one Markup-to-Markup hyperedte with a Name property value of
+                    <quote>couplet</quote> points to a set of two Text nodes. Note that the
+                    <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes point to Text
+                  nodes, and not to the <quote>line</quote> Markup nodes (although Markup-to-Markup
+                  hyperedges can be added if that is important). This is an important difference
+                  from the XML tree structure.</para>
+              </listitem>
+              <listitem>
+                <para><emphasis role="bold">Markup-to-Markup directed hyperedges.</emphasis>
+                  Markup-to-Markup hyperedges connect a single Markup node (head) to a set of Markup
+                  nodes (tail). The Shakespearean sonnet example above does not include any
+                  Markup-to-Markup hyperedges, but if we wished to encode, for example, that a
+                  quatrain dominates its lines hierarchically, and does not merely contain their
+                  Text nodes, we could express that with a Markup-to-Markup hyperedge between a
+                    <quote>quatrain</quote> Markup node and its four <quote>line</quote> Markup
+                  nodes.</para>
+              </listitem>
+              <listitem>
+                <para><emphasis role="bold">Annotation-to-Markup directed edges.</emphasis> These
+                  connect a single Annotation node (head) to a single Markup node, and is comparable
+                  to adding an attribute to an XML element. Pointing to an Annotation node from an
+                  Annotation node, which is borrowed from LMNL annotations on annotations, can be
+                  used to encode metadata about annotations.</para>
+              </listitem>
+              <listitem>
+                <para><emphasis role="bold">Annotation-to-Annotation directed edges.</emphasis>
+                  These make it possible to add annotations to annotations, that is, to represent
+                  metadata about annotations. This feature is borrowed from LMNL. The head is the
+                  annotation being added and the tail is the annotation to which the new annotation
+                  is being added.</para>
+              </listitem>
+            </itemizedlist>
+          </para>
+        </section>
       </section>
       <section>
         <title>Constraints</title>
