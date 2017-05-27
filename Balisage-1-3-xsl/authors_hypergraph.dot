@@ -1,0 +1,31 @@
+digraph G {
+	{ rank=same forename1[style=filled, fillcolor=green] surname1[style=filled, fillcolor=green]}
+	{ rank=same article[style=filled, fillcolor=green] author1[style=filled, fillcolor=magenta] name1[style=filled, fillcolor=magenta] Stan[style=filled, fillcolor=pink] Laurel[style=filled, fillcolor=pink]} ->
+	{ rank=same fake1[style=invis] fake2[style=invis] organization1[style=filled, fillcolor=magenta] Pitt[style=filled, fillcolor=pink, label="University of Pittsburgh"]} ->
+	{ rank=same fake4[style=invis] author2[style=filled, fillcolor=magenta] name2[style=filled, fillcolor=magenta] Oliver[style=filled, fillcolor=pink] Hardy[style=filled, fillcolor=pink]} ->
+	{ rank=same TEXT fake5[style=invis] fake6[style=invis] organization2[style=filled, fillcolor=magenta] CMU[style=filled, fillcolor=pink, label="Carnegie Mellon University"] } [style=invis]
+	{ edge [minlen=2, style=invis]; article -> author1 -> name1;} 
+	{ edge [minlen=2]; name1 -> Stan -> Laurel;} 
+	TEXT[style=filled, fillcolor=pink, label="[Text nodes of article]"]
+	{ edge [style=invis] TEXT -> organization2 }
+	article -> TEXT
+	forename1 -> Stan
+	surname1 -> Laurel
+	{ edge [minlen=2, style=invis]; fake1 -> fake2 -> organization1}
+	{ edge [minlen=2]; organization1 -> Pitt;}
+	{ edge [style=invis]; author1 -> organization1 }
+	{ rank=same forename2[style=filled, fillcolor=green label=forename] surname2[style=filled fillcolor=green, label=surname] }
+	{ edge [style=invis]; organization1 -> forename2; }  
+	{ edge [style=invis]; forename2 -> surname2; }
+	forename2 -> Oliver
+	{ edge [style=invis] organization1 -> surname2 }
+	{ edge [style=invis] surname2 -> Oliver; }
+	surname2 -> Hardy
+	{ edge [minlen=2, style=invis]; fake4 -> author2; }
+	{ edge [minlen=2, style=invis]; author2 -> name2 }
+	{ edge [minlen=2]; name2 -> Oliver -> Hardy }
+	{ edge [style=invis]; article -> author2 }
+	{ edge [minlen=2, style=invis]; fake5 -> fake6 -> organization2; } 
+	{ edge [minlen=2]; organization2 -> CMU; }
+	{ edge [style=invis]; author2 -> organization2 }
+}
