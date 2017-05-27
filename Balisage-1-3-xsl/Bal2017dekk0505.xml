@@ -724,7 +724,7 @@
             </itemizedlist></para>
         </section>
         <section>
-          <title>Hyperedges that express datatyping</title>
+          <title>Hyperedges that express datatyping and specify sets of Text nodes</title>
           <para>
             <itemizedlist>
               <listitem>
@@ -734,7 +734,7 @@
                   hyperedges each point from a single Markup node with a Name property value of
                     <quote>line</quote> to a set of one Text node, three Markup-to-Markup hyperedges
                   with a Name property value of <quote>quatrain</quote> each point to a set of four
-                  Text nodes, and one Markup-to-Markup hyperedte with a Name property value of
+                  Text nodes, and one Markup-to-Markup hyperedge with a Name property value of
                     <quote>couplet</quote> points to a set of two Text nodes. Note that the
                     <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes point to Text
                   nodes, and not to the <quote>line</quote> Markup nodes (although Markup-to-Markup
@@ -780,30 +780,103 @@
       </section>
       <section>
         <title>Constraints</title>
-        <para>An implementation should raise an error if:<itemizedlist>
+        <para>Only the following types of edges are permitted:</para>
+        <table>
+          <thead valign="top">
+            <tr>
+              <th rowspan="2" colspan="2"/>
+              <th colspan="4" align="center">Head</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Document</th>
+              <th>Text</th>
+              <th>Markup</th>
+              <th>Annotation</th>
+            </tr>
+            <tr>
+              <th rowspan="4" valign="middle">Tail</th>
+              <th>Document</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>Text</th>
+              <td>edge</td>
+              <td>edge</td>
+              <td>hyperedge</td>
+              <td>edge</td>
+            </tr>
+            <tr>
+              <th>Markup</th>
+              <td>-</td>
+              <td>-</td>
+              <td>hyperedge</td>
+              <td>hyperedge</td>
+            </tr>
+            <tr>
+              <th>Annotation</th>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>hyperedge</td>
+            </tr>
+          </tbody>
+        </table>
+        <para>An implementation must raise an error if:<itemizedlist>
             <listitem>
-              <para>a document does not have a single Document node, which is connected by regular
-                edges to exactly one Text node</para>
+              <para>a document contains any type of node, regualr (one-to-one) edge, or hyperedge
+                not included in the preceding table</para>
+            </listitem>
+            <listitem>
+              <para>a document does not have a single Document node, which points to a single Text
+                node</para>
+            </listitem>
+            <listitem>
+              <para>a document does not have at least one Text node</para>
+            </listitem>
+            <listitem>
+              <para>a Document node points to anything other than a single Text node</para>
+            </listitem>
+            <listitem>
+              <para>a Text node points to anything other than another single Text node</para>
+            </listitem>
+            <listitem>
+              <para>a regular (one-to-one) edge from an Annotation node points to anything other
+                than a single Text node (but Annotation nodes may form the head of a hyperedge that
+                points to Markup or Annotation nodes)</para>
+            </listitem>
+            <listitem>
+              <para>a Text node is not part of a continuous chain that begins at a Document node or
+                Annotation node </para>
+            </listitem>
+            <listitem>
+              <para>a Markup node is not the head of exactly one Markup-toText hyperedge</para>
+            </listitem>
+            <listitem>
+              <para>a Markup-to-Text hyperedge has anything other than a single Markup node in its
+                head and anything other than a non-empty set of Text nodes in its tail</para>
+            </listitem>
+            <listitem>
+              <para>a Markup-to-Markup hyperedge has anything other than a single Markup node in its
+                head and anything other than a non-empty set of Markup nodes in its tail</para>
             </listitem>
             <listitem>
               <para>the head of a hyperedge contains anything other than a single Markup or
                 Annotation node</para>
             </listitem>
             <listitem>
-              <para>the tail of a hyperedge contains anything except just text nodes or just markup
-                nodes</para>
+              <para>the tail of a hyperedge contains anything except a non-empty set of Text nodes
+                (Markup-to-Text hyperedge), a non-empty set of Markup nodes (Markup-to-Markup
+                hyperedges), or a single Markup or Annotation node (Annotation-to-Markup and
+                Annotation-to-Annotation hyperedges)</para>
             </listitem>
             <listitem>
-              <para>a set of text nodes must be part of the same chain, starting from either the
-                document node or an annotation node. Text nodes from the document and from an
-                annotation cannot be combined in the tail of a hyperedge.</para>
-            </listitem>
-            <listitem>
-              <para>the head of a regular edge points is anything other than a text node or a
-                document node</para>
-            </listitem>
-            <listitem>
-              <para>the tail of a regular edge is anything other than a text node</para>
+              <para>the tail of a regular edge is anything other than a Text node or a document
+                node</para>
             </listitem>
             <listitem>
               <para>any two edges or hyperedges have the same type, the same head, and the same
