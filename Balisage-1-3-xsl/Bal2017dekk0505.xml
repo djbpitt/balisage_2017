@@ -1475,9 +1475,9 @@ And mock you with me after I am gone.</programlisting>
         <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
       Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
         <link>https://www.cs.vassar.edu/~ide/papers/LAW.pdf</link></bibliomixed>
-    <bibliomixed><quote>LMNL data model.</quote>
-      <link role="italic"
-      >http://www.lmnl.net/prose/data-model/data-model-spec.html</link></bibliomixed>
+    <bibliomixed><quote>LMNL data model.</quote> From LMNLWiki. From the <emphasis role="ital">Lost
+        Archives of LMNL</emphasis>.
+        <link>http://www.lmnl.net/prose/data-model/data-model-spec.html</link></bibliomixed>
     <bibliomixed>Marcoux, Yves. <quote>Graph characterization of overlap-only TexMECS and other
         overlapping markup formalisms.</quote> Presented at Balisage: The Markup Conference 2008,
       Montréal, Canada, August 12 - 15, 2008. In <emphasis role="ital">Proceedings of Balisage: The
@@ -1509,11 +1509,14 @@ And mock you with me after I am gone.</programlisting>
         role="ital">Proceedings of Balisage: The Markup Conference 2014. Balisage series on markup
         technologies,</emphasis> vol. 13 (2014). DOI: 10.4242/BalisageVol13.Piez01.
         <link>http://www.balisage.net/Proceedings/vol13/html/Piez01/BalisageVol13-Piez01.html</link></bibliomixed>
-    <bibliomixed xml:id="piez_2015" xreflabel="Piez 2015">Wendell Piez, <quote>TEI in LMNL:
+    <bibliomixed xml:id="piez_2015" xreflabel="Piez 2015">Piez, Wendell. <quote>TEI in LMNL:
         implications for modeling</quote>, <emphasis role="ital">Journal of the Text Encoding
         Initiative</emphasis> [Online], Issue 8 | December 2014 - December 2015, Online since 21
       November 2015, connection on 08 March 2017. URL: <link>http://jtei.revues.org/1337</link>;
       DOI: 10.4000/jtei.1337.</bibliomixed>
+    <bibliomixed><quote>Range relationships.</quote> From LMNLWiki. From the <emphasis role="ital"
+        >Lost Archives of LMNL</emphasis>. <link
+        xlink:href="http://lmnl-markup.org/specs/archive/Range_relationships.xhtml"/></bibliomixed>
     <bibliomixed xml:id="renear_1996" xreflabel="Renear, Mylonas, and Durand 1996">Renear, Allen H.,
       Elli Mylonas, and David G. Durand. <quote>Refining our notion of what text really is: the
         problem of overlapping hierarchies.</quote>
