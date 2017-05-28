@@ -828,7 +828,7 @@
         </table>
         <para>An implementation must raise an error if:<itemizedlist>
             <listitem>
-              <para>a document contains any type of node, regualr (one-to-one) edge, or hyperedge
+              <para>a document contains any type of node, regular (one-to-one) edge, or hyperedge
                 not included in the preceding table</para>
             </listitem>
             <listitem>
@@ -845,9 +845,18 @@
               <para>a Text node points to anything other than another single Text node</para>
             </listitem>
             <listitem>
+              <para>there is not exactly one Text node in the main text and in the text of every
+                annotation does not point to another Text node, except that an Annotation is not
+                required to have text.</para>
+            </listitem>
+            <listitem>
+              <para>Two contiguous Text nodes are in the tail of all of the same Markup-to-Text
+                hyperedges (in this case, they should be merged into a single Text node)</para>
+            </listitem>
+            <listitem>
               <para>a regular (one-to-one) edge from an Annotation node points to anything other
                 than a single Text node (but Annotation nodes may form the head of a hyperedge that
-                points to Markup or Annotation nodes)</para>
+                points to Markup or Annotation nodes), or points to nothing at all</para>
             </listitem>
             <listitem>
               <para>a Text node is not part of a continuous chain that begins at a Document node or
@@ -879,7 +888,7 @@
                 node</para>
             </listitem>
             <listitem>
-              <para>the head or tail of any hyperedge is empty or contains nodes that are not all of
+              <para>the head or tail of a hyperedge is empty or contains nodes that are not all of
                 the same type</para>
             </listitem>
             <listitem>
