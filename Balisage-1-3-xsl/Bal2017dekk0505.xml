@@ -1475,6 +1475,9 @@ And mock you with me after I am gone.</programlisting>
         <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
       Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
         <link>https://www.cs.vassar.edu/~ide/papers/LAW.pdf</link></bibliomixed>
+    <bibliomixed><quote>LMNL data model.</quote>
+      <link role="italic"
+      >http://www.lmnl.net/prose/data-model/data-model-spec.html</link></bibliomixed>
     <bibliomixed>Marcoux, Yves. <quote>Graph characterization of overlap-only TexMECS and other
         overlapping markup formalisms.</quote> Presented at Balisage: The Markup Conference 2008,
       Montréal, Canada, August 12 - 15, 2008. In <emphasis role="ital">Proceedings of Balisage: The
