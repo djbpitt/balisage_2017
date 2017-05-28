@@ -755,9 +755,9 @@
                 <para><emphasis role="bold">Annotation-to-Annotation directed hyperedges.</emphasis>
                   These make it possible to add annotations to annotations, that is, to represent
                   metadata about annotations. This feature is borrowed from LMNL. As with
-                  Annotation-to-Markup hyperedges, the head is the ordered set of annotations being
-                  added, and in this case the tail is Annotation node (rather than Markup node) to
-                  which they are being added.</para>
+                  Annotation-to-Markup hyperedges, the head is the set of annotations being added,
+                  and in this case the tail is Annotation node (rather than Markup node) to which
+                  they are being added.</para>
               </listitem>
             </itemizedlist>
           </para>
