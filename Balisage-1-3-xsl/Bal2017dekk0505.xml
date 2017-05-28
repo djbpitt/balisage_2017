@@ -1383,7 +1383,7 @@ Lest the wise world should look into your moan,
 And mock you with me after I am gone.</programlisting>
   </appendix>
   <appendix xml:id="to_do" xreflabel="Appendix B">
-    <title>Features of text not represented in TAG</title>
+    <title>Features of text not represented in TAG or in Alexandria</title>
     <section>
       <title>Order</title>
       <section>
@@ -1406,6 +1406,26 @@ And mock you with me after I am gone.</programlisting>
           collation tool [<xref linkend="collatex"/>], but because currently text nodes in TAG are
           fully ordered, it is not possible to model transpositions as alternative orders.</para>
       </section>
+    </section>
+    <section>
+      <title>Constraint language</title>
+      <para>Constraints in this paper are expressed in prose. They should be expressed
+        formally.</para>
+    </section>
+    <section>
+      <title>Query language</title>
+      <para>TAG needs a query language that expresses queries in terms of operations on sets of
+        nodes and edges.</para>
+    </section>
+    <section>
+      <title>Markup language</title>
+      <para>TAG does not define a markup language, that is, a syntactic form that can be used to tag
+        text and for import and export serialization. Alexandria can parse LMNL syntax (into the TAG
+        data model, not the LMNL one, so it is not so much parsing LMNL as borrowing LMNL syntax to
+        express TAG relationships), and support is planned for TexMECS and XML syntax (also as
+        representations of TAG, and not of GODDAG or XML). None of these three grammars is capable
+        or representing all of the features of TAG. We leave open the question of how to provide a
+        character-string serialization of a TAG document.</para>
     </section>
   </appendix>
   <appendix xml:id="snark" xreflabel="Appendix C">
