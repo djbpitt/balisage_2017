@@ -865,8 +865,8 @@
                 head and anything other than a non-empty set of Markup nodes in its tail</para>
             </listitem>
             <listitem>
-              <para>the head of a hyperedge contains anything other than a single Markup or
-                Annotation node</para>
+              <para>the head of a hyperedge contains anything other than a single Markup node or a
+                non-empty set of Annotation nodes</para>
             </listitem>
             <listitem>
               <para>the tail of a hyperedge contains anything except a non-empty set of Text nodes
@@ -875,8 +875,12 @@
                 Annotation-to-Annotation hyperedges)</para>
             </listitem>
             <listitem>
-              <para>the tail of a regular edge is anything other than a Text node or a document
+              <para>the tail of a regular edge is anything other than a Text node or a Document
                 node</para>
+            </listitem>
+            <listitem>
+              <para>the head or tail of any hyperedge is empty or contains nodes that are not all of
+                the same type</para>
             </listitem>
             <listitem>
               <para>any two edges or hyperedges have the same type, the same head, and the same
