@@ -412,8 +412,8 @@
               below about Markup dominance.</para>
           </footnote> This bottom-up perspective on order within a document distinguishes TAG from
           the top-down, ordered-tree perspective of XML and GODDAG, where, contrary to TAG, the
-          order of nodes (including <code>text()</code> nodes) is at least partially derived from
-          the order of their parent nodes. In this respect TAG is closer to LMNL, where order in the
+          order of nodes (including <code>Text</code> nodes) is at least partially derived from the
+          order of their parent nodes. In this respect TAG is closer to LMNL, where order in the
           document also inheres at the lowest level, which in LMNL is the atoms that make up the
           content.</para>
       </section>
@@ -613,7 +613,7 @@
         TAG hypergraph, although, as explained above, we could have created one had we wished to do
         so. The root node is not optional in XML because a tree requires a root. Additionally, the
         XML <code>&lt;quatrain&gt;</code> and <code>&lt;couplet&gt;</code> elements are parents of
-          <code>&lt;line&gt;</code> elements, which are parents of <code>text()</code> nodes. In our
+          <code>&lt;line&gt;</code> elements, which are parents of <code>Text</code> nodes. In our
         TAG example, the <quote>quatrain</quote>, <quote>couplet</quote>, and <quote>line</quote>
         Markup nodes all point directly to sets of Text nodes, and have no hierarchical relationship
         (although, as explained above, we could create one if we wished).</para>
@@ -631,7 +631,7 @@
             <listitem>
               <para><emphasis role="bold">Text nodes.</emphasis> The textual content of a TAG
                 document is stored in one or more Text nodes, roughly comparable to XML
-                  <code>text()</code> nodes. The order of the Text nodes is represented by directed
+                  <code>Text</code> nodes. The order of the Text nodes is represented by directed
                 edges that connect them in textual order.<footnote>
                   <para>All main text in the document forms a single chain of Text nodes, and the
                     same is true of the Text in annotations. See <xref linkend="to_do"/> for a
@@ -948,7 +948,7 @@
           <para>Projecting two independent trees over a common set of words. In XML the individual
             words would be not be children of <code>&lt;line&gt;</code> and
               <code>&lt;phrase&gt;</code> elements, and would instead be grouped inside
-              <code>text()</code> node children of those elements.</para>
+              <code>Text</code> node children of those elements.</para>
         </caption>
       </figure>
       <para>Because it is not possible to represent the preceding structure in XML markup, the
@@ -962,9 +962,9 @@
           role="ital">data model</emphasis> has hierarchical elements, rather than tags. The reason
         overlap is prohibited, then, has nothing to do with a rule about tags; the rule about tags
         exists because tags must represent the data model, the hierarchy in the data model prohibits
-        multiple parentage, and overlap would require that a <code>text()</code> node have more than
+        multiple parentage, and overlap would require that a <code>Text</code> node have more than
         one parent. Overlap is possible in GODDAG not because TexMECS permits overlapping tags, but
-        because GODDAG permits <code>text()</code> nodes to have multiple parents and TexMECS
+        because GODDAG permits <code>Text</code> nodes to have multiple parents and TexMECS
         serializes the GODDAG model. LMNL sawtooth syntax may look like XML syntax with the
         prohibition against overlapping tags removed, but the real difference is at the level of the
         data model: LMNL <emphasis role="ital">ranges</emphasis> may overlap, and the content
@@ -974,7 +974,7 @@
         directed hyperedge that associates a head markup node with a set of tail nodes. To tag a
         line of poetry in the example above, TAG would create a hyperedge from a markup node with
         the name <quote>line</quote> (comparable to a <code>&lt;line&gt;</code> element in XML) to a
-        set of text nodes (comparable to <code>text()</code> nodes in XML). Sets are unordered, but
+        set of text nodes (comparable to <code>Text</code> nodes in XML). Sets are unordered, but
         because the TAG automatically creates <quote>sequence</quote> edges between text nodes,
         which record the continuous order of the text stream (comparable to the sequence of atoms in
         the LMNL model), the textual content of the line is fully specified by (= can be retrieved
@@ -1021,9 +1021,9 @@
         layer), yet our human intuition is that there is a single quotation, and that the model,
         therefore, should represent it as a single object.<footnote>
           <para>It is possible to interpret the entire quotation as an element with three child
-            nodes: a <code>text()</code> node, an intervening element that holds the narrative
-            interjection, and then another <code>text()</code>, and in that sense the quotation is
-            one object, although that object incorporates something that is not part of what a human
+            nodes: a <code>Text</code> node, an intervening element that holds the narrative
+            interjection, and then another <code>Text</code>, and in that sense the quotation is one
+            object, although that object incorporates something that is not part of what a human
             understands as the quotation. <xref linkend="sperberg-huitfeldt_2008"/> explains why
             this is unsatisfactory (see especially their footnote 2).</para>
         </footnote> As <xref linkend="sperberg-huitfeldt_2008"/> also observe, there is a sense in
@@ -1114,13 +1114,12 @@
         </mediaobject>
         <caption>
           <para>In XML, the three words of the title are spread over two levels of the hierarchy.
-            Cyan ellipses are element nodes and pink rectangles are <code>text()</code>
-            nodes.</para>
+            Cyan ellipses are element nodes and pink rectangles are <code>Text</code> nodes.</para>
         </caption>
       </figure>
       <para>If we wish to specify in XML that the first and third words of the title are of type
           <quote>name</quote>, we can tag them as elements of that type, with the result that the
-          <code>text()</code> nodes they contain wind up on a different level of the hierarchy than
+          <code>Text</code> nodes they contain wind up on a different level of the hierarchy than
         the conjunction between them.<footnote>
           <para>It is possible to tag the conjunction, as well, so as to push the word
               <quote>and</quote> down to the same hierarchical level as the names, but we have not
@@ -1161,9 +1160,10 @@
     <title>Comparison of TAG/hypergraph to other text models</title>
     <para>In this section we compare the TAG data model with three well-known alternative data
       models used to represent and process text: 1) XML DOM (tree), GODDAG (forest/graph), and LMNL
-      (range). These three systems have standard syntactic expressions: XML for XML DOM, TexMECS for
-      GODDAG, and LMNL sawtooth syntax for LMNL. XML, GODDAG, and LMNL processors ingest serialized
-      documents and parse them into in-memory representations of the data model.</para>
+      (range). The three systems have regular syntactic expressions: XML angle bracket syntax for
+      XML DOM, TexMECS for GODDAG, and LMNL sawtooth syntax for LMNL. XML, GODDAG, and LMNL
+      processors ingest serialized documents and parse them into in-memory representations of the
+      data model.</para>
     <para>The syntax is not the data model. The data model could, at least in principle, be
       serialized in other ways, and the syntax could be coopted to represent a different data model.
       TAG does not at present have its own serialization syntax; it can read and write LMNL sawtooth
@@ -1171,101 +1171,191 @@
       intended to be able to do the same with XML and TexMECS syntax.</para>
     <section>
       <title>TAG and DOM</title>
-      <para>The XML Document Object Model (DOM), the XML InfoSet, and the XQuery 1.0 and XPath 2.0
-        Data Model (XDM) specifications provide different perspectives on an XML document for
-        different purposes, as follows</para>
-      <itemizedlist>
-        <listitem>
-          <para><quote>The Document Object Model (DOM) is an application programming interface (API)
-              for valid HTML and well-formed XML documents. ... The Document Object Model is not a
-              set of data structures; it is an object model that specifies interfaces. Although this
-              document contains diagrams showing parent/child relationships, these are logical
-              relationships defined by the programming interfaces, not representations of any
-              particular internal data structures. ... The Document Object Model does not define
-              what information in a document is relevant or how information in a document is
-              structured. For XML, this is specified by the W3C XML Information Set [<link
-                xlink:href="https://www.w3.org/TR/DOM-Level-2-Core/references.html#InfoSet"
-                >Infoset</link>]. The DOM is simply an API to this information set.</quote> [<xref
-              linkend="W3C_DOM"/>] <footnote>
-              <para>Alternaively, <quote>[t]he Document Object Model (DOM) is a programming
-                  interface for HTML, XML and SVG documents.</quote> [<xref linkend="MDN_DOM"/>]
-                Because the DOM is defined as an API, it is organized around objects, which may not
-                correspond in a one-to-one fashion to components of an abstract data model.</para>
-            </footnote>
-          </para>
-        </listitem>
-        <listitem>
-          <para>The XML InfoSet describes the information items that are available from an XML
-            document. It <quote>presents the information set as a modified tree for the sake of
-              clarity and simplicity, but there is no requirement that the XML Information Set be
-              made available through a tree structure</quote> Furthermore, <quote>[i]nformation
-              items do not map one-to-one with the nodes of the DOM or the "tree" and "nodes" of the
-              XPath data model.</quote> [<xref linkend="W3C_xmlinfoset"/>]</para>
-        </listitem>
-        <listitem>
-          <para>The XQuery 1.0 and XPath 2.0 Data Model (XDM) [<xref linkend="W3C_xdm"/>]</para>
-        </listitem>
-      </itemizedlist>
-      <para>Both the DOM and TAG data models are node based, and in both models the nodes are typed.
-        The DOM consists of the following nodes: Document, DocumentType, DocumentFragment, Element,
-        Text, ProcessingInstruction, and Comment. The following table illustrates the functional
-        correspondence of DOM node types to node types in TAG, with the understanding that because
-        TAG is not a tree model, the properties and behaviors are different:</para>
-      <table>
-        <thead>
-          <tr>
-            <th>DOM</th>
-            <th>Tag</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Document</td>
-            <td>Document</td>
-          </tr>
-          <tr>
-            <td>Element</td>
-            <td>Markup</td>
-          </tr>
-          <tr>
-            <td>Text</td>
-            <td>Text</td>
-          </tr>
-          <tr>
-            <td>Attribute</td>
-            <td>Annotation</td>
-          </tr>
-        </tbody>
-      </table>
-      <para>DOM ProcessingInstruction and Comment nodes have no equivalent in TAG or implementation
-        in Alexandria at the moment, and may be added later. There is no plan at present to provide
-        counterparts to DocumentType and DocumentFragment nodes.</para>
-      <para>The difference between DOM and TAG lays in the way the nodes are laid out. In DOM the
-        nodes are ordered in a tree hierarchy, while in TAG nodes are placed in a graph. The DOM
-        model uses a tree based model, where there is a root node, which can have children, which
-        are ordered sets. Every node can only have one parent node, and can only be child of one
-        parent node. Thus representing a 1 to n relation between the parent and the childnodes. The
-        TAG model uses a hypergraph instead, where nodes are connected through the use of
-        hyperedges. Markup nodes can contain multiple Text nodes, while Text nodes can be part of
-        multiple Markup nodes, thus allowing for n to n relations between text segments and markup
-        nodes.</para>
-      <para>In contrast with the DOM model there does not need to be a root element in the TAG
-        model. A root element in TAG would simply be a markup node that is connected through a
-        hyperedge with all the text nodes of the document. In fact there is no requirement to have a
-        hierarchy at all.</para>
-      <para>Also relations between markup nodes and text nodes or other markup nodes do not strictly
-        have to be hierarchical. There can be multiple types of relationships between markup nodes.
-        In DOM the relationship between a parent and a child is always one of dominance. By default
-        there is no relation between markup nodes. Dominance relations can be expressed but have to
-        be explicitly indicated by adding a edge between the two markup nodes of type Dominance.
-        Containment relations can be calculated from the intersection of the text nodes of two
-        markup nodes and does not have to be explicitly modelled.</para>
-      <para>In the TAG hypergraph model a hyperedge that connects the text nodes with the markup
-        nodes can be discontinuous. This is a clear difference with the DOM model, where all the
-        text nodes are leaf nodes of the subtree underneath the element node. Thus the nodes
-        underneath an element are continuous.</para>
-      <para>In both the DOM and the TAG model adding a new text element or a new markup is a local
-        operation.</para>
+      <section>
+        <title>TAG and DOM, XDM, and the XML InfoSet</title>
+        <para><emphasis role="bital">TODO: Talk about XML, rather than DOM, since DOM is an object
+            model and TAG is a data model?</emphasis></para>
+        <para>TAG, as a hypergraph, and DOM, as a tree, are both graphs, that is, sets of 1) nodes
+          and 2) edges that express relationships among the nodes. We can compare them, then, by
+          comparing the nodes and edges they provide and the relationships those components express.
+          TAG and DOM are not exactly comparable because TAG is a document model and DOM is an API,
+          and for that reason we draw not only on DOM, but also on the XML InfoSet and on XDM in
+          this comparison. These specifications provide different perspectives on an XML document
+          for different purposes, as follows:</para>
+        <itemizedlist>
+          <listitem>
+            <para><quote>The Document Object Model (DOM) is an application programming interface
+                (API) for valid HTML and well-formed XML documents. ... The Document Object Model is
+                not a set of data structures; it is an object model that specifies interfaces.
+                Although this document contains diagrams showing parent/child relationships, these
+                are logical relationships defined by the programming interfaces, not representations
+                of any particular internal data structures. ... The Document Object Model does not
+                define what information in a document is relevant or how information in a document
+                is structured. For XML, this is specified by the W3C XML Information Set [<link
+                  xlink:href="https://www.w3.org/TR/DOM-Level-2-Core/references.html#InfoSet"
+                  >Infoset</link>]. The DOM is simply an API to this information set.</quote>
+              <footnote>
+                <para>Alternaively, <quote>[t]he Document Object Model (DOM) is a programming
+                    interface for HTML, XML and SVG documents.</quote> [<xref linkend="MDN_DOM"
+                  />]</para>
+              </footnote> Because the DOM is defined as an API, it is organized around objects,
+              which may not correspond in a one-to-one fashion to components of an abstract data
+              model. [<xref linkend="W3C_DOM"/>] </para>
+          </listitem>
+          <listitem>
+            <para>The XML InfoSet describes the information items that are available from an XML
+              document. It <quote>presents the information set as a modified tree for the sake of
+                clarity and simplicity, but there is no requirement that the XML Information Set be
+                made available through a tree structure</quote> Furthermore, <quote>[i]nformation
+                items do not map one-to-one with the nodes of the DOM or the "tree" and "nodes" of
+                the XPath data model.</quote> [<xref linkend="W3C_xmlinfoset"/>]</para>
+          </listitem>
+          <listitem>
+            <para>The XQuery 1.0 and XPath 2.0 Data Model (XDM) <quote>is the data model of [<link
+                  xlink:href="https://www.w3.org/TR/xpath-datamodel/#xpath20">XML Path Language
+                  (XPath) 2.0 (Second Edition)</link>], [<link
+                  xlink:href="https://www.w3.org/TR/xpath-datamodel/#xslt20">XSLT 2.0 (Second
+                  Edition)</link>] and [<link
+                  xlink:href="https://www.w3.org/TR/xpath-datamodel/#xquery">XQuery</link>] … [It]
+                specifies what information in the documents is accessible, but it does not specify
+                the programming-language interfaces or bindings used to represent or access the
+                data. … The data model can represent various values including not only the input and
+                the output of a stylesheet or query, but all values of expressions used during the
+                intermediate calculations.</quote> [<xref linkend="W3C_xdm"/>]</para>
+          </listitem>
+        </itemizedlist>
+        <para>We use the term DOM here, not entirely accurately, to refer to the structural features
+          of the XML data model that are relevant for comparison with TAG as a data model.</para>
+      </section>
+      <section>
+        <title>Nodes</title>
+        <para>Both the DOM and TAG data models are node based, and in both models the nodes are
+          typed. XDM defines seven types of nodes (Document, Element, Attribute, Text, Namespace,
+          Processing instruction, and Comment [<xref linkend="W3C_xdm"/>]), XML DOM defines twelve
+          (Document, DocumentFragment, DocumentType, EntityReference, Element, Attr,
+          ProcessingInstruction, Comment, Text, CDATASection, Entity, and Notation [<xref
+            linkend="W3C_DOM"/>]), and the XML InfoSet defines eleven types of information objects
+          (Document, Element, Attribute, Processing Instruction, Unexpanded Entity Reference,
+          Character, Comment, Document Type Declaration, Unparsed Entity, Notation, and Namespace
+            [<xref linkend="W3C_xmlinfoset"/>]). Items in the XML InfoSet and XML DOM that do not
+          have direct counterparts in XDM are needed in those other specifications because their
+          functions are not completely coextensive with those of XDM, and the DOM node types that
+          are relevant in the context of a comparison with TAG, as defined at this stage, are
+          Document, Element, Attr, and Text.</para>
+        <para>The following table illustrates the functional correspondence of DOM and XDM node
+          types and XML InfoSet information items to node types in TAG, with the understanding that
+          because TAG is not a tree model, the properties and behaviors are different, and there are
+          differences even among the XML-related specifications (e.g., the InfoSet Character
+          information item is a single character, while a DOM and XDM Text node may contain multiple
+          characters):</para>
+        <table>
+          <thead>
+            <tr align="center">
+              <th align="center">DOM</th>
+              <th>XDM</th>
+              <th align="center">InfoSet</th>
+              <th align="center">Tag</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Document</td>
+              <td>Document</td>
+              <td>Document</td>
+              <td>Document</td>
+            </tr>
+            <tr>
+              <td>Element</td>
+              <td>Element</td>
+              <td>Element</td>
+              <td>Markup</td>
+            </tr>
+            <tr>
+              <td>Text</td>
+              <td>Text</td>
+              <td>Character</td>
+              <td>Text</td>
+            </tr>
+            <tr>
+              <td>Attr</td>
+              <td>Attribute</td>
+              <td>Attribute</td>
+              <td>Annotation</td>
+            </tr>
+          </tbody>
+        </table>
+        <para>Other DOM and XDM nodes and InfoSet information items currently have no counterpart in
+          TAG node types. The corresponding node types may correspond only very loosely; for
+          example: <itemizedlist>
+            <listitem>
+              <para>The XML Document node serves as the root of the tree, while the function of the
+                TAG Document node is to point to the first Text node in the document.</para>
+            </listitem>
+            <listitem>
+              <para>XML Element nodes specify the generic identifier of the Element and both contain
+                and dominate their descendants. TAG Markup nodes also specify the name of the Markup
+                node. TAG Markup nodes that point to Text nodes represent containment but not
+                dominance (hierarchy), and TAG Markup nodes that point to Markup nodes represent
+                dominance (hierarchy).</para>
+            </listitem>
+            <listitem>
+              <para>XML Attribute nodes cannot contain marked-up content. TAG Annotation nodes
+                describe micro-documents that may contain Text, Markup, and Annotation nodes.</para>
+            </listitem>
+          </itemizedlist></para>
+      </section>
+      <section>
+        <title>Order</title>
+        <para>XML describes a fully ordered tree, where not only does order inhere in the hierarchy
+          (parents are ordered before children), but siblings also have a fixed order.<footnote>
+            <para>Attribute and Namespace nodes on the same Element do not have a defined
+              order.</para>
+          </footnote> In TAG the Text nodes of the document form a continuous chain, the head of
+          which is the Document node, and the Text nodes in an annotation form their own continuous
+          chains, beginning at the Annotation nodes. But while Element nodes in XML are part of the
+          overall order of the ordered tree, Markup nodes in TAG are unordered. Annotation nodes on
+          the same node in TAG and Attribute nodes on the same Element in XML are both
+          unordered.</para>
+      </section>
+      <section>
+        <title>Hyperedges</title>
+        <para>In DOM the nodes form an ordered tree with the Document node as the root, while in TAG
+          nodes are organized in a graph/hypergraph. In the tree-based DOM model, there is a single
+          root node and the children of nodes that may have children (Document, Element) are ordered
+          sets. Every child node can have only one parent node, which means that there is a one-to-n
+          relation between a parent node and its child nodes. The TAG model uses a hypergraph
+          instead, where nodes are connected through the use of hyperedges. For example, a Markup
+          node may point to multiple Text nodes, and this is similar to the way a DOM element node
+          may have multiple Text node children. But in TAG a Text node may be pointed to by multiple
+          Markup nodes, while in DOM it is not possible for a Text node to have multiple Element
+          node parents. This means that TAG differs from DOM by permitted n-to-n relations between
+          Text nodes and Markup nodes.</para>
+      </section>
+      <section>
+        <title>Hierarchy and the root element</title>
+        <para>Unlike in DOM, the nodes of a TAG document are not required to specify a hierarchy,
+          which means, among other things, that no root element is required. The closest TAG
+          counterpart to a DOM root element (in the sense that a DOM root element has a superior
+          relationship, whether understood as containment or dominance, to all Text nodes) would be
+          a Markup node that is connected directly, through a hyperedge, to all the Text nodes of
+          the document. This differs from an XML root element, though, because the XML root element,
+          although the ancestor of all Text nodes, is not necessarily connected to them directly in
+          a parent-child relationships.</para>
+        <para>Relations between Markup nodes and Text nodes or other Markup nodes in TAG do not have
+          to be strictly hierarchical. In DOM the relationship between a parent and a child is
+          always one of dominance (hierarchy). In TAG, on the other hand, by default there is no
+          direct relation among Markup nodes. Dominance relations may be expressed by adding a
+          hyperedge of with a Type value of <quote>dominance</quote> that points from one Markup
+          node a set of Markup nodes. Containment relations can be calculated from the intersection
+          of the Text nodes of two Markup nodes, and does not need to be modeled explicitly. For
+          example, where in XML a <code>&lt;quatrain></code> element might be the parent of four
+            <code>&lt;line></code> elements, in TAG the <quote>quatrain</quote> and
+            <quote>line</quote> Markup nodes point to sets of Text nodes, and the formal expression
+          is not that the quatrain contains the line, but that the Text nodes of the line are a
+          subset of the Text nodes of the quatrain.</para>
+        <para>In both the DOM and the TAG model adding a new Text or Markup (Element) node is a
+          local operation.</para>
+      </section>
     </section>
     <section>
       <title>TAG and GODDAG</title>
