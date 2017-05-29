@@ -166,16 +166,16 @@
       is, that text has structural properties that humans care about that cannot be modeled directly
       as a tree, or, at least, as a rooted and ordered directed acyclic graph that does not permit
       multiple parentage and that is constructed from the seven types of nodes that constitute the
-      XQuery and XPath data model.[<xref linkend="xdm6"/>] Although overlap has received most of the
-      attention, overlap is only one challenge to XML modeling, and regarding overlap as <emphasis
-        role="ital">the problem</emphasis>, instead of as <emphasis role="ital">a symptom of the
-        problem</emphasis>, has led us to think more narrowly than we should about alternatives to
-      OHCO. If what text <quote>really is</quote> is not an ordered hierarchy of content objects,
-      what is it instead? The issues are well known to the XML community, so why have they come
-      largely (although not entirely) to be eclipsed by overlap in discussions of what’s difficult
-      about modeling documents in XML? These challenges, which have been negotiated in XML modeling
-      and processing through workarounds, find a natural solution in the TAG model described here,
-      as well as, at least in some respects, in LMNL and GODDAG/TexMECS.</para>
+      XQuery and XPath data model.[<xref linkend="W3C_xdm"/> §6] Although overlap has received most
+      of the attention, overlap is only one challenge to XML modeling, and regarding overlap as
+        <emphasis role="ital">the problem</emphasis>, instead of as <emphasis role="ital">a symptom
+        of the problem</emphasis>, has led us to think more narrowly than we should about
+      alternatives to OHCO. If what text <quote>really is</quote> is not an ordered hierarchy of
+      content objects, what is it instead? The issues are well known to the XML community, so why
+      have they come largely (although not entirely) to be eclipsed by overlap in discussions of
+      what’s difficult about modeling documents in XML? These challenges, which have been negotiated
+      in XML modeling and processing through workarounds, find a natural solution in the TAG model
+      described here, as well as, at least in some respects, in LMNL and GODDAG/TexMECS.</para>
     <para>A second challenge of using XML as a model of text involves not the <emphasis role="ital"
         >limitations</emphasis> of OHCO, but its <emphasis role="ital">tyranny</emphasis>. If text
       is understood as an ordered hierarchy of content objects, are there aspects of text that are
@@ -362,7 +362,7 @@
     <!--explain the differences between graph models and trees and ranges? Or leave that
         discussion out?-->
     <!--Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice
-        that it is mainly about modelling text using LMNL, querying (using xLMNL and xQuery
+        that it is mainly about modeling text using LMNL, querying (using xLMNL and xQuery
         extensions) and visualising data. These are all read only operations. The goal of the TAG
         model and its implementation in Alexandria is that it can be used to read as well as write
         textual data and annotations. This opens up a lot of new possibilities and makes it a
@@ -1099,7 +1099,7 @@
       <para>In XML, markup is (among other things) a form of datatyping, and the XML spec uses the
         word <quote>type</quote> to say this:<blockquote>
           <para>Each element has a type, identified by name, sometimes called its <quote>generic
-              identifier</quote> (GI) [<xref linkend="xml"/> §3]</para>
+              identifier</quote> (GI) [<xref linkend="W3C_xml"/> §3]</para>
         </blockquote>This means that XML cannot assign a type to part of a document (other than an
         attribute, and there only through a schema specification) except by making it an element,
         and therefore a node in the document hierarchy. Consider the following XML structure,
@@ -1159,29 +1159,87 @@
   </section>
   <section>
     <title>Comparison of TAG/hypergraph to other text models</title>
-    <para>In this section we compare and contrast the TAG data model with previous models for text
-      modelling and processing, such as Information Set as implemented in DOM (tree), GODDAG
-      (forrest/graph), and the LMNL data model(range).</para>
-    <!-- This is a very generic overview... maybe not here -->
-    <para>The document is written in a text serialization format, like XML or LMNL. It is then
-      processed by a processor into memory model, like DOM. TAG is a replacement of DOM, competes
-      with DOM, or with the Datamodel behind LMNL, based on ranges. NOTE: maybe a picture showing
-      the use of XML markup to DOM and LMNL to TAG should be made to make clear what it is we are
-      actually presenting here. The DOM (Document Object Model) is an API for XML processing. The
-      alternative is XML Event processing. The DOM can contain both HTML and XML markup. </para>
+    <para>In this section we compare the TAG data model with three well-known alternative data
+      models used to represent and process text: 1) XML DOM (tree), GODDAG (forest/graph), and LMNL
+      (range). These three systems have standard syntactic expressions: XML for XML DOM, TexMECS for
+      GODDAG, and LMNL sawtooth syntax for LMNL. XML, GODDAG, and LMNL processors ingest serialized
+      documents and parse them into in-memory representations of the data model.</para>
+    <para>The syntax is not the data model. The data model could, at least in principle, be
+      serialized in other ways, and the syntax could be coopted to represent a different data model.
+      TAG does not at present have its own serialization syntax; it can read and write LMNL sawtooth
+      syntax (parsing it as a representation of the TAG data model, rather than of LMNL), and it is
+      intended to be able to do the same with XML and TexMECS syntax.</para>
     <section>
       <title>TAG and DOM</title>
-      <para>Document Object Model (DOM) is an application programming interface (API) for XML
-        processing that contains a data model based on the XML Information Set. </para>
-      <para>Both the DOM and TAG data models are node based. In both models the nodes are typed. The
-        DOM consists of the following nodes: Document, DocumentType, DocumentFragment, Element,
-        Text, ProcessingInstruction and Comment. Here is how the types in DOM and in TAG map to one
-        another: the TAG Document node maps to the DOM Document node. In the place of the Element
-        nodes of the DOM comes the Markup node of the TAG model. Text nodes in the DOM model are
-        part of the TAG model as well. XML Attribute nodes map to TAG annotations. NOTE:
-        ProcessingInstruction and Comments have no equivalent in TAG at the moment and are skipped
-        for now in Alexandria, but could be added later. That is just an implementation
-        detail.</para>
+      <para>The XML Document Object Model (DOM), the XML InfoSet, and the XQuery 1.0 and XPath 2.0
+        Data Model (XDM) specifications provide different perspectives on an XML document for
+        different purposes, as follows</para>
+      <itemizedlist>
+        <listitem>
+          <para><quote>The Document Object Model (DOM) is an application programming interface (API)
+              for valid HTML and well-formed XML documents. ... The Document Object Model is not a
+              set of data structures; it is an object model that specifies interfaces. Although this
+              document contains diagrams showing parent/child relationships, these are logical
+              relationships defined by the programming interfaces, not representations of any
+              particular internal data structures. ... The Document Object Model does not define
+              what information in a document is relevant or how information in a document is
+              structured. For XML, this is specified by the W3C XML Information Set [<link
+                xlink:href="https://www.w3.org/TR/DOM-Level-2-Core/references.html#InfoSet"
+                >Infoset</link>]. The DOM is simply an API to this information set.</quote> [<xref
+              linkend="W3C_DOM"/>] <footnote>
+              <para>Alternaively, <quote>[t]he Document Object Model (DOM) is a programming
+                  interface for HTML, XML and SVG documents.</quote> [<xref linkend="MDN_DOM"/>]
+                Because the DOM is defined as an API, it is organized around objects, which may not
+                correspond in a one-to-one fashion to components of an abstract data model.</para>
+            </footnote>
+          </para>
+        </listitem>
+        <listitem>
+          <para>The XML InfoSet describes the information items that are available from an XML
+            document. It <quote>presents the information set as a modified tree for the sake of
+              clarity and simplicity, but there is no requirement that the XML Information Set be
+              made available through a tree structure</quote> Furthermore, <quote>[i]nformation
+              items do not map one-to-one with the nodes of the DOM or the "tree" and "nodes" of the
+              XPath data model.</quote> [<xref linkend="W3C_xmlinfoset"/>]</para>
+        </listitem>
+        <listitem>
+          <para>The XQuery 1.0 and XPath 2.0 Data Model (XDM) [<xref linkend="W3C_xdm"/>]</para>
+        </listitem>
+      </itemizedlist>
+      <para>Both the DOM and TAG data models are node based, and in both models the nodes are typed.
+        The DOM consists of the following nodes: Document, DocumentType, DocumentFragment, Element,
+        Text, ProcessingInstruction, and Comment. The following table illustrates the functional
+        correspondence of DOM node types to node types in TAG, with the understanding that because
+        TAG is not a tree model, the properties and behaviors are different:</para>
+      <table>
+        <thead>
+          <tr>
+            <th>DOM</th>
+            <th>Tag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Document</td>
+            <td>Document</td>
+          </tr>
+          <tr>
+            <td>Element</td>
+            <td>Markup</td>
+          </tr>
+          <tr>
+            <td>Text</td>
+            <td>Text</td>
+          </tr>
+          <tr>
+            <td>Attribute</td>
+            <td>Annotation</td>
+          </tr>
+        </tbody>
+      </table>
+      <para>DOM ProcessingInstruction and Comment nodes have no equivalent in TAG or implementation
+        in Alexandria at the moment, and may be added later. There is no plan at present to provide
+        counterparts to DocumentType and DocumentFragment nodes.</para>
       <para>The difference between DOM and TAG lays in the way the nodes are laid out. In DOM the
         nodes are ordered in a tree hierarchy, while in TAG nodes are placed in a graph. The DOM
         model uses a tree based model, where there is a root node, which can have children, which
@@ -1504,9 +1562,12 @@ And mock you with me after I am gone.</programlisting>
         <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
       Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
         <link>https://www.cs.vassar.edu/~ide/papers/LAW.pdf</link></bibliomixed>
-    <bibliomixed><quote>LMNL data model.</quote> From LMNLWiki. From the <emphasis role="ital">Lost
+    <bibliomixed>LMNLWiki. <quote>LMNL data model.</quote> From the <emphasis role="ital">Lost
         Archives of LMNL</emphasis>.
         <link>http://www.lmnl.net/prose/data-model/data-model-spec.html</link></bibliomixed>
+    <bibliomixed>LMNLWiki <quote>Range relationships.</quote> From the <emphasis role="ital">Lost
+        Archives of LMNL</emphasis>. <link
+        xlink:href="http://lmnl-markup.org/specs/archive/Range_relationships.xhtml"/></bibliomixed>
     <bibliomixed>Marcoux, Yves. <quote>Graph characterization of overlap-only TexMECS and other
         overlapping markup formalisms.</quote> Presented at Balisage: The Markup Conference 2008,
       Montréal, Canada, August 12 - 15, 2008. In <emphasis role="ital">Proceedings of Balisage: The
@@ -1517,6 +1578,9 @@ And mock you with me after I am gone.</programlisting>
         unification of formats for overlapping markup.</quote>
       <emphasis role="ital">New review of hypermedia and multimedia</emphasis>, 14.1 (2008): 57–94.
         <link>https://hal-univ-diderot.archives-ouvertes.fr/hal-00340578/document</link></bibliomixed>
+    <bibliomixed xml:id="MDN_DOM" xreflabel="MDN DOM">Mozilla Developer Network. <quote>Document
+        Object Model (DOM).</quote>
+      <link>https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model</link></bibliomixed>
     <bibliomixed xml:id="peroni_2014" xreflabel="Peroni et al. 2014">Peroni, Silvio, Francesco Poggi
       and Fabio Vitali. <quote>Overlapproaches in documents: a definitive classification (in OWL,
         2!).</quote> Presented at Balisage: The Markup Conference 2014, Washington, DC, August 5 -
@@ -1543,9 +1607,6 @@ And mock you with me after I am gone.</programlisting>
         Initiative</emphasis> [Online], Issue 8 | December 2014 - December 2015, Online since 21
       November 2015, connection on 08 March 2017. URL: <link>http://jtei.revues.org/1337</link>;
       DOI: 10.4000/jtei.1337.</bibliomixed>
-    <bibliomixed><quote>Range relationships.</quote> From LMNLWiki. From the <emphasis role="ital"
-        >Lost Archives of LMNL</emphasis>. <link
-        xlink:href="http://lmnl-markup.org/specs/archive/Range_relationships.xhtml"/></bibliomixed>
     <bibliomixed xml:id="renear_1996" xreflabel="Renear, Mylonas, and Durand 1996">Renear, Allen H.,
       Elli Mylonas, and David G. Durand. <quote>Refining our notion of what text really is: the
         problem of overlapping hierarchies.</quote>
@@ -1575,11 +1636,19 @@ And mock you with me after I am gone.</programlisting>
     <bibliomixed xml:id="tennison_2008" xreflabel="Tennison 2008">Tennison, Jeni. <quote>Overlap,
         containment and dominance. <emphasis role="ital">Jeni’s musings</emphasis>, 2008-12-06. </quote>
       <link>http://www.jenitennison.com/2008/12/06/overlap-containment-and-dominance.html</link></bibliomixed>
-    <bibliomixed xml:id="xml" xreflabel="XML">Extensible Markup Language (XML) 1.0 (Fifth Edition).
-        <link>http://www.w3.org/TR/xml/</link></bibliomixed>
-    <bibliomixed xml:id="xmlinfoset" xreflabel="XML InfoSet">XML Information Set (second edition).
-        <link>https://www.w3.org/TR/xml-infoset/</link></bibliomixed>
-    <bibliomixed xml:id="xdm6" xreflabel="XDM §6">XQuery and XPath Data Model 3.1. §6. Nodes.
-        <link>https://www.w3.org/TR/xpath-datamodel-3/#Node</link></bibliomixed>
+    <bibliomixed xml:id="W3C_DOM" xreflabel="W3C DOM">W3C. <quote>What is the Document Object
+        Model?</quote>
+      <emphasis role="ital">Document Object Model (DOM). Level 2 Core Specification. Version
+        1.0</emphasis>
+      <link>https://www.w3.org/TR/DOM-Level-2-Core/introduction.html</link></bibliomixed>
+    <bibliomixed xml:id="W3C_xml" xreflabel="W3C XML">W3C. <emphasis role="ital">Extensible Markup
+        Language (XML) 1.0 (fifth edition).</emphasis>
+      <link>http://www.w3.org/TR/xml/</link></bibliomixed>
+    <bibliomixed xml:id="W3C_xmlinfoset" xreflabel="W3C XML InfoSet">W3C. <emphasis role="ital">XML
+        Information Set (second edition).</emphasis>
+      <link>https://www.w3.org/TR/xml-infoset/</link></bibliomixed>
+    <bibliomixed xml:id="W3C_xdm" xreflabel="W3C XDM">W3C. <emphasis role="ital">XQuery and XPath
+        Data Model 3.1.</emphasis>
+      <link>https://www.w3.org/TR/xpath-datamodel-3/#Node</link></bibliomixed>
   </bibliography>
 </article>
