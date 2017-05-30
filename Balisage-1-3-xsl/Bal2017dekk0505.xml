@@ -1696,6 +1696,11 @@ And mock you with me after I am gone.</programlisting>
     <bibliomixed xml:id="MDN_DOM" xreflabel="MDN DOM">Mozilla Developer Network. <quote>Document
         Object Model (DOM).</quote>
       <link>https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model</link></bibliomixed>
+    <bibliomixed xml:id="nichol_2002" xreflabel="Nichol 2002">Nichol, Gavin. <quote>Core range
+        algebra: toward a formal model of markup.</quote>
+      <emphasis role="ital">Proceedings of Extreme Markup Languages</emphasis> 2002. <link
+        xlink:href="http://conferences.idealliance.org/extreme/html/2002/Nicol01/EML2002Nicol01.html"
+      /></bibliomixed>
     <bibliomixed xml:id="peroni_2014" xreflabel="Peroni et al. 2014">Peroni, Silvio, Francesco Poggi
       and Fabio Vitali. <quote>Overlapproaches in documents: a definitive classification (in OWL,
         2!).</quote> Presented at Balisage: The Markup Conference 2014, Washington, DC, August 5 -
