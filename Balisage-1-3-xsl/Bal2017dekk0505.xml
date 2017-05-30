@@ -795,45 +795,45 @@
         <title>Constraints</title>
         <para>Only the following types of edges are permitted:</para>
         <table>
-            <tr>
-              <th  colspan="2" rowspan="2"/>
-              <th colspan="4" align="center">Head</th>
-            </tr>
-            <tr>
-              <th>Document</th>
-              <th>Text</th>
-              <th>Markup</th>
-              <th>Annotation</th>
-            </tr>
-            <tr>
-              <th rowspan="4" valign="middle">Tail</th>
-              <th>Document</th>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <th>Text</th>
-              <td>edge</td>
-              <td>edge</td>
-              <td>hyperedge</td>
-              <td>edge</td>
-            </tr>
-            <tr>
-              <th>Markup</th>
-              <td>-</td>
-              <td>-</td>
-              <td>hyperedge</td>
-              <td>hyperedge</td>
-            </tr>
-            <tr>
-              <th>Annotation</th>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>hyperedge</td>
-            </tr>
+          <tr>
+            <th colspan="2" rowspan="2"/>
+            <th colspan="4" align="center">Head</th>
+          </tr>
+          <tr>
+            <th>Document</th>
+            <th>Text</th>
+            <th>Markup</th>
+            <th>Annotation</th>
+          </tr>
+          <tr>
+            <th rowspan="4" valign="middle">Tail</th>
+            <th>Document</th>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <th>Text</th>
+            <td>edge</td>
+            <td>edge</td>
+            <td>hyperedge</td>
+            <td>edge</td>
+          </tr>
+          <tr>
+            <th>Markup</th>
+            <td>-</td>
+            <td>-</td>
+            <td>hyperedge</td>
+            <td>hyperedge</td>
+          </tr>
+          <tr>
+            <th>Annotation</th>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>hyperedge</td>
+          </tr>
         </table>
         <para>An implementation must raise an error if:<itemizedlist>
             <listitem>
@@ -1089,6 +1089,17 @@
       <title>Containment and dominance (cite someone; Jeni?)</title>
       <para><emphasis role="ital">TODO: Where two ranges fully overlap, XML requires one to contain
           and dominate the other</emphasis></para>
+      <para>In natural language processing tokenization is the process of breaking a string of
+        characters up into individual words. Tokenization is done using regular expressions. Regular
+        expressions however only work on textual data and not on markup. (See the famous
+        stackoverflow post for reference). On top of that the tokens themselves add another layer of
+        information to file/model/data/document (not sure what the right word to use is here), which
+        can overlap with the already existing hierarchy in the document. A data model for text that
+        can handle multiple overlapping hierarchies or layers of annotations and that allows read as
+        well as write operations can help out here. During tokenization all of the markup can be put
+        'aside' as it were and the tokenizer only pays attention to the textual content. The
+        individual tokens are markup in a separate annotation layer. The existing markup layers are
+        only ignored during tokenization, and still exist in the data.</para>
     </section>
     <section>
       <title>Scope of reference</title>
@@ -1511,20 +1522,6 @@
         nodes that is only in the current set of markup nodes we write open tags. <emphasis
           role="bold">TODO: write something</emphasis></para>
     </section>
-  </section>
-  <section>
-    <title>Example use case: tokenization with markup</title>
-    <para>In natural language processing tokenization is the process of breaking a string of
-      characters up into individual words. Tokenization is done using regular expressions. Regular
-      expressions however only work on textual data and not on markup. (See the famous stackoverflow
-      post for reference). On top of that the tokens themselves add another layer of information to
-      file/model/data/document (not sure what the right word to use is here), which can overlap with
-      the already existing hierarchy in the document. A data model for text that can handle multiple
-      overlapping hierarchies or layers of annotations and that allows read as well as write
-      operations can help out here. During tokenization all of the markup can be put 'aside' as it
-      were and the tokenizer only pays attention to the textual content. The individual tokens are
-      markup in a separate annotation layer. The existing markup layers are only ignored during
-      tokenization, and still exist in the data.</para>
   </section>
   <section>
     <title>Conclusions</title>
