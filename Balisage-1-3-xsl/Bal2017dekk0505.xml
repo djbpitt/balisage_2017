@@ -795,13 +795,10 @@
         <title>Constraints</title>
         <para>Only the following types of edges are permitted:</para>
         <table>
-          <thead valign="top">
             <tr>
-              <th rowspan="2" colspan="2"/>
+              <th  colspan="2" rowspan="2"/>
               <th colspan="4" align="center">Head</th>
             </tr>
-          </thead>
-          <tbody>
             <tr>
               <th>Document</th>
               <th>Text</th>
@@ -837,7 +834,6 @@
               <td>-</td>
               <td>hyperedge</td>
             </tr>
-          </tbody>
         </table>
         <para>An implementation must raise an error if:<itemizedlist>
             <listitem>
