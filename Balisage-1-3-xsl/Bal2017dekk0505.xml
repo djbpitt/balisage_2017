@@ -455,7 +455,7 @@
           hyperedges on them, textual content can have multiple markup on it, and because
           Markup-to-Text hyperedges do not form a tree, that situation does not engender overlap
           concerns. Annotations on Markup nodes provide supplementary information (metadata) about
-          the node, similarly to attributes in XML, except that in TAG, as in LMNL, annotations  can
+          the node, similarly to attributes in XML, except that in TAG, as in LMNL, annotations can
           have rich content, and are not limited to just a name and an atomic value. (As in XML and
           contrary to LMNL, annotations on a Markup or Annotation node in TAG are unordered.)</para>
         <para>Where dominance relations must be modeled, TAG uses Markup-to-Markup hyperedges to
@@ -747,13 +747,13 @@
                   Markup-to-Text hyperedges connect a single Markup node (head) to a set of Text
                   nodes (tail). In the Shakespearean sonnet example above, fourteen Markup-to-Text
                   hyperedges each point from a single Markup node with a <code>name</code> property
-                  value of <quote>line</quote> to a set of one Text node, three Markup-to-Markup
+                  value of <quote>line</quote> to a set of one Text node, three Markup-to-Text
                   hyperedges with a <code>name</code> property value of <quote>quatrain</quote> each
-                  point to a set of four Text nodes, and one Markup-to-Markup hyperedge with a
+                  point to a set of four Text nodes, and one Markup-to-Text hyperedge with a
                     <code>name</code> property value of <quote>couplet</quote> points to a set of
                   two Text nodes. Note that the <quote>quatrain</quote> and <quote>couplet</quote>
                   Markup nodes point to Text nodes, and not to the <quote>line</quote> Markup nodes
-                  (although Markup-to-Markup hyperedges may be added; see below). This is an
+                  (although Markup-to-Markup hyperedges can be added if that is needed). This is an
                   important difference from the XML tree structure.</para>
               </listitem>
             </itemizedlist></para>
