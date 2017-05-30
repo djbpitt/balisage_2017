@@ -543,12 +543,12 @@
             that has a meaningful semantic. A page may happen to <emphasis role="ital"
               >contain</emphasis> a stanza, but a poem <emphasis role="ital">dominates</emphasis>
             the stanzas that it contains.[<xref linkend="tennison_2008"/>]</para>
-        </blockquote>In TAG, a Markup-to-Text hyperedge defines the tail as a set of Text nodes
-        and labels (datatypes) it. Containment is modeled by subset relations among the tails of
-        Markup nodes. In this example, all quatrain and line Markup-to-Text edges point to sets of
-        Text nodes. Where the Text nodes that constitute the tail of a line Markup-to-Text edge form
-        a subset of the nodes that constitute the tail of a quatrain Markup-to-Text edge, the
-        quatrain contains the line.<footnote>
+        </blockquote>In TAG, a Markup-to-Text hyperedge defines the tail as a set of Text nodes and
+        labels (datatypes) it. Containment is modeled by subset relations among the tails of Markup
+        nodes. In this example, all quatrain and line Markup-to-Text edges point to sets of Text
+        nodes. Where the Text nodes that constitute the tail of a line Markup-to-Text edge form a
+        subset of the nodes that constitute the tail of a quatrain Markup-to-Text edge, the quatrain
+        contains the line.<footnote>
           <para>Note that the quatrain Markup node does not contain or have any other direct
             relationship to the line Markup node. It is the set of Text nodes of the quatrain that
             contains the set of Text nodes of the line.</para>
@@ -670,11 +670,11 @@
                 hyperedge be continuous.</para>
             </listitem>
             <listitem>
-              <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes
-                represent metadata about the targets of Markup nodes, and are thus similar to the
-                way attributes represent properties of elements in XML. The <code>name</code>
-                property of an Annotation node is analogous to the name of an XML attribute. As with
-                LMNL annotations and unlike XML attributes, Annotation nodes may have content that
+              <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
+                metadata about the targets of Markup nodes, and are thus similar to the way
+                attributes represent properties of elements in XML. The <code>name</code> property
+                of an Annotation node is analogous to the name of an XML attribute. As with LMNL
+                annotations and unlike XML attributes, Annotation nodes may have content that
                 includes markup, there may be annotations on annotations, and there may be multiple
                 annotations with the same name on a single Markup or Annotation node. Unlike LMNL
                 but like XML attributes, annotations are unordered (but if they contain Text nodes,
@@ -859,8 +859,8 @@
             </listitem>
             <listitem>
               <para>there is not exactly one Text node in the main text and in the text of every
-                annotation that does not point to another Text node, except that an Annotation is not
-                required to have text.</para>
+                annotation that does not point to another Text node, except that an Annotation is
+                not required to have text.</para>
             </listitem>
             <listitem>
               <para>Two contiguous Text nodes are in the tail of all of the same Markup-to-Text
@@ -1361,11 +1361,11 @@
           to be strictly hierarchical. In DOM the relationship between a parent and a child is
           always one of dominance (hierarchy). In TAG, on the other hand, by default there is no
           direct relation among Markup nodes. Dominance relations may be expressed by adding a
-          Markup-to-Markup hyperedge with a Type value of <quote>dominance</quote> that points from one Markup
-          node a set of Markup nodes. Containment relations can be calculated from the intersection
-          of the Text nodes of two Markup nodes, and does not need to be modeled explicitly. For
-          example, where in XML a <code>&lt;quatrain></code> element might be the parent of four
-            <code>&lt;line></code> elements, in TAG the <quote>quatrain</quote> and
+          Markup-to-Markup hyperedge with a Type value of <quote>dominance</quote> that points from
+          one Markup node a set of Markup nodes. Containment relations can be calculated from the
+          intersection of the Text nodes of two Markup nodes, and does not need to be modeled
+          explicitly. For example, where in XML a <code>&lt;quatrain></code> element might be the
+          parent of four <code>&lt;line></code> elements, in TAG the <quote>quatrain</quote> and
             <quote>line</quote> Markup nodes point to sets of Text nodes, and the formal expression
           is not that the quatrain contains the line, but that the Text nodes of the line are a
           subset of the Text nodes of the quatrain.</para>
@@ -1389,41 +1389,55 @@
     </section>
     <section>
       <title>TAG and LMNL</title>
-      <para><emphasis role="bold">TODO: General comments about TAG and LMNL</emphasis></para>
-      <para>One of the differences with the DOM model is that the type of relation between the
-        markup nodes can be deferred to a later stage. LMNL has the same idea, see the comparison
-        with LMNL for more information.</para>
-      <para> Modification is not a local operation: there it differs from the LMNL model see the
-        comparison with the LMNL model.</para>
+      <para>The four text models described in this paper can be categorized according to whether
+        they are based on trees (XML, GODDAG) or not (LMNL, TAG), and in this respect LMNL is the
+        most similar to TAG of the other three. This section examines the similarities and
+        differences between TAG and LMNL.</para>
       <section>
         <title>The LMNL and TAG data models</title>
-        <para><emphasis role="bold">TODO</emphasis></para>
+        <para>LMNL is based on ranges of atoms, which can be understood as (possibly overlapping)
+          projections over a continuous, ordered set of atoms (typically, although not exclusively,
+          Unicode characters). TAG Markup nodes are projected over a continuous ordered set of Text
+          nodes, rather than atoms, which is fundamentally a question of granularity, since Text
+          nodes could be decomposed into Unicode characters.</para>
+        <para>A more fundamental difference is that LMNL ranges must be continuous because they have
+          single <code>start</code> and <code>end</code> properties [<xref linkend="LMNL_data"/>],
+          and <quote>a value comprising a single string (a sequence of contiguous
+            characters).</quote> [<xref linkend="piez_2014"/>] This means that LMNL must model
+          discontinuous sets of atoms, such as those constituting the divided quotation above,
+          differently from continuous ones. A continuous set of atoms may serve as the content of a
+          single range, but discontinuous components must be stitched together through coindexing,
+          as illustrated in <quote>An example limen: relating discontinuous ranges</quote> in <xref
+            linkend="piez_2008"/>. This means that a Markup-to-Text hyperedge in TAG has the same
+          structure regardless of whether the Text nodes in the tail are continuous. This lets us
+          tag a single quotation or a single song with a single Markup node regardless of whether
+          its text is continuous, while LMNL requires multiple ranges, and a mechanism for relating
+          them to one another, in situations involving discontinuity.</para>
       </section>
       <section>
         <title>LMNL syntax in a TAG environment</title>
-        <para><emphasis role="bold">TODO</emphasis></para>
-      </section>
-      <section>
-        <title>What LMNL syntax doesn't represent</title>
-        <para><emphasis role="bold">TODO:</emphasis> (apparently reserved for the limen, and not yet
-          specified) that TAG requires</para>
+        <para>At present TAG does not have its own syntax, and strategies for import and export are
+          under active development in Alexandria. Alexandria is able to parse and import flat LMNL
+          sawtooth syntax, but it treats the syntax as an expresssion of TAG properties, rather than
+          LMNL ones. This means, for example, that although annotations on the same object in LMNL
+          are ordered, because those in TAG are not, this order is not treated as informational
+          during import or export, or internally. It also means that TAG structures that are not
+          naturally represented in LMNL syntax, such as the Document node or discontinuous sets of
+          Text nodes, also require special handling. The same is true of LMNL structures that are
+          not (yet) represented in LMNL sawtooth syntax, such as the limen. [<xref
+            linkend="piez_2008"/>] Alexandria is not intended to be an implementation of LMNL, and
+          the use of LMNL sawtooth syntax in TAG should not be misunderstood as representing the
+          LMNL data model.</para>
       </section>
       <section>
         <title>Hypergraph versus ranges</title>
-        <para>With the range conceptual model it is inexpensive to add extra annotation layers,
-          however modifying the textual content is very expensive, since all the ranges of
-          annotations that come after the point of insertion have to be recalculated. Hypergraph
-          versus GODDAG: With the directed acyclic graph model it is inexpensive to add or change
-          textual content, however since all the annotation nodes have to be connected to all the
-          textual nodes involved this model scales badly with the number of textual nodes and the
-          number of annotations. Hypergraph versus DOM: In the traditional tree model it is cheap to
-          add or modify textual content and to add annotations, however there is only a single
-          hierarchy. On top of that, having a hierarchy is required. Scalability of the hypergraph
-          model versus all the other models: In the hypergraph approach it is inexpensive (we really
-          should use O notations here) to add or modify textual content, adding annotations is not
-          as cheap as it is with ranges, (a new set needs to be created and a bit needs to be set
-          for every text node involved), but it's cheaper than the DAG model, since hypergraphs can be
-          stored as sets rather than having to model individual edges.</para>
+        <para>LMNL defines ranges according to their offset into the stream of atoms that makes up
+          the content of the document, which makes it inexpensive for an implementation to add new
+          annotations, but expensive to modify the textual content because doing so changes the
+          offsets of all annotations that begin after the point of insertion. A modification of
+          textual content in TAG is a local modification of an ordered set, that is, of a list,
+          which is an inexpensive operation.
+          <!--This was originally in the LMNL section, and should be moved elsewhere (and perhaps divided over multiple locations). Hypergraph versus GODDAG: With the directed acyclic graph model it is inexpensive to add or change textual content, however since all the annotation nodes have to be connected to all the textual nodes involved this model scales badly with the number of textual nodes and the number of annotations. Hypergraph versus DOM: In the traditional tree model it is cheap to add or modify textual content and to add annotations, however there is only a single hierarchy. On top of that, having a hierarchy is required. Scalability of the hypergraph model versus all the other models: In the hypergraph approach it is inexpensive (we really should use O notations here) to add or modify textual content, adding annotations is not as cheap as it is with ranges, (a new set needs to be created and a bit needs to be set for every text node involved), but it's cheaper than the DAG model, since hypergraphs can be stored as sets rather than having to model individual edges.--></para>
       </section>
       <section>
         <title>Comparison of the hypergraph model with the LMNL markup file format</title>
@@ -1434,9 +1448,9 @@
           representing the many-to-many relation between them. That is, a text node has zero or more
           ranges on it, while a range can have zero or more text nodes associated with it. A range
           can be annotated, and an annotation can itself be annotated.</para>
-        <para>The LMNL markup file format removes the constraint that the last opened range has to be
-          closed first. That means that it is possible to model overlapping hierarchies in LMNL. To
-          be more precise, it is possible to model annotations with one hierarchy, multiple
+        <para>The LMNL markup file format removes the constraint that the last opened range has to
+          be closed first. That means that it is possible to model overlapping hierarchies in LMNL.
+          To be more precise, it is possible to model annotations with one hierarchy, multiple
           hierarchies or no hierarchy at all. This allows for a great freedom to model all kinds of
           information on textual content. This is great from a content perspective. However LMNL is
           more expensive from a computational perspective.</para>
@@ -1455,7 +1469,7 @@
       </section>
     </section>
     <section>
-      <title>TAG and linguistic corpora</title>
+      <title>TAG and linguistic databases</title>
       <para><emphasis role="bold">TODO: Linguistic corpora are not recursive; there’s a single text
           stream</emphasis></para>
     </section>
@@ -1494,8 +1508,8 @@
         text node. Now we follow the hyperedges that are connected to this text node. There can be
         zero or more hyperedges present on a text nodes. Each hyperedge connects to one markup node.
         We collect all the markup nodes that are connected to the text node. For each of them we
-        write a start tag. Then we go to the next text node by following the outgoing edge to the next
-        text node. Like before we collect all the markup nodes connected to this text node. We
+        write a start tag. Then we go to the next text node by following the outgoing edge to the
+        next text node. Like before we collect all the markup nodes connected to this text node. We
         calculate the differences between the sets. For the intersection we do nothing. For markup
         nodes that are only the set of the previous nodes we write close tags. For the set of markup
         nodes that is only in the current set of markup nodes we write open tags. <emphasis
@@ -1668,20 +1682,22 @@ And mock you with me after I am gone.</programlisting>
         <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
       Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
         <link>https://www.cs.vassar.edu/~ide/papers/LAW.pdf</link></bibliomixed>
-    <bibliomixed>LMNLWiki. <quote>LMNL data model.</quote> From the <emphasis role="ital">Lost
-        Archives of LMNL</emphasis>.
+    <bibliomixed xml:id="LMNL_data" xreflabel="LMNL data model">LMNLWiki. <quote>LMNL data
+        model.</quote> From the <emphasis role="ital">Lost Archives of LMNL</emphasis>.
         <link>http://www.lmnl.net/prose/data-model/data-model-spec.html</link></bibliomixed>
-    <bibliomixed>LMNLWiki <quote>Range relationships.</quote> From the <emphasis role="ital">Lost
-        Archives of LMNL</emphasis>. <link
-        xlink:href="http://lmnl-markup.org/specs/archive/Range_relationships.xhtml"/></bibliomixed>
-    <bibliomixed>Marcoux, Yves. <quote>Graph characterization of overlap-only TexMECS and other
-        overlapping markup formalisms.</quote> Presented at Balisage: The Markup Conference 2008,
-      Montréal, Canada, August 12 - 15, 2008. In <emphasis role="ital">Proceedings of Balisage: The
-        Markup Conference</emphasis> 2008. Balisage Series on Markup Technologies, vol. 1 (2008).
-      DOI: 10.4242/BalisageVol1.Marcoux01.
+    <bibliomixed xml:id="LMNL_ranges" xreflabel="LMNL range relations">LMNLWiki <quote>Range
+        relationships.</quote> From the <emphasis role="ital">Lost Archives of LMNL</emphasis>.
+        <link xlink:href="http://lmnl-markup.org/specs/archive/Range_relationships.xhtml"
+      /></bibliomixed>
+    <bibliomixed xml:id="marcoux_2008" xreflabel="Marcous 2008">Marcoux, Yves. <quote>Graph
+        characterization of overlap-only TexMECS and other overlapping markup formalisms.</quote>
+      Presented at Balisage: The Markup Conference 2008, Montréal, Canada, August 12 - 15, 2008. In
+        <emphasis role="ital">Proceedings of Balisage: The Markup Conference</emphasis> 2008.
+      Balisage Series on Markup Technologies, vol. 1 (2008). DOI: 10.4242/BalisageVol1.Marcoux01.
         <link>http://www.balisage.net/Proceedings/vol1/html/Marcoux01/BalisageVol1-Marcoux01.html</link></bibliomixed>
-    <bibliomixed>Marinelli, Paolo Fabio Vitali, and Stefano Zacchiroli. <quote>Towards the
-        unification of formats for overlapping markup.</quote>
+    <bibliomixed xml:id="marinelli_2008" xreflabel="Marinelli, Vitali, and Zacchiroli 2008"
+      >Marinelli, Paolo Fabio Vitali, and Stefano Zacchiroli. <quote>Towards the unification of
+        formats for overlapping markup.</quote>
       <emphasis role="ital">New review of hypermedia and multimedia</emphasis>, 14.1 (2008): 57–94.
         <link>https://hal-univ-diderot.archives-ouvertes.fr/hal-00340578/document</link></bibliomixed>
     <bibliomixed xml:id="MDN_DOM" xreflabel="MDN DOM">Mozilla Developer Network. <quote>Document
