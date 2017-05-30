@@ -732,9 +732,9 @@
                   Markup-to-Text hyperedges connect a single Markup node (head) to a set of Text
                   nodes (tail). In the Shakespearean sonnet example above, fourteen Markup-to-Text
                   hyperedges each point from a single Markup node with a Name property value of
-                    <quote>line</quote> to a set of one Text node, three Markup-to-Markup hyperedges
+                    <quote>line</quote> to a set of one Text node, three Markup-to-Text hyperedges
                   with a Name property value of <quote>quatrain</quote> each point to a set of four
-                  Text nodes, and one Markup-to-Markup hyperedge with a Name property value of
+                  Text nodes, and one Markup-to-Text hyperedge with a Name property value of
                     <quote>couplet</quote> points to a set of two Text nodes. Note that the
                     <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes point to Text
                   nodes, and not to the <quote>line</quote> Markup nodes (although Markup-to-Markup
