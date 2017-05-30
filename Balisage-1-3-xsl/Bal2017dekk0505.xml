@@ -6,15 +6,15 @@
   <subtitle>Refining our notion of what text really is—this time for sure!</subtitle>
   <!-- Verify that all items in bibliography are cited in body -->
   <!--
-    rhd: There is one more thing that we might have to discuss: a lot of scholars when they 
-    hear/read the word graph think of semantic networks. It is important to stress that a 
-    text graph is not a semantic network. In the markup of an annotation layer it is of 
-    course possible to link to persons, places, organisations, events etc in a semantic 
-    network. The main point is that although a text graph and a semantic network are both 
-    networks, and they can link to each other, there are not the same. I suspect the Balisage 
-    crowd is more aware of this than the average  scholars but still. There are some Balisage 
-    papers that advocate combining XML with semantic networks. A text graph approach is still 
-    different from that approach. So maybe it would good to explicitly mention that to avoid 
+    rhd: There is one more thing that we might have to discuss: a lot of scholars when they
+    hear/read the word graph think of semantic networks. It is important to stress that a
+    text graph is not a semantic network. In the markup of an annotation layer it is of
+    course possible to link to persons, places, organisations, events etc in a semantic
+    network. The main point is that although a text graph and a semantic network are both
+    networks, and they can link to each other, there are not the same. I suspect the Balisage
+    crowd is more aware of this than the average  scholars but still. There are some Balisage
+    papers that advocate combining XML with semantic networks. A text graph approach is still
+    different from that approach. So maybe it would good to explicitly mention that to avoid
     confusion.
   -->
   <info>
@@ -107,7 +107,7 @@
       XML has the limitations it has, this presentation explores how an alternative model of Text as
       Graph (TAG) might address these types of structures and tasks in a more natural and idiomatic
       way than is available within an XML paradigm.</para>
-    <para>From an informatic perspective all documents are structured, including those are
+    <para>From an informatic perspective all documents are structured, including those that are
       traditionally identified as plain text. Some of the structural properties of plain-text
       documents are expressed through formatting conventions, such as the use of blank lines to
       separate paragraphs, or of indentation to mark the beginning of a paragraph, or of centering
@@ -361,7 +361,7 @@
       </itemizedlist></para>
     <!--explain the differences between graph models and trees and ranges? Or leave that
         discussion out?-->
-    <!--Reading Wendell his papers/articles about LMNL and Luminescent I can't help but notice
+    <!--Reading Wendell's papers/articles about LMNL and Luminescent I can't help but notice
         that it is mainly about modeling text using LMNL, querying (using xLMNL and xQuery
         extensions) and visualising data. These are all read only operations. The goal of the TAG
         model and its implementation in Alexandria is that it can be used to read as well as write
@@ -463,9 +463,9 @@
         <para>Markup nodes do not contain other Markup nodes; Markup nodes identify sets of Text
           nodes, and the Text nodes may form a subset relationship. This means that in TAG it is not
           meaningful to ask whether a set of Text nodes identified with one Markup node as a
-          paragraph and with a different Markup node as a quotation representations a paragraph that
+          paragraph and with a different Markup node as a quotation represents a paragraph that
           consists of a quotation or a quotation that consists of a paragraph. Where the hierarchy
-          of coextensive paragrahs and quotations matters, the relationship is one of dominance
+          of coextensive paragraphs and quotations matters, the relationship is one of dominance
           (hierarchy), rather than of containment.</para>
         <para>The separation of these four functions means that Markup always provides datatyping,
           since Markup nodes have a Name property. Because the target of Markup is a non-empty set
@@ -543,7 +543,7 @@
             that has a meaningful semantic. A page may happen to <emphasis role="ital"
               >contain</emphasis> a stanza, but a poem <emphasis role="ital">dominates</emphasis>
             the stanzas that it contains.[<xref linkend="tennison_2008"/>]</para>
-        </blockquote>In TAG, a Markup-to-Text hyperedge defines the tail as a set of Text nodes and
+        </blockquote>In TAG, a Markup-to-Text hyperedge defines the tail as a set of Text nodes
         and labels (datatypes) it. Containment is modeled by subset relations among the tails of
         Markup nodes. In this example, all quatrain and line Markup-to-Text edges point to sets of
         Text nodes. Where the Text nodes that constitute the tail of a line Markup-to-Text edge form
@@ -659,7 +659,7 @@
                 hyperedge be continuous.</para>
             </listitem>
             <listitem>
-              <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
+              <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes
                 represent metadata about the targets of Markup nodes, and are thus similar to the
                 way attributes represent properties of elements in XML. As with LMNL annotations and
                 unlike XML attributes, Annotation nodes may have content that includes markup, there
@@ -732,9 +732,9 @@
                   Markup-to-Text hyperedges connect a single Markup node (head) to a set of Text
                   nodes (tail). In the Shakespearean sonnet example above, fourteen Markup-to-Text
                   hyperedges each point from a single Markup node with a Name property value of
-                    <quote>line</quote> to a set of one Text node, three Markup-to-Markup hyperedges
+                    <quote>line</quote> to a set of one Text node, three Markup-to-Text hyperedges
                   with a Name property value of <quote>quatrain</quote> each point to a set of four
-                  Text nodes, and one Markup-to-Markup hyperedge with a Name property value of
+                  Text nodes, and one Markup-to-Text hyperedge with a Name property value of
                     <quote>couplet</quote> points to a set of two Text nodes. Note that the
                     <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes point to Text
                   nodes, and not to the <quote>line</quote> Markup nodes (although Markup-to-Markup
@@ -846,7 +846,7 @@
             </listitem>
             <listitem>
               <para>there is not exactly one Text node in the main text and in the text of every
-                annotation does not point to another Text node, except that an Annotation is not
+                annotation that does not point to another Text node, except that an Annotation is not
                 required to have text.</para>
             </listitem>
             <listitem>
@@ -1133,7 +1133,7 @@
         objects of type <quote>name</quote> with a word between them, and it is the
           <quote>name</quote> objects that contain the first and third words.</para>
       <para>TAG separates the use of markup in hierarchy and its use for datatyping, so that it is
-        possible to assign a type to text without distorting the hierarhcy. Here is the TAG
+        possible to assign a type to text without distorting the hierarchy. Here is the TAG
         representation of the same content:</para>
       <figure xml:id="romeo_hypergraph">
         <title>Romeo and Juliet (TAG)</title>
@@ -1195,7 +1195,7 @@
                   xlink:href="https://www.w3.org/TR/DOM-Level-2-Core/references.html#InfoSet"
                   >Infoset</link>]. The DOM is simply an API to this information set.</quote>
               <footnote>
-                <para>Alternaively, <quote>[t]he Document Object Model (DOM) is a programming
+                <para>Alternatively, <quote>[t]he Document Object Model (DOM) is a programming
                     interface for HTML, XML and SVG documents.</quote> [<xref linkend="MDN_DOM"
                   />]</para>
               </footnote> Because the DOM is defined as an API, it is organized around objects,
@@ -1345,7 +1345,7 @@
           to be strictly hierarchical. In DOM the relationship between a parent and a child is
           always one of dominance (hierarchy). In TAG, on the other hand, by default there is no
           direct relation among Markup nodes. Dominance relations may be expressed by adding a
-          hyperedge of with a Type value of <quote>dominance</quote> that points from one Markup
+          Markup-to-Markup hyperedge with a Type value of <quote>dominance</quote> that points from one Markup
           node a set of Markup nodes. Containment relations can be calculated from the intersection
           of the Text nodes of two Markup nodes, and does not need to be modeled explicitly. For
           example, where in XML a <code>&lt;quatrain></code> element might be the parent of four
@@ -1367,8 +1367,8 @@
         nodes is derived from explicit directed edges between the text segments. TAG differs in
         another way in the sense that relations between elements do not have to be one of
         domination. Relations between elements can be expressed by adding extra edges that are
-        typed. The kind of relations can be determined later through the use of a schema. GODDAG and
-        TAG are similar in the sense that they both support a N to N relation between elements
+        typed. The kind of relation can be determined later through the use of a schema. GODDAG and
+        TAG are similar in the sense that they both support an N to N relation between elements
         (called markup in TAG) and PC-DATA nodes (called text nodes in TAG).</para>
     </section>
     <section>
@@ -1399,14 +1399,14 @@
           annotations that come after the point of insertion have to be recalculated. Hypergraph
           versus GODDAG: With the directed acyclic graph model it is inexpensive to add or change
           textual content, however since all the annotation nodes have to be connected to all the
-          textual nodes involves this model scales badly with the number of textual nodes and the
+          textual nodes involved this model scales badly with the number of textual nodes and the
           number of annotations. Hypergraph versus DOM: In the traditional tree model it is cheap to
           add or modify textual content and to add annotations, however there is only a single
-          hierarchy. On top of that having a hierarchy is required. Scalability of the hypergraph
+          hierarchy. On top of that, having a hierarchy is required. Scalability of the hypergraph
           model versus all the other models: In the hypergraph approach it is inexpensive (we really
           should use O notations here) to add or modify textual content, adding annotations is not
           as cheap as it is with ranges, (a new set needs to be created and a bit needs to be set
-          for every text node involved), but it cheaper than the DAG model, since hypergraphs can be
+          for every text node involved), but it's cheaper than the DAG model, since hypergraphs can be
           stored as sets rather than having to model individual edges.</para>
       </section>
       <section>
@@ -1418,7 +1418,7 @@
           representing the many-to-many relation between them. That is, a text node has zero or more
           ranges on it, while a range can have zero or more text nodes associated with it. A range
           can be annotated, and an annotation can itself be annotated.</para>
-        <para>The LMNL markup file format removes the constraint that the last opened has to be
+        <para>The LMNL markup file format removes the constraint that the last opened range has to be
           closed first. That means that it is possible to model overlapping hierarchies in LMNL. To
           be more precise, it is possible to model annotations with one hierarchy, multiple
           hierarchies or no hierarchy at all. This allows for a great freedom to model all kinds of
@@ -1473,13 +1473,13 @@
         edge. One Document node is created. One Text node is created, containing all of the text. An
         edge is created from the Document node to the text node associating the text with the
         document. When we change the LMNL markup to "[doc}Hello World{doc]" How serialization works
-        A serialization of the TAG data model into a LMNL file is an example of an traversal over an
+        A serialization of the TAG data model into a LMNL file is an example of a traversal over an
         instance. Start with the Document node. A document node has an outgoing edge to the first
-        text node. Now we follow the hyperedges that are connect to this text node. There can be
+        text node. Now we follow the hyperedges that are connected to this text node. There can be
         zero or more hyperedges present on a text nodes. Each hyperedge connects to one markup node.
         We collect all the markup nodes that are connected to the text node. For each of them we
-        write a start tag. Then we go the next text node by following the outgoing edge to the next
-        text node. Like before we collect all the markup node connected to this text node. We
+        write a start tag. Then we go to the next text node by following the outgoing edge to the next
+        text node. Like before we collect all the markup nodes connected to this text node. We
         calculate the differences between the sets. For the intersection we do nothing. For markup
         nodes that are only the set of the previous nodes we write close tags. For the set of markup
         nodes that is only in the current set of markup nodes we write open tags. <emphasis
@@ -1495,9 +1495,9 @@
       file/model/data/document (not sure what the right word to use is here), which can overlap with
       the already existing hierarchy in the document. A data model for text that can handle multiple
       overlapping hierarchies or layers of annotations and that allows read as well as write
-      operations can help out here. During tokenization all of the markup can be put 'aside' if it
-      were and the tokenizer only pays attention to the textual content. The individual token are
-      markup in a separate annotation layer. The existing markup layer are only ignored during
+      operations can help out here. During tokenization all of the markup can be put 'aside' as it
+      were and the tokenizer only pays attention to the textual content. The individual tokens are
+      markup in a separate annotation layer. The existing markup layers are only ignored during
       tokenization, and still exist in the data.</para>
   </section>
   <section>
