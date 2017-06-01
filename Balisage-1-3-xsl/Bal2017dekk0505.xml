@@ -158,7 +158,8 @@
       that higher level.</para>
   </section>
   <section>
-    <title>Problem statetement, state of art, and desiderata for an improved text model</title>
+    <title>Problem statement, state of the art (XML, TexMECS/GODDAG, LMNL) and desiderata for an
+      improved text model</title>
     <para>In this section we illustrate several types of structures that are awkward for XML because
       they contradict or otherwise are not part of the OHCO tree model. For each we provide an
       abstract description of the problem, of one or more XML workarounds, and their  GODDAG and
@@ -405,7 +406,30 @@
       <para/>
     </section>
     <section>
-      <title>TODO: add title</title>
+      <title>TODO: Unfinished stuff</title>
+      <section>
+        <title>White space as crypto-overlap</title>
+        <para><emphasis role="bold">TODO: Examples include caesura in poetry</emphasis></para>
+      </section>
+      <section>
+        <title>Scope of reference</title>
+        <para><emphasis role="ital">Footnotes in XML are usually milestones, but they should be
+            annotations on elements, since milestones don’t have scope. But XML doesn’t permit
+            markup in attributes. XML could make a footnote a child element, the parent of which is
+            its scope, but then the footnote becomes part of the content of the parent, rather than
+            an annotation. This is a use case for markup on annotations.</emphasis> Side issue:
+          should annotations in TAG be ordered? How about: no, unless there’s an edge that says
+          otherwise.</para>
+      </section>
+      <section>
+        <title>Artifactual content objects</title>
+        <para><emphasis role="bold">The &lt;app&gt; wrapper around readings in TEI parallel
+            segmentation isn’t in the variant graph. Why should it be in the model of a critical
+            text? The root element may also be an artifact.</emphasis></para>
+      </section>
+    </section>
+    <section>
+      <title>Data model versus syntax</title>
       <para>A third challenge of discussing XML as a model of text is distinguishing XML as a data
         model from XML as a syntax, and the same applies to the LMNL data model vs the LMNL sawtooth
         syntax and the GODDAG data structure vs TexMECS syntax. Perhaps a bit surprisingly in the
@@ -441,6 +465,9 @@
             syntactic or other expressions.</para>
         </caption>
       </figure>
+    </section>
+    <section>
+      <title>Semantics versus application level</title>
       <para>A fourth issue, which intersects with the three above, involves distinguishing
         properties that inhere in the text being modeled from those that depend on semantics that
         must be interpreted at a higher (application) level. A failure to make this distinction may
@@ -484,6 +511,9 @@
               when it is not from the model, without recourse to semantics.</para>
           </listitem>
         </itemizedlist></para>
+    </section>
+    <section>
+      <title>Desiderata for an improved text model</title>
       <para>An improved text model should have the following properties. In all instances where we
         write that <quote>the model should be able to X</quote>, we mean that it should be able to X
         without requiring access to semantic information at the application level. In other words,
@@ -1159,26 +1189,6 @@
         individual tokens are markup in a separate annotation layer. The existing markup layers are
         only ignored during tokenization, and still exist in the data.</para>
       <para>END OLD TEXT</para>
-    </section>
-    <section>
-      <title>White space as crypto-overlap</title>
-      <para><emphasis role="bold">TODO: Examples include caesura in poetry</emphasis></para>
-    </section>
-    <section>
-      <title>Scope of reference</title>
-      <para><emphasis role="ital">Footnotes in XML are usually milestones, but they should be
-          annotations on elements, since milestones don’t have scope. But XML doesn’t permit markup
-          in attributes. XML could make a footnote a child element, the parent of which is its
-          scope, but then the footnote becomes part of the content of the parent, rather than an
-          annotation. This is a use case for markup on annotations.</emphasis> Side issue: should
-        annotations in TAG be ordered? How about: no, unless there’s an edge that says
-        otherwise.</para>
-    </section>
-    <section>
-      <title>Artifactual content objects</title>
-      <para><emphasis role="bold">The &lt;app&gt; wrapper around readings in TEI parallel
-          segmentation isn’t in the variant graph. Why should it be in the model of a critical text?
-          The root element may also be an artifact.</emphasis></para>
     </section>
     <section>
       <title>Artifactual hierarchy and datatyping</title>
