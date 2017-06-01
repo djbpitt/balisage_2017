@@ -158,24 +158,96 @@
       that higher level.</para>
   </section>
   <section>
-    <title>Desiderata for an improved text model</title>
+    <title>Problem statetement, state of art, and desiderata for an improved text model</title>
+    <para>In this section we illustrate several types of structures that are awkward for XML because
+      they contradict or otherwise are not part of the OHCO tree model. For each we provide an
+      abstract description of the problem, of one or more XML workarounds, and their  GODDAG and
+      LMNL counterparts, illustrated with examples drawn from use cases in Digital Humanities
+      research projects. The issues do not all pertain to the <quote>H</quote> (hierarchy) of OHCO;
+      some involve <quote>O</quote> (order) or <quote>CO</quote> (content objects) components, and
+      those that do pertain to hierarchy do not all involve overlap.</para>
     <!-- Michael and Claus 2008 emphasize that TEI markup requires semantics, while ours is in the model
       TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser -->
     <!-- TexMECS requires quotations to be divided in the model, while we don't -->
-    <para>The principal challenge to XML as a model of text is generally regarded as overlap, that
-      is, that text has structural properties that humans care about that cannot be modeled directly
-      as a tree, or, at least, as a rooted and ordered directed acyclic graph that does not permit
-      multiple parentage and that is constructed from the seven types of nodes that constitute the
-      XQuery and XPath data model.[<xref linkend="W3C_xdm"/> §6] Although overlap has received most
-      of the attention, overlap is only one challenge to XML modeling, and regarding overlap as
+    <section>
+      <title>Overlap</title>
+      <para>The principal challenge to XML as a model of text is generally regarded as overlap, that
+        is, that text has structural properties that humans care about that cannot be modeled directly
+        as a tree, or, at least, as a rooted and ordered directed acyclic graph that does not permit
+        multiple parentage and that is constructed from the seven types of nodes that constitute the
+        XQuery and XPath data model.[<xref linkend="W3C_xdm"/> §6] Although overlap has received most
+        of the attention, overlap is only one challenge to XML modeling, and regarding overlap as
         <emphasis role="ital">the problem</emphasis>, instead of as <emphasis role="ital">a symptom
-        of the problem</emphasis>, has led us to think more narrowly than we should about
-      alternatives to OHCO. If what text <quote>really is</quote> is not an ordered hierarchy of
-      content objects, what is it instead? The issues are well known to the XML community, so why
-      have they come largely (although not entirely) to be eclipsed by overlap in discussions of
-      what’s difficult about modeling documents in XML? These challenges, which have been negotiated
-      in XML modeling and processing through workarounds, find a natural solution in the TAG model
-      described here, as well as, at least in some respects, in LMNL and GODDAG/TexMECS.</para>
+          of the problem</emphasis>, has led us to think more narrowly than we should about
+        alternatives to OHCO. If what text <quote>really is</quote> is not an ordered hierarchy of
+        content objects, what is it instead? The issues are well known to the XML community, so why
+        have they come largely (although not entirely) to be eclipsed by overlap in discussions of
+        what’s difficult about modeling documents in XML? These challenges, which have been negotiated
+        in XML modeling and processing through workarounds, find a natural solution in the TAG model
+        described here, as well as, at least in some respects, in LMNL and GODDAG/TexMECS.</para>
+      <para>The challenge to modeling texts in XML that has attracted the most attention is overlap,
+        but overlap is sometimes described as a property of XML serialization, rather than of the XML
+        data model. Or, more precisely, overlap is one thing in the XML data model and a different,
+        but related thing in an XML serialization. In the data model, overlap refers to multiple
+        concurrent trees or partial trees, a situation that is not possible in XML because XML is
+        defined as a single tree. Notice in the image below how the phrase <quote>Two vast and
+          trunkless legs of stone Stand in the desart</quote> begins in the middle of line 2 and ends
+        in the middle of line 3, so that a tree of phrases overlaps a tree of lines:</para>
+      <figure xml:id="ozymandias">
+        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="ozymandias.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>[Image from
+            <link>http://piez.org/wendell/papers/dh2010/clix-sonnets/ozymandias-map.svg</link>,
+            which is part of <xref linkend="piez_2010"/>. The overlap is easier to see in the original
+            SVG, which is animated, and highlights portions of the document in response to mouse
+            events.]</para>
+        </caption>
+      </figure>
+      <para>Piez’s illustration is actually of LMNL ranges (see below), rather than of XML element
+        trees. The same structure might be visualized as overlapping trees as follows, where cyan
+        represents the tree of metrical lines and green represents the tree of linguistic
+        phrases:</para>
+      <figure xml:id="ozymandias_trees">
+        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="ozymandias_trees.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>Projecting two independent trees over a common set of words. In XML the individual
+            words would be not be children of <code>&lt;line&gt;</code> and
+            <code>&lt;phrase&gt;</code> elements, and would instead be grouped inside
+            <code>Text</code> node children of those elements.</para>
+        </caption>
+      </figure>
+      <para>Because it is not possible to represent the preceding structure in XML markup, the
+        following pseudo-XML is not well-formed:</para>
+      <programlisting>&lt;line&gt;&lt;phrase&gt;Who said —&lt;/phrase&gt; &lt;phrase&gt;“Two vast and trunkless legs of stone&lt;/line&gt;
+&lt;line&gt;Stand in the desart….&lt;/phrase&gt; &lt;phrase&gt;Near them,&lt;/phrase&gt; &lt;phrase&gt;on the sand&lt;/phrase&gt;&lt;/line&gt;</programlisting>
+      <para>New XML users often misunderstand the prohibition against overlap as a prohibition against
+        overlapping <emphasis role="ital">tags</emphasis>, but if that were the issue, it could be
+        remedied by simply removing the prohibition. The reality is that tags are a feature only of
+        the <emphasis role="ital">serialization</emphasis> of XML, and XML as a <emphasis role="ital"
+          >data model</emphasis> has hierarchical elements, rather than tags. The reason overlap is
+        prohibited, then, has nothing to do with a rule about tags; the rule about tags exists because
+        tags must represent the data model, the hierarchy in the data model prohibits multiple
+        parentage, and overlap would require that a <code>Text</code> node have more than one parent.
+        Overlap is possible in GODDAG not because TexMECS permits overlapping tags, but because GODDAG
+        permits <code>Text</code> nodes to have multiple parents and TexMECS serializes the GODDAG
+        model. LMNL sawtooth syntax may look like XML syntax with the prohibition against overlapping
+        tags removed, but the real difference is at the level of the data model: LMNL <emphasis
+          role="ital">ranges</emphasis> may overlap, and the content between XML start and end tags is
+        a sequence of descendant nodes in a tree, and not a range of atoms.</para>
+      <para>More about how LMNL snd GODDAG solve overlap</para>
+    </section>
+  <section>
+    <title>Hierarchy</title>
     <para>A second challenge of using XML as a model of text involves not the <emphasis role="ital"
         >limitations</emphasis> of OHCO, but its <emphasis role="ital">tyranny</emphasis>. If text
       is understood as an ordered hierarchy of content objects, are there aspects of text that are
@@ -368,6 +440,7 @@
         textual data and annotations. This opens up a lot of new possibilities and makes it a
         'complete' text repository system, comparable to XML databases albeit in a far more
         experimental state and a much lower level of maturity.-->
+  </section>
   </section>
   <section>
     <title>The TAG/hypergraph model for text</title>
@@ -913,75 +986,10 @@
   </section>
   <section>
     <title>How TAG addresses structures that are awkward for XML</title>
-    <para>In this section we illustrate how several types of structures that are awkward for XML
-      because they contradict or otherwise are not part of the OHCO tree model can be represented in
-      a natural way in TAG. For each we provide an abstract description of the problem, of one or
-      more XML workarounds, and of the TAG approach, illustrated with examples drawn from use cases
-      in Digital Humanities research projects. The issues do not all pertain to the <quote>H</quote>
-      (hierarchy) of OHCO; some involve <quote>O</quote> (order) or <quote>CO</quote> (content
-      objects) components, and those that do pertain to hierarchy do not all involve overlap.</para>
+    <para>In this section we illustrate how several types of structures that are awkward for XML can
+      be represented in a natural way in TAG. </para>
     <section>
       <title>Overlap</title>
-      <para>The challenge to modeling texts in XML that has attracted the most attention is overlap,
-        but overlap is sometimes described as a property of XML serialization, rather than of the
-        XML data model. Or, more precisely, overlap is one thing in the XML data model and a
-        different, but related thing in an XML serialization. In the data model, overlap refers to
-        multiple concurrent trees or partial trees, a situation that is not possible in XML because
-        XML is defined as a single tree. Notice in the image below how the phrase <quote>Two vast
-          and trunkless legs of stone Stand in the desart</quote> begins in the middle of line 2 and
-        ends in the middle of line 3, so that a tree of phrases overlaps a tree of lines:</para>
-      <figure xml:id="ozymandias">
-        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="ozymandias.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>[Image from
-              <link>http://piez.org/wendell/papers/dh2010/clix-sonnets/ozymandias-map.svg</link>,
-            which is part of <xref linkend="piez_2010"/>. The overlap is easier to see in the
-            original SVG, which is animated, and highlights portions of the document in response to
-            mouse events.]</para>
-        </caption>
-      </figure>
-      <para>Piez’s illustration is actually of LMNL ranges (see below), rather than of XML element
-        trees. The same structure might be visualized as overlapping trees as follows, where cyan
-        represents the tree of metrical lines and green represents the tree of linguistic
-        phrases:</para>
-      <figure xml:id="ozymandias_trees">
-        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="ozymandias_trees.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>Projecting two independent trees over a common set of words. In XML the individual
-            words would be not be children of <code>&lt;line&gt;</code> and
-              <code>&lt;phrase&gt;</code> elements, and would instead be grouped inside
-              <code>Text</code> node children of those elements.</para>
-        </caption>
-      </figure>
-      <para>Because it is not possible to represent the preceding structure in XML markup, the
-        following pseudo-XML is not well-formed:</para>
-      <programlisting>&lt;line&gt;&lt;phrase&gt;Who said —&lt;/phrase&gt; &lt;phrase&gt;“Two vast and trunkless legs of stone&lt;/line&gt;
-&lt;line&gt;Stand in the desart….&lt;/phrase&gt; &lt;phrase&gt;Near them,&lt;/phrase&gt; &lt;phrase&gt;on the sand&lt;/phrase&gt;&lt;/line&gt;</programlisting>
-      <para>New XML users often misunderstand the prohibition against overlap as a prohibition
-        against overlapping <emphasis role="ital">tags</emphasis>, but if that were the issue, it
-        could be remedied by simply removing the prohibition. The reality is that tags are a feature
-        only of the <emphasis role="ital">serialization</emphasis> of XML, and XML as a <emphasis
-          role="ital">data model</emphasis> has hierarchical elements, rather than tags. The reason
-        overlap is prohibited, then, has nothing to do with a rule about tags; the rule about tags
-        exists because tags must represent the data model, the hierarchy in the data model prohibits
-        multiple parentage, and overlap would require that a <code>Text</code> node have more than
-        one parent. Overlap is possible in GODDAG not because TexMECS permits overlapping tags, but
-        because GODDAG permits <code>Text</code> nodes to have multiple parents and TexMECS
-        serializes the GODDAG model. LMNL sawtooth syntax may look like XML syntax with the
-        prohibition against overlapping tags removed, but the real difference is at the level of the
-        data model: LMNL <emphasis role="ital">ranges</emphasis> may overlap, and the content
-        between XML start and end tags is a sequence of descendant nodes in a tree, and not a range
-        of atoms.</para>
       <para>TAG represents overlap naturally because the TAG counterpart to an XML element is a
         directed hyperedge that associates a head markup node with a set of tail nodes. To tag a
         line of poetry in the example above, TAG would create a hyperedge from a markup node with
