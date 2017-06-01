@@ -200,7 +200,7 @@
       as related to the XML InfoSet by the operations of serialization in one direction and parsing
       in the other. This matters because the serialization is, as is clear from the etymology of the
       term, committed to an ordered expression in ways that other representations of XML may not be,
-      and the same is true of other data models and their associated syntactic expressions through
+      and the same is true of other dxata models and their associated syntactic expressions through
       markup. If, for example, a paragraph is exactly coextensive with a quotation, in XML syntax,
       LMNL sawtooth syntax, and TexMECS syntax, the start tag of either the paragraph or the
       quotation must come first in linear order. But in LMNL the relative order of the ranges
@@ -1382,6 +1382,57 @@
     </section>
     <section>
       <title>TAG and GODDAG</title>
+      <section>
+        <title>Description of GODDAG</title>
+      <para>GODDAG, which stands for generalized ordered-descendant directed acyclic graph
+          (citation) is the data structure accompanying the MECS markup language and it's successor
+          TEXTMecs. </para>
+      <para>It is as a way to deal with the overlapping hierarchies problem. GODDAG presumes there
+          to be a hierarchy in the content. In contrast to the XDM it is allows for multiple
+          hierarchy to be represented instead of one. Instead of storing one tree in the graph,
+          multiple trees are stored in the graph, with shared nodes between the trees not being
+          duplicated. The root node is shared between the different hierarchies.</para>
+      <para>Both containment and dominance relations can be modelled in a GODDAG. Dominance relation
+        is the case one node is the parent of another and the children of the parent fully include
+        the children of its descendants. Otherwise the relation is treated as containment. This
+        means that most relations will be dominance.</para>
+      <para>The graph contains nodes, that are typed and ordered (as the name implies), as </para>
+      <para>There are two variants of GODDAG, the restricted and the generalized GODDAG. The
+        restricted variant allows for a single order of the text nodes, while the generalized model
+        allows multiple orders of text nodes.</para>
+      <para>The restricted variant is enough to implement the MECS and TEXTMecs markup language as a
+        data model parsing and processing.</para>
+      <para>The textual content of the document is segmented in non overlapping parts and stored in
+        the leaf nodes of the graph. Text nodes with empty Strings are allowed.</para>
+      <para>The order of the text nodes is determined by the parent nodes. </para>
+      <para>To represent discontinuous markup multiple (two or more) nodes are needed. (citation).
+          Discontinuity in GODDAG has to be represented by two or more separate markup nodes
+          (citation)</para>
+      </section>
+        <section>
+          <title>
+            Comparison between TAG and GODDAG
+          </title>
+          <para>
+            - Both GODDAG and TAG are based on graph structures. Both are directed. Both are acyclic. TAG using one to many edges (hyperedges), while GODDAG uses multiple one to one edges.
+            - TAG segments the textual content, just like GODDAG and XDM do.
+            - TAG has one order to the text nodes. This is similar to restricted goddags. The generalized GODDAG model can express multiple orders.
+            - The order of the text nodes in GODDAG is derived from it's parent nodes. In TAG the order of the text nodes is determined by the edges between the text nodes independent of the presence of a hierarchy in the markup nodes.
+            - GODDAG has a root node, TAG does not. A root node can be emulated 
+            - GODDAG presumes there to be one or more hierarchy. TAG does not (although a hierarchy can be expressed in TAG through the use of hyperedges between markup nodes).
+            - In both GODDAG and TAG dominance and containment can be expressed. Dominance is the default relationship in GODDAG, while containment is the default in TAG.
+            - In both GODDAG attributes and TAG annotations are unordered.
+            - In GODDAG attributes cannot contain markup, while in TAG annotations can have markup on them. Annotations can be annotated in TAG, while attributes cannot have attributes in GODDAG.
+            - Both GODDAG and TAG can model and process the data contained in MECS and TexMECS markup.
+            - Both GODDAG and TAG can model overlap.
+            - In GODDAG multiple nodes are needed to model discontinuity. In TAG only a single node and is needed.
+            - Both GODDAG and TAG support multiple parentage. That is to say that each markup node can contain multiple text nodes and each text node can have multiple markup nodes associated with it.
+            - Both GODDAG and TAG contain nodes that are typed. Element nodes are called Markup in TAG . Both contain text nodes. Attributes are called Annotations in TAG.
+            
+          </para>
+        <para/>
+        <para/>
+      <para>OLD TEXT</para>
       <para>The GODDAG datastructure allows for the storage of multiple hierarchies. Markup written
         in the MECS format can be parsed and read into memory. Elements that fully overlap are
         presumed to be dominating. Hierarchical structures are implied. Discontinuity is not
@@ -1393,8 +1444,9 @@
         typed. The kind of relation can be determined later through the use of a schema. GODDAG and
         TAG are similar in the sense that they both support an N to N relation between elements
         (called markup in TAG) and PC-DATA nodes (called text nodes in TAG).</para>
+      </section>
     </section>
-    <section>
+       <section>
       <title>TAG and LMNL</title>
       <para>The four text models described in this paper can be categorized according to whether
         they are based on trees (XML, GODDAG) or not (LMNL, TAG), and in this respect LMNL is the
