@@ -298,7 +298,7 @@
       </section>
       
   <section>
-      <title>Hierarchy</title>
+      <title>Hierarchy, containment and dominance</title>
       <para>A second challenge of using XML as a model of text involves not the <emphasis
           role="ital">limitations</emphasis> of OHCO, but its <emphasis role="ital"
           >tyranny</emphasis>. If text is understood as an ordered hierarchy of content objects, are
@@ -313,6 +313,56 @@
         hierarchy, and their focus is not limited to that issue, but they differ in the extent to
         which they interrogate aspects of text that may not be hierarchical, that may not be
         ordered, and that may not involve what a human would consider a content object.</para>
+      <para>As was mentioned earlier, the XML data model does not distinguish containment from
+        dominance, which Tennison explains as follows: <blockquote>
+          <para>Containment is a happenstance relationship between ranges while dominance is one
+            that has a meaningful semantic. A page may happen to <emphasis role="ital"
+              >contain</emphasis> a stanza, but a poem <emphasis role="ital">dominates</emphasis>
+            the stanzas that it contains.[<xref linkend="tennison_2008"/>]</para>
+        </blockquote></para>
+      <para><emphasis role="bold">TODO: add explaination about shakespear sonnet,
+          hierarchy</emphasis></para>
+      <para>Here is the corresponding XML in markup and tree representations:</para>
+      <programlisting>&lt;poem&gt;
+    &lt;quatrain&gt;
+        &lt;line&gt;No longer mourn for me when I am dead&lt;/line&gt;
+        &lt;line&gt;Than you shall hear the surly sullen bell&lt;/line&gt;
+        &lt;line&gt;Give warning to the world that I am fled&lt;/line&gt;
+        &lt;line&gt;From this vile world with vilest worms to dwell:&lt;/line&gt;
+    &lt;/quatrain&gt;
+    &lt;quatrain&gt;
+        &lt;line&gt;Nay, if you read this line, remember not&lt;/line&gt;
+        &lt;line&gt;The hand that writ it, for I love you so,&lt;/line&gt;
+        &lt;line&gt;That I in your sweet thoughts would be forgot,&lt;/line&gt;
+        &lt;line&gt;If thinking on me then should make you woe.&lt;/line&gt;
+    &lt;/quatrain&gt;
+    &lt;quatrain&gt;
+        &lt;line&gt;O! if,—I say you look upon this verse,&lt;/line&gt;
+        &lt;line&gt;When I perhaps compounded am with clay,&lt;/line&gt;
+        &lt;line&gt;Do not so much as my poor name rehearse;&lt;/line&gt;
+        &lt;line&gt;But let your love even with my life decay;&lt;/line&gt;
+    &lt;/quatrain&gt;
+    &lt;couplet&gt;
+        &lt;line&gt;Lest the wise world should look into your moan,&lt;/line&gt;
+        &lt;line&gt;And mock you with me after I am gone.&lt;/line&gt;
+    &lt;/couplet&gt;
+&lt;/poem&gt;</programlisting>
+      <figure xml:id="shakespeare_xml">
+        <title>William Shakespeare, Sonnet 71</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="shakespeare-sonnet_xml.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>The XML tree encodes containment and hierarchy in the same way.</para>
+        </caption>
+      </figure>
+      <para>The XML tree includes a <code>&lt;poem&gt;</code> root node, which is not present in the
+        TAG hypergraph, although, as explained above, we could have created one had we wished to do
+        so. The root node is not optional in XML because a tree requires a root. Additionally, the
+        XML <code>&lt;quatrain&gt;</code> and <code>&lt;couplet&gt;</code> elements are parents of
+          <code>&lt;line&gt;</code> elements, which are parents of <code>Text</code> nodes.</para>
     </section>
     <section>
       <title>Data typing and artificial hierarchy</title>
@@ -674,121 +724,6 @@
       </section>
     </section>
     <section>
-      <title>Example of TAG hypergraph and its XML counterpart</title>
-      <figure xml:id="shakespeare_hypergraph">
-        <title>William Shakespeare, Sonnet 71</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="shakespeare-sonnet-71_hypergraph.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>The Document node is beige, the Text nodes are pink, and the Markup nodes are green
-            (those with the Name property value of <quote>quatrain</quote> or
-            <quote>couplet</quote>) and cyan (those with the Name property value of
-              <quote>line</quote>). A chain of regular (one-to-one) edges, represented by solid
-            black arrowheads, begins at the Document node and connects the Text nodes in order. Text
-            nodes in this case are entire lines of text, but they could also be smaller units; see
-            the discussion of Overlap, below.</para>
-        </caption>
-      </figure>
-      <para>The illustration of a TAG hypergraph of William Shakespearea’s Sonnet 71 (<xref
-          linkend="sonnet-71_text"/>), above, includes a Document node, fourteen Text nodes, and
-        eighteen Markup nodes (fourteen with their Name property value equal to <quote>line</quote>,
-        three to <quote>quatrain</quote>, and one to <quote>couplet</quote>). Regular (one-to-one)
-        edges start at the Document node and chain all Text nodes in textual order (see below about
-        simultaneity and transposition). Hyperedges point from the Markup nodes into sets of Text
-        nodes. In this case, hyperedges that start in Markup nodes with the Name property of
-          <quote>line</quote> happen to point to a set that consists of a single Text node, and
-        those with Name property values of <quote>quatrain</quote> and <quote>couplet</quote> happen
-        to point to sets of four and two Text nodes, respectively. Note that in TAG, in contrast to
-        XML, a Markup node corresponding to the XML root element, although permitted, is not
-        required, and we’ve omitted it here. Also in contrast to XML, the <quote>quatrain</quote>
-        and <quote>couplet</quote> Markup nodes point directly to the Text nodes, and not to
-          <quote>line</quote> Markup nodes (although that, too, is possible; see below about
-        hierarchy).</para>
-      <para>As was mentioned earlier, the XML data model does not distinguish containment from
-        dominance, which Tennison explains as follows: <blockquote>
-          <para>Containment is a happenstance relationship between ranges while dominance is one
-            that has a meaningful semantic. A page may happen to <emphasis role="ital"
-              >contain</emphasis> a stanza, but a poem <emphasis role="ital">dominates</emphasis>
-            the stanzas that it contains.[<xref linkend="tennison_2008"/>]</para>
-        </blockquote>In TAG, a Markup-to-Text hyperedge defines the tail as a set of Text nodes and
-        labels (datatypes) it. Containment is modeled by subset relations among the tails of Markup
-        nodes. In this example, all quatrain and line Markup-to-Text edges point to sets of Text
-        nodes. Where the Text nodes that constitute the tail of a line Markup-to-Text edge form a
-        subset of the nodes that constitute the tail of a quatrain Markup-to-Text edge, the quatrain
-        contains the line.<footnote>
-          <para>Note that the quatrain Markup node does not contain or have any other direct
-            relationship to the line Markup node. It is the set of Text nodes of the quatrain that
-            contains the set of Text nodes of the line.</para>
-        </footnote> In this emphasis on containment, rather than dominance, TAG is similar to flat
-        LMNL, except that LMNL ranges must be continuous (LMNL handles discontinuity separately),
-        while contiguity is not relevant in defining the set of Text nodes that may serve as the
-        tail of a hyperedge in TAG (see the discussion of Discontinuity, below). In the example
-        above, we have chosen not to encode dominance, but should we wish to do that, we can use
-        Markup-to-Markup hyperedges, about which see below. Similarly, we have chosen not to make
-        the three quatrains and the couplet what in XML terms would be children of a root
-          <code>&lt;poem&gt;</code> element, but, should we wish, we could create a Markup-to-Text
-        hyperedge with a Name property value of <quote>poem</quote> (which would point, through a
-        hyperedge, to the set of all Text nodes in the poem), and, optionally, add a one-to-many
-        Markup-to-Markup hyperedge from it to the Markup nodes with <quote>quatrain</quote> and
-          <quote>couplet</quote> Name property values to specify dominance. In other words,
-        Markup-to-Text nodes model containment, rather than dominance (indirectly, through subset
-        properties of the Text nodes to which they point), and where the developer needs to
-        distinguish dominance from containment, the TAG model supports this through Markup-to-Markup
-        hyperedges.</para>
-      <para>As with any system for the representation of text, the choice of markup depends on a
-        combination of properties inherent in the text and the features that are of interest to the
-        person creating the markup. For example, we could also have created <quote>sentence</quote>
-        markup nodes (and we do that in the discussion of Overlap, below), but for illustrative
-        purposes the graph is easier to read without them.</para>
-      <para>Here is the corresponding XML in markup and tree representations:</para>
-      <programlisting>&lt;poem&gt;
-    &lt;quatrain&gt;
-        &lt;line&gt;No longer mourn for me when I am dead&lt;/line&gt;
-        &lt;line&gt;Than you shall hear the surly sullen bell&lt;/line&gt;
-        &lt;line&gt;Give warning to the world that I am fled&lt;/line&gt;
-        &lt;line&gt;From this vile world with vilest worms to dwell:&lt;/line&gt;
-    &lt;/quatrain&gt;
-    &lt;quatrain&gt;
-        &lt;line&gt;Nay, if you read this line, remember not&lt;/line&gt;
-        &lt;line&gt;The hand that writ it, for I love you so,&lt;/line&gt;
-        &lt;line&gt;That I in your sweet thoughts would be forgot,&lt;/line&gt;
-        &lt;line&gt;If thinking on me then should make you woe.&lt;/line&gt;
-    &lt;/quatrain&gt;
-    &lt;quatrain&gt;
-        &lt;line&gt;O! if,—I say you look upon this verse,&lt;/line&gt;
-        &lt;line&gt;When I perhaps compounded am with clay,&lt;/line&gt;
-        &lt;line&gt;Do not so much as my poor name rehearse;&lt;/line&gt;
-        &lt;line&gt;But let your love even with my life decay;&lt;/line&gt;
-    &lt;/quatrain&gt;
-    &lt;couplet&gt;
-        &lt;line&gt;Lest the wise world should look into your moan,&lt;/line&gt;
-        &lt;line&gt;And mock you with me after I am gone.&lt;/line&gt;
-    &lt;/couplet&gt;
-&lt;/poem&gt;</programlisting>
-      <figure xml:id="shakespeare_xml">
-        <title>William Shakespeare, Sonnet 71</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="shakespeare-sonnet_xml.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>The XML tree encodes containment and hierarchy in the same way.</para>
-        </caption>
-      </figure>
-      <para>The XML tree includes a <code>&lt;poem&gt;</code> root node, which is not present in the
-        TAG hypergraph, although, as explained above, we could have created one had we wished to do
-        so. The root node is not optional in XML because a tree requires a root. Additionally, the
-        XML <code>&lt;quatrain&gt;</code> and <code>&lt;couplet&gt;</code> elements are parents of
-          <code>&lt;line&gt;</code> elements, which are parents of <code>Text</code> nodes. In our
-        TAG example, the <quote>quatrain</quote>, <quote>couplet</quote>, and <quote>line</quote>
-        Markup nodes all point directly to sets of Text nodes, and have no hierarchical relationship
-        (although, as explained above, we could create one if we wished).</para>
-    </section>
-    <section>
       <title>TAG components</title>
       <section>
         <title>Nodes</title>
@@ -1142,15 +1077,74 @@
       </figure>
     </section>
   <section>
-    <title>Hierarchy</title>
-    <para>TODO: add example (take from section 3)</para>
-  </section>
-    <section>
-      <title>White space as crypto-overlap</title>
-      <para><emphasis role="bold">TODO: Examples include caesura in poetry</emphasis></para>
-    </section>
-    <section>
-      <title>Containment and dominance (cite someone; Jeni?)</title>
+      <title>Hierarchy, containment ant dominance</title>
+      <figure xml:id="shakespeare_hypergraph">
+        <title>William Shakespeare, Sonnet 71</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="shakespeare-sonnet-71_hypergraph.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>The Document node is beige, the Text nodes are pink, and the Markup nodes are green
+            (those with the Name property value of <quote>quatrain</quote> or
+            <quote>couplet</quote>) and cyan (those with the Name property value of
+              <quote>line</quote>). A chain of regular (one-to-one) edges, represented by solid
+            black arrowheads, begins at the Document node and connects the Text nodes in order. Text
+            nodes in this case are entire lines of text, but they could also be smaller units; see
+            the discussion of Overlap, below.</para>
+        </caption>
+      </figure>
+      <para>The illustration of a TAG hypergraph of William Shakespearea’s Sonnet 71 (<xref
+          linkend="sonnet-71_text"/>), above, includes a Document node, fourteen Text nodes, and
+        eighteen Markup nodes (fourteen with their Name property value equal to <quote>line</quote>,
+        three to <quote>quatrain</quote>, and one to <quote>couplet</quote>). Regular (one-to-one)
+        edges start at the Document node and chain all Text nodes in textual order (see below about
+        simultaneity and transposition). Hyperedges point from the Markup nodes into sets of Text
+        nodes. In this case, hyperedges that start in Markup nodes with the Name property of
+          <quote>line</quote> happen to point to a set that consists of a single Text node, and
+        those with Name property values of <quote>quatrain</quote> and <quote>couplet</quote> happen
+        to point to sets of four and two Text nodes, respectively. Note that in TAG, in contrast to
+        XML, a Markup node corresponding to the XML root element, although permitted, is not
+        required, and we’ve omitted it here. Also in contrast to XML, the <quote>quatrain</quote>
+        and <quote>couplet</quote> Markup nodes point directly to the Text nodes, and not to
+          <quote>line</quote> Markup nodes (although that, too, is possible; see below about
+        hierarchy).</para>
+      <para>In TAG, a Markup-to-Text hyperedge defines the tail as a set of Text nodes and labels
+        (datatypes) it. Containment is modeled by subset relations among the tails of Markup nodes.
+        In this example, all quatrain and line Markup-to-Text edges point to sets of Text nodes.
+        Where the Text nodes that constitute the tail of a line Markup-to-Text edge form a subset of
+        the nodes that constitute the tail of a quatrain Markup-to-Text edge, the quatrain contains
+        the line.<footnote>
+          <para>Note that the quatrain Markup node does not contain or have any other direct
+            relationship to the line Markup node. It is the set of Text nodes of the quatrain that
+            contains the set of Text nodes of the line.</para>
+        </footnote> In this emphasis on containment, rather than dominance, TAG is similar to flat
+        LMNL, except that LMNL ranges must be continuous (LMNL handles discontinuity separately),
+        while contiguity is not relevant in defining the set of Text nodes that may serve as the
+        tail of a hyperedge in TAG (see the discussion of Discontinuity, below). In the example
+        above, we have chosen not to encode dominance, but should we wish to do that, we can use
+        Markup-to-Markup hyperedges, about which see below. Similarly, we have chosen not to make
+        the three quatrains and the couplet what in XML terms would be children of a root
+          <code>&lt;poem&gt;</code> element, but, should we wish, we could create a Markup-to-Text
+        hyperedge with a Name property value of <quote>poem</quote> (which would point, through a
+        hyperedge, to the set of all Text nodes in the poem), and, optionally, add a one-to-many
+        Markup-to-Markup hyperedge from it to the Markup nodes with <quote>quatrain</quote> and
+          <quote>couplet</quote> Name property values to specify dominance. In other words,
+        Markup-to-Text nodes model containment, rather than dominance (indirectly, through subset
+        properties of the Text nodes to which they point), and where the developer needs to
+        distinguish dominance from containment, the TAG model supports this through Markup-to-Markup
+        hyperedges.</para>
+      <para>As with any system for the representation of text, the choice of markup depends on a
+        combination of properties inherent in the text and the features that are of interest to the
+        person creating the markup. For example, we could also have created <quote>sentence</quote>
+        markup nodes (and we do that in the discussion of Overlap, below), but for illustrative
+        purposes the graph is easier to read without them.</para>
+      <para> In our TAG example, the <quote>quatrain</quote>, <quote>couplet</quote>, and
+          <quote>line</quote> Markup nodes all point directly to sets of Text nodes, and have no
+        hierarchical relationship (although, as explained above, we could create one if we
+        wished).</para>
+      <para>OLD TEXT ABOUT CONTAINMENT AND DOMINANCE. PROBABLY NOT RELEVANT ANYMORE!</para>
       <para><emphasis role="ital">TODO: Where two ranges fully overlap, XML requires one to contain
           and dominate the other</emphasis></para>
       <para>In natural language processing tokenization is the process of breaking a string of
@@ -1164,6 +1158,11 @@
         'aside' as it were and the tokenizer only pays attention to the textual content. The
         individual tokens are markup in a separate annotation layer. The existing markup layers are
         only ignored during tokenization, and still exist in the data.</para>
+      <para>END OLD TEXT</para>
+    </section>
+    <section>
+      <title>White space as crypto-overlap</title>
+      <para><emphasis role="bold">TODO: Examples include caesura in poetry</emphasis></para>
     </section>
     <section>
       <title>Scope of reference</title>
