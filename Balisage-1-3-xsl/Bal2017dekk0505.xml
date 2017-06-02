@@ -211,8 +211,8 @@
         Note that in TAG, in contrast to XML, a Markup node corresponding to the XML root element,
         although permitted, is not required, and we’ve omitted it here. Also in contrast to XML, the
           <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes point directly to the Text
-        nodes, and not to <quote>line</quote> Markup nodes (although that, too, is possible; see
-        below <!--TODO: add direct link-->about hierarchy).</para>
+        nodes, and not to <quote>line</quote> Markup nodes (although that, too, is possible; see the
+        discussion of hierarchy below).</para>
     </section>
     <section>
       <title>How TAG represents selected structural properties of text</title>
@@ -234,11 +234,19 @@
               below about Markup dominance.</para>
           </footnote> This bottom-up perspective on order within a document distinguishes TAG from
           the top-down, ordered-tree perspective of XML and GODDAG, where, contrary to TAG, the
-          order of nodes (including <code>Text</code> nodes) is at least partially
-          <!--TODO: Isn't the order fully derived from the parent nodes in XML, GODDAG (restricted and generalized)?-->derived,
-          through depth-first traversal, from the order of their parent nodes. In this respect TAG
-          is closer to LMNL, where order in the document also inheres at the lowest level, which in
-          LMNL is the atoms that make up the content.</para>
+          order of nodes (including <code>Text</code> nodes) is derived, through depth-first
+          traversal, from the order of their parent nodes.<footnote>
+            <para>The XML InfoSet specification defines a children property on element information
+              items, the value of which is <quote>[a]n ordered list of child information items, in
+                document order</quote>. [<xref linkend="W3C_xmlinfoset"/>, §2.2] This means that
+              parents know the order of their children, but children do not know their place in that
+              order. The restricted version of GODDAG, like TAG, has a single order for all text
+              nodes, while generalized GODDAG allows different orders in the case of multiple
+              parentage. As far as we know, there is currently no implementation of generalized
+              GODDAG other than the stand-off version implemented in EARMARK, which does not store
+              the text nodes in memory. [<xref linkend="peroni_2014"/>]</para>
+          </footnote> In this respect TAG is closer to LMNL, where order in the document also
+          inheres at the lowest level, which in LMNL is the atoms that make up the content.</para>
       </section>
       <section>
         <title>Textual content</title>
@@ -1863,7 +1871,13 @@ And mock you with me after I am gone.</programlisting>
         2000, revised papers</emphasis>, ed. Peter King and Ethan V. Munson. NY: Springer, 2004,
       139–60. A revised version is available at
       <link>http://cmsmcq.com/2000/poddp2000.html</link></bibliomixed>
-    <bibliomixed xml:id="sperberg-huitfeldt_2008" xreflabel="Sperberg-McQueen and Huitfeldt 2008"
+    <bibliomixed xml:id="sperberg_2008-bielefeld" xreflabel="Sperberg-McQueen and Huitfeldt 2008a"
+      >Sperberg-McQueen, C. M., and Claus Huitfeldt. <quote>.Containment and dominance in Goddag
+        structures</quote> Presented at Processing text-technological resources, Bielefeld, March
+      13-15, 2008, organized by the Zentrum für interdisziplinäre Forschung der Universität
+      Bielefeld. Slides (but not full text) available on the Web at
+        <link>http://www.w3.org/People/cmsmcq/2008/bielefeld/slides.html</link></bibliomixed>
+    <bibliomixed xml:id="sperberg-huitfeldt_2008" xreflabel="Sperberg-McQueen and Huitfeldt 2008b"
       >Sperberg-McQueen, C. M. and Claus Huitfeldt. <quote>Markup Discontinued: Discontinuity in
         TexMecs, Goddag structures, and rabbit/duck grammars.</quote>
       <emphasis role="ital">Presented at Balisage: The Markup Conference 2008, Montréal, Canada,
