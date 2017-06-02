@@ -1148,49 +1148,6 @@
     </section>
   </section>
   <section>
-    <title>Comparison of TAG/hypergraph to other text models</title>
-    <para>In this section we compare the TAG data model with three well-known alternative data
-      models used to represent and process text: 1) XML DOM (tree), GODDAG (forest/graph), and LMNL
-      (range). The three systems have regular syntactic expressions: XML angle bracket syntax for
-      XML DOM, TexMECS for GODDAG, and LMNL sawtooth syntax for LMNL. XML, GODDAG, and LMNL
-      processors ingest serialized documents and parse them into in-memory representations of the
-      data model.</para>
-    <para>The syntax is not the data model. The data model could, at least in principle, be
-      serialized in other ways, and the syntax could be coopted to represent a different data model.
-      TAG does not at present have its own serialization syntax; it can read and write LMNL sawtooth
-      syntax (parsing it as a representation of the TAG data model, rather than of LMNL), and it is
-      intended to be able to do the same with XML and TexMECS syntax.</para>
-    <section>
-      <title>TAG and LMNL</title>
-      <section>
-        <title>Comparison of the hypergraph model with the LMNL markup file format</title>
-        <para>A text graph representing all the data contained in a LMNL document consists of both a
-          directed acyclic graph (DAG) and a hypergraph (HG). The DAG contains the range nodes, the
-          annotation nodes, the edges between them, and all the text nodes and the edges between
-          them. The HG contains all the hyperedges between the text nodes and the range nodes
-          representing the many-to-many relation between them. That is, a text node has zero or more
-          ranges on it, while a range can have zero or more text nodes associated with it. A range
-          can be annotated, and an annotation can itself be annotated.</para>
-        <para>The LMNL markup file format removes the constraint that the last opened range has to
-          be closed first. That means that it is possible to model overlapping hierarchies in LMNL.
-          To be more precise, it is possible to model annotations with one hierarchy, multiple
-          hierarchies or no hierarchy at all. This allows for a great freedom to model all kinds of
-          information on textual content. This is great from a content perspective. However LMNL is
-          more expensive from a computational perspective.</para>
-        <para>LMNL data model LMNL documents contain text. Text can have ranges on them. Ranges can
-          overlap. Ranges can be annotated on either the start tag or the end tag. Annotations can
-          contain text themselves, that can have ranges, that can have annotations etc. Annotations
-          can be annotated. Annotations on a range are ordered.</para>
-      </section>
-      <section>
-        <title>LMNL conceptual model and how to map it to a hypergraph</title>
-        <para>The conceptual datamodel behind is XML is the Document Object Model (DOM). The DOM
-          represents a tree based data structure. The data model behind LMNL is different, in that
-          it is based on ranges, based on offsets on textual content.</para>
-      </section>
-    </section>
-  </section>
-  <section>
     <title>TAG in Alexandria</title>
     <!--some of this may be plans or projections, rather than implementation-->
     <section>
@@ -1199,6 +1156,11 @@
         implementation of the TAG model. It allows the user to import and store text files in either
         XML or LMNL markup (with support planned for TexMECS), and it supports multiple layers of
         annotation that are permitted to overlap. </para>
+      <para>The syntax is not the data model. The data model could, at least in principle, be
+        serialized in other ways, and the syntax could be coopted to represent a different data
+        model. TAG does not at present have its own serialization syntax; it can read and write LMNL
+        sawtooth syntax (parsing it as a representation of the TAG data model, rather than of LMNL),
+        and it is intended to be able to do the same with XML and TexMECS syntax.</para>
       <section>
         <title>LMNL syntax in a TAG environment</title>
         <para>At present TAG does not have its own syntax, and strategies for import and export are
