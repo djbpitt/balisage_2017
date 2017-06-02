@@ -973,35 +973,38 @@
     </section>
     <section>
       <title>White space as crypto-overlap</title>
-      <para>In natural language processing tokenization is the process of breaking a string of
-        characters up into individual words. Tokenization is done using regular expressions. Regular
-        expressions however only work on textual data and not on markup. (See the famous
-        stackoverflow post for reference). On top of that the tokens themselves add another layer of
-        information to file/model/data/document (not sure what the right word to use is here), which
-        can overlap with the already existing hierarchy in the document. A data model for text that
-        can handle multiple overlapping hierarchies or layers of annotations and that allows read as
-        well as write operations can help out here. During tokenization all of the markup can be put
-        'aside' as it were and the tokenizer only pays attention to the textual content. The
-        individual tokens are markup in a separate annotation layer. The existing markup layers are
-        only ignored during tokenization, and still exist in the data.</para>
-      <para>As was noted above, what we call plain text typically uses typographic and layout
-        conventions as pseudo-markup, and one function of structured markup languages is to separate
-        markup from content, thus transforming implicit structures expressed through pseudo-markup
-        into explicit structures expressed through markup. But because markup languages are
-        typically intended to be written and read by humans, it has become conventional not to tag
-        individual words—not because markup protocols like TEI don’t permit word-level markup (they
-        do), but because except where it serves an explicit (most commonly linguistic) purpose, we
-        tolerate the use of white space as covert milestone elements that separate words within a
-          <code>Text</code> node. And the fact that they are covert <emphasis>milestones</emphasis>
-        is another way in which the modeling is compromised, since words have a start and an end,
-        and we would naturally tag them in XML with container tags, rather than milestones. There
-        are concepts in text that naturally have no content, such as a missing folio in a
-        manuscript, and those are modeled naturally by empty elements, but using milestones to
-        separate item that do have content (whether implicit ones, like white space between words,
-        or explicit ones like the TEI <code>&lt;lb/></code> and <code>&lt;pb/></code> elements to
-        mark line and page breaks) represents a subordination of the text to the model. The model
-        should represent what we understand the structure of the text to be; our representation of
-        the text should not be subject to distortion because of limitations in the model.</para>
+      <para>In natural language processing tokenization is the process of breakup a string of plain
+        text characters into substrings (words), often while removing token separators in the
+        process. Tokenization in XML is performed using regular expressions and the
+          <code>tokenize()</code> function, but <code>tokenize()</code> atomizes its first argument,
+        which means that it cannot be used on tagged text without losing the markup in the process.
+        Even tokenization that would not create overlap-based well-formedness violations, such
+        splitting into words a line of poetry in which the stressed vowels are tagged as
+          <code>&lt;stress></code>, requires intermediate temporary manipulations, such as
+        converting the markup to text, tokenizing with <code>tokenize()</code>, and then converting
+        the temporary text back into markup, or adding additional markup, tokenizing with
+          <code>&lt;xsl:for-each-group></code>, and then removing the temporary markup.</para>
+      <para>The reason tokenizing tagged text is awkward in XML even where overlap is not a risk is
+        that the markup and text are intertwined in a way that makes it impossible to ignore markup
+        during tokenization while retaining access to it after the process is complete. Although it
+        is not usually described this way, the use of white space to separate words is may be
+        understood as pseudo-markup, which means that the words in tagged text potentially represent
+        overlapping hierarchies.<footnote>
+          <para>See <quote>Mixed content as a type of overlap</quote> in <xref
+              linkend="birnbaum_2015"/>.</para>
+        </footnote></para>
+      <para> This is why the XML processing workarounds involve either converting the markup to
+        temporary text, which is one way of removing the possibility of overlap, or converting the
+        white space temporarily to milestone elements, which transforms the pseudo-markup into real
+        markup.</para>
+      <para>In TAG, however, Markup nodes point to Text nodes from a different layer, which makes it
+        possible to tokenize the text without interference from the markup. The tokenization splits
+        larger text nodes into smaller ones, but they remain in the tail of their old Markup-to-Text
+        hyperedges, while new Markup-to-Text hyperedges are added to tag the new individual
+        words.</para>
+      <para><emphasis role="ital">TODO: Add illustration before and after word
+          tokenization</emphasis>
+      </para>
       <para>Much as poetic emjambment in the Shelley poem above cannot be modeled by tagging both
         phrases and feet in XML because it would create an overlap situation, poetic caesura, the
         regular correspondence of foot and word boundaries within poetic lines, cannot be modeled in
@@ -1009,27 +1012,33 @@
         as phrases and lines. One work-around for this problem in an XML environment turned out to
         involve, surprisingly, tagging neither the feet nor the words (see [<xref
           linkend="birnbaum_2015"/>]), deriving both from other properties of the line during
-        processing, but the fact that we dodged syntactic overlap doesn’t mean that the the overlap
-        isn’t there. A data model that could represent both feet and words explicitly, and that
-        could identify caesura as a relationship between those two types of structural components,
-        would represent explicitly the human understanding of caesura, and the explicit
-        representation of structure is what markup is all about.</para>
+        processing, but the fact that we can use white-space pseudo-markup to escape the
+        consequences of syntactic overlap doesn’t mean that the the overlap isn’t there. A data
+        model that could represent both feet and words explicitly, and that could identify caesura
+        as a relationship between those two types of structural components, would represent
+        explicitly the human understanding of caesura, and the explicit representation of structure
+        is what markup is all about.</para>
     </section>
     <section>
       <title>Scope of reference</title>
-      <para><emphasis role="ital">Footnotes in XML are usually milestones, but they should be
-          annotations on elements, since milestones don’t have scope. But XML doesn’t permit markup
-          in attributes. XML could make a footnote a child element, the parent of which is its
-          scope, but then the footnote becomes part of the content of the parent, rather than an
-          annotation. This is a use case for markup on annotations.</emphasis> Side issue: should
-        annotations in TAG be ordered? How about: no, unless there’s an edge that says
-        otherwise.</para>
-    </section>
-    <section>
-      <title>Artifactual content objects</title>
-      <para><emphasis role="bold">The &lt;app&gt; wrapper around readings in TEI parallel
-          segmentation isn’t in the variant graph. Why should it be in the model of a critical text?
-          The root element may also be an artifact.</emphasis></para>
+      <para>Footnotes can be understood as annotations on text, but in XML they are typically
+        represented by elements at the location where the note reference should occur in a reading
+        text, as with the <code>&lt;footnote></code> element in DocBook or the
+          <code>&lt;note></code> element in TEI. This is problematic because it does not mark
+        explicitly the scope of the note, such as whether a footnote reference at the end of a
+        paragraph refers to the preceding sentence or the entire paragraph. The TEI
+          <code>&lt;note></code> element avoids this limitation because it can point to an arbitrary
+        target with XPointer, but this is an indirect way of specifying what might have been
+        represented as an attribute if XML attributes were able to model rich content. Because the
+        text of a TAG annotation can be a target of markup and the annotation itself can be
+        annotated, footnote-like relationships can be modeled in TAG as what they are: annotations
+        on text.</para>
+      <para><emphasis role="ital">TODO: Should we allow anonymous Markup nodes? If we’re footnoting
+          a Text node that isn’t a textual object of a particular type, and we’re adding the Markup
+          node just to be able to point to it from an Annotation, it would be natural not to impose
+          a <code>name</code> property on the Markup node.</emphasis></para>
+      <para><emphasis role="ital">TODO: Add illustration of footnote after question of anonymous
+          Markup nodes is resolved</emphasis></para>
     </section>
     <section>
       <title>Data model versus syntax</title>
@@ -1652,6 +1661,8 @@ And mock you with me after I am gone.</programlisting>
   </appendix>
   <appendix xml:id="to_do" xreflabel="Appendix B">
     <title>Features of text not represented in TAG or in Alexandria</title>
+    <para>The following are not currently part of the TAG model, but they are recognized as
+      necessary components of a textual data model, and under development.</para>
     <section>
       <title>Order</title>
       <section>
@@ -1664,15 +1675,29 @@ And mock you with me after I am gone.</programlisting>
           must therefore be ignored at the application level, and TAG, as described above, currently
           has the same limitation. Ideally, sets of Text nodes that are not mutually ordered
           logically would not have order in the model.</para>
+        <para>Not only are the children of <code>&lt;choice&gt;</code> ordered artificially, but the
+            <code>&lt;choice&gt;</code> element itself is artifactual, as it represents as an
+          element in the hierarchy a property that is fundamentally an issue of traversal. The same
+          is true of the TEI <code>&lt;app></code> element in the parallel segmentation
+          representation of textual variation. Both the artifactual order and the artifactual
+          wrapper are typically managed at the application layer, but the Variant Graph used to
+          model textual variation in the open-source CollateX collation tool [<xref
+            linkend="collatex"/>] represents alternative readings without these sorts of wrappers,
+          and could be used to model simultaneous alternatives without either artifactual order or
+          artifactual wrappers. For example, an abbreviation and its expansion might be represented
+          as:</para>
+        <para><emphasis role="ital">TODO: Add illustration</emphasis></para>
+        <para>Because currently Text nodes in TAG are fully ordered, it is not possible to model
+          simultaneity through multiple ordering edges between Text nodes.</para>
       </section>
       <section>
         <title>Transposition</title>
         <para>A traditional challenge for markup languages involves transpositions, of the sort that
           occur when creating critical editions in which the textual witnesses may contain some of
-          the same words, but with reordering. This is part of the <emphasis role="bold">variant
-            graph</emphasis> structure used to model textual variation in the open-source CollateX
-          collation tool [<xref linkend="collatex"/>], but because currently text nodes in TAG are
-          fully ordered, it is not possible to model transpositions as alternative orders.</para>
+          the same words, but with reordering. This is also part of the Variant Graph structure used
+          to model textual variation in the open-source CollateX collation tool [<xref
+            linkend="collatex"/>], but because currently Text nodes in TAG are fully ordered, it is
+          not possible to model transpositions as alternative orders.</para>
       </section>
     </section>
     <section>
