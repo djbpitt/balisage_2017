@@ -393,7 +393,8 @@
                 annotations with the same name on a single Markup or Annotation node. Unlike LMNL
                 but like XML attributes, annotations are unordered (but if they contain Text nodes,
                 those are connected by regular, one-to-one edges that form them into a chain,
-                beginning at the Annotation node).</para>
+                beginning at the Annotation node). The Shakespearean sonnet example above does not
+                contain any Annotation nodes.</para>
             </listitem>
           </itemizedlist>
         </para>
@@ -427,11 +428,10 @@
               </listitem>
               <listitem>
                 <para><emphasis role="bold">Document-to-Text directed edges.</emphasis> A
-                  Document-to-Text directed edge points from a Document node (head) to the first
-                  Text node (tail) contained in that document. In the Shakespearean sonnet example
-                  above, a single Document-to-Text directed edge points from the Document node to
-                  the first Text node, which in this case represents the first line of the
-                  poem.</para>
+                  Document-to-Text directed edge points from the Document node to the first Text
+                  node contained in that document. In the Shakespearean sonnet example above, a
+                  single Document-to-Text directed edge points from the Document node to the first
+                  Text node, which in this case represents the first line of the poem.</para>
               </listitem>
               <listitem>
                 <para><emphasis role="bold">Annotation-to-Text directed edges.</emphasis>
@@ -450,7 +450,7 @@
             </itemizedlist></para>
         </section>
         <section>
-          <title>Hyperedges that express datatyping and specify sets of Text nodes</title>
+          <title>Hyperedges that specify and type sets of Text nodes</title>
           <para>
             <itemizedlist>
               <listitem>
@@ -465,7 +465,9 @@
                   two Text nodes. Note that the <quote>quatrain</quote> and <quote>couplet</quote>
                   Markup nodes point to Text nodes, and not to the <quote>line</quote> Markup nodes
                   (although Markup-to-Markup hyperedges can be added if that is needed). This is an
-                  important difference from the XML tree structure.</para>
+                  important difference from the XML tree structure, where Text nodes would be the
+                  children of <code>&lt;line></code> elements, but not of the
+                    <code>&lt;quatrain></code> and <code>&lt;couplet></code> elements.</para>
               </listitem>
             </itemizedlist></para>
         </section>
@@ -498,8 +500,8 @@
                   Markup-to-Markup hyperedges, but if we wished to encode, for example, that a
                   quatrain dominates its lines hierarchically, and does not merely contain their
                   Text nodes, we could express that with a Markup-to-Markup hyperedge between a
-                    <quote>quatrain</quote> Markup node and its four <quote>line</quote> Markup
-                  nodes.</para>
+                    <quote>quatrain</quote> Markup node (head) and its four <quote>line</quote>
+                  Markup nodes (tail).</para>
               </listitem>
             </itemizedlist></para>
         </section>
