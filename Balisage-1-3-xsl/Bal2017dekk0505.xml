@@ -148,7 +148,10 @@
       that higher level. The Text As Graph model that we introduce below is not intended to be a
       solution to <quote>the overlap problem in XML</quote>; it is built around a fresh
       consideration of the textual structures, both latent and overt, that a data model will need to
-      be able to represent.</para>
+      be able to represent.<footnote>
+        <para>The desiderata TAG seeks to satisfy are described in a requirements document in <xref
+            linkend="requirements"/>.</para>
+      </footnote></para>
   </section>
   <section>
     <title>The TAG/hypergraph model for text</title>
@@ -353,9 +356,12 @@
         <para>The following types of nodes are supported by TAG:<itemizedlist>
             <listitem>
               <para><emphasis role="bold">Document nodes.</emphasis> Each Document node represents a
-                single document stored in the graph. It is connected by a regular edge to the first
-                Text node in the document. Document nodes have no properties other than the
-                  <code>type</code> property value of <quote>document</quote>.</para>
+                single document stored in the graph.<footnote>
+                  <para>What constitutes a document is a hermeneutic question that TAG does not seek
+                    to answer.</para>
+                </footnote> It is connected by a regular edge to the first Text node in the
+                document. Document nodes have no properties other than the <code>type</code>
+                property value of <quote>document</quote>.</para>
             </listitem>
             <listitem>
               <para><emphasis role="bold">Text nodes.</emphasis> The textual content of a TAG
@@ -392,10 +398,10 @@
               <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes correspond roughly
                 to element nodes in XML, and each instance of markup is represented by its own node.
                 The only property of a Markup node is a <code>name</code>, which is analogous to the
-                XML generic identifier. Markup nodes are connected to the
-                <!--TODO: remove "the"?-->one or more text Nodes by a hyperedge, where the Markup
-                node is the head and a set of Text nodes is the tail. There is no requirement that
-                the Text nodes in the tail of a Markup-to-Text hyperedge be continuous.</para>
+                XML generic identifier. Markup nodes are connected to one or more text Nodes by a
+                hyperedge, where the Markup node is the head and a set of Text nodes is the tail.
+                There is no requirement that the Text nodes in the tail of a Markup-to-Text
+                hyperedge be continuous.</para>
             </listitem>
             <listitem>
               <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
@@ -1132,112 +1138,6 @@
           </listitem>
         </itemizedlist></para>
     </section>
-    <section>
-      <title>Desiderata for an improved text model</title>
-      <para>An improved text model should have the following properties. In all instances where we
-        write that <quote>the model should be able to X</quote>, we mean that it should be able to X
-        without requiring access to semantic information at the application level. In other words,
-        the components of the model should fully represent the properties of the text being modeled,
-        with no extraneous artifactual properties that an application must then know to ignore. XML
-        uses the term <quote>markup</quote> to identify both elements and attributes, while in the
-        list below we use the TAG terminology, where the term <quote>markup</quote> refers to the
-        counterpart to XML elements and <quote>annotation</quote> to the counterpart to XML
-        attributes.</para>
-      <para>The following are characteristics we might ask of an improved text model:<itemizedlist>
-          <listitem>
-            <para>It should support both textual (character data) content and markup and annotations
-              (of the sort expressed in XML through element and attribute markup).</para>
-          </listitem>
-          <listitem>
-            <para>It should support multiple layers of markup and annotation.</para>
-          </listitem>
-          <listitem>
-            <para>It should be able to represent overlapping markup.</para>
-          </listitem>
-          <listitem>
-            <para>It should be able to represent discontinuous markup.</para>
-          </listitem>
-          <listitem>
-            <para>It should be able to represent components that are not logically ordered without
-              imposing an arbitrary order that must then be ignored.</para>
-          </listitem>
-          <listitem>
-            <para>It should be able to represent transpositions, or reorderings, e.g., in a critical
-              text with variants that differ only in order.</para>
-          </listitem>
-          <listitem>
-            <para>It should support annotations on annotations, that is, metadata about
-              metadata.</para>
-          </listitem>
-          <listitem>
-            <para>It should support but not require the representation of hierarchy, including
-              multiple, partial, or overlapping hierarchies.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to reading, it should support queries for text, markup, annotations,
-              or a combination of those components.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to writing, it should support creating, inserting, deleting, or
-              otherwise modifying both textual content and markup and annotations.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to workflow, it should be possible to defer decisions about relations
-              among layers. For example, it should be possible to create markup and annotations
-              without hierarchy and apply a hierarchy only later. This deferral might be compared to
-              the way XML documents may be validated against schemas that may be created and
-              associated only after a fully functional well-formed document has been created.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to scalability, it should enable, in a computationally efficient way,
-              the types of documents and processing likely to be required by the digital text
-              community.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to I/O, a system that implements the model should support
-              serialization as plain text on export and the parsing of such serializations on
-              import. TAG does not currently have its own syntax. Our Alexandria implementation can
-              read and write LMNL syntax, and it is intended to be able to read and write XML and TexMECS.<footnote>
-                <para>This list item refers to syntactic representations that were developed to
-                  represent data models other than TAG: XML syntax and the XML data model, LMNL
-                  sawtooth syntax and the LMNL data model, and TexMECS and GODDAG data model. When
-                  we speak about parsing XML or LMNL or TexMECS <emphasis role="ital"
-                    >syntax</emphasis> into Alexandria, we mean that it is parsed into the TAG data
-                  model, and not into XML or LMNL or GODDAG data models.</para>
-                <para>XML angle-bracketed markup, LMNL sawtooth markup, and TexMECS all are capable
-                  of representing some but not all features of TAG. For example, LMNL supports
-                  annotations on annotations, while TexMECS doesn’t. More subtly, because
-                  annotations on the same object are ordered in LMNL but not in TAG, when Alexandria
-                  parses LMNL syntax, it is not parsing it into the LMNL data model because, among
-                  other things, it creates unordered annotations. TexMECS supports hierarchy, while
-                  LMNL sawtooth syntax does not. LMNL can represent hierarchy through the <emphasis
-                    role="ital">limen</emphasis>, but the limen currently has no defined
-                  representation in the syntax. [<xref linkend="piez_2008"/>] We leave unresolved
-                  for now the question of how to serialize fully all information in a TAG
-                  document.</para>
-              </footnote></para>
-          </listitem>
-          <listitem>
-            <para>With respect to user interaction, a system that implements the model should
-              provide a legible interface that enables reading and writing by human users.<footnote>
-                <para>We leave unresolved for now the design and implementation of such an
-                  interface, except to say that it might not require a specialized, TAG-aware
-                  editor. One approach might involve the selective export of TAG information for
-                  manipulation in a third-party editor, followed by its reimport and reintegration
-                  into the TAG document.</para>
-              </footnote></para>
-          </listitem>
-        </itemizedlist></para>
-      <!--explain the differences between graph models and trees and ranges? Or leave that
-        discussion out?-->
-      <!--Reading Wendell's papers/articles about LMNL and Luminescent I can't help but notice
-        that it is mainly about modeling text using LMNL, querying (using xLMNL and xQuery
-        extensions) and visualising data. These are all read only operations. The goal of the TAG
-        model and its implementation in Alexandria is that it can be used to read as well as write
-        textual data and annotations. This opens up a lot of new possibilities and makes it a
-        'complete' text repository system, comparable to XML databases albeit in a far more
-        experimental state and a much lower level of maturity.-->
-    </section>
   </section>
   <section>
     <title>Comparison of TAG/hypergraph to other text models</title>
@@ -1751,6 +1651,111 @@ And mock you with me after I am gone.</programlisting>
           hierarchy (dominance).<!--TODO: update picture to the latest version.--></para>
       </caption>
     </figure>
+  </appendix>
+  <appendix xml:id="requirements" xreflabel="Appendix D">
+    <title>Requirements</title>
+    <para>An improved text model should have the following properties. In all instances where we
+      write that <quote>the model should be able to X</quote>, we mean that it should be able to X
+      without requiring access to semantic information at the application level. In other words, the
+      components of the model should fully represent the properties of the text being modeled, with
+      no extraneous artifactual properties that an application must then know to ignore. XML uses
+      the term <quote>markup</quote> to identify both elements and attributes, while in the list
+      below we use the TAG terminology, where the term <quote>markup</quote> refers to the
+      counterpart to XML elements and <quote>annotation</quote> to the counterpart to XML
+      attributes.</para>
+    <para>The following are characteristics we might ask of an improved text model:<itemizedlist>
+        <listitem>
+          <para>It should support both textual (character data) content and markup and annotations
+            (of the sort expressed in XML through element and attribute markup).</para>
+        </listitem>
+        <listitem>
+          <para>It should support multiple layers of markup and annotation.</para>
+        </listitem>
+        <listitem>
+          <para>It should be able to represent overlapping markup.</para>
+        </listitem>
+        <listitem>
+          <para>It should be able to represent discontinuous markup.</para>
+        </listitem>
+        <listitem>
+          <para>It should be able to represent components that are not logically ordered without
+            imposing an arbitrary order that must then be ignored.</para>
+        </listitem>
+        <listitem>
+          <para>It should be able to represent transpositions, or reorderings, e.g., in a critical
+            text with variants that differ only in order.</para>
+        </listitem>
+        <listitem>
+          <para>It should support annotations on annotations, that is, metadata about
+            metadata.</para>
+        </listitem>
+        <listitem>
+          <para>It should support but not require the representation of hierarchy, including
+            multiple, partial, or overlapping hierarchies.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to reading, it should support queries for text, markup, annotations, or
+            a combination of those components.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to writing, it should support creating, inserting, deleting, or
+            otherwise modifying both textual content and markup and annotations.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to workflow, it should be possible to defer decisions about relations
+            among layers. For example, it should be possible to create markup and annotations
+            without hierarchy and apply a hierarchy only later. This deferral might be compared to
+            the way XML documents may be validated against schemas that may be created and
+            associated only after a fully functional well-formed document has been created.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to scalability, it should enable, in a computationally efficient way,
+            the types of documents and processing likely to be required by the digital text
+            community.</para>
+        </listitem>
+        <listitem>
+          <para>With respect to I/O, a system that implements the model should support serialization
+            as plain text on export and the parsing of such serializations on import. TAG does not
+            currently have its own syntax. Our Alexandria implementation can read and write LMNL
+            syntax, and it is intended to be able to read and write XML and TexMECS.<footnote>
+              <para>This list item refers to syntactic representations that were developed to
+                represent data models other than TAG: XML syntax and the XML data model, LMNL
+                sawtooth syntax and the LMNL data model, and TexMECS and GODDAG data model. When we
+                speak about parsing XML or LMNL or TexMECS <emphasis role="ital">syntax</emphasis>
+                into Alexandria, we mean that it is parsed into the TAG data model, and not into XML
+                or LMNL or GODDAG data models.</para>
+              <para>XML angle-bracketed markup, LMNL sawtooth markup, and TexMECS all are capable of
+                representing some but not all features of TAG. For example, LMNL supports
+                annotations on annotations, while TexMECS doesn’t. More subtly, because annotations
+                on the same object are ordered in LMNL but not in TAG, when Alexandria parses LMNL
+                syntax, it is not parsing it into the LMNL data model because, among other things,
+                it creates unordered annotations. TexMECS supports hierarchy, while LMNL sawtooth
+                syntax does not. LMNL can represent hierarchy through the <emphasis role="ital"
+                  >limen</emphasis>, but the limen currently has no defined representation in the
+                syntax. [<xref linkend="piez_2008"/>] We leave unresolved for now the question of
+                how to serialize fully all information in a TAG document.</para>
+            </footnote></para>
+        </listitem>
+        <listitem>
+          <para>With respect to user interaction, a system that implements the model should provide
+            a legible interface that enables reading and writing by human users.<footnote>
+              <para>We leave unresolved for now the design and implementation of such an interface,
+                except to say that it might not require a specialized, TAG-aware editor. One
+                approach might involve the selective export of TAG information for manipulation in a
+                third-party editor, followed by its reimport and reintegration into the TAG
+                document.</para>
+            </footnote></para>
+        </listitem>
+      </itemizedlist></para>
+    <!--explain the differences between graph models and trees and ranges? Or leave that
+        discussion out?-->
+    <!--Reading Wendell's papers/articles about LMNL and Luminescent I can't help but notice
+        that it is mainly about modeling text using LMNL, querying (using xLMNL and xQuery
+        extensions) and visualising data. These are all read only operations. The goal of the TAG
+        model and its implementation in Alexandria is that it can be used to read as well as write
+        textual data and annotations. This opens up a lot of new possibilities and makes it a
+        'complete' text repository system, comparable to XML databases albeit in a far more
+        experimental state and a much lower level of maturity.-->
   </appendix>
   <bibliography>
     <title>Works cited</title>
