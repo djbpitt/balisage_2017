@@ -1161,10 +1161,10 @@
   </section>
   <section>
     <title>TAG in Alexandria</title>
-    <para>This paper introduces the Alexandria text repository system, an open-source read/write
-      implementation of the TAG model. It allows the user to import and store text files in either
-      XML or LMNL markup (with support planned for TexMECS), and it supports multiple layers of
-      annotation that are permitted to overlap. </para>
+    <para>This paper introduces the Alexandria Markup text repository system, an open-source
+      read/write implementation of the TAG model. It allows the user to import and store text files
+      in either XML or LMNL markup (with support planned for TexMECS), and it supports multiple
+      layers of annotation that are permitted to overlap. </para>
     <para>At present TAG does not have its own syntax, and strategies for import and export are
       under active development in Alexandria. Alexandria is able to parse and import flat LMNL
       sawtooth syntax, but it treats the syntax as an expresssion of TAG properties, rather than
@@ -1176,9 +1176,9 @@
       represented in LMNL sawtooth syntax, such as the limen. [<xref linkend="piez_2008"/>]
       Alexandria is not intended to be an implementation of LMNL, and the use of LMNL sawtooth
       syntax in TAG should not be misunderstood as representing the LMNL data model.</para>
-    <para><emphasis role="bold">TODO: write something</emphasis> The implementation in the current
-      Alexandria markup system stores the nodes and hyperedges in a key-value store. </para>
-    <para><emphasis role="bold">TODO: write something</emphasis></para>
+    <para>The implementation in the current Alexandria Markup system loads the TAG model into
+      memory. Persistence storage on disc of the nodes and hyperedges in a key-value store is
+      currently under development. </para>
     <para>Syntax is not necessarily the same as a data model. A data model could, at least in
       principle, be serialized in multiple ways, and syntax developed to represent one data model
       could be coopted to represent a different one. TAG does not at present have its own
@@ -1199,8 +1199,8 @@
       outgoing edge to the next text node. Like before we collect all the markup nodes connected to
       this text node. We calculate the differences between the sets. For the intersection we do
       nothing. For markup nodes that are only the set of the previous nodes we write close tags. For
-      the set of markup nodes that is only in the current set of markup nodes we write open tags.
-        <emphasis role="bold">TODO: write something</emphasis></para>
+      the set of markup nodes that is only in the current set of markup nodes we write open
+      tags.</para>
   </section>
   <section>
     <title>Conclusions</title>
