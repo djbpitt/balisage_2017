@@ -162,21 +162,27 @@
       <para>Graph models for text and markup have been proposed before (GODDAG [see, e.g., <xref
           linkend="sperberg-huitfeldt_2000"/>], GrAF [see, e.g., <xref linkend="ide_2007"/>]), but
         the model advanced in this paper differs from those because it incorporates a <emphasis
-          role="bold">hypergraph</emphasis>. Hypergraphs differ from traditional graphs, the edges
-        of which can connect only two nodes with each other, because the edges in a hypergraph can
-        connect more than two nodes with one another, and for that reason they are called <emphasis
-          role="bold">hyperedges</emphasis>. Hypergraphs can have directed and undirected
-        hyperedges. Undirected hyperedges contain a set of nodes, and in this paper we refer to them
-        as <quote>sets</quote>. Directed hyperedges contain two non-empty sets of nodes, one for the
-        source (called the <emphasis role="bold">head</emphasis>) and one for the target (called the
-          <emphasis role="bold">tail</emphasis>). The direction of a (hyper)edge may be used to
-        model an order or a hierarchy of the nodes, but directionality does not obligatorily imply
-        either order or hierarchy.
+          role="bold">hypergraph</emphasis>.
+        <!--Comment Elli: TODO: add a visualization of a generic hypergraph. Point to Wikipedia page visualization?-->Hypergraphs
+        differ from traditional graphs, the edges of which can connect only two nodes with each
+        other, because the edges in a hypergraph can connect more than two nodes with one another,
+        and for that reason they are called <emphasis role="bold">hyperedges</emphasis>.
+        <!--Comment Elli: TODO: why do we want hyperedges? Answer is sort of given below. Move to here?-->Hypergraphs
+        can have directed and undirected hyperedges. Undirected hyperedges contain a set of nodes,
+        and in this paper we refer to them as <quote>sets</quote>. Directed hyperedges contain two
+        non-empty sets of nodes, one for the source (called the <emphasis role="bold"
+          >head</emphasis>) and one for the target (called the <emphasis role="bold"
+        >tail</emphasis>). The direction of a (hyper)edge may be used to model an order or a
+        hierarchy of the nodes, but directionality does not obligatorily imply either order or
+        hierarchy.
         <!--TODO: Add a sentence that an (hyper)edge always implies an asssociation between the nodes involved-->Hypergraphs
         are especially valuable for text modeling because they can be implemented using sets, and
-        methods for reasoning over and operating on sets are proven and well known.</para>
-      <para>Like LMNL <!--TODO: add GODDAG--> and unlike XML, TAG is defined as a data model, rather
-        than by its syntax. At present TAG does not have its own syntactic representation.</para>
+        methods for reasoning over and operating on sets are proven and well known
+        <!--Comment Elli: add reference here. Could be to a mathematics page.-->.</para>
+      <para>Like LMNL<!--comment Elli: TODO: first time that LMNL gets mentioned. Add brief description and reference. Same for other alternatives?-->
+        <!--TODO: add GODDAG--> and unlike XML, TAG is defined as a data model, rather than by its
+        syntax. At present TAG does not have its own syntactic
+        representation.<!--comment Elli: refer to sections 3.7 and 4.3.2 which also mention syntax.--></para>
     </section>
     <section>
       <title>How TAG represents selected structural properties of text</title>
