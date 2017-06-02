@@ -2,7 +2,10 @@
 <?xml-model href="balisage-1-3.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-stylesheet type="text/xsl" href="balisage-proceedings-html.xsl"?>
 <article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>It’s more than just overlap: Text As Graph</title>
+  <title>It’s more than just overlap: Text As Graph<footnote>
+      <para>The authors are grateful to Elli Bleeker, Gijsjan Brouwer, Bram Buitendijk, and Astrid
+        Kulsdom for their valuable contributions and support.</para>
+    </footnote></title>
   <subtitle>Refining our notion of what text really is—this time for sure!</subtitle>
   <!-- Verify that all items in bibliography are cited in body   -->
   <info>
@@ -1224,11 +1227,6 @@
       them out of the application level.</para>
     <para>At the moment there is a single text order, and we recognize the need for more, about
       which see <xref linkend="to_do"/>.</para>
-  </section>
-  <section>
-    <title>Acknowledgements</title>
-    <para>Thanks to Elli Bleeker, Gijsjan Brouwer, Bram Buitendijk and Astrid Kulsdom for their
-      valuable contributions and support.</para>
   </section>
   <appendix xml:id="sonnet-71_text" xreflabel="Appendix A">
     <title>William Shakespeare, Sonnet 71</title>
