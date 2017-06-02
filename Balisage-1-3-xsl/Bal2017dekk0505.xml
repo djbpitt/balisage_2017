@@ -635,10 +635,10 @@
     <para>In this section we illustrate several types of textual structures that have proven awkward
       for XML because they contradict or otherwise are not part of the OHCO tree model. For each we
       provide an abstract description of the problem, of one or more XML workarounds, and their
-      GODDAG and LMNL counterparts (as appropriate), illustrated with examples drawn from use cases
-      in Digital Humanities research projects.</para>
+      GODDAG and LMNL <!--TODO: add TexMECS-->counterparts (as appropriate), illustrated with
+      examples drawn from use cases in Digital Humanities research projects.</para>
     <!-- Michael and Claus 2008 emphasize that TEI markup requires semantics, while ours is in the model
-      TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser -->
+      TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser ? ANSWER: we have a TexMECS parser now.-->
     <!-- TexMECS requires quotations to be divided in the model, while we don't -->
     <section>
       <title>Overlap</title>
@@ -779,6 +779,7 @@
         records it through coindexed annotations. That dependency seems to locate discontinuity in
         an application layer, since whether coindexed annotations represent discontinuity is not an
         inherent property of the coindexing.</para>
+      <para><!--TODO: Add TexMECS--></para>
       <para>TAG prioritizes the representation of text structures, including discontinuity, in the
         model, without dependency on application-layer semantics. The example from Alice in
         Wonderland described above would have the following form in TAG:</para>
@@ -978,9 +979,9 @@
       <para>The reason tokenizing tagged text is awkward in XML even where overlap is not a risk is
         that the markup and text are intertwined in a way that makes it impossible to ignore markup
         during tokenization while retaining access to it after the process is complete. Although it
-        is not usually described this way, the use of white space to separate words is may be
-        understood as pseudo-markup, which means that the words in tagged text potentially represent
-        overlapping hierarchies.<footnote>
+        is not usually described this way, the use of white space to separate words is may
+        <!--TODO: remove is?-->be understood as pseudo-markup, which means that the words in tagged
+        text potentially represent overlapping hierarchies.<footnote>
           <para>See <quote>Mixed content as a type of overlap</quote> in <xref
               linkend="birnbaum_2015"/>.</para>
         </footnote></para>
@@ -1024,10 +1025,12 @@
         text of a TAG annotation can be a target of markup and the annotation itself can be
         annotated, footnote-like relationships can be modeled in TAG as what they are: annotations
         on text.</para>
-      <para><emphasis role="ital">TODO: Should we allow anonymous Markup nodes? If we’re footnoting
-          a Text node that isn’t a textual object of a particular type, and we’re adding the Markup
-          node just to be able to point to it from an Annotation, it would be natural not to impose
-          a <code>name</code> property on the Markup node.</emphasis></para>
+      <para><emphasis role="ital"
+          ><!--TODO: Discuss this. I think we already have support for this in Alexandria, but I am not sure.-->TODO:
+          Should we allow anonymous Markup nodes? If we’re footnoting a Text node that isn’t a
+          textual object of a particular type, and we’re adding the Markup node just to be able to
+          point to it from an Annotation, it would be natural not to impose a <code>name</code>
+          property on the Markup node.</emphasis></para>
       <para><emphasis role="ital">TODO: Add illustration of footnote after question of anonymous
           Markup nodes is resolved</emphasis></para>
     </section>
@@ -1565,8 +1568,6 @@
       </section>
       <section>
         <title>LMNL conceptual model and how to map it to a hypergraph</title>
-        <!--It is very important that we explain what we kept of the original data model behind
-            LMNL and what we changed and why.-->
         <para>The conceptual datamodel behind is XML is the Document Object Model (DOM). The DOM
           represents a tree based data structure. The data model behind LMNL is different, in that
           it is based on ranges, based on offsets on textual content.</para>
@@ -1733,7 +1734,7 @@ And mock you with me after I am gone.</programlisting>
       </mediaobject>
       <caption>
         <para>This hypergraph models the containment and order of the text, with no statement of
-          hierarchy (dominance).</para>
+          hierarchy (dominance).<!--TODO: update picture to the latest version.--></para>
       </caption>
     </figure>
   </appendix>
