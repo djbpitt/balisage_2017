@@ -1295,48 +1295,54 @@ And mock you with me after I am gone.</programlisting>
           has the same limitation. Ideally, sets of Text nodes that are not mutually ordered
           logically would not have order in the model.</para>
         <para>Not only are the children of <code>&lt;choice&gt;</code> ordered artificially, but the
-            <code>&lt;choice&gt;</code> element itself is artifactual, as it represents as an
-          element in the hierarchy a property that is fundamentally an issue of traversal. The same
-          is true of the TEI <code>&lt;app></code> element in the parallel segmentation
-          representation of textual variation. Both the artifactual order and the artifactual
-          wrapper are typically managed at the application layer, but the Variant Graph used to
-          model textual variation in the open-source CollateX collation tool [<xref
-            linkend="collatex"/>] represents alternative readings without these sorts of wrappers,
-          and could be used to model simultaneous alternatives without either artifactual order or
-          artifactual wrappers. For example, an abbreviation and its expansion might be represented
-          as:</para>
+            <code>&lt;choice&gt;</code> element itself is an artifactual Content Object, as it
+          represents as an element in the hierarchy a property that is fundamentally an issue of
+          traversal. The same is true of the TEI <code>&lt;app></code> element in the parallel
+          segmentation representation of textual variation. Both the artifactual order and the
+          artifactual wrapper must be interpreted at the application layer, and the information they
+          add is not about the document content as much as it is about the markup, viz., that
+          although XML is an ordered tree, the order of their children is not informational. As a
+          pointer to an alternative model, the Variant Graph used to express textual variation in
+          the open-source CollateX collation tool [<xref linkend="collatex"/>] represents
+          alternative readings without these sorts of wrappers, and could be used to model
+          simultaneous alternatives in TAG without either artifactual order or artifactual wrappers.
+          For example, an abbreviation and its expansion might be represented as:</para>
         <para><emphasis role="ital">TODO: Add illustration</emphasis></para>
         <para>Because currently Text nodes in TAG are fully ordered, it is not possible to model
           simultaneity through multiple ordering edges between Text nodes.</para>
       </section>
       <section>
         <title>Transposition</title>
-        <para>A traditional challenge for markup languages involves transpositions, of the sort that
-          occur when creating critical editions in which the textual witnesses may contain some of
-          the same words, but with reordering. This is also part of the Variant Graph structure used
-          to model textual variation in the open-source CollateX collation tool [<xref
-            linkend="collatex"/>], but because currently Text nodes in TAG are fully ordered, it is
-          not possible to model transpositions as alternative orders.</para>
+        <para>Representing alternative orders of the same content, as may be needed in critical
+          editions in which the textual witnesses may contain some of the same words, but with
+          reordering, poses a challenge for data models based on a single linear textual order.
+          Insofar as a critical text may be modeled as a single document, and two witnesses may
+          differ through transposition, the representation of transposition is a requirement for a
+          satisfactory data model. The representation of transposition is also part of the Variant
+          Graph structure used to model textual variation in the open-source CollateX collation tool
+            [<xref linkend="collatex"/>], and suggests a way to incorporate transposition into TAG,
+          but because currently Text nodes in TAG are fully ordered, it is not possible to model
+          transpositions in TAG as alternative orders.</para>
       </section>
     </section>
     <section>
       <title>Constraint language</title>
-      <para>Constraints in this paper are expressed in prose. They should be expressed
-        formally.</para>
+      <para>Constraints in this paper are expressed in prose. They should be expressed formally in a
+        more complete specification.</para>
     </section>
     <section>
       <title>Query language</title>
-      <para>TAG needs a query language that expresses queries in terms of operations on sets of
-        nodes and edges.</para>
+      <para>TAG does not yet have a query language that expresses queries in terms of operations on
+        sets of nodes and edges.</para>
     </section>
     <section>
       <title>Markup language</title>
       <para>TAG does not define a markup language, that is, a syntactic form that can be used to tag
-        text and for import and export serialization. Alexandria can parse LMNL syntax (into the TAG
-        data model, not the LMNL one, so it is not so much parsing LMNL as borrowing LMNL syntax to
-        express TAG relationships), and support is planned for TexMECS and XML syntax (also as
-        representations of TAG, and not of GODDAG or XML). None of these three grammars is capable
-        or representing all of the features of TAG. We leave open the question of how to provide a
+        text and for import and export serialization. Aswas noted above, Alexandria can parse LMNL
+        syntax (into the TAG data model, not the LMNL one, so it is not so much parsing LMNL as
+        borrowing LMNL syntax to express TAG relationships), the same is true of TexMECS, and
+        similar support is planned XML syntax. None of these three grammars is capable or
+        representing all of the features of TAG. We leave open the question of how to provide a
         character-string serialization of a TAG document.</para>
     </section>
   </appendix>
