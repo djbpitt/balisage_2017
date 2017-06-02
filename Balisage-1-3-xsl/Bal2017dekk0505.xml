@@ -1191,13 +1191,22 @@
   </section>
   <section>
     <title>Conclusions</title>
-    <para>Tree models are top down. TAG is bottom up. LMNL is flat. XML conflates not only
-      containment and dominance (hierarchy), but it also mixes in datatyping. A model that contains
-      artifactual structures that must then be ignored by the application has poor design, even if
-      there are no consequences for the output of processing. Oh, and did we mention order? XML is
-      an ordered tree (as is GODDAG, and LMNL is an ordered sequence of atoms); TAG establishes text
-      order with normal edges and derives markup order from the order of the text nodes to which the
-      markup points, so order is separate from markup.</para>
+    <para>Remove comparisons to other models, but reiterate that we’re a graph-based model that does
+      ... .Tree models are top down. TAG is bottom up. Flat LMNL is flat, and LMNL ranges must be
+      continuous. XML conflates not only containment and dominance (hierarchy), but it also mixes in
+      datatyping. A model that contains artifactual structures that must then be ignored by the
+      application has poor design, even if there are no consequences for the output of processing.
+      Oh, and did we mention order? XML is an ordered tree (as is GODDAG, and LMNL is an ordered
+      sequence of atoms); TAG establishes text order with normal edges and derives markup order from
+      the order of the text nodes to which the markup points, so order is separate from
+      markup.</para>
+    <para>We are a graph model like XDM and GODDAG, but we make many things options. Instead of
+      deferring features to the application level, we incorporate them in the model. We distinguish
+      containment from hierarchy. Hierarchy is optional, and if you want one, you can even have more
+      than one. A root node is optional. We support overlap and discontinuity in the model, taking
+      them out of the application level.</para>
+    <para>At the moment there is a single text order, and we recognize the need for more, about
+      which see <xref linkend="to_do"/>.</para>
   </section>
   <appendix xml:id="sonnet-71_text" xreflabel="Appendix A">
     <title>William Shakespeare, Sonnet 71</title>
