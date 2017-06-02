@@ -151,7 +151,9 @@
       that higher level. The Text As Graph model that we introduce below is not intended to be a
       solution to <quote>the overlap problem in XML</quote>; it is built around a fresh
       consideration of the textual structures, both latent and overt, that a data model will need to
-      be able to represent. <!--Add something about convergence with LMNL and GODDAG.--><footnote>
+      be able to represent. It is nonetheless not accidental that TAG agrees in some respects with
+      XML, in others with GODDAG or TexMECS, and in others with LMNL, since all of these
+      specifications have sought, in partially converging ways, to model text structure.<footnote>
         <para>The desiderata TAG seeks to satisfy are described in a requirements document in <xref
             linkend="requirements"/>.</para>
       </footnote></para>
@@ -409,10 +411,11 @@
               <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes correspond roughly
                 to element nodes in XML, and each instance of markup is represented by its own node.
                 The only property of a Markup node is a <code>name</code>, which is analogous to the
-                XML generic identifier. Markup nodes are connected to one or more text Nodes by a
-                hyperedge, where the Markup node is the head and a set of Text nodes is the tail.
-                There is no requirement that the Text nodes in the tail of a Markup-to-Text
-                hyperedge be continuous.</para>
+                XML generic identifier, but TAG also permits anonymous Markup nodes, much as LMNL
+                permits anonymous annotations (see below for an example of how these might be used).
+                Markup nodes are connected to one or more text Nodes by a hyperedge, where the
+                Markup node is the head and a set of Text nodes is the tail. There is no requirement
+                that the Text nodes in the tail of a Markup-to-Text hyperedge be continuous.</para>
             </listitem>
             <listitem>
               <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
@@ -1063,21 +1066,22 @@
         text, as with the <code>&lt;footnote></code> element in DocBook or the
           <code>&lt;note></code> element in TEI. This is problematic because it does not mark
         explicitly the scope of the note, such as whether a footnote reference at the end of a
-        paragraph refers to the preceding sentence or the entire paragraph. The TEI
-          <code>&lt;note></code> element avoids this limitation because it can point to an arbitrary
-        target with XPointer, but this is an indirect way of specifying what might have been
-        represented as an attribute if XML attributes were able to model rich content. Because the
-        text of a TAG annotation can be a target of markup and the annotation itself can be
-        annotated, footnote-like relationships can be modeled in TAG as what they are: annotations
-        on text.</para>
-      <para><emphasis role="ital"
-          ><!--TODO: Discuss this. I think we already have support for this in Alexandria, but I am not sure.-->TODO:
-          Should we allow anonymous Markup nodes? If we’re footnoting a Text node that isn’t a
-          textual object of a particular type, and we’re adding the Markup node just to be able to
-          point to it from an Annotation, it would be natural not to impose a <code>name</code>
-          property on the Markup node.</emphasis></para>
-      <para><emphasis role="ital">TODO: Add illustration of footnote after question of anonymous
-          Markup nodes is resolved</emphasis></para>
+        paragraph refers to the preceding sentence or two sentences or more, or the entire
+        paragraph. The TEI <code>&lt;note></code> element avoids this limitation because it can
+        point to an arbitrary target with XPointer, but this is an indirect way of specifying what
+        might have been represented as an attribute if XML attributes were able to model rich
+        content, and to annotate something other than an element with a generic identifier that
+        specifies its type.</para>
+      <para>TAG avoids the issue of rich content because in TAG the text of an annotation can be a
+        target of markup, just like the main text, and the annotation itself can even be annotated.
+        It avoids the scope of reference problem because the annotation can point to a Markup node
+        with a name if an appropriate one exists (such as paragraph in a document that marks up
+        paragraphs), but because TAG permits anonymous Markup nodes, it is also possible to annotate
+        arbitrary text by pointing to it with a Markup-to-Text hyperedge from an anonymous Markup
+        node. This means that footnote-like relationships can be modeled in TAG as what they are:
+        rich-text annotations on text regardless of whether the target of the annotation corresponds
+        to a Content Object with an identifiable type.</para>
+      <para><emphasis role="ital">TODO: Add illustration of footnote Annotation</emphasis></para>
     </section>
     <section>
       <title>Data model versus syntax</title>

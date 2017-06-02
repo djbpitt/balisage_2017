@@ -1,5 +1,5 @@
 digraph G {
-	{ node [rank = same]; document[fillcolor=beige, style=filled]; fake[style=invis]; fake1[style=invis]; fake3[style=invis]; line[style=filled, fillcolor="#00ff00"]; fake4[style=invis]; fake5[style=invis]; fake6[style=invis];}
+/*	{ node [rank = same]; document[fillcolor=beige, style=filled]; fake[style=invis]; fake1[style=invis]; fake3[style=invis]; line[style=filled, fillcolor="#00ff00"]; fake4[style=invis]; fake5[style=invis]; fake6[style=invis];}
 	{ node [rank = same, style=filled, fillcolor=pink]; No; l; o; n; ger; m; ou; rn; }
 	No -> l -> o -> n -> ger -> m -> ou -> rn [constraint=false]
 	document -> No
@@ -10,15 +10,19 @@ digraph G {
 	fake4 -> m[style=invis]
 	fake5 -> ou[style=invis]
 	fake6 -> rn[style=invis]
-{node [rank=same] w1; foot1[style=filled, fillcolor=violet, label=foot]; stress1[style=filled, fillcolor=cyan, label=stress]; w4; w5; foot2[style=filled, fillcolor=violet, label=foot]; stress2[style=filled, fillcolor=cyan, label=stress]; w8}
-No -> w1
+{node [rank=same] w1[style=filled, fillcolor=orange, label=word]; stuff1[style=invis]; stress1[style=filled, fillcolor=cyan, label=stress]; w4[style=invis]; w5[style=invis]; stuff2[style=filled, fillcolor=orange, label=word]; stress2[style=filled, fillcolor=cyan, label=stress]; w8[style=invis]}
+foot1[style=filled, fillcolor=violet, label=foot]
+foot2[style=filled, fillcolor=violet, label=foot]
+w4[label=word, style=filled, fillcolor=orange]
+w6[style=filled, fillcolor=cyan, label=stress]
+No -> w1[style=invis]
 l -> stuff1[style=invis]
-o -> stress1
-n -> w4
-ger -> w5
+o -> stress1[style=invis]
+n -> w4[style=invis]
+ger -> w5[style=invis]
 m -> stuff2[style=invis]
-ou -> w6
-rn -> w8
+ou -> w6[style=invis]
+rn -> w8[style=invis]
 stuff1 -> foot1[style=invis]
-stuff2 -> foot2[style=invis]
+stuff2 -> foot2[style=invis]*/
 }
