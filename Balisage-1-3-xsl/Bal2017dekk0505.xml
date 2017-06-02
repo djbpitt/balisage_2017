@@ -1081,22 +1081,22 @@
     </section>
     <section>
       <title>Data model versus syntax</title>
-      <para>A third challenge of discussing XML as a model of text is distinguishing XML as a data
+      <para>Another challenge of discussing XML as a model of text is distinguishing XML as a data
         model from XML as a syntax, and the same applies to the LMNL data model vs the LMNL sawtooth
         syntax and the GODDAG data structure vs TexMECS syntax. Perhaps a bit surprisingly in the
         context of Balisage, which describes itself as <quote>the <emphasis role="ital"
             >markup</emphasis> conference</quote>, our focus here is not on markup (that is, on
-        syntax and serialization), but on the data models that may be expressed through markup. Our
-        somewhat simplified <xref linkend="XML_specs"/> illustration, below, regards the marked-up
-        XML document as related to the XML InfoSet by the operations of serialization in one
-        direction and parsing in the other. This matters because the serialization is, as is clear
-        from the etymology of the term, committed to an ordered expression in ways that other
-        representations of XML may not be, and the same is true of other dxata models and their
-        associated syntactic expressions through markup. If, for example, a paragraph is exactly
-        coextensive with a quotation, in XML syntax, LMNL sawtooth syntax, and TexMECS syntax, the
-        start tag of either the paragraph or the quotation must come first in linear order. But in
-        LMNL the relative order of the ranges defined by the tags is not an obligatory part of the
-        model, which permits two ranges to begin at the same location in the text .<footnote>
+        syntax and serialization), but on the data models that may be expressed through markup. We
+        regard the marked-up XML document as related to the XML InfoSet by the operations of
+        serialization in one direction and parsing in the other. This matters because the
+        serialization is, as is clear from the etymology of the term, committed to an ordered
+        expression in ways that other representations of XML may not be, and the same is true of
+        other dxata models and their associated syntactic expressions through markup. If, for
+        example, a paragraph is exactly coextensive with a quotation, in XML syntax, LMNL sawtooth
+        syntax, and TexMECS syntax, the start tag of either the paragraph or the quotation must come
+        first in linear order. But in LMNL the relative order of the ranges defined by the tags is
+        not an obligatory part of the model, which permits two ranges to begin at the same location
+        in the text .<footnote>
           <para>LMNL is able to represent hierarchy, but it is not obligatory, and
               <quote>flat</quote> LMNL does not express hierarchy.</para>
         </footnote> In XML, though, one element must be the parent of the other, and the order of
@@ -1104,26 +1104,14 @@
         to distinguish when the relative order of the tags is informational and when it is not.<footnote>
           <para>STAGO vs STAGSO and ETAGO vs ETAGSO [<xref linkend="huitfeldt_2003"/>, §2.3.]</para>
         </footnote></para>
-      <figure xml:id="XML_specs">
-        <title>The XML document-processing ecosystem</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="xml-spec.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>The term <quote>XML</quote> may be used to refer to the data model or to its
-            syntactic or other expressions.</para>
-        </caption>
-      </figure>
     </section>
     <section>
       <title>Semantics versus application level</title>
-      <para>A fourth issue, which intersects with the three above, involves distinguishing
-        properties that inhere in the text being modeled from those that depend on semantics that
-        must be interpreted at a higher (application) level. A failure to make this distinction may
-        have two types of consequences (which are really aspects of the same thing, the delegation
-        of information that should be part of the model to the application layer): either the
+      <para>Another issue, which intersects with the three above, involves distinguishing properties
+        that inhere in the text being modeled from those that depend on semantics that must be
+        interpreted at a higher (application) level. A failure to make this distinction may have two
+        types of consequences (which are really aspects of the same thing, the delegation of
+        information that should be part of the model to the application layer): either the
         application must know that some properties of the model are not informational and are to be
         ignored or the application must know that there is information that is not represented
         entirely by the model and must therefore be added during processing. If, however, the model
