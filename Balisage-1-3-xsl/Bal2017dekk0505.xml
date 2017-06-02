@@ -874,26 +874,53 @@
           <para>The XML tree encodes containment and hierarchy in the same way.</para>
         </caption>
       </figure>
-      <para>LMNL recognizes that what has been identified as <quote>overlapping hierarchy</quote> in
-        XML might, at least sometimes, be understood instead as overlapping containment, except that
-        XML cannot represent containment separately from hierarchy.</para>
-      <para>Note that the XML representation differs from the TAG representation because XML
-        requires a hierarchy, which TAG permits, but does not require. The XML representation has a
-        root element (<code>&lt;poem></code>) because a tree must have a root, and the
-          <code>&lt;quatrain></code> and <code>&lt;couplet></code> elements are parents not of Text
-        nodes, but of <code>&lt;line></code> elements. TAG is able to model these XML-like
-        structures, but it is not required to do so because it separates containment and datatyping
-        from hierarchy. </para>
+      <para>In the earlier TAG example of this sonnet, a Markup-to-Text hyperedge defines the tail
+        as a set of Text nodes and labels (datatypes) it. In the TAG version of this example, all
+        quatrain and line Markup-to-Text edges point to sets of Text nodes, and containment is
+        modeled by subset relations among the tails of Markup nodes. Where the Text nodes that
+        constitute the tail of a Markup-to-Text hyperedge with the <code>name</code> property of
+          <quote>line</quote> form a subset of the Text nodes that constitute the tail of a
+        Markup-to-Text edge with the <code>name</code> property of <quote>quatrain</quote>, the
+        quatrain contains the line.<footnote>
+          <para>Note that the quatrain Markup node does not contain or have any other direct
+            relationship to the line Markup node. It is the set of Text nodes of the quatrain that
+            contains the set of Text nodes of the line.</para>
+        </footnote> In this emphasis on containment, rather than dominance, TAG is similar to flat
+        LMNL, except that LMNL ranges must be continuous (LMNL handles discontinuity separately),
+        while contiguity is not relevant in defining the set of Text nodes that may serve as the
+        tail of a hyperedge in TAG (see the discussion of Discontinuity, above). In the TAG version
+        we have chosen not to make the three quatrains and the couplet what in XML terms would be
+        children of a root <code>&lt;poem&gt;</code> element, but we could, should we wish, create a
+        Markup-to-Text hyperedge with a <code>name</code> property value of <quote>poem</quote>
+        (which would point, through a hyperedge, to the set of all Text nodes in the poem), and,
+        optionally, add a one-to-many Markup-to-Markup hyperedge from it to the Markup nodes with
+          <quote>quatrain</quote> and <quote>couplet</quote>
+        <code>name</code> property values to specify dominance. In other words, Markup-to-Text nodes
+        model containment, rather than dominance (indirectly, through subset properties of the Text
+        nodes to which they point), and where it is important to distinguish dominance from
+        containment, the TAG model supports this through Markup-to-Markup hyperedges.</para>
+      <para>One final consequence of the XML conflation of containment and dominance is that when
+        exactly the same text must be tagged in two ways simultaneously, XML requires one of the
+        elements to contain the other. But, as was noted above, if a Markup node with the
+          <code>name</code> property value of <quote>paragraph</quote> and a Markup node with the
+          <code>name</code> property value of <quote>quotation</quote> both point to exactly the
+        same set of Text nodes, in TAG it does not make sense to ask whether the paragraph contains
+        the quotation or the quotation contains the paragraph because containment in TAG is defined
+        as a proper subset relationship among sets of Text nodes. Whether a paragraph consists of a
+        quotation or a quotation consists of a paragraph is a reasonable question, but in TAG it is
+        a question of dominance, expressed through Markup-to-Markup nodes, and not of containment,
+        expressed through Markup-to-Text nodes.</para>
     </section>
     <section>
-      <title>Data typing and artificial hierarchy</title>
-      <para>In XML, markup is (among other things) a form of datatyping, and the XML spec uses the
-        word <quote>type</quote> to say this:<blockquote>
+      <title>Artifactual hierarchy</title>
+      <para>As we described above, in XML, markup is (among other things) a form of datatyping, and
+        the XML spec uses the word <quote>type</quote> to say this:<blockquote>
           <para>Each element has a type, identified by name, sometimes called its <quote>generic
               identifier</quote> (GI) [<xref linkend="W3C_xml"/> §3]</para>
-        </blockquote>This means that when XML assigna a type to part of a document by making it an
-        element, it simultaneously makes it a node in the document hierarchy. Consider the following
-        XML structure, represented here in markup and as hierarchy:</para>
+        </blockquote>This means that when XML assigns a type to part of a document by making it an
+        element, it simultaneously creates an element node, which pushes the textual content down a
+        level in the document hierarchy. Consider the following XML structure, represented here in
+        markup and as hierarchy:</para>
       <programlisting>&lt;title&gt;&lt;name&gt;Romeo&lt;/name&gt; and &lt;name&gt;Juliet&lt;/name&gt;&lt;/title&gt;</programlisting>
       <figure xml:id="romeo_xml">
         <title>Romeo and Juliet (XML)</title>
@@ -915,17 +942,48 @@
               <quote>and</quote> down to the same hierarchical level as the names, but we have not
             observed that in practice. If the markup process involves tagging what the user
             considers informational, it should be possible to say that some text in this title is of
-            a particular type <emphasis role="ital">that we care about sufficiently to specify the
-              type in our markup</emphasis>, and other text is not, and to tag the former, but not
-            the latter.</para>
+            a particular type <emphasis role="ital">that we care about sufficiently to specify it in
+              our markup</emphasis>, and other text is not, and to tag the former, but not the
+            latter.</para>
         </footnote> This contradicts our intuition that the title contains three words, two of which
         have the type <quote>name</quote>, replacing it with a model in which the title contains two
         objects of type <quote>name</quote> with a word between them, and it is the
           <quote>name</quote> objects that contain the first and third words.</para>
-      <para/>
+      <para>Because TAG separates the use of markup in hierarchy and its use for datatyping, it is
+        possible to assign a type to text without distorting the hierarchy. Here is the TAG
+        representation of the same content:</para>
+      <figure xml:id="romeo_hypergraph">
+        <title>Romeo and Juliet (TAG)</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="romeo_hypergraph.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>In this TAG example, the markup on names specifies their type without imposing a
+            hierarchy. The title contains three text nodes, represented by pink ellipses. Markup
+            nodes are green (for names) and cyan (for titles), and the document node is
+            beige.</para>
+        </caption>
+      </figure>
+      <para>As illustrated in the example above, markup of text nodes in the TAG model, unlike in
+        XML, does not create a hierarchical layer as a side effect of datatyping. As we have seen
+        earlier, it is possible to represent hierarchy in TAG, but it is not an inescapable
+        consequence of all markup, as it is in XML.</para>
     </section>
     <section>
       <title>White space as crypto-overlap</title>
+      <para>In natural language processing tokenization is the process of breaking a string of
+        characters up into individual words. Tokenization is done using regular expressions. Regular
+        expressions however only work on textual data and not on markup. (See the famous
+        stackoverflow post for reference). On top of that the tokens themselves add another layer of
+        information to file/model/data/document (not sure what the right word to use is here), which
+        can overlap with the already existing hierarchy in the document. A data model for text that
+        can handle multiple overlapping hierarchies or layers of annotations and that allows read as
+        well as write operations can help out here. During tokenization all of the markup can be put
+        'aside' as it were and the tokenizer only pays attention to the textual content. The
+        individual tokens are markup in a separate annotation layer. The existing markup layers are
+        only ignored during tokenization, and still exist in the data.</para>
       <para>As was noted above, what we call plain text typically uses typographic and layout
         conventions as pseudo-markup, and one function of structured markup languages is to separate
         markup from content, thus transforming implicit structures expressed through pseudo-markup
@@ -1164,95 +1222,6 @@
         experimental state and a much lower level of maturity.-->
     </section>
   </section>
-  <section>
-    <title>How TAG addresses structures that are awkward for XML</title>
-    <para>In this section we illustrate how several types of structures that are awkward for XML can
-      be represented in a natural way in TAG. </para>
-    <section>
-      <title>Hierarchy, containment ant dominance</title>
-      <para>The corresponding XML tree, illustrated earlier, includes a <code>&lt;poem&gt;</code>
-        root node, which is not present in the TAG hypergraph, although, as explained above, we
-        could have created one had we wished to do so. The root node is not optional in XML because
-        a tree requires a root. Additionally, the XML <code>&lt;quatrain&gt;</code> and
-          <code>&lt;couplet&gt;</code> elements are parents of <code>&lt;line&gt;</code> elements,
-        which are parents of <code>Text</code> nodes.</para>
-      <para>In TAG, a Markup-to-Text hyperedge defines the tail as a set of Text nodes and labels
-        (datatypes) it. Containment is modeled by subset relations among the tails of Markup nodes.
-        In this example, all quatrain and line Markup-to-Text edges point to sets of Text nodes.
-        Where the Text nodes that constitute the tail of a line Markup-to-Text edge form a subset of
-        the nodes that constitute the tail of a quatrain Markup-to-Text edge, the quatrain contains
-        the line.<footnote>
-          <para>Note that the quatrain Markup node does not contain or have any other direct
-            relationship to the line Markup node. It is the set of Text nodes of the quatrain that
-            contains the set of Text nodes of the line.</para>
-        </footnote> In this emphasis on containment, rather than dominance, TAG is similar to flat
-        LMNL, except that LMNL ranges must be continuous (LMNL handles discontinuity separately),
-        while contiguity is not relevant in defining the set of Text nodes that may serve as the
-        tail of a hyperedge in TAG (see the discussion of Discontinuity, below). In the example
-        above, we have chosen not to encode dominance, but should we wish to do that, we can use
-        Markup-to-Markup hyperedges, about which see below. Similarly, we have chosen not to make
-        the three quatrains and the couplet what in XML terms would be children of a root
-          <code>&lt;poem&gt;</code> element, but, should we wish, we could create a Markup-to-Text
-        hyperedge with a Name property value of <quote>poem</quote> (which would point, through a
-        hyperedge, to the set of all Text nodes in the poem), and, optionally, add a one-to-many
-        Markup-to-Markup hyperedge from it to the Markup nodes with <quote>quatrain</quote> and
-          <quote>couplet</quote> Name property values to specify dominance. In other words,
-        Markup-to-Text nodes model containment, rather than dominance (indirectly, through subset
-        properties of the Text nodes to which they point), and where the developer needs to
-        distinguish dominance from containment, the TAG model supports this through Markup-to-Markup
-        hyperedges.</para>
-      <para>As with any system for the representation of text, the choice of markup depends on a
-        combination of properties inherent in the text and the features that are of interest to the
-        person creating the markup. For example, we could also have created <quote>sentence</quote>
-        markup nodes (and we do that in the discussion of Overlap, below), but for illustrative
-        purposes the graph is easier to read without them.</para>
-      <para> In our TAG example, the <quote>quatrain</quote>, <quote>couplet</quote>, and
-          <quote>line</quote> Markup nodes all point directly to sets of Text nodes, and have no
-        hierarchical relationship (although, as explained above, we could create one if we
-        wished).</para>
-      <para>OLD TEXT ABOUT CONTAINMENT AND DOMINANCE. PROBABLY NOT RELEVANT ANYMORE!</para>
-      <para><emphasis role="ital">TODO: Where two ranges fully overlap, XML requires one to contain
-          and dominate the other</emphasis></para>
-      <para>In natural language processing tokenization is the process of breaking a string of
-        characters up into individual words. Tokenization is done using regular expressions. Regular
-        expressions however only work on textual data and not on markup. (See the famous
-        stackoverflow post for reference). On top of that the tokens themselves add another layer of
-        information to file/model/data/document (not sure what the right word to use is here), which
-        can overlap with the already existing hierarchy in the document. A data model for text that
-        can handle multiple overlapping hierarchies or layers of annotations and that allows read as
-        well as write operations can help out here. During tokenization all of the markup can be put
-        'aside' as it were and the tokenizer only pays attention to the textual content. The
-        individual tokens are markup in a separate annotation layer. The existing markup layers are
-        only ignored during tokenization, and still exist in the data.</para>
-      <para>END OLD TEXT</para>
-    </section>
-    <section>
-      <title>Artifactual hierarchy and datatyping</title>
-      <para>TAG separates the use of markup in hierarchy and its use for datatyping, so that it is
-        possible to assign a type to text without distorting the hierarchy. Here is the TAG
-        representation of the same content:</para>
-      <figure xml:id="romeo_hypergraph">
-        <title>Romeo and Juliet (TAG)</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="romeo_hypergraph.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>In this TAG example, the markup on names specifies their type without imposing a
-            hierarchy. The title contains three text nodes, represented by pink ellipses. Markup
-            nodes are green (for names) and cyan (for titles), and the document node is
-            beige.</para>
-        </caption>
-      </figure>
-      <para>As illustrated in the example above, markup of text nodes in the TAG model, unlike in
-        XML, does not create a hierarchical layer as a side effect of datatyping. As we have seen
-        earlier, in TAG, it is possible to represent hierarchy by creating hyperedges that point
-        from one markup node to a set of markup nodes, but hierarchy is not an inescapable
-        consequence of all markup in TAG, as it is in XML.</para>
-    </section>
-  </section>
-
   <section>
     <title>Comparison of TAG/hypergraph to other text models</title>
     <para>In this section we compare the TAG data model with three well-known alternative data
