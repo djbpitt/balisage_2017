@@ -663,10 +663,9 @@
     <para>In this section we illustrate several types of textual structures that have proven awkward
       for XML because they contradict or otherwise are not part of the OHCO tree model. For each we
       provide an abstract description of the problem, of one or more XML workarounds, and their
-      GODDAG and LMNL <!--TODO: add TexMECS-->counterparts (as appropriate), illustrated with
-      examples drawn from use cases in Digital Humanities research projects.</para>
-    <!-- Michael and Claus 2008 emphasize that TEI markup requires semantics, while ours is in the model
-      TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser ? ANSWER: we have a TexMECS parser now.-->
+      GODDAG, TexMECS, and LMNL counterparts (as appropriate), illustrated with examples drawn from
+      use cases in Digital Humanities research projects.</para>
+    <!-- TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser ? ANSWER: we have a TexMECS parser now.-->
     <!-- TexMECS requires quotations to be divided in the model, while we don't -->
     <section>
       <title>Overlap</title>
@@ -806,8 +805,9 @@
           (<link>http://piez.org/wendell/LMNL/Amsterdam2008/presentation-slides.html#page23</link>)
         records it through coindexed annotations. That dependency seems to locate discontinuity in
         an application layer, since whether coindexed annotations represent discontinuity is not an
-        inherent property of the coindexing.</para>
-      <para><!--TODO: Add TexMECS--></para>
+        inherent property of the coindexing. As was noted earlier, TexMECS is capable of modeling
+        discontinuity directly with suspend-tags and resume-tags, but if a TexMECS document is to be
+        parsed into GODDAG, the fragments are modeled as separate structural components</para>
       <para>TAG prioritizes the representation of text structures, including discontinuity, in the
         model, without dependency on application-layer semantics. The example from Alice in
         Wonderland described above would have the following form in TAG:</para>
@@ -820,9 +820,8 @@
         </mediaobject>
         <caption>
           <para>Each hyperedge points from a markup node head (identifying the type of text
-            structure) to a tail set of text nodes. Normal edges connect the text nodes in
-            order.</para>
-          <para>In the TAG model, a discontinuous textual object is represented the same way as a
+            structure) to a tail set of text nodes. Normal edges connect the text nodes in order. In
+            the TAG model, then, a discontinuous textual object is represented the same way as a
             continuous one, as an ordered set of Text nodes that form the tail of a Markup-to-Text
             hyperedge.</para>
         </caption>
@@ -1149,64 +1148,46 @@
   </section>
   <section>
     <title>TAG in Alexandria</title>
-    <!--some of this may be plans or projections, rather than implementation-->
-    <section>
-      <title>Introduction to Alexandria as a TAG implementation</title>
-      <para>This paper introduces the Alexandria text repository system, an open-source read/write
-        implementation of the TAG model. It allows the user to import and store text files in either
-        XML or LMNL markup (with support planned for TexMECS), and it supports multiple layers of
-        annotation that are permitted to overlap. </para>
-      <para>The syntax is not the data model. The data model could, at least in principle, be
-        serialized in other ways, and the syntax could be coopted to represent a different data
-        model. TAG does not at present have its own serialization syntax; it can read and write LMNL
-        sawtooth syntax (parsing it as a representation of the TAG data model, rather than of LMNL),
-        and it is intended to be able to do the same with XML and TexMECS syntax.</para>
-      <section>
-        <title>LMNL syntax in a TAG environment</title>
-        <para>At present TAG does not have its own syntax, and strategies for import and export are
-          under active development in Alexandria. Alexandria is able to parse and import flat LMNL
-          sawtooth syntax, but it treats the syntax as an expresssion of TAG properties, rather than
-          LMNL ones. This means, for example, that although annotations on the same object in LMNL
-          are ordered, because those in TAG are not, this order is not treated as informational
-          during import or export, or internally. It also means that TAG structures that are not
-          naturally represented in LMNL syntax, such as the Document node or discontinuous sets of
-          Text nodes, also require special handling. The same is true of LMNL structures that are
-          not (yet) represented in LMNL sawtooth syntax, such as the limen. [<xref
-            linkend="piez_2008"/>] Alexandria is not intended to be an implementation of LMNL, and
-          the use of LMNL sawtooth syntax in TAG should not be misunderstood as representing the
-          LMNL data model.</para>
-      </section>
-    </section>
-    <section>
-      <title>Graph and hypergraph</title>
-      <para><emphasis role="bold">TODO: write something</emphasis> The implementation in the current
-        Alexandria markup system stores the nodes and hyperedges in a key-value store. </para>
-    </section>
-    <section>
-      <title>Navigation and query</title>
-      <para><emphasis role="bold">TODO: write something</emphasis></para>
-    </section>
-    <section>
-      <title>Import and export</title>
-      <para> The Alexandria Markup system contains a parser that can import LMNL files and convert
-        into an implementation of the TAG model in memory. Given the following LMNL markup "Hello
-        World". We save this plain text transcription in a LMNL file. When we import this file into
-        Alexandria a graph is created. The graph is very simple: it only consists of 2 nodes and 1
-        edge. One Document node is created. One Text node is created, containing all of the text. An
-        edge is created from the Document node to the text node associating the text with the
-        document. When we change the LMNL markup to "[doc}Hello World{doc]" How serialization works
-        A serialization of the TAG data model into a LMNL file is an example of a traversal over an
-        instance. Start with the Document node. A document node has an outgoing edge to the first
-        text node. Now we follow the hyperedges that are connected to this text node. There can be
-        zero or more hyperedges present on a text nodes. Each hyperedge connects to one markup node.
-        We collect all the markup nodes that are connected to the text node. For each of them we
-        write a start tag. Then we go to the next text node by following the outgoing edge to the
-        next text node. Like before we collect all the markup nodes connected to this text node. We
-        calculate the differences between the sets. For the intersection we do nothing. For markup
-        nodes that are only the set of the previous nodes we write close tags. For the set of markup
-        nodes that is only in the current set of markup nodes we write open tags. <emphasis
-          role="bold">TODO: write something</emphasis></para>
-    </section>
+    <para>This paper introduces the Alexandria text repository system, an open-source read/write
+      implementation of the TAG model. It allows the user to import and store text files in either
+      XML or LMNL markup (with support planned for TexMECS), and it supports multiple layers of
+      annotation that are permitted to overlap. </para>
+    <para>At present TAG does not have its own syntax, and strategies for import and export are
+      under active development in Alexandria. Alexandria is able to parse and import flat LMNL
+      sawtooth syntax, but it treats the syntax as an expresssion of TAG properties, rather than
+      LMNL ones. This means, for example, that although annotations on the same object in LMNL are
+      ordered, because those in TAG are not, this order is not treated as informational during
+      import or export, or internally. It also means that TAG structures that are not naturally
+      represented in LMNL syntax, such as the Document node or discontinuous sets of Text nodes,
+      also require special handling. The same is true of LMNL structures that are not (yet)
+      represented in LMNL sawtooth syntax, such as the limen. [<xref linkend="piez_2008"/>]
+      Alexandria is not intended to be an implementation of LMNL, and the use of LMNL sawtooth
+      syntax in TAG should not be misunderstood as representing the LMNL data model.</para>
+    <para><emphasis role="bold">TODO: write something</emphasis> The implementation in the current
+      Alexandria markup system stores the nodes and hyperedges in a key-value store. </para>
+    <para><emphasis role="bold">TODO: write something</emphasis></para>
+    <para>Syntax is not necessarily the same as a data model. A data model could, at least in
+      principle, be serialized in multiple ways, and syntax developed to represent one data model
+      could be coopted to represent a different one. TAG does not at present have its own
+      serialization syntax; it can read and write LMNL sawtooth syntax and TexMECS (parsing the
+      results as a representation of the TAG data model, rather than of LMNL or GODDAG), and it is
+      intended to be able to do the same with XML syntax.</para>
+    <para>Given the following LMNL markup "Hello World". We save this plain text transcription in a
+      LMNL file. When we import this file into Alexandria a graph is created. The graph is very
+      simple: it only consists of 2 nodes and 1 edge. One Document node is created. One Text node is
+      created, containing all of the text. An edge is created from the Document node to the text
+      node associating the text with the document. When we change the LMNL markup to "[doc}Hello
+      World{doc]" How serialization works A serialization of the TAG data model into a LMNL file is
+      an example of a traversal over an instance. Start with the Document node. A document node has
+      an outgoing edge to the first text node. Now we follow the hyperedges that are connected to
+      this text node. There can be zero or more hyperedges present on a text nodes. Each hyperedge
+      connects to one markup node. We collect all the markup nodes that are connected to the text
+      node. For each of them we write a start tag. Then we go to the next text node by following the
+      outgoing edge to the next text node. Like before we collect all the markup nodes connected to
+      this text node. We calculate the differences between the sets. For the intersection we do
+      nothing. For markup nodes that are only the set of the previous nodes we write close tags. For
+      the set of markup nodes that is only in the current set of markup nodes we write open tags.
+        <emphasis role="bold">TODO: write something</emphasis></para>
   </section>
   <section>
     <title>Conclusions</title>
