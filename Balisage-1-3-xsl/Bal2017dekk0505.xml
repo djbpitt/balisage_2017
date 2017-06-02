@@ -997,36 +997,36 @@
     <section>
       <title>White space as crypto-overlap</title>
       <para>In natural language processing tokenization is the process of breakup a string of plain
-        text characters into substrings (words), often while removing token separators in the
-        process. Tokenization in XML is performed using regular expressions and the
-          <code>tokenize()</code> function, but <code>tokenize()</code> atomizes its first argument,
-        which means that it cannot be used on tagged text without losing the markup in the process.
-        Even tokenization that would not create overlap-based well-formedness violations, such
-        splitting into words a line of poetry in which the stressed vowels are tagged as
-          <code>&lt;stress></code>, requires intermediate temporary manipulations, such as
+        text characters into substrings (typically words and punctuation), often while removing
+        token separators in the process. Tokenization in XML is performed using regular expressions
+        and the <code>tokenize()</code> function, but <code>tokenize()</code> atomizes its first
+        argument, which means that it cannot be used on tagged text without losing the markup in the
+        process. Even tokenization that would not create overlap-based well-formedness violations,
+        such splitting and tagging the words of a line of poetry in which the stressed vowels are
+        tagged as <code>&lt;stress></code>, requires intermediate temporary manipulations, such as
         converting the markup to text, tokenizing with <code>tokenize()</code>, and then converting
         the temporary text back into markup, or adding additional markup, tokenizing with
           <code>&lt;xsl:for-each-group></code>, and then removing the temporary markup.</para>
-      <para>The reason tokenizing tagged text is awkward in XML even where overlap is not a risk is
-        that the markup and text are intertwined in a way that makes it impossible to ignore markup
-        during tokenization while retaining access to it after the process is complete. Although it
-        is not usually described this way, the use of white space to separate words may be
-        understood as pseudo-markup, which means that the words in tagged text potentially represent
-        overlapping hierarchies.<footnote>
+      <para>The reason tokenizing tagged text is awkward in XML even where overlap is not a risk has
+        one explanation in terms of the syntax and another in terms of the data model. In terms of
+        the syntax, the markup and text are intertwined in a way that makes it impossible to ignore
+        markup during tokenization while retaining access to it after the process is complete. In
+        terms of the data model, as noted above, tagging the stressed vowels in a line of verse
+        pushes their textual content down a level in the hierarchy, so the line no longer forms a
+        string. Furthermore, although it is not usually described this way, the use of white space
+        to separate words may be understood as pseudo-markup, which means that the words in tagged
+        text potentially represent overlapping hierarchies in plain-text disguise.<footnote>
           <para>See <quote>Mixed content as a type of overlap</quote> in <xref
               linkend="birnbaum_2015"/>.</para>
         </footnote></para>
-      <para> This is why the XML processing workarounds involve either converting the markup to
-        temporary text, which is one way of removing the possibility of overlap, or converting the
-        white space temporarily to milestone elements, which transforms the pseudo-markup into real
-        markup.</para>
-      <para>In TAG, however, Markup nodes point to Text nodes from a different layer, which makes it
+      <para>In TAG, however, Markup nodes on one layer point to Text nodes on another (the same
+        other layer regardless of whether they are also the targets of markup), which makes it
         possible to tokenize the text without interference from the markup. The tokenization splits
         larger Text nodes into smaller ones, but they remain in the tail of their old Markup-to-Text
         hyperedges, while new Markup-to-Text hyperedges are added to tag the new individual words.
-        To reduce the clutter, we have simplified the text in the comparison of hypergraphs before
-        and after the word tokenization below, as if the entire poem consisted of a single line that
-        contained only three words (<quote>No longer mourn</quote>):</para>
+        In the simplified illustrations below, we have created a poem that consists entirely of a
+        single three-word line (<quote>No longer mourn</quote>). In the first illustration, the
+        stressed vowels are tagged but the words are not:</para>
       <figure xml:id="untokenized">
         <title>A simplified poem without word tokenization</title>
         <mediaobject>
@@ -1041,71 +1041,90 @@
             stressed vowels.</para>
         </caption>
       </figure>
-      <para>Because stress is marked on a single vowel sound, XML is capable of tokenizing tagging
-        the individual words while retaining the stress markup, since no overlap would result. But
-        much as poetic emjambment (across lines) in the Shelley poem above cannot be modeled by
-        tagging both phrases and feet in XML because it would create an overlap situation, poetic
-        caesura, the regular correspondence of foot and word boundaries within poetic lines, cannot
-        be modeled in XML by tagging both poetic feet and words, since feet and words may overlap in
-        the same way as phrases and lines. One work-around for this problem in an XML environment
-        turned out to involve, surprisingly, tagging neither the feet nor the words (see [<xref
-          linkend="birnbaum_2015"/>]), deriving both from other properties of the line during
-        processing, but the fact that we can use white-space pseudo-markup to escape the
+      <para>Because stress is marked on a single vowel sound, XML is capable of tagging the
+        individual words while retaining the stress markup, since no overlap would result. Here we
+        have added Markup-to-Text nodes to tag the words, which can be determined by tokenizing the
+        text without interference from the existing (stress) markup:</para>
+      <para><emphasis>TODO: Add illustration</emphasis>
+      </para>
+      <para>The additional markup requires additional division of Text nodes, but all modifications
+        are local, and the only part of the graph that has to be updated is the part to which the
+        markup is being added.</para>
+      <para>The preceding example does not create overlap because the Text nodes that are marked up
+        for stress are subsets of those that are marked up as words. But if we also want to tag
+        poetic feet, which are needed to identify caesura (a regular coincidence of word and foot
+        boundaries in the lines of a poem), overlap would become an issue in XML. One work-around in
+        an XML environment has turned out to involve, surprisingly, tagging neither the feet nor the
+        words (see [<xref linkend="birnbaum_2015"/>]), deriving both from other properties of the
+        line during processing, but the fact that we can use white-space pseudo-markup to escape the
         consequences of syntactic overlap doesn’t mean that the the overlap isn’t there. A data
-        model that could represent both feet and words explicitly, and that could identify caesura
-        as a relationship between those two types of structural components, would represent
-        explicitly the human understanding of caesura, and the explicit representation of structure
-        is what markup is all about. In the illustration below, we have added foot markup to the
-        previous example:</para>
-      <para><emphasis role="bital">Add illustration</emphasis></para>
+        model that can represent both feet and words explicitly, and that could identify caesura as
+        a relationship between those two types of structural components, would represent explicitly
+        the human understanding of caesura, and the explicit representation of structure is what
+        markup is all about. In the illustration below, we have added foot markup to the previous
+        example:</para>
+      <para><emphasis role="bital">TODO: Add illustration</emphasis></para>
     </section>
     <section>
       <title>Scope of reference</title>
       <para>Footnotes can be understood as annotations on text, but in XML they are typically
         represented by elements at the location where the note reference should occur in a reading
         text, as with the <code>&lt;footnote></code> element in DocBook or the
-          <code>&lt;note></code> element in TEI. This is problematic because it does not mark
-        explicitly the scope of the note, such as whether a footnote reference at the end of a
-        paragraph refers to the preceding sentence or two sentences or more, or the entire
-        paragraph. The TEI <code>&lt;note></code> element avoids this limitation because it can
-        point to an arbitrary target with XPointer, but this is an indirect way of specifying what
-        might have been represented as an attribute if XML attributes were able to model rich
-        content, and to annotate something other than an element with a generic identifier that
-        specifies its type.</para>
-      <para>TAG avoids the issue of rich content because in TAG the text of an annotation can be a
-        target of markup, just like the main text, and the annotation itself can even be annotated.
-        It avoids the scope of reference problem because the annotation can point to a Markup node
-        with a name if an appropriate one exists (such as paragraph in a document that marks up
-        paragraphs), but because TAG permits anonymous Markup nodes, it is also possible to annotate
-        arbitrary text by pointing to it with a Markup-to-Text hyperedge from an anonymous Markup
-        node. This means that footnote-like relationships can be modeled in TAG as what they are:
-        rich-text annotations on text regardless of whether the target of the annotation corresponds
-        to a Content Object with an identifiable type.</para>
+          <code>&lt;note></code> element in TEI. The anchoring of footnotes at a point in the text
+        stream, instead of as annotations on an string of text with a beginning and end, is
+        problematic because it does not mark explicitly the scope of the note, such as whether a
+        footnote reference at the end of a paragraph refers to the preceding sentence or two
+        sentences or more, or to the entire paragraph. The TEI <code>&lt;note></code> element avoids
+        this limitation because it can point to an arbitrary target with XPointer, but this is an
+        indirect way of specifying what might have been represented more immediately as an attribute
+        if XML attributes were able to model rich content, and to annotate something other than an
+        element with a generic identifier that specifies its type.</para>
+      <para>TAG avoids the XML prohibition against markup in attribute values because in TAG the
+        text of an annotation can be a target of markup, just like the main text, and the annotation
+        itself can even be annotated. It avoids the scope of reference problem because the
+        annotation can point to a Markup node with a name if an appropriate one exists (such as
+        paragraph in a document that marks up paragraphs), but because TAG permits anonymous Markup
+        nodes, it is also possible to annotate arbitrary text by pointing to it with a
+        Markup-to-Text hyperedge from an anonymous Markup node. This means that footnote-like
+        relationships can be modeled in TAG as what they are: rich-text annotations on text
+        regardless of whether the target of the annotation corresponds to a Content Object with an
+        identifiable type. TAG is similar to LMNL in this respect, except that text being footnoted
+        that is discontinuous is no different from continuous text in TAG; it is a set of Text nodes
+        that constitute the tail of a Markup-to-Text hyperedge.</para>
       <para><emphasis role="ital">TODO: Add illustration of footnote Annotation</emphasis></para>
     </section>
     <section>
       <title>Data model versus syntax</title>
-      <para>Another challenge of discussing XML as a model of text is distinguishing XML as a data
-        model from XML as a syntax, and the same applies to the LMNL data model vs the LMNL sawtooth
-        syntax and the GODDAG data structure vs TexMECS syntax. Perhaps a bit surprisingly in the
-        context of Balisage, which describes itself as <quote>the <emphasis role="ital"
-            >markup</emphasis> conference</quote>, our focus here is not on markup (that is, on
-        syntax and serialization), but on the data models that may be expressed through markup. We
-        regard the marked-up XML document as related to the XML InfoSet by the operations of
-        serialization in one direction and parsing in the other. This matters because the
-        serialization is, as is clear from the etymology of the term, committed to an ordered
-        expression in ways that other representations of XML may not be, and the same is true of
-        other dxata models and their associated syntactic expressions through markup. If, for
-        example, a paragraph is exactly coextensive with a quotation, in XML syntax, LMNL sawtooth
-        syntax, and TexMECS syntax, the start tag of either the paragraph or the quotation must come
-        first in linear order. But in LMNL the relative order of the ranges defined by the tags is
-        not an obligatory part of the model, which permits two ranges to begin at the same location
-        in the text .<footnote>
-          <para>LMNL is able to represent hierarchy, but it is not obligatory, and
-              <quote>flat</quote> LMNL does not express hierarchy.</para>
-        </footnote> In XML, though, one element must be the parent of the other, and the order of
-        the start tags reflects the hierarchy. TexMECS uses different start- and end-tag delimiters
-        to distinguish when the relative order of the tags is informational and when it is not.<footnote>
+      <para>One challenge of comparing TAG to XML, LMNL, GODDAG, and TexMECS is that TAG, like LMNL
+        and GODDAG, is a data model, while XML and TexMECS are defined by their syntax. Perhaps a
+        bit surprisingly in the context of Balisage, which describes itself as <quote>the <emphasis
+            role="ital">markup</emphasis> conference</quote>, our focus here is not on markup (that
+        is, on syntax and serialization), but on the data models that may be expressed through
+        markup, which means that for comparative purposes we must infer a data model from the
+        syntactic specifications. </para>
+      <para>The situation is especially complicated in the case of XML because although it does not
+        have a data model, it also has three almost-data-models: XML DOM [<xref linkend="W3C_DOM"
+        />], which is an object model and API; the XML InfoSet [<xref linkend="W3C_xmlinfoset"/>],
+        which is an information model; and XDM [<xref linkend="W3C_xdm"/>], which is data model for
+        processing XML. Our inferred data model for XML for comparative purposes here includes the
+        seven node types specified in XDM (not the twelve of XML DOM or the eleven types of
+        information items of the XML InfoSet), along with the structural properties of the ordered
+        tree that are relevant for understanding (but not necessarily adequate for processing)
+        well-formed XML (e.g., attribute nodes on an element are unordered). Our aim is not to
+        create a data model for XML, which lies far outside the scope of this paper, but to identify
+        features of the way XML models text that can be used comparatively to help explain features
+        TAG. </para>
+      <para>The fact that some of our objects of comparison are serializations and others are data
+        models matters because, as the etymology of the term implies, serialization is an ordered
+        linear expression, which is not a requirement of data models. If, for example, a paragraph
+        is exactly coextensive with a quotation, in XML syntax, LMNL sawtooth syntax, and TexMECS
+        syntax, the start tag of either the paragraph or the quotation must come first in linear
+        order. But in LMNL the relative order of the ranges defined by the tags is not an obligatory
+        part of the model, which permits two ranges to begin at the same location in the text, and
+        the same is true of TAG. In XML, however, one element must be the parent of the other, and
+        the order of the start tags reflects both containment and hierarchy. TexMECS negotiates this
+        issue by using different start- and end-tag delimiters to distinguish when the relative
+        order of the tags is informational and when it is not.<footnote>
           <para>STAGO vs STAGSO and ETAGO vs ETAGSO [<xref linkend="huitfeldt_2003"/>, §2.3.]</para>
         </footnote></para>
     </section>
