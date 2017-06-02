@@ -1221,6 +1221,11 @@
     <para>At the moment there is a single text order, and we recognize the need for more, about
       which see <xref linkend="to_do"/>.</para>
   </section>
+  <section>
+    <title>Acknowledgements</title>
+    <para>Thanks to Elli Bleeker, Gijsjan Brouwer, Bram Buitendijk and Astrid Kulsdom for their
+      valuable contributions and support.</para>
+  </section>
   <appendix xml:id="sonnet-71_text" xreflabel="Appendix A">
     <title>William Shakespeare, Sonnet 71</title>
     <programlisting>No longer mourn for me when I am dead
