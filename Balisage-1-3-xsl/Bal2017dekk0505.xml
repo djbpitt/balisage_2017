@@ -1022,7 +1022,7 @@
         hyperedges, while new Markup-to-Text hyperedges are added to tag the new individual words.
         To reduce the clutter, we have simplified the text in the comparison of hypergraphs before
         and after the word tokenization below, as if the entire poem consisted of a single line that
-        contained only three words:</para>
+        contained only three words (<quote>No longer mourn</quote>):</para>
       <figure xml:id="untokenized">
         <title>A simplified poem without word tokenization</title>
         <mediaobject>
@@ -1037,19 +1037,23 @@
             stressed vowels.</para>
         </caption>
       </figure>
-      <para>Much as poetic emjambment in the Shelley poem above cannot be modeled by tagging both
-        phrases and feet in XML because it would create an overlap situation, poetic caesura, the
-        regular correspondence of foot and word boundaries within poetic lines, cannot be modeled in
-        XML by tagging both poetic feet and words, since feet and words may overlap in the same way
-        as phrases and lines. One work-around for this problem in an XML environment turned out to
-        involve, surprisingly, tagging neither the feet nor the words (see [<xref
+      <para>Because stress is marked on a single vowel sound, XML is capable of tokenizing tagging
+        the individual words while retaining the stress markup, since no overlap would result. But
+        much as poetic emjambment (across lines) in the Shelley poem above cannot be modeled by
+        tagging both phrases and feet in XML because it would create an overlap situation, poetic
+        caesura, the regular correspondence of foot and word boundaries within poetic lines, cannot
+        be modeled in XML by tagging both poetic feet and words, since feet and words may overlap in
+        the same way as phrases and lines. One work-around for this problem in an XML environment
+        turned out to involve, surprisingly, tagging neither the feet nor the words (see [<xref
           linkend="birnbaum_2015"/>]), deriving both from other properties of the line during
         processing, but the fact that we can use white-space pseudo-markup to escape the
         consequences of syntactic overlap doesn’t mean that the the overlap isn’t there. A data
         model that could represent both feet and words explicitly, and that could identify caesura
         as a relationship between those two types of structural components, would represent
         explicitly the human understanding of caesura, and the explicit representation of structure
-        is what markup is all about.</para>
+        is what markup is all about. In the illustration below, we have added foot markup to the
+        previous example:</para>
+      <para><emphasis role="bital">Add illustration</emphasis></para>
     </section>
     <section>
       <title>Scope of reference</title>
