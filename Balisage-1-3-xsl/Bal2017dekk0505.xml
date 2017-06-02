@@ -1319,12 +1319,13 @@ And mock you with me after I am gone.</programlisting>
       <title>Lewis Carroll, <quote>The hunting of the Snark</quote> (excerpt)</title>
       <mediaobject>
         <imageobject>
-          <imagedata format="png" fileref="snark.png"/>
+          <imagedata format="png" fileref="snark_ortho_final.png"/>
         </imageobject>
       </mediaobject>
       <caption>
         <para>This hypergraph models the containment and order of the text, with no statement of
-          hierarchy (dominance).<!--TODO: update picture to the latest version.--></para>
+          hierarchy
+          (dominance).<!--TODO: File size of picture (snark_ortho_final.png) is too large! Reduce to 8 bit color?.--></para>
       </caption>
     </figure>
   </appendix>
