@@ -2,7 +2,7 @@
 <?xml-model href="balisage-1-3.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-stylesheet type="text/xsl" href="balisage-proceedings-html.xsl"?>
 <article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>It’s more than just overlap: text as graph</title>
+  <title>It’s more than just overlap: Text As Graph</title>
   <subtitle>Refining our notion of what text really is—this time for sure!</subtitle>
   <!-- Verify that all items in bibliography are cited in body -->
   <!--
@@ -26,7 +26,7 @@
         simultaneity, transposition, white space as crypto-overlap). Many of these have
         work-arounds, also well known, that—as is implicit in the term
         <quote>work-around</quote>—have disadvantages, but because they get the job done and because
-        XML has a large user community with diverse levels of technological competence, it is
+        XML has a large user community with diverse levels of technological expertise, it is
         difficult to overcome inertia and move to a technology that might offer a more comprehensive
         fit with the full range of document structures with which researchers need to interact both
         intellectually and programmatically. Proceeding from a high-level view of why XML has the
@@ -43,7 +43,7 @@
         <para>Ronald Haentjens Dekker is a software architect and consultant at the Huygens
           Institute for the History of the Netherlands. As a software architect, he is responsible
           for translating research questions into technology or algorithms and explaining to
-          researchers and management how a certain technology will influence their research. He has
+          researchers and management how specific technologies will influence their research. He has
           worked on transcription and annotation software, collation software, and repository
           software, and he is the lead developer of the CollateX collation tool. He also conducts
           workshops to teach researchers how to use scripting languages in combination with digital
@@ -84,6 +84,7 @@
     </author>
     <keywordset role="author">
       <keyword>graph database</keyword>
+      <keyword>text as graph</keyword>
       <keyword>TAG</keyword>
       <keyword>simultaneity</keyword>
       <keyword>overlap</keyword>
@@ -101,7 +102,7 @@
       space as crypto-overlap). Many of these have work-arounds, also well known, that—as is
       implicit in the term <quote>work-around</quote>—have disadvantages, but because they get the
       job done and because XML has a large user community with diverse levels of technological
-      competence, it is difficult to overcome inertia and move to a technology that might offer a
+      expertise, it is difficult to overcome inertia and move to a technology that might offer a
       more comprehensive fit with the full range of document structures with which researchers need
       to interact both intellectually and programmatically. Proceeding from a high-level view of why
       XML has the limitations it has, this presentation explores how an alternative model of Text as
@@ -112,27 +113,28 @@
       documents are expressed through formatting conventions, such as the use of blank lines to
       separate paragraphs, or of indentation to mark the beginning of a paragraph, or of centering
       to mark a header. The sequence of words in a text, delimited in a complex way that involves
-      white space, punctuation, and other symbols, constitutes, on a certain level, an
+      white space, punctuation, and other symbols, constitutes, on a certain level, an implicit
       organizational tier above the sequence of characters.<footnote>
         <para>Others properties, often more lexical than structural, may depend on contextual
           information that is not always expressed explicitly. For example, a capitalized reference
           to <quote>London</quote> is formally marked as a proper noun by capitalization, but
           whether it is a placename in England (or Ohio or Ontario or elsewhere) or the personal
-          name of a US writer may not be represented formally.</para>
+          name of a US writer is not represented formally.</para>
       </footnote> The conventions at work in plain text do not formally, completely, unambiguously,
       or in a wholly standardized way differentiate the content of a document from the coded
-      representation of its structure (or, perhaps more accurately, structures), which complicates
-      document processing (whether for data mining, publication, or other purposes). The challenge
-      this poses has come to be addressed by representing the structural properties of a document
-      not with plain-text characters (which might be considered pseudo-markup), but through
-      standardized, formal markup, such as XML.</para>
-    <para>The XML data model is a tree, or, more precisely, a rooted and ordered directed acyclic
-      graph that prohibits multiple parentage, which in the document-processing community has come
-      to be understood as representing an Ordered Hierarchy of Content Objects (OHCO). The OHCO
-      model works well for describing structures that consist of single ordered hierarchies, such as
-      the exhaustive tesselated division of a novel into chapters and the chapters into paragraphs.
-      It is not well suited to structures that cannot be modeled fully as a single tree.<footnote>
-        <para>The OHCO literature is already well known to the Balisage audience, and it is not our
+      representation of its structure (or, perhaps more accurately, structures), which problematizes
+      using plain text for document processing (whether for data mining, publication, or other
+      purposes). The challenges this poses have come to be addressed by representing the structural
+      properties of a document not with plain-text characters (which might be considered
+      pseudo-markup), but through standardized, formal markup, such as XML.</para>
+    <para>The XML data model is an ordered tree, or, more precisely, a rooted and ordered directed
+      acyclic graph that prohibits multiple parentage, which in the document-processing community
+      has come to be understood as representing an Ordered Hierarchy of Content Objects (OHCO). It
+      is well known that the OHCO model works well for describing structures that consist of single
+      ordered hierarchies, such as the exhaustive tesselated division of a novel into chapters and
+      the chapters into paragraphs, but it is not well suited to modeling structures that cannot be
+      represented fully by a single tree.<footnote>
+        <para>The OHCO literature is already familiar to the Balisage audience, and it is not our
           goal to provide an exhaustive bibliography. The seminal papers that advocated for OHCO as
           a document model are <xref linkend="coombs_1987"/> and <xref linkend="derose_1990"/>; the
           seminal examination of the limitations of OHCO, by some of the same authors, is <xref
@@ -155,469 +157,10 @@
         <para>See especially <xref linkend="piez_2014"/>.</para>
       </footnote> But if the problem is that a tree is inadequate for higher-level reasons that are
       only partially exemplified by overlap, we might have more success if we address the issue at
-      that higher level.</para>
-  </section>
-  <section>
-    <title>Problem statement, state of the art (XML, TexMECS/GODDAG, LMNL) and desiderata for an
-      improved text model</title>
-    <para>In this section we illustrate several types of structures that are awkward for XML because
-      they contradict or otherwise are not part of the OHCO tree model. For each we provide an
-      abstract description of the problem, of one or more XML workarounds, and their  GODDAG and
-      LMNL counterparts, illustrated with examples drawn from use cases in Digital Humanities
-      research projects. The issues do not all pertain to the <quote>H</quote> (hierarchy) of OHCO;
-      some involve <quote>O</quote> (order) or <quote>CO</quote> (content objects) components, and
-      those that do pertain to hierarchy do not all involve overlap.</para>
-    <!-- Michael and Claus 2008 emphasize that TEI markup requires semantics, while ours is in the model
-      TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser -->
-    <!-- TexMECS requires quotations to be divided in the model, while we don't -->
-    <section>
-      <title>Overlap</title>
-      <para>The principal challenge to XML as a model of text is generally regarded as overlap, that
-        is, that text has structural properties that humans care about that cannot be modeled directly
-        as a tree, or, at least, as a rooted and ordered directed acyclic graph that does not permit
-        multiple parentage and that is constructed from the seven types of nodes that constitute the
-        XQuery and XPath data model.[<xref linkend="W3C_xdm"/> §6] Although overlap has received most
-        of the attention, overlap is only one challenge to XML modeling, and regarding overlap as
-        <emphasis role="ital">the problem</emphasis>, instead of as <emphasis role="ital">a symptom
-          of the problem</emphasis>, has led us to think more narrowly than we should about
-        alternatives to OHCO. If what text <quote>really is</quote> is not an ordered hierarchy of
-        content objects, what is it instead? The issues are well known to the XML community, so why
-        have they come largely (although not entirely) to be eclipsed by overlap in discussions of
-        what’s difficult about modeling documents in XML? These challenges, which have been negotiated
-        in XML modeling and processing through workarounds, find a natural solution in the TAG model
-        described here, as well as, at least in some respects, in LMNL and GODDAG/TexMECS.</para>
-      <para>The challenge to modeling texts in XML that has attracted the most attention is overlap,
-        but overlap is sometimes described as a property of XML serialization, rather than of the XML
-        data model. Or, more precisely, overlap is one thing in the XML data model and a different,
-        but related thing in an XML serialization. In the data model, overlap refers to multiple
-        concurrent trees or partial trees, a situation that is not possible in XML because XML is
-        defined as a single tree. Notice in the image below how the phrase <quote>Two vast and
-          trunkless legs of stone Stand in the desart</quote> begins in the middle of line 2 and ends
-        in the middle of line 3, so that a tree of phrases overlaps a tree of lines:</para>
-      <figure xml:id="ozymandias">
-        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="ozymandias.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>[Image from
-            <link>http://piez.org/wendell/papers/dh2010/clix-sonnets/ozymandias-map.svg</link>,
-            which is part of <xref linkend="piez_2010"/>. The overlap is easier to see in the original
-            SVG, which is animated, and highlights portions of the document in response to mouse
-            events.]</para>
-        </caption>
-      </figure>
-      <para>Piez’s illustration is actually of LMNL ranges (see below), rather than of XML element
-        trees. The same structure might be visualized as overlapping trees as follows, where cyan
-        represents the tree of metrical lines and green represents the tree of linguistic
-        phrases:</para>
-      <figure xml:id="ozymandias_trees">
-        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="ozymandias_trees.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>Projecting two independent trees over a common set of words. In XML the individual
-            words would be not be children of <code>&lt;line&gt;</code> and
-            <code>&lt;phrase&gt;</code> elements, and would instead be grouped inside
-            <code>Text</code> node children of those elements.</para>
-        </caption>
-      </figure>
-      <para>Because it is not possible to represent the preceding structure in XML markup, the
-        following pseudo-XML is not well-formed:</para>
-      <programlisting>&lt;line&gt;&lt;phrase&gt;Who said —&lt;/phrase&gt; &lt;phrase&gt;“Two vast and trunkless legs of stone&lt;/line&gt;
-&lt;line&gt;Stand in the desart….&lt;/phrase&gt; &lt;phrase&gt;Near them,&lt;/phrase&gt; &lt;phrase&gt;on the sand&lt;/phrase&gt;&lt;/line&gt;</programlisting>
-      <para>New XML users often misunderstand the prohibition against overlap as a prohibition against
-        overlapping <emphasis role="ital">tags</emphasis>, but if that were the issue, it could be
-        remedied by simply removing the prohibition. The reality is that tags are a feature only of
-        the <emphasis role="ital">serialization</emphasis> of XML, and XML as a <emphasis role="ital"
-          >data model</emphasis> has hierarchical elements, rather than tags. The reason overlap is
-        prohibited, then, has nothing to do with a rule about tags; the rule about tags exists because
-        tags must represent the data model, the hierarchy in the data model prohibits multiple
-        parentage, and overlap would require that a <code>Text</code> node have more than one parent.
-        Overlap is possible in GODDAG not because TexMECS permits overlapping tags, but because GODDAG
-        permits <code>Text</code> nodes to have multiple parents and TexMECS serializes the GODDAG
-        model. LMNL sawtooth syntax may look like XML syntax with the prohibition against overlapping
-        tags removed, but the real difference is at the level of the data model: LMNL <emphasis
-          role="ital">ranges</emphasis> may overlap, and the content between XML start and end tags is
-        a sequence of descendant nodes in a tree, and not a range of atoms.</para>
-      <para><emphasis role="bold">TODO:</emphasis> More about how LMNL snd GODDAG solve overlap
-        (take parts from section 5).</para>
-    </section>
-    
-      <section>
-        <title>Discontinuity</title>
-      <para><xref linkend="sperberg-huitfeldt_2008"/> discusses the following paragraph from Lewis
-        Carroll’s <emphasis role="ital">Alice in Wonderland</emphasis> as an example of
-        discontinuity:</para>
-      <blockquote>
-        <para>Alice was beginning to get very tired of sitting by her sister on the bank, and of
-          having nothing to do: once or twice she had peeped into the book her sister was reading,
-          but it had no pictures or conversations in it, <quote>and what is the use of a
-            book,</quote> thought Alice <quote>without pictures or conversation?</quote></para>
-      </blockquote>
-      <para>There is no way to mark up this passage in XML without fragmenting the quotation into
-        two elements (and relying on semantics to stitch together the pieces in the application
-        layer), yet our human intuition is that there is a single quotation, and that the model,
-        therefore, should represent it as a single object.<footnote>
-          <para>It is possible to interpret the entire quotation as an element with three child
-            nodes: a <code>Text</code> node, an intervening element that holds the narrative
-            interjection, and then another <code>Text</code>, and in that sense the quotation is one
-            object, although that object incorporates something that is not part of what a human
-            understands as the quotation. <xref linkend="sperberg-huitfeldt_2008"/> explains why
-            this is unsatisfactory (see especially their footnote 2).</para>
-        </footnote> As <xref linkend="sperberg-huitfeldt_2008"/> also observe, there is a sense in
-        which <quote>book</quote> and <quote>without</quote> are adjacent and a different sense in
-        which <quote>book</quote> and <quote>thought</quote> are adjacent. The XML data model cannot
-        represent both of these realities simultaneously, which means that at least one of them must
-        be handed off to the application layer.</para>
-      <para>
-        <xref linkend="sperberg-huitfeldt_2008"/> situate this type of structure in a GODDAG
-        context, where it intersects with the distinction between <emphasis role="ital"
-          >containment</emphasis> and <emphasis role="ital">dominance</emphasis>. Concerning LMNL,
-        they write that </para>
-      <blockquote>
-        <para>[with respect to] the unity of discontinuous elements: such a unity may be asserted by
-          the application layer (that is, by the definition of a LMNL vocabulary), but it is not
-          visible on the LMNL level, and thus need not be accounted for at the level of LMNL
-          itself.</para>
-        <para>The design of LMNL thus seems to require that any account of dominance (as distinct
-          from containment), and any account of discontinuous elements, be handled in the
-          application layer. LMNL itself achieves a degree of simplicity and regularity as a result,
-          at the expense of complexity in the application.</para>
-      </blockquote>
-      <para><xref linkend="piez_2008"/> describes discontinuity as modeled by the <emphasis
-          role="ital">limen</emphasis>, where the example provided
-          (<link>http://piez.org/wendell/LMNL/Amsterdam2008/presentation-slides.html#page23</link>)
-        records it through coindexed annotations. That dependency seems to locate discontinuity in
-        an application layer, since whether coindexed annotations represent discontinuity is not an
-        inherent property of the coindexing.</para>
-      </section>
-      
-  <section>
-      <title>Hierarchy, containment and dominance</title>
-      <para>A second challenge of using XML as a model of text involves not the <emphasis
-          role="ital">limitations</emphasis> of OHCO, but its <emphasis role="ital"
-          >tyranny</emphasis>. If text is understood as an ordered hierarchy of content objects, are
-        there aspects of text that are not ordered, are there aspects that are not hierarchical (by
-        which we mean not just that they are not mono-hierarchical, but that they are not
-        hierarchical at all), and does the model create content objects artifactually, that is,
-        where they are not perceived as inherent properties of the text being modeled? XML requires
-        us to model all content as both ordered and hierarchical, and it represents content objects
-        as elements (at least as content objects are described in <xref linkend="derose_1990"/>).
-        The GODDAG and LMNL alternatives to XML, which are discussed below, both grew out of a
-        recognition that not all properties of text can be modeled effectively as a single
-        hierarchy, and their focus is not limited to that issue, but they differ in the extent to
-        which they interrogate aspects of text that may not be hierarchical, that may not be
-        ordered, and that may not involve what a human would consider a content object.</para>
-      <para>As was mentioned earlier, the XML data model does not distinguish containment from
-        dominance, which Tennison explains as follows: <blockquote>
-          <para>Containment is a happenstance relationship between ranges while dominance is one
-            that has a meaningful semantic. A page may happen to <emphasis role="ital"
-              >contain</emphasis> a stanza, but a poem <emphasis role="ital">dominates</emphasis>
-            the stanzas that it contains.[<xref linkend="tennison_2008"/>]</para>
-        </blockquote></para>
-      <para><emphasis role="bold">TODO: add explaination about shakespear sonnet,
-          hierarchy</emphasis></para>
-      <para>Here is the corresponding XML in markup and tree representations:</para>
-      <programlisting>&lt;poem&gt;
-    &lt;quatrain&gt;
-        &lt;line&gt;No longer mourn for me when I am dead&lt;/line&gt;
-        &lt;line&gt;Than you shall hear the surly sullen bell&lt;/line&gt;
-        &lt;line&gt;Give warning to the world that I am fled&lt;/line&gt;
-        &lt;line&gt;From this vile world with vilest worms to dwell:&lt;/line&gt;
-    &lt;/quatrain&gt;
-    &lt;quatrain&gt;
-        &lt;line&gt;Nay, if you read this line, remember not&lt;/line&gt;
-        &lt;line&gt;The hand that writ it, for I love you so,&lt;/line&gt;
-        &lt;line&gt;That I in your sweet thoughts would be forgot,&lt;/line&gt;
-        &lt;line&gt;If thinking on me then should make you woe.&lt;/line&gt;
-    &lt;/quatrain&gt;
-    &lt;quatrain&gt;
-        &lt;line&gt;O! if,—I say you look upon this verse,&lt;/line&gt;
-        &lt;line&gt;When I perhaps compounded am with clay,&lt;/line&gt;
-        &lt;line&gt;Do not so much as my poor name rehearse;&lt;/line&gt;
-        &lt;line&gt;But let your love even with my life decay;&lt;/line&gt;
-    &lt;/quatrain&gt;
-    &lt;couplet&gt;
-        &lt;line&gt;Lest the wise world should look into your moan,&lt;/line&gt;
-        &lt;line&gt;And mock you with me after I am gone.&lt;/line&gt;
-    &lt;/couplet&gt;
-&lt;/poem&gt;</programlisting>
-      <figure xml:id="shakespeare_xml">
-        <title>William Shakespeare, Sonnet 71</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="shakespeare-sonnet_xml.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>The XML tree encodes containment and hierarchy in the same way.</para>
-        </caption>
-      </figure>
-      <para>The XML tree includes a <code>&lt;poem&gt;</code> root node, which is not present in the
-        TAG hypergraph, although, as explained above, we could have created one had we wished to do
-        so. The root node is not optional in XML because a tree requires a root. Additionally, the
-        XML <code>&lt;quatrain&gt;</code> and <code>&lt;couplet&gt;</code> elements are parents of
-          <code>&lt;line&gt;</code> elements, which are parents of <code>Text</code> nodes.</para>
-    </section>
-    <section>
-      <title>Data typing and artificial hierarchy</title>
-      <para>In XML, markup is (among other things) a form of datatyping, and the XML spec uses the
-        word <quote>type</quote> to say this:<blockquote>
-          <para>Each element has a type, identified by name, sometimes called its <quote>generic
-              identifier</quote> (GI) [<xref linkend="W3C_xml"/> §3]</para>
-        </blockquote>This means that XML cannot assign a type to part of a document (other than an
-        attribute, and there only through a schema specification) except by making it an element,
-        and therefore a node in the document hierarchy. Consider the following XML structure,
-        represented here in markup and as hierarchy:</para>
-      <programlisting>&lt;title&gt;&lt;name&gt;Romeo&lt;/name&gt; and &lt;name&gt;Juliet&lt;/name&gt;&lt;/title&gt;</programlisting>
-      <figure xml:id="romeo_xml">
-        <title>Romeo and Juliet (XML)</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="romeo_xml.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>In XML, the three words of the title are spread over two levels of the hierarchy.
-            Cyan ellipses are element nodes and pink rectangles are <code>Text</code> nodes.</para>
-        </caption>
-      </figure>
-      <para>If we wish to specify in XML that the first and third words of the title are of type
-          <quote>name</quote>, we can tag them as elements of that type, with the result that the
-          <code>Text</code> nodes they contain wind up on a different level of the hierarchy than
-        the conjunction between them.<footnote>
-          <para>It is possible to tag the conjunction, as well, so as to push the word
-              <quote>and</quote> down to the same hierarchical level as the names, but we have not
-            observed that in practice. If the markup process involves tagging what the user
-            considers informational, it should be possible to say that some text in this title is of
-            a particular type <emphasis role="ital">that we care about sufficiently to specify the
-              type in our markup</emphasis>, and other text is not, and to tag the former, but not
-            the latter.</para>
-        </footnote> This contradicts our intuition that the title contains three words, two of which
-        have the type <quote>name</quote>, replacing it with a model in which the title contains two
-        objects of type <quote>name</quote> with a word between them, and it is the
-          <quote>name</quote> objects that contain the first and third words.</para>
-      <para/>
-    </section>
-    <section>
-      <title>TODO: Unfinished stuff</title>
-      <section>
-        <title>White space as crypto-overlap</title>
-        <para><emphasis role="bold">TODO: Examples include caesura in poetry</emphasis></para>
-      </section>
-      <section>
-        <title>Scope of reference</title>
-        <para><emphasis role="ital">Footnotes in XML are usually milestones, but they should be
-            annotations on elements, since milestones don’t have scope. But XML doesn’t permit
-            markup in attributes. XML could make a footnote a child element, the parent of which is
-            its scope, but then the footnote becomes part of the content of the parent, rather than
-            an annotation. This is a use case for markup on annotations.</emphasis> Side issue:
-          should annotations in TAG be ordered? How about: no, unless there’s an edge that says
-          otherwise.</para>
-      </section>
-      <section>
-        <title>Artifactual content objects</title>
-        <para><emphasis role="bold">The &lt;app&gt; wrapper around readings in TEI parallel
-            segmentation isn’t in the variant graph. Why should it be in the model of a critical
-            text? The root element may also be an artifact.</emphasis></para>
-      </section>
-    </section>
-    <section>
-      <title>Data model versus syntax</title>
-      <para>A third challenge of discussing XML as a model of text is distinguishing XML as a data
-        model from XML as a syntax, and the same applies to the LMNL data model vs the LMNL sawtooth
-        syntax and the GODDAG data structure vs TexMECS syntax. Perhaps a bit surprisingly in the
-        context of Balisage, which describes itself as <quote>the <emphasis role="ital"
-            >markup</emphasis> conference</quote>, our focus here is not on markup (that is, on
-        syntax and serialization), but on the data models that may be expressed through markup. Our
-        somewhat simplified <xref linkend="XML_specs"/> illustration, below, regards the marked-up
-        XML document as related to the XML InfoSet by the operations of serialization in one
-        direction and parsing in the other. This matters because the serialization is, as is clear
-        from the etymology of the term, committed to an ordered expression in ways that other
-        representations of XML may not be, and the same is true of other dxata models and their
-        associated syntactic expressions through markup. If, for example, a paragraph is exactly
-        coextensive with a quotation, in XML syntax, LMNL sawtooth syntax, and TexMECS syntax, the
-        start tag of either the paragraph or the quotation must come first in linear order. But in
-        LMNL the relative order of the ranges defined by the tags is not an obligatory part of the
-        model, which permits two ranges to begin at the same location in the text .<footnote>
-          <para>LMNL is able to represent hierarchy, but it is not obligatory, and
-              <quote>flat</quote> LMNL does not express hierarchy.</para>
-        </footnote> In XML, though, one element must be the parent of the other, and the order of
-        the start tags reflects the hierarchy. TexMECS uses different start- and end-tag delimiters
-        to distinguish when the relative order of the tags is informational and when it is not.<footnote>
-          <para>STAGO vs STAGSO and ETAGO vs ETAGSO [<xref linkend="huitfeldt_2003"/>, §2.3.]</para>
-        </footnote></para>
-      <figure xml:id="XML_specs">
-        <title>The XML document-processing ecosystem</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="xml-spec.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>The term <quote>XML</quote> may be used to refer to the data model or to its
-            syntactic or other expressions.</para>
-        </caption>
-      </figure>
-    </section>
-    <section>
-      <title>Semantics versus application level</title>
-      <para>A fourth issue, which intersects with the three above, involves distinguishing
-        properties that inhere in the text being modeled from those that depend on semantics that
-        must be interpreted at a higher (application) level. A failure to make this distinction may
-        have two types of consequences (which are really aspects of the same thing, the delegation
-        of information that should be part of the model to the application layer): either the
-        application must know that some properties of the model are not informational and are to be
-        ignored or the application must know that there is information that is not represented
-        entirely by the model and must therefore be added during processing. If, however, the model
-        explicitly represents the properties of the text and nothing else, the application level is
-        freed from having to supplement the model, and can concentrate on features that are truly
-        application-specific. Here are two illustrations of this issue:<itemizedlist>
-          <listitem>
-            <para>The pairing of start and end tags in XML (or LMNL sawtooth or TexMECS) markup is
-              inherent in the markup itself. In contrast, the pairing of XML milestones that are
-              used to simulate container tags as a work-around for overlap (see the discussion of
-              Trojan markup in <xref linkend="derose_2004"/>) relies on semantics. This means that
-              XML applications do not have to know that regular start and end tags delimit an
-              element because that information is an inalienable feature of all XML documents that
-              is fully specified by the syntax, but they do have to know when empty tags are being
-              used to simulate the beginning and end of a content object. Insofar as whether
-              something is a content object is a property of the text being modeled, a robust and
-              efficient strategy would represent it as part of the model itself, instead of
-              requiring that it be handled through semantic information that is available only at
-              the application level.</para>
-          </listitem>
-          <listitem>
-            <para>Because XML models an ordered hierarchy, elements always have order, which
-              requires the application layer to distinguish situations where order is semantically
-              meaningful from situations where it isn’t. For example, the TEI
-                <code>&lt;choice&gt;</code> element has the semantics of associating content objects
-              that do not have a natural order with respect to one another, such as an abbreviation
-              and its expansion or an error and its correction. How those should be rendered is the
-              proper business of the application layer, but the XML model requires that one option
-              proceed or follow the other even when the order does not represent an inherent
-              property of the text being modeled. This means that, incorrectly (from the perspective
-              of what the marked-up text means), an XML processor will regard two TEI documents as
-              different if they differ only in the order of the children of their
-                <code>&lt;choice&gt;</code> elements (unless the processor is given access to TEI
-              markup semantics). A more robust and efficient strategy would not impose order when it
-              must then be ignored, so that a processor will know when order is informational and
-              when it is not from the model, without recourse to semantics.</para>
-          </listitem>
-        </itemizedlist></para>
-    </section>
-    <section>
-      <title>Desiderata for an improved text model</title>
-      <para>An improved text model should have the following properties. In all instances where we
-        write that <quote>the model should be able to X</quote>, we mean that it should be able to X
-        without requiring access to semantic information at the application level. In other words,
-        the components of the model should fully represent the properties of the text being modeled,
-        with no extraneous artifactual properties that an application must then know to ignore. XML
-        uses the term <quote>markup</quote> to identify both elements and attributes, while in the
-        list below we use the TAG terminology, where the term <quote>markup</quote> refers to the
-        counterpart to XML elements and <quote>annotation</quote> to the counterpart to XML
-        attributes.</para>
-      <para>The following are characteristics we might ask of an improved text model:<itemizedlist>
-          <listitem>
-            <para>It should support both textual (character data) content and markup and annotations
-              (of the sort expressed in XML through element and attribute markup).</para>
-          </listitem>
-          <listitem>
-            <para>It should support multiple layers of markup and annotation.</para>
-          </listitem>
-          <listitem>
-            <para>It should be able to represent overlapping markup.</para>
-          </listitem>
-          <listitem>
-            <para>It should be able to represent discontinuous markup.</para>
-          </listitem>
-          <listitem>
-            <para>It should be able to represent components that are not logically ordered without
-              imposing an arbitrary order that must then be ignored.</para>
-          </listitem>
-          <listitem>
-            <para>It should be able to represent transpositions, or reorderings, e.g., in a critical
-              text with variants that differ only in order.</para>
-          </listitem>
-          <listitem>
-            <para>It should support annotations on annotations, that is, metadata about
-              metadata.</para>
-          </listitem>
-          <listitem>
-            <para>It should support but not require the representation of hierarchy, including
-              multiple, partial, or overlapping hierarchies.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to reading, it should support queries for text, markup, annotations,
-              or a combination of those components.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to writing, it should support creating, inserting, deleting, or
-              otherwise modifying both textual content and markup and annotations.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to workflow, it should be possible to defer decisions about relations
-              among layers. For example, it should be possible to create markup and annotations
-              without hierarchy and apply a hierarchy only later. This deferral might be compared to
-              the way XML documents may be validated against schemas that may be created and
-              associated only after a fully functional well-formed document has been created.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to scalability, it should enable, in a computationally efficient way,
-              the types of documents and processing likely to be required by the digital text
-              community.</para>
-          </listitem>
-          <listitem>
-            <para>With respect to I/O, a system that implements the model should support
-              serialization as plain text on export and the parsing of such serializations on
-              import. TAG does not currently have its own syntax. Our Alexandria implementation can
-              read and write LMNL syntax, and it is intended to be able to read and write XML and TexMECS.<footnote>
-                <para>This list item refers to syntactic representations that were developed to
-                  represent data models other than TAG: XML syntax and the XML data model, LMNL
-                  sawtooth syntax and the LMNL data model, and TexMECS and GODDAG data model. When
-                  we speak about parsing XML or LMNL or TexMECS <emphasis role="ital"
-                    >syntax</emphasis> into Alexandria, we mean that it is parsed into the TAG data
-                  model, and not into XML or LMNL or GODDAG data models.</para>
-                <para>XML angle-bracketed markup, LMNL sawtooth markup, and TexMECS all are capable
-                  of representing some but not all features of TAG. For example, LMNL supports
-                  annotations on annotations, while TexMECS doesn’t. More subtly, because
-                  annotations on the same object are ordered in LMNL but not in TAG, when Alexandria
-                  parses LMNL syntax, it is not parsing it into the LMNL data model because, among
-                  other things, it creates unordered annotations. TexMECS supports hierarchy, while
-                  LMNL sawtooth syntax does not. LMNL can represent hierarchy through the <emphasis
-                    role="ital">limen</emphasis>, but the limen currently has no defined
-                  representation in the syntax. [<xref linkend="piez_2008"/>] We leave unresolved
-                  for now the question of how to serialize fully all information in a TAG
-                  document.</para>
-              </footnote></para>
-          </listitem>
-          <listitem>
-            <para>With respect to user interaction, a system that implements the model should
-              provide a legible interface that enables reading and writing by human users.<footnote>
-                <para>We leave unresolved for now the design and implementation of such an
-                  interface, except to say that it might not require a specialized, TAG-aware
-                  editor. One approach might involve the selective export of TAG information for
-                  manipulation in a third-party editor, followed by its reimport and reintegration
-                  into the TAG document.</para>
-              </footnote></para>
-          </listitem>
-        </itemizedlist></para>
-      <!--explain the differences between graph models and trees and ranges? Or leave that
-        discussion out?-->
-      <!--Reading Wendell's papers/articles about LMNL and Luminescent I can't help but notice
-        that it is mainly about modeling text using LMNL, querying (using xLMNL and xQuery
-        extensions) and visualising data. These are all read only operations. The goal of the TAG
-        model and its implementation in Alexandria is that it can be used to read as well as write
-        textual data and annotations. This opens up a lot of new possibilities and makes it a
-        'complete' text repository system, comparable to XML databases albeit in a far more
-        experimental state and a much lower level of maturity.-->
-    </section>
+      that higher level. The Text As Graph model that we introduce below is not intended to be a
+      solution to <quote>the overlap problem in XML</quote>; it is built around a fresh
+      consideration of the textual structures, both latent and overt, that a data model will need to
+      be able to represent.</para>
   </section>
   <section>
     <title>The TAG/hypergraph model for text</title>
@@ -625,11 +168,11 @@
         is very important.-->
     <section>
       <title>Overview</title>
-      <para>The Text As Graph (TAG) model consists of a directed property hypergraph for modeling
-        text, markup (roughly comparable to XML elements), and annotations (roughly comparable to
-        what XML attributes would be like if they could contain markup, including attributes on
-        attributes). A hypergraph consists of a set of nodes and a set of hyperedges. Nodes and
-        edges have types, and may also have other properties.</para>
+      <para>The Text As Graph (TAG) data model consists of a directed property hypergraph for
+        modeling text, markup (roughly comparable to XML elements), and annotations (roughly
+        comparable to what XML attributes would be like if they could contain markup, including
+        attributes on attributes). A hypergraph consists of a set of nodes and a set of edges and
+        hyperedges. Nodes and (hyper)edges have types, and may also have other properties.</para>
       <para>Graph models for text and markup have been proposed before (GODDAG [see, e.g., <xref
           linkend="sperberg-huitfeldt_2000"/>], GrAF [see, e.g., <xref linkend="ide_2007"/>]), but
         the model advanced in this paper differs from those because it incorporates a <emphasis
@@ -647,7 +190,7 @@
         proven and well known.</para>
     </section>
     <section>
-      <title>How TAG represents structural properties of text</title>
+      <title>How TAG represents selected structural properties of text</title>
       <section>
         <title>Order</title>
         <para>A distinctive feature of the TAG model is that textual content is an ordered set of
@@ -696,33 +239,35 @@
             >order</emphasis> in TAG is a property only of Text nodes. <emphasis role="bold"
             >Containment</emphasis> is modeled by subset relations that are independent of any
           hierarchy; it is axiomatic that a superset (of Text nodes) <emphasis role="ital"
-            >contains</emphasis> all of its subsets. <emphasis role="bold">Datatyping</emphasis> is
-          implemented through Markup-to-Text hyperedges that point from a Markup node to a set of
-          Text nodes, where the hyperedge has a <code>name</code> property, the value of which is
-          comparable to the generic identifier (name) of an XML element. Unlike in XML, however,
-          Markup-to-Text hyperedges do not model hierarchy; their only function is datatyping (and,
-          through subset relations, containment). Because Text nodes can have multiple incoming
-          hyperedges on them, textual content can have multiple markup on it, and because
-          Markup-to-Text hyperedges do not form a tree, that situation does not engender overlap
-          concerns. Annotations on Markup nodes provide supplementary information (metadata) about
-          the node, similarly to attributes in XML, except that in TAG, as in LMNL, annotations can
-          have rich content, and are not limited to just a name and an atomic value. (As in XML and
-          contrary to LMNL, annotations on a Markup or Annotation node in TAG are unordered.)</para>
-        <para>Where dominance relations must be modeled, TAG uses Markup-to-Markup hyperedges to
-          implement a hierarchy. The fact that hierarchy is optional is an important distinction
-          from XML (single hierarchy) and GODDAG (one or more hierarchies).</para>
-        <para>Markup nodes do not contain other Markup nodes; Markup nodes identify sets of Text
-          nodes, and the Text nodes may form a subset relationship. This means that in TAG it is not
-          meaningful to ask whether a set of Text nodes identified with one Markup node as a
-          paragraph and with a different Markup node as a quotation represents a paragraph that
-          consists of a quotation or a quotation that consists of a paragraph. Where the hierarchy
-          of coextensive paragraphs and quotations matters, the relationship is one of dominance
-          (hierarchy), rather than of containment.</para>
+            >contains</emphasis> all of its proper subsets. <emphasis role="bold"
+            >Datatyping</emphasis> is implemented through Markup-to-Text hyperedges that point from
+          a Markup node to a set of Text nodes, where the hyperedge has a <code>name</code>
+          property, the value of which is comparable to the generic identifier (name) of an XML
+          element. Unlike in XML, however, Markup-to-Text hyperedges do not model hierarchy; their
+          only function is datatyping (and, through subset relations of their tails, containment).
+          Because Text nodes can have multiple incoming hyperedges on them, textual content can have
+          multiple markup on it, and because Markup-to-Text hyperedges do not form a tree, that
+          situation does not engender overlap concerns. Annotations on Markup nodes provide
+          supplementary information (metadata) about the node, similarly to attributes in XML,
+          except that in TAG, as in LMNL, annotations can have rich content, and are not limited to
+          just a name and an atomic value. (As in XML and unlike in LMNL, annotations on a Markup or
+          Annotation node in TAG are unordered.)</para>
+        <para>In TAG, as in LMNL, a document is not required to express a hierarchy. Where dominance
+          relations must be modeled, TAG uses Markup-to-Markup hyperedges to implement a hierarchy.
+          The fact that hierarchy is optional is an important distinction from XML (single
+          hierarchy) and GODDAG (one or more hierarchies).</para>
+        <para>Markup nodes do not contain other Markup nodes; Markup nodes identify (point to) sets
+          of Text nodes, and the Text nodes may form a subset relationship. This means that in TAG
+          it is not meaningful to ask whether a single set of Text nodes identified with one Markup
+          node as a paragraph and with a different Markup node as a quotation represents a paragraph
+          that consists of a quotation or a quotation that consists of a paragraph. Where the
+          hierarchy of coextensive paragraphs and quotations matters, the relationship may be
+          modeled, but as one of dominance (hierarchy), rather than of containment.</para>
         <para>The separation of these four functions means that Markup always provides datatyping,
-          since Markup nodes have a Name property. Because the target of Markup is a non-empty set
-          of Text nodes, and Text nodes are ordered and have intrinsic subset relationships, Markup
-          also specifies order and containment, but only indirectly. The specification of dominance
-          is optional, and is entirely a property of Markup nodes.</para>
+          since Markup nodes have a <code>name</code> property. Because the target of Markup is a
+          non-empty set of Text nodes, and Text nodes are ordered and have intrinsic subset
+          relationships, Markup also specifies order and containment, but only indirectly. The
+          specification of dominance is optional, and is entirely a property of Markup nodes.</para>
       </section>
       <section>
         <title>Overlap and self-overlap</title>
@@ -754,6 +299,40 @@
       </section>
     </section>
     <section>
+      <title>TAG example</title>
+      <figure xml:id="shakespeare_hypergraph">
+        <title>William Shakespeare, Sonnet 71</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="shakespeare-sonnet-71_hypergraph.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>The Document node is beige, the Text nodes are pink, and the Markup nodes are green
+            (those with the Name property value of <quote>quatrain</quote> or
+            <quote>couplet</quote>) and cyan (those with the Name property value of
+              <quote>line</quote>). A chain of regular (one-to-one) edges, represented by solid
+            black arrowheads, begins at the Document node and connects the Text nodes in order. Text
+            nodes in this case are entire lines of text, but they could also be smaller units; see
+            the discussion of Overlap, below.</para>
+        </caption>
+      </figure>
+      <para>The illustration of a TAG hypergraph of William Shakespearea’s Sonnet 71 (<xref
+          linkend="sonnet-71_text"/>), above, includes a Document node, fourteen Text nodes, and
+        eighteen Markup nodes (fourteen with their Name property value equal to <quote>line</quote>,
+        three to <quote>quatrain</quote>, and one to <quote>couplet</quote>). Regular (one-to-one)
+        edges start at the Document node and chain all Text nodes in textual order. Hyperedges point
+        from the Markup nodes into sets of Text nodes. In this case, hyperedges that start in Markup
+        nodes with the Name property of <quote>line</quote> happen to point to a set that consists
+        of a single Text node, and those with Name property values of <quote>quatrain</quote> and
+          <quote>couplet</quote> happen to point to sets of four and two Text nodes, respectively.
+        Note that in TAG, in contrast to XML, a Markup node corresponding to the XML root element,
+        although permitted, is not required, and we’ve omitted it here. Also in contrast to XML, the
+          <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes point directly to the Text
+        nodes, and not to <quote>line</quote> Markup nodes (although that, too, is possible; see
+        below about hierarchy).</para>
+    </section>
+    <section>
       <title>TAG components</title>
       <section>
         <title>Nodes</title>
@@ -770,13 +349,13 @@
                   <code>Text</code> nodes. The order of the Text nodes is represented by directed
                 edges that connect them in textual order.<footnote>
                   <para>All main text in the document forms a single chain of Text nodes, and the
-                    same is true of the Text in annotations. See <xref linkend="to_do"/> for a
-                    discussion of simultaneous text and contradictory order.</para>
+                    same is true of the Text in an annotation. See also <xref linkend="to_do"/> for
+                    a discussion of simultaneous text and contradictory order.</para>
                 </footnote> The first Text node can be recognized because there is a link to it from
-                the Document node. The value of a Text node is the text it represents, comparable to
-                the string value of an XML Text node. Text nodes in TAG may be empty; pointing from
-                a Markup node to an empty Text node provides functionality comparable to that of
-                empty elements in XML.<footnote>
+                the Document node. The <code>value</code> of a Text node is the text it represents,
+                comparable to the string value of an XML Text node. Text nodes in TAG may be empty;
+                pointing from a Markup node to an empty Text node provides functionality comparable
+                to that of empty elements in XML.<footnote>
                   <para>Empty elements play a smaller roll in TAG than in XML because TAG does not
                     problematize overlap. This means that it does not need to create empty elements
                     to simulate the start and end tags of a subordinate hierarchy, as is the case in
@@ -788,7 +367,7 @@
                 characters, but the characters are not types in the TAG data model, and TAG has no
                 counterpart to LMNL atoms.<footnote>
                   <para>The XML DOM and XDM include Text nodes in the model. The XML InforSet has no
-                    Text nodes but regards the individual character as an information item:
+                    Text nodes, but regards the individual character as an information item:
                       <quote>Each character is a logically separate information item, but XML
                       applications are free to chunk characters into larger groups as necessary or
                       desirable.</quote>
@@ -814,14 +393,13 @@
                 annotations with the same name on a single Markup or Annotation node. Unlike LMNL
                 but like XML attributes, annotations are unordered (but if they contain Text nodes,
                 those are connected by regular, one-to-one edges that form them into a chain,
-                beginning at the Annotation node). There happen to be no Annotation nodes in the
-                Shakespearean sonnet example above.</para>
+                beginning at the Annotation node).</para>
             </listitem>
           </itemizedlist>
         </para>
       </section>
       <section>
-        <title>Edges</title>
+        <title>Edges and hyperedges</title>
         <section>
           <title>Overview</title>
           <para>The following edge relationships are supported by the model. All edges are directed;
@@ -1047,6 +625,494 @@
     </section>
   </section>
   <section>
+    <title>Challenges for text modeling</title>
+    <para>In this section we illustrate several types of textual structures that have proven awkward
+      for XML because they contradict or otherwise are not part of the OHCO tree model. For each we
+      provide an abstract description of the problem, of one or more XML workarounds, and their
+      GODDAG and LMNL counterparts (as appropriate), illustrated with examples drawn from use cases
+      in Digital Humanities research projects.</para>
+    <para>As was noted above, the principal challenge to XML as a model of text is generally
+      regarded as overlap, that is, that text has structural properties that humans care about that
+      cannot be modeled directly as a tree, or, at least, as a rooted and ordered directed acyclic
+      graph that does not permit multiple parentage and that is constructed from the seven types of
+      nodes that constitute the XQuery and XPath data model.[<xref linkend="W3C_xdm"/> §6] But
+      although overlap has received most of the attention, it is only one challenge to XML modeling,
+      and regarding overlap as <emphasis role="ital">the problem</emphasis>, instead of as <emphasis
+        role="ital">a symptom of the problem</emphasis>, has led us to think more narrowly than we
+      should about alternatives to OHCO. If what text <quote>really is</quote> is not an ordered
+      hierarchy of content objects, what is it instead? The issues are well known to the XML
+      community, so why have they come largely (although not entirely) to be eclipsed by overlap in
+      discussions of what’s difficult about modeling documents in XML? These challenges, which have
+      been negotiated in XML modeling and processing through workarounds, find a natural solution in
+      the TAG model described here, as well as, at least in some respects, in LMNL and
+      GODDAG/TexMECS.</para>
+    <!-- Michael and Claus 2008 emphasize that TEI markup requires semantics, while ours is in the model
+      TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser -->
+    <!-- TexMECS requires quotations to be divided in the model, while we don't -->
+    <section>
+      <title>Overlap</title>
+      <para>The challenge to modeling texts in XML that has attracted the most attention is overlap,
+        but overlap is sometimes described as a property of XML serialization, rather than of the
+        XML data model. Or, more precisely, overlap is one thing in the XML data model and a
+        different, but related thing in an XML serialization. In the data model, overlap refers to
+        multiple concurrent trees or partial trees, a situation that is not possible in XML because
+        XML is defined as a single tree. Notice in the image below how the phrase <quote>Two vast
+          and trunkless legs of stone Stand in the desart</quote> begins in the middle of line 2 and
+        ends in the middle of line 3, so that a tree of phrases overlaps a tree of lines:</para>
+      <figure xml:id="ozymandias">
+        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="ozymandias.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>[Image from
+              <link>http://piez.org/wendell/papers/dh2010/clix-sonnets/ozymandias-map.svg</link>,
+            which is part of <xref linkend="piez_2010"/>. The overlap is easier to see in the
+            original SVG, which is animated, and highlights portions of the document in response to
+            mouse events.]</para>
+        </caption>
+      </figure>
+      <para>Piez’s illustration is actually of LMNL ranges (see below), rather than of XML element
+        trees. The same structure might be visualized as independent overlapping trees as follows,
+        where cyan represents the tree of metrical lines and green represents the tree of linguistic
+        phrases:</para>
+      <figure xml:id="ozymandias_trees">
+        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="ozymandias_trees.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>Projecting two independent trees over a common set of words. In XML the individual
+            words would be not be children of <code>&lt;line&gt;</code> and
+              <code>&lt;phrase&gt;</code> elements, and would instead be grouped inside
+              <code>Text</code> node children of those elements.</para>
+        </caption>
+      </figure>
+      <para>Because it is not possible to represent the preceding structure in XML markup, the
+        following pseudo-XML is not well-formed:</para>
+      <programlisting>&lt;line&gt;&lt;phrase&gt;Who said —&lt;/phrase&gt; &lt;phrase&gt;“Two vast and trunkless legs of stone&lt;/line&gt;
+&lt;line&gt;Stand in the desart….&lt;/phrase&gt; &lt;phrase&gt;Near them,&lt;/phrase&gt; &lt;phrase&gt;on the sand&lt;/phrase&gt;&lt;/line&gt;</programlisting>
+      <para>New XML users often misunderstand the prohibition against overlap as a prohibition
+        against overlapping <emphasis role="ital">tags</emphasis>, but if that were the issue, it
+        could be remedied by simply removing the prohibition. The reality is that tags are a feature
+        only of the <emphasis role="ital">serialization</emphasis> of XML, and XML as a <emphasis
+          role="ital">data model</emphasis> has hierarchical elements, rather than tags. The reason
+        overlap is prohibited, then, has nothing to do with a rule about tags; the rule about tags
+        exists because tags must represent the data model, the hierarchy in the data model prohibits
+        multiple parentage, and overlap would require that a <code>Text</code> node have more than
+        one parent. Overlap is possible in GODDAG not because TexMECS permits overlapping tags, but
+        because GODDAG permits <code>Text</code> nodes to have multiple parents and TexMECS
+        serializes the GODDAG model. LMNL sawtooth syntax may look like XML syntax with the
+        prohibition against overlapping tags removed, but the real difference is at the level of the
+        data model: LMNL <emphasis role="ital">ranges</emphasis> may overlap, but the content
+        between XML start and end tags is a sequence of descendant <emphasis role="ital">nodes in a
+          tree</emphasis>, and not a range of textual atoms.</para>
+    </section>
+
+    <section>
+      <title>Discontinuity</title>
+      <para><xref linkend="sperberg-huitfeldt_2008"/> discusses the following paragraph from Lewis
+        Carroll’s <emphasis role="ital">Alice in Wonderland</emphasis> as an example of
+        discontinuity:</para>
+      <blockquote>
+        <para>Alice was beginning to get very tired of sitting by her sister on the bank, and of
+          having nothing to do: once or twice she had peeped into the book her sister was reading,
+          but it had no pictures or conversations in it, <quote>and what is the use of a
+            book,</quote> thought Alice <quote>without pictures or conversation?</quote></para>
+      </blockquote>
+      <para>There is no way to mark up this passage in XML without fragmenting the quotation into
+        two elements (and relying on semantics to stitch together the pieces in the application
+        layer), yet our human intuition is that there is a single quotation, and that the model,
+        therefore, should represent it as a single object.<footnote>
+          <para>It is possible to interpret the content of the <code>&lt;quotation></code> element
+            as three child nodes: a <code>Text</code> node, an intervening element that holds the
+            narrative interjection, and then another <code>Text</code>, and in that sense the
+            quotation is one object, although that object incorporates something that is not part of
+            what a human understands as the quotation. <xref linkend="sperberg-huitfeldt_2008"/>
+            explains why this is unsatisfactory (see especially their footnote 2).</para>
+        </footnote> As <xref linkend="sperberg-huitfeldt_2008"/> also observe, there is a sense in
+        which <quote>book</quote> and <quote>without</quote> are adjacent and a different sense in
+        which <quote>book</quote> and <quote>thought</quote> are adjacent. The XML data model cannot
+        represent both of these realities simultaneously, which means that at least one of them must
+        be handed off to the application layer.</para>
+      <para>
+        <xref linkend="sperberg-huitfeldt_2008"/> situate this type of structure in a GODDAG
+        context, where it intersects with the distinction between <emphasis role="ital"
+          >containment</emphasis> and <emphasis role="ital">dominance</emphasis>. Concerning LMNL,
+        they write that </para>
+      <blockquote>
+        <para>[with respect to] the unity of discontinuous elements: such a unity may be asserted by
+          the application layer (that is, by the definition of a LMNL vocabulary), but it is not
+          visible on the LMNL level, and thus need not be accounted for at the level of LMNL
+          itself.</para>
+        <para>The design of LMNL thus seems to require that any account of dominance (as distinct
+          from containment), and any account of discontinuous elements, be handled in the
+          application layer. LMNL itself achieves a degree of simplicity and regularity as a result,
+          at the expense of complexity in the application.</para>
+      </blockquote>
+      <para><xref linkend="piez_2008"/> describes discontinuity in LMNL as modeled by the <emphasis
+          role="ital">limen</emphasis>, where the example provided
+          (<link>http://piez.org/wendell/LMNL/Amsterdam2008/presentation-slides.html#page23</link>)
+        records it through coindexed annotations. That dependency seems to locate discontinuity in
+        an application layer, since whether coindexed annotations represent discontinuity is not an
+        inherent property of the coindexing.</para>
+    </section>
+
+    <section>
+      <title>Hierarchy, containment and dominance</title>
+      <para>The challenges that have emerged from our experience of XML as a model of text involve
+        not only the <emphasis role="ital">limitations</emphasis> of OHCO, but also its <emphasis
+          role="ital">tyranny</emphasis>. If text is understood as an ordered hierarchy of content
+        objects, are there aspects of text that are not ordered (O), are there aspects that are not
+        hierarchical (H, by which we mean not just that they are not mono-hierarchical, but that
+        they are not hierarchical at all), and does the model create content objects artifactually,
+        that is, where they are not perceived as inherent properties of the text being modeled (CO)?
+        XML requires us to model all content as both ordered and hierarchical, and it represents
+        content objects as elements (at least as content objects are described in <xref
+          linkend="derose_1990"/>). The GODDAG and LMNL alternatives to XML, which are discussed
+        below, both grew out of a recognition that not all properties of text can be modeled
+        effectively as a single hierarchy, and their focus is not limited to that issue, but they
+        differ in the extent to which they interrogate features of text that may not be
+        hierarchical, that may not be ordered, and that may not involve what a human would consider
+        a content object.</para>
+      <para>As was mentioned earlier, the XML data model does not distinguish containment from
+        dominance, which Tennison explains as follows: <blockquote>
+          <para>Containment is a happenstance relationship between ranges while dominance is one
+            that has a meaningful semantic. A page may happen to <emphasis role="ital"
+              >contain</emphasis> a stanza, but a poem <emphasis role="ital">dominates</emphasis>
+            the stanzas that it contains.[<xref linkend="tennison_2008"/>]</para>
+        </blockquote></para>
+      <para>In XML, an ancestor element both <emphasis role="bold">contains</emphasis> (starts
+        before and ends after in the serialization) its descendants and <emphasis role="bold"
+          >dominates</emphasis> them (is connected to them by a path that travels only downward in
+        the tree). In the Shakespearean sonnet below, the <code>&lt;poem></code> element both
+        contains and dominates three <code>&lt;quatrain></code> elements and one
+          <code>&lt;couplet></code> element, and the <code>&lt;quatrain></code> and
+          <code>&lt;couplet></code> elements both contain and dominate <code>&lt;line></code>
+        elements:</para>
+      <programlisting>&lt;poem&gt;
+    &lt;quatrain&gt;
+        &lt;line&gt;No longer mourn for me when I am dead&lt;/line&gt;
+        &lt;line&gt;Than you shall hear the surly sullen bell&lt;/line&gt;
+        &lt;line&gt;Give warning to the world that I am fled&lt;/line&gt;
+        &lt;line&gt;From this vile world with vilest worms to dwell:&lt;/line&gt;
+    &lt;/quatrain&gt;
+    &lt;quatrain&gt;
+        &lt;line&gt;Nay, if you read this line, remember not&lt;/line&gt;
+        &lt;line&gt;The hand that writ it, for I love you so,&lt;/line&gt;
+        &lt;line&gt;That I in your sweet thoughts would be forgot,&lt;/line&gt;
+        &lt;line&gt;If thinking on me then should make you woe.&lt;/line&gt;
+    &lt;/quatrain&gt;
+    &lt;quatrain&gt;
+        &lt;line&gt;O! if,—I say you look upon this verse,&lt;/line&gt;
+        &lt;line&gt;When I perhaps compounded am with clay,&lt;/line&gt;
+        &lt;line&gt;Do not so much as my poor name rehearse;&lt;/line&gt;
+        &lt;line&gt;But let your love even with my life decay;&lt;/line&gt;
+    &lt;/quatrain&gt;
+    &lt;couplet&gt;
+        &lt;line&gt;Lest the wise world should look into your moan,&lt;/line&gt;
+        &lt;line&gt;And mock you with me after I am gone.&lt;/line&gt;
+    &lt;/couplet&gt;
+&lt;/poem&gt;</programlisting>
+      <figure xml:id="shakespeare_xml">
+        <title>William Shakespeare, Sonnet 71</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="shakespeare-sonnet_xml.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>The XML tree encodes containment and hierarchy in the same way.</para>
+        </caption>
+      </figure>
+      <para>LMNL recognizes that what has been identified as <quote>overlapping hierarchy</quote> in
+        XML might, at least sometimes, be understood instead as overlapping containment, except that
+        XML cannot represent containment separately from hierarchy. </para>
+    </section>
+    <section>
+      <title>Data typing and artificial hierarchy</title>
+      <para>In XML, markup is (among other things) a form of datatyping, and the XML spec uses the
+        word <quote>type</quote> to say this:<blockquote>
+          <para>Each element has a type, identified by name, sometimes called its <quote>generic
+              identifier</quote> (GI) [<xref linkend="W3C_xml"/> §3]</para>
+        </blockquote>This means that when XML assigna a type to part of a document by making it an
+        element, it simultaneously makes it a node in the document hierarchy. Consider the following
+        XML structure, represented here in markup and as hierarchy:</para>
+      <programlisting>&lt;title&gt;&lt;name&gt;Romeo&lt;/name&gt; and &lt;name&gt;Juliet&lt;/name&gt;&lt;/title&gt;</programlisting>
+      <figure xml:id="romeo_xml">
+        <title>Romeo and Juliet (XML)</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="romeo_xml.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>In XML, the three words of the title are spread over two levels of the hierarchy.
+            Cyan ellipses are element nodes and pink rectangles are <code>Text</code> nodes.</para>
+        </caption>
+      </figure>
+      <para>If we wish to specify in XML that the first and third words of the title are of type
+          <quote>name</quote>, we can tag them as elements of that type, with the result that the
+          <code>Text</code> nodes they contain wind up on a different level of the hierarchy than
+        the conjunction between them.<footnote>
+          <para>It is possible to tag the conjunction, as well, so as to push the word
+              <quote>and</quote> down to the same hierarchical level as the names, but we have not
+            observed that in practice. If the markup process involves tagging what the user
+            considers informational, it should be possible to say that some text in this title is of
+            a particular type <emphasis role="ital">that we care about sufficiently to specify the
+              type in our markup</emphasis>, and other text is not, and to tag the former, but not
+            the latter.</para>
+        </footnote> This contradicts our intuition that the title contains three words, two of which
+        have the type <quote>name</quote>, replacing it with a model in which the title contains two
+        objects of type <quote>name</quote> with a word between them, and it is the
+          <quote>name</quote> objects that contain the first and third words.</para>
+      <para/>
+    </section>
+    <section>
+      <title>White space as crypto-overlap</title>
+      <para>As was noted above, what we call plain text typically uses typographic and layout
+        conventions as pseudo-markup, and one function of structured markup languages is to separate
+        markup from content, thus transforming implicit structures expressed through pseudo-markup
+        into explicit structures expressed through markup. But because markup languages are
+        typically intended to be written and read by humans, it has become conventional not to tag
+        individual words—not because markup protocols like TEI don’t permit word-level markup (they
+        do), but because except where it serves an explicit (most commonly linguistic) purpose, we
+        tolerate the use of white space as covert milestone elements that separate words within a
+          <code>Text</code> node. And the fact that they are covert <emphasis>milestones</emphasis>
+        is another way in which the modeling is compromised, since words have a start and an end,
+        and we would naturally tag them in XML with container tags, rather than milestones. There
+        are concepts in text that naturally have no content, such as a missing folio in a
+        manuscript, and those are modeled naturally by empty elements, but using milestones to
+        separate item that do have content (whether implicit ones, like white space between words,
+        or explicit ones like the TEI <code>&lt;lb/></code> and <code>&lt;pb/></code> elements to
+        mark line and page breaks) represents a subordination of the text to the model. The model
+        should represent what we understand the structure of the text to be; our representation of
+        the text should not be subject to distortion because of limitations in the model.</para>
+      <para>Much as poetic emjambment in the Shelley poem above cannot be modeled by tagging both
+        phrases and feet in XML because it would create an overlap situation, poetic caesura, the
+        regular correspondence of foot and word boundaries within poetic lines, cannot be modeled in
+        XML by tagging both poetic feet and words, since feet and words may overlap in the same way
+        as phrases and lines. One work-around for this problem in an XML environment turned out to
+        involve, surprisingly, tagging neither the feet nor the words (see [<xref
+          linkend="birnbaum_2015"/>]), deriving both from other properties of the line during
+        processing, but the fact that we dodged syntactic overlap doesn’t mean that the the overlap
+        isn’t there. A data model that could represent both feet and words explicitly, and that
+        could identify caesura as a relationship between those two types of structural components,
+        would represent explicitly the human understanding of caesura, and the explicit
+        representation of structure is what markup is all about.</para>
+    </section>
+    <section>
+      <title>Scope of reference</title>
+      <para><emphasis role="ital">Footnotes in XML are usually milestones, but they should be
+          annotations on elements, since milestones don’t have scope. But XML doesn’t permit markup
+          in attributes. XML could make a footnote a child element, the parent of which is its
+          scope, but then the footnote becomes part of the content of the parent, rather than an
+          annotation. This is a use case for markup on annotations.</emphasis> Side issue: should
+        annotations in TAG be ordered? How about: no, unless there’s an edge that says
+        otherwise.</para>
+    </section>
+    <section>
+      <title>Artifactual content objects</title>
+      <para><emphasis role="bold">The &lt;app&gt; wrapper around readings in TEI parallel
+          segmentation isn’t in the variant graph. Why should it be in the model of a critical text?
+          The root element may also be an artifact.</emphasis></para>
+    </section>
+    <section>
+      <title>Data model versus syntax</title>
+      <para>A third challenge of discussing XML as a model of text is distinguishing XML as a data
+        model from XML as a syntax, and the same applies to the LMNL data model vs the LMNL sawtooth
+        syntax and the GODDAG data structure vs TexMECS syntax. Perhaps a bit surprisingly in the
+        context of Balisage, which describes itself as <quote>the <emphasis role="ital"
+            >markup</emphasis> conference</quote>, our focus here is not on markup (that is, on
+        syntax and serialization), but on the data models that may be expressed through markup. Our
+        somewhat simplified <xref linkend="XML_specs"/> illustration, below, regards the marked-up
+        XML document as related to the XML InfoSet by the operations of serialization in one
+        direction and parsing in the other. This matters because the serialization is, as is clear
+        from the etymology of the term, committed to an ordered expression in ways that other
+        representations of XML may not be, and the same is true of other dxata models and their
+        associated syntactic expressions through markup. If, for example, a paragraph is exactly
+        coextensive with a quotation, in XML syntax, LMNL sawtooth syntax, and TexMECS syntax, the
+        start tag of either the paragraph or the quotation must come first in linear order. But in
+        LMNL the relative order of the ranges defined by the tags is not an obligatory part of the
+        model, which permits two ranges to begin at the same location in the text .<footnote>
+          <para>LMNL is able to represent hierarchy, but it is not obligatory, and
+              <quote>flat</quote> LMNL does not express hierarchy.</para>
+        </footnote> In XML, though, one element must be the parent of the other, and the order of
+        the start tags reflects the hierarchy. TexMECS uses different start- and end-tag delimiters
+        to distinguish when the relative order of the tags is informational and when it is not.<footnote>
+          <para>STAGO vs STAGSO and ETAGO vs ETAGSO [<xref linkend="huitfeldt_2003"/>, §2.3.]</para>
+        </footnote></para>
+      <figure xml:id="XML_specs">
+        <title>The XML document-processing ecosystem</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="xml-spec.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>The term <quote>XML</quote> may be used to refer to the data model or to its
+            syntactic or other expressions.</para>
+        </caption>
+      </figure>
+    </section>
+    <section>
+      <title>Semantics versus application level</title>
+      <para>A fourth issue, which intersects with the three above, involves distinguishing
+        properties that inhere in the text being modeled from those that depend on semantics that
+        must be interpreted at a higher (application) level. A failure to make this distinction may
+        have two types of consequences (which are really aspects of the same thing, the delegation
+        of information that should be part of the model to the application layer): either the
+        application must know that some properties of the model are not informational and are to be
+        ignored or the application must know that there is information that is not represented
+        entirely by the model and must therefore be added during processing. If, however, the model
+        explicitly represents the properties of the text and nothing else, the application level is
+        freed from having to supplement the model, and can concentrate on features that are truly
+        application-specific. Here are two illustrations of this issue:<itemizedlist>
+          <listitem>
+            <para>The pairing of start and end tags in XML (or LMNL sawtooth or TexMECS) markup is
+              inherent in the markup itself. In contrast, the pairing of XML milestones that are
+              used to simulate container tags as a work-around for overlap (see the discussion of
+              Trojan markup in <xref linkend="derose_2004"/>) relies on semantics. This means that
+              XML applications do not have to know that regular start and end tags delimit an
+              element because that information is an inalienable feature of all XML documents that
+              is fully specified by the syntax, but they do have to know when empty tags are being
+              used to simulate the beginning and end of a content object. Insofar as whether
+              something is a content object is a property of the text being modeled, a robust and
+              efficient strategy would represent it as part of the model itself, instead of
+              requiring that it be handled through semantic information that is available only at
+              the application level.</para>
+          </listitem>
+          <listitem>
+            <para>Because XML models an ordered hierarchy, elements always have order, which
+              requires the application layer to distinguish situations where order is semantically
+              meaningful from situations where it isn’t. For example, the TEI
+                <code>&lt;choice&gt;</code> element has the semantics of associating content objects
+              that do not have a natural order with respect to one another, such as an abbreviation
+              and its expansion or an error and its correction. How those should be rendered is the
+              proper business of the application layer, but the XML model requires that one option
+              proceed or follow the other even when the order does not represent an inherent
+              property of the text being modeled. This means that, incorrectly (from the perspective
+              of what the marked-up text means), an XML processor will regard two TEI documents as
+              different if they differ only in the order of the children of their
+                <code>&lt;choice&gt;</code> elements (unless the processor is given access to TEI
+              markup semantics). A more robust and efficient strategy would not impose order when it
+              must then be ignored, so that a processor will know when order is informational and
+              when it is not from the model, without recourse to semantics.</para>
+          </listitem>
+        </itemizedlist></para>
+    </section>
+    <section>
+      <title>Desiderata for an improved text model</title>
+      <para>An improved text model should have the following properties. In all instances where we
+        write that <quote>the model should be able to X</quote>, we mean that it should be able to X
+        without requiring access to semantic information at the application level. In other words,
+        the components of the model should fully represent the properties of the text being modeled,
+        with no extraneous artifactual properties that an application must then know to ignore. XML
+        uses the term <quote>markup</quote> to identify both elements and attributes, while in the
+        list below we use the TAG terminology, where the term <quote>markup</quote> refers to the
+        counterpart to XML elements and <quote>annotation</quote> to the counterpart to XML
+        attributes.</para>
+      <para>The following are characteristics we might ask of an improved text model:<itemizedlist>
+          <listitem>
+            <para>It should support both textual (character data) content and markup and annotations
+              (of the sort expressed in XML through element and attribute markup).</para>
+          </listitem>
+          <listitem>
+            <para>It should support multiple layers of markup and annotation.</para>
+          </listitem>
+          <listitem>
+            <para>It should be able to represent overlapping markup.</para>
+          </listitem>
+          <listitem>
+            <para>It should be able to represent discontinuous markup.</para>
+          </listitem>
+          <listitem>
+            <para>It should be able to represent components that are not logically ordered without
+              imposing an arbitrary order that must then be ignored.</para>
+          </listitem>
+          <listitem>
+            <para>It should be able to represent transpositions, or reorderings, e.g., in a critical
+              text with variants that differ only in order.</para>
+          </listitem>
+          <listitem>
+            <para>It should support annotations on annotations, that is, metadata about
+              metadata.</para>
+          </listitem>
+          <listitem>
+            <para>It should support but not require the representation of hierarchy, including
+              multiple, partial, or overlapping hierarchies.</para>
+          </listitem>
+          <listitem>
+            <para>With respect to reading, it should support queries for text, markup, annotations,
+              or a combination of those components.</para>
+          </listitem>
+          <listitem>
+            <para>With respect to writing, it should support creating, inserting, deleting, or
+              otherwise modifying both textual content and markup and annotations.</para>
+          </listitem>
+          <listitem>
+            <para>With respect to workflow, it should be possible to defer decisions about relations
+              among layers. For example, it should be possible to create markup and annotations
+              without hierarchy and apply a hierarchy only later. This deferral might be compared to
+              the way XML documents may be validated against schemas that may be created and
+              associated only after a fully functional well-formed document has been created.</para>
+          </listitem>
+          <listitem>
+            <para>With respect to scalability, it should enable, in a computationally efficient way,
+              the types of documents and processing likely to be required by the digital text
+              community.</para>
+          </listitem>
+          <listitem>
+            <para>With respect to I/O, a system that implements the model should support
+              serialization as plain text on export and the parsing of such serializations on
+              import. TAG does not currently have its own syntax. Our Alexandria implementation can
+              read and write LMNL syntax, and it is intended to be able to read and write XML and TexMECS.<footnote>
+                <para>This list item refers to syntactic representations that were developed to
+                  represent data models other than TAG: XML syntax and the XML data model, LMNL
+                  sawtooth syntax and the LMNL data model, and TexMECS and GODDAG data model. When
+                  we speak about parsing XML or LMNL or TexMECS <emphasis role="ital"
+                    >syntax</emphasis> into Alexandria, we mean that it is parsed into the TAG data
+                  model, and not into XML or LMNL or GODDAG data models.</para>
+                <para>XML angle-bracketed markup, LMNL sawtooth markup, and TexMECS all are capable
+                  of representing some but not all features of TAG. For example, LMNL supports
+                  annotations on annotations, while TexMECS doesn’t. More subtly, because
+                  annotations on the same object are ordered in LMNL but not in TAG, when Alexandria
+                  parses LMNL syntax, it is not parsing it into the LMNL data model because, among
+                  other things, it creates unordered annotations. TexMECS supports hierarchy, while
+                  LMNL sawtooth syntax does not. LMNL can represent hierarchy through the <emphasis
+                    role="ital">limen</emphasis>, but the limen currently has no defined
+                  representation in the syntax. [<xref linkend="piez_2008"/>] We leave unresolved
+                  for now the question of how to serialize fully all information in a TAG
+                  document.</para>
+              </footnote></para>
+          </listitem>
+          <listitem>
+            <para>With respect to user interaction, a system that implements the model should
+              provide a legible interface that enables reading and writing by human users.<footnote>
+                <para>We leave unresolved for now the design and implementation of such an
+                  interface, except to say that it might not require a specialized, TAG-aware
+                  editor. One approach might involve the selective export of TAG information for
+                  manipulation in a third-party editor, followed by its reimport and reintegration
+                  into the TAG document.</para>
+              </footnote></para>
+          </listitem>
+        </itemizedlist></para>
+      <!--explain the differences between graph models and trees and ranges? Or leave that
+        discussion out?-->
+      <!--Reading Wendell's papers/articles about LMNL and Luminescent I can't help but notice
+        that it is mainly about modeling text using LMNL, querying (using xLMNL and xQuery
+        extensions) and visualising data. These are all read only operations. The goal of the TAG
+        model and its implementation in Alexandria is that it can be used to read as well as write
+        textual data and annotations. This opens up a lot of new possibilities and makes it a
+        'complete' text repository system, comparable to XML databases albeit in a far more
+        experimental state and a much lower level of maturity.-->
+    </section>
+  </section>
+  <section>
     <title>How TAG addresses structures that are awkward for XML</title>
     <para>In this section we illustrate how several types of structures that are awkward for XML can
       be represented in a natural way in TAG. </para>
@@ -1106,40 +1172,14 @@
         </caption>
       </figure>
     </section>
-  <section>
+    <section>
       <title>Hierarchy, containment ant dominance</title>
-      <figure xml:id="shakespeare_hypergraph">
-        <title>William Shakespeare, Sonnet 71</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="shakespeare-sonnet-71_hypergraph.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>The Document node is beige, the Text nodes are pink, and the Markup nodes are green
-            (those with the Name property value of <quote>quatrain</quote> or
-            <quote>couplet</quote>) and cyan (those with the Name property value of
-              <quote>line</quote>). A chain of regular (one-to-one) edges, represented by solid
-            black arrowheads, begins at the Document node and connects the Text nodes in order. Text
-            nodes in this case are entire lines of text, but they could also be smaller units; see
-            the discussion of Overlap, below.</para>
-        </caption>
-      </figure>
-      <para>The illustration of a TAG hypergraph of William Shakespearea’s Sonnet 71 (<xref
-          linkend="sonnet-71_text"/>), above, includes a Document node, fourteen Text nodes, and
-        eighteen Markup nodes (fourteen with their Name property value equal to <quote>line</quote>,
-        three to <quote>quatrain</quote>, and one to <quote>couplet</quote>). Regular (one-to-one)
-        edges start at the Document node and chain all Text nodes in textual order (see below about
-        simultaneity and transposition). Hyperedges point from the Markup nodes into sets of Text
-        nodes. In this case, hyperedges that start in Markup nodes with the Name property of
-          <quote>line</quote> happen to point to a set that consists of a single Text node, and
-        those with Name property values of <quote>quatrain</quote> and <quote>couplet</quote> happen
-        to point to sets of four and two Text nodes, respectively. Note that in TAG, in contrast to
-        XML, a Markup node corresponding to the XML root element, although permitted, is not
-        required, and we’ve omitted it here. Also in contrast to XML, the <quote>quatrain</quote>
-        and <quote>couplet</quote> Markup nodes point directly to the Text nodes, and not to
-          <quote>line</quote> Markup nodes (although that, too, is possible; see below about
-        hierarchy).</para>
+      <para>The corresponding XML tree, illustrated earlier, includes a <code>&lt;poem&gt;</code>
+        root node, which is not present in the TAG hypergraph, although, as explained above, we
+        could have created one had we wished to do so. The root node is not optional in XML because
+        a tree requires a root. Additionally, the XML <code>&lt;quatrain&gt;</code> and
+          <code>&lt;couplet&gt;</code> elements are parents of <code>&lt;line&gt;</code> elements,
+        which are parents of <code>Text</code> nodes.</para>
       <para>In TAG, a Markup-to-Text hyperedge defines the tail as a set of Text nodes and labels
         (datatypes) it. Containment is modeled by subset relations among the tails of Markup nodes.
         In this example, all quatrain and line Markup-to-Text edges point to sets of Text nodes.
@@ -1216,7 +1256,7 @@
         consequence of all markup in TAG, as it is in XML.</para>
     </section>
   </section>
-  
+
   <section>
     <title>Comparison of TAG/hypergraph to other text models</title>
     <para>In this section we compare the TAG data model with three well-known alternative data
@@ -1422,69 +1462,71 @@
       <title>TAG and GODDAG</title>
       <section>
         <title>Description of GODDAG</title>
-      <para>GODDAG, which stands for generalized ordered-descendant directed acyclic graph
+        <para>GODDAG, which stands for generalized ordered-descendant directed acyclic graph
           (citation) is the data structure accompanying the MECS markup language and it's successor
           TEXTMecs. </para>
-      <para>It is as a way to deal with the overlapping hierarchies problem. GODDAG presumes there
+        <para>It is as a way to deal with the overlapping hierarchies problem. GODDAG presumes there
           to be a hierarchy in the content. In contrast to the XDM it is allows for multiple
           hierarchy to be represented instead of one. Instead of storing one tree in the graph,
           multiple trees are stored in the graph, with shared nodes between the trees not being
           duplicated. The root node is shared between the different hierarchies.</para>
-      <para>Both containment and dominance relations can be modelled in a GODDAG. Dominance relation
-        is the case one node is the parent of another and the children of the parent fully include
-        the children of its descendants. Otherwise the relation is treated as containment. This
-        means that most relations will be dominance.</para>
-      <para>The graph contains nodes, that are typed and ordered (as the name implies), as </para>
-      <para>There are two variants of GODDAG, the restricted and the generalized GODDAG. The
-        restricted variant allows for a single order of the text nodes, while the generalized model
-        allows multiple orders of text nodes.</para>
-      <para>The restricted variant is enough to implement the MECS and TEXTMecs markup language as a
-        data model parsing and processing.</para>
-      <para>The textual content of the document is segmented in non overlapping parts and stored in
-        the leaf nodes of the graph. Text nodes with empty Strings are allowed.</para>
-      <para>The order of the text nodes is determined by the parent nodes. </para>
-      <para>To represent discontinuous markup multiple (two or more) nodes are needed. (citation).
+        <para>Both containment and dominance relations can be modelled in a GODDAG. Dominance
+          relation is the case one node is the parent of another and the children of the parent
+          fully include the children of its descendants. Otherwise the relation is treated as
+          containment. This means that most relations will be dominance.</para>
+        <para>The graph contains nodes, that are typed and ordered (as the name implies), as </para>
+        <para>There are two variants of GODDAG, the restricted and the generalized GODDAG. The
+          restricted variant allows for a single order of the text nodes, while the generalized
+          model allows multiple orders of text nodes.</para>
+        <para>The restricted variant is enough to implement the MECS and TEXTMecs markup language as
+          a data model parsing and processing.</para>
+        <para>The textual content of the document is segmented in non overlapping parts and stored
+          in the leaf nodes of the graph. Text nodes with empty Strings are allowed.</para>
+        <para>The order of the text nodes is determined by the parent nodes. </para>
+        <para>To represent discontinuous markup multiple (two or more) nodes are needed. (citation).
           Discontinuity in GODDAG has to be represented by two or more separate markup nodes
           (citation)</para>
       </section>
-        <section>
-          <title>
-            Comparison between TAG and GODDAG
-          </title>
-          <para>
-            - Both GODDAG and TAG are based on graph structures. Both are directed. Both are acyclic. TAG using one to many edges (hyperedges), while GODDAG uses multiple one to one edges.
-            - TAG segments the textual content, just like GODDAG and XDM do.
-            - TAG has one order to the text nodes. This is similar to restricted goddags. The generalized GODDAG model can express multiple orders.
-            - The order of the text nodes in GODDAG is derived from it's parent nodes. In TAG the order of the text nodes is determined by the edges between the text nodes independent of the presence of a hierarchy in the markup nodes.
-            - GODDAG has a root node, TAG does not. A root node can be emulated 
-            - GODDAG presumes there to be one or more hierarchy. TAG does not (although a hierarchy can be expressed in TAG through the use of hyperedges between markup nodes).
-            - In both GODDAG and TAG dominance and containment can be expressed. Dominance is the default relationship in GODDAG, while containment is the default in TAG.
-            - In both GODDAG attributes and TAG annotations are unordered.
-            - In GODDAG attributes cannot contain markup, while in TAG annotations can have markup on them. Annotations can be annotated in TAG, while attributes cannot have attributes in GODDAG.
-            - Both GODDAG and TAG can model and process the data contained in MECS and TexMECS markup.
-            - Both GODDAG and TAG can model overlap.
-            - In GODDAG multiple nodes are needed to model discontinuity. In TAG only a single node and is needed.
-            - Both GODDAG and TAG support multiple parentage. That is to say that each markup node can contain multiple text nodes and each text node can have multiple markup nodes associated with it.
-            - Both GODDAG and TAG contain nodes that are typed. Element nodes are called Markup in TAG . Both contain text nodes. Attributes are called Annotations in TAG.
-            
-          </para>
+      <section>
+        <title> Comparison between TAG and GODDAG </title>
+        <para> - Both GODDAG and TAG are based on graph structures. Both are directed. Both are
+          acyclic. TAG using one to many edges (hyperedges), while GODDAG uses multiple one to one
+          edges. - TAG segments the textual content, just like GODDAG and XDM do. - TAG has one
+          order to the text nodes. This is similar to restricted goddags. The generalized GODDAG
+          model can express multiple orders. - The order of the text nodes in GODDAG is derived from
+          it's parent nodes. In TAG the order of the text nodes is determined by the edges between
+          the text nodes independent of the presence of a hierarchy in the markup nodes. - GODDAG
+          has a root node, TAG does not. A root node can be emulated - GODDAG presumes there to be
+          one or more hierarchy. TAG does not (although a hierarchy can be expressed in TAG through
+          the use of hyperedges between markup nodes). - In both GODDAG and TAG dominance and
+          containment can be expressed. Dominance is the default relationship in GODDAG, while
+          containment is the default in TAG. - In both GODDAG attributes and TAG annotations are
+          unordered. - In GODDAG attributes cannot contain markup, while in TAG annotations can have
+          markup on them. Annotations can be annotated in TAG, while attributes cannot have
+          attributes in GODDAG. - Both GODDAG and TAG can model and process the data contained in
+          MECS and TexMECS markup. - Both GODDAG and TAG can model overlap. - In GODDAG multiple
+          nodes are needed to model discontinuity. In TAG only a single node and is needed. - Both
+          GODDAG and TAG support multiple parentage. That is to say that each markup node can
+          contain multiple text nodes and each text node can have multiple markup nodes associated
+          with it. - Both GODDAG and TAG contain nodes that are typed. Element nodes are called
+          Markup in TAG . Both contain text nodes. Attributes are called Annotations in TAG. </para>
         <para/>
         <para/>
-      <para>OLD TEXT</para>
-      <para>The GODDAG datastructure allows for the storage of multiple hierarchies. Markup written
-        in the MECS format can be parsed and read into memory. Elements that fully overlap are
-        presumed to be dominating. Hierarchical structures are implied. Discontinuity is not
-        supported. The graph is directed from the root node. The order of the text nodes is derived
-        from the traversal of the element nodes. TAG differs in the sense that the order of text
-        nodes is derived from explicit directed edges between the text segments. TAG differs in
-        another way in the sense that relations between elements do not have to be one of
-        domination. Relations between elements can be expressed by adding extra edges that are
-        typed. The kind of relation can be determined later through the use of a schema. GODDAG and
-        TAG are similar in the sense that they both support an N to N relation between elements
-        (called markup in TAG) and PC-DATA nodes (called text nodes in TAG).</para>
+        <para>OLD TEXT</para>
+        <para>The GODDAG datastructure allows for the storage of multiple hierarchies. Markup
+          written in the MECS format can be parsed and read into memory. Elements that fully overlap
+          are presumed to be dominating. Hierarchical structures are implied. Discontinuity is not
+          supported. The graph is directed from the root node. The order of the text nodes is
+          derived from the traversal of the element nodes. TAG differs in the sense that the order
+          of text nodes is derived from explicit directed edges between the text segments. TAG
+          differs in another way in the sense that relations between elements do not have to be one
+          of domination. Relations between elements can be expressed by adding extra edges that are
+          typed. The kind of relation can be determined later through the use of a schema. GODDAG
+          and TAG are similar in the sense that they both support an N to N relation between
+          elements (called markup in TAG) and PC-DATA nodes (called text nodes in TAG).</para>
       </section>
     </section>
-       <section>
+    <section>
       <title>TAG and LMNL</title>
       <para>The four text models described in this paper can be categorized according to whether
         they are based on trees (XML, GODDAG) or not (LMNL, TAG), and in this respect LMNL is the
@@ -1716,6 +1758,14 @@ And mock you with me after I am gone.</programlisting>
   </appendix>
   <bibliography>
     <title>Works cited</title>
+    <bibliomixed xml:id="birnbaum_2015" xreflabel="Birnbaum and Thorsen 2015">Birnbaum, David J.,
+      and Elise Thorsen. <quote>Markup and meter: Using XML tools to teach a computer to think about
+        versification.</quote> Presented at Balisage: The Markup Conference 2015, Washington, DC,
+      August 11–14, 2015. In <emphasis role="ital">Proceedings of Balisage: The Markup Conference
+        2015</emphasis>. Balisage Series on Markup Technologies, vol. 15 (2015). DOI:
+      10.4242/BalisageVol15.Birnbaum01. <link
+        xlink:href="https://www.balisage.net/Proceedings/vol15/html/Birnbaum01/BalisageVol15-Birnbaum01.html"
+      /></bibliomixed>
     <bibliomixed xml:id="collatex" xreflabel="CollateX">CollateX.
         <link>https://pypi.python.org/pypi/collatex</link></bibliomixed>
     <bibliomixed xml:id="coombs_1987" xreflabel="Coombs et al. 1987">Coombs, James H., Allen H.
