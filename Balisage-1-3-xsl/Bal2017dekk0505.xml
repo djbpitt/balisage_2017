@@ -328,11 +328,11 @@
         <title>Discontinuity</title>
         <para>In XML, GODDAG, and LMNL, discontinuity is expressed with more than one element
           (XML/GODDAG) or more than one range (LMNL), and the fact that the discontinuous parts
-          (with respect to hierarchical or linear structure) form a whole must be encoded separately
-          and that would then require subsequent reunification is needed (higher in the hierarchy in
-          GODDAG, in the limen and with coindexed annotation values in LMNL). In TAG, discontinuity
-          in the Text nodes that constitute the tail of a Markup-to-Text hyperedge is modeled
-          exactly the same way as continuity because the Text nodes are not required to be
+          (with respect to hierarchical or linear structure) form a whole must be encoded
+          separately. That would then require subsequent reunification, higher in the hierarchy in
+          GODDAG, and in the limen and with coindexed annotation values in LMNL. In TAG,
+          discontinuity in the Text nodes that constitute the tail of a Markup-to-Text hyperedge is
+          modeled exactly the same way as continuity because the Text nodes are not required to be
           continuous. This means there is only one Markup node for all the Text nodes in an instance
           of discontinuous markup, and no obligatory partitioning into segments is needed. TexMECS
           syntax is capable of modeling discontinuity directly with suspend-tags and resume-tags
