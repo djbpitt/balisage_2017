@@ -1331,8 +1331,7 @@ And mock you with me after I am gone.</programlisting>
       </mediaobject>
       <caption>
         <para>This hypergraph models the containment and order of the text, with no statement of
-          hierarchy
-          (dominance).<!--TODO: File size of picture (snark_ortho_final.png) is too large! Reduce to 8 bit color?.--></para>
+          hierarchy (dominance).</para>
       </caption>
     </figure>
   </appendix>
