@@ -4,19 +4,7 @@
 <article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
   <title>It’s more than just overlap: Text As Graph</title>
   <subtitle>Refining our notion of what text really is—this time for sure!</subtitle>
-  <!-- Verify that all items in bibliography are cited in body -->
-  <!--
-    rhd: There is one more thing that we might have to discuss: a lot of scholars when they
-    hear/read the word graph think of semantic networks. It is important to stress that a
-    text graph is not a semantic network. In the markup of an annotation layer it is of
-    course possible to link to persons, places, organisations, events etc in a semantic
-    network. The main point is that although a text graph and a semantic network are both
-    networks, and they can link to each other, there are not the same. I suspect the Balisage
-    crowd is more aware of this than the average  scholars but still. There are some Balisage
-    papers that advocate combining XML with semantic networks. A text graph approach is still
-    different from that approach. So maybe it would good to explicitly mention that to avoid
-    confusion.
-  -->
+  <!-- Verify that all items in bibliography are cited in body   -->
   <info>
     <abstract>
       <para>The XML tree paradigm has several well-known limitations for document modeling and
@@ -164,8 +152,6 @@
   </section>
   <section>
     <title>The TAG/hypergraph model for text</title>
-    <!--Describe the model. Think of it as sets. The fact that Alexandria is a read-write system
-        is very important.-->
     <section>
       <title>Overview</title>
       <para>The Text As Graph (TAG) data model consists of a directed property hypergraph for
@@ -185,11 +171,12 @@
         source (called the <emphasis role="bold">head</emphasis>) and one for the target (called the
           <emphasis role="bold">tail</emphasis>). The direction of a (hyper)edge may be used to
         model an order or a hierarchy of the nodes, but directionality does not obligatorily imply
-        either order or hierarchy. Hypergraphs are especially valuable for text modeling because
-        they can be implemented using sets, and methods for reasoning over and operating on sets are
-        proven and well known.</para>
-      <para>Like LMNL and unlike XML, TAG is defined as a data model, rather than by its syntax. At
-        present TAG does not have its own syntactic representation.</para>
+        either order or hierarchy.
+        <!--TODO: Add a sentence that an (hyper)edge always implies an asssociation between the nodes involved-->Hypergraphs
+        are especially valuable for text modeling because they can be implemented using sets, and
+        methods for reasoning over and operating on sets are proven and well known.</para>
+      <para>Like LMNL <!--TODO: add GODDAG--> and unlike XML, TAG is defined as a data model, rather
+        than by its syntax. At present TAG does not have its own syntactic representation.</para>
     </section>
     <section>
       <title>How TAG represents selected structural properties of text</title>
@@ -214,10 +201,11 @@
               below about Markup dominance.</para>
           </footnote> This bottom-up perspective on order within a document distinguishes TAG from
           the top-down, ordered-tree perspective of XML and GODDAG, where, contrary to TAG, the
-          order of nodes (including <code>Text</code> nodes) is at least partially derived, through
-          depth-first traversal, from the order of their parent nodes. In this respect TAG is closer
-          to LMNL, where order in the document also inheres at the lowest level, which in LMNL is
-          the atoms that make up the content.</para>
+          order of nodes (including <code>Text</code> nodes) is at least partially
+          <!--TODO: Isn't the order fully derived from the parent nodes in XML, GODDAG (restricted and generalized)?-->derived,
+          through depth-first traversal, from the order of their parent nodes. In this respect TAG
+          is closer to LMNL, where order in the document also inheres at the lowest level, which in
+          LMNL is the atoms that make up the content.</para>
       </section>
       <section>
         <title>Textual content</title>
@@ -228,9 +216,10 @@
           connects all Text nodes in the document except those in annotations.<footnote>
             <para>See also the discussion of unordered content and transpositions in <xref
                 linkend="to_do"/>.</para>
-          </footnote> Annotations (see below), which typically encode metadata, can be understood as
-          ancillary documents, and their textual content is modeled as separate chains that begin at
-          the Annotation node.</para>
+          </footnote> Annotations (see below
+          <!--TODO: add direct link rather than 'below', 'above'.-->), which typically encode
+          metadata, can be understood as ancillary documents, and their textual content is modeled
+          as separate chains that begin at the Annotation node.</para>
       </section>
       <section>
         <title>Markup</title>
@@ -260,7 +249,7 @@
           supplementary information (metadata) about the node, similarly to attributes in XML,
           except that in TAG, as in LMNL, annotations can have rich content, and are not limited to
           just a name and an atomic value. (As in XML and unlike in LMNL, annotations on a Markup or
-          Annotation node in TAG are unordered.)</para>
+          Annotation node in TAG are unordered.)<!--TODO: remove parenthesis?--></para>
         <para>In TAG, as in LMNL, a document is not required to express a hierarchy. Where dominance
           relations must be modeled, TAG uses Markup-to-Markup hyperedges to implement a hierarchy.
           The fact that hierarchy is optional is an important distinction from XML (single
@@ -292,7 +281,8 @@
           head of its own hyperedge. Overlap in TAG, as in LMNL, is a matter of containment, rather
           than of dominance, the two are not distinct in the XML data model, and although the GODDAG
           developers have identified the importance of the difference, it is unclear how GODDAG
-          would express it. [<xref linkend="sperberg-huitfeldt_2008"/>]</para>
+          would express it. [<xref linkend="sperberg-huitfeldt_2008"
+          />]<!--TODO:  I don't think it is unclear; dominance is the default relation in GODDAG unless there overlap between the leaf nodes of two parent nodes of a text node .Then the relation is regarded as containment.--></para>
       </section>
       <section>
         <title>Discontinuity</title>
@@ -304,7 +294,8 @@
           nodes are not required to be continuous. This means there is only one Markup node for all
           the Text nodes in an instance of discontinuous markup, and no obligatory partitioning into
           segments that would then require subsequent reunification (higher in the hierarchy in
-          GODDAG, in the limen and with coindexed annotation values in LMNL) is needed.</para>
+          GODDAG, in the limen and with coindexed annotation values in LMNL) is
+          needed.<!--TODO: Add the fact that the TexMECS syntax actually is able to express discontinuity natively using the pause and resume tags.--></para>
       </section>
     </section>
     <section>
@@ -339,7 +330,7 @@
         although permitted, is not required, and we’ve omitted it here. Also in contrast to XML, the
           <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes point directly to the Text
         nodes, and not to <quote>line</quote> Markup nodes (although that, too, is possible; see
-        below about hierarchy).</para>
+        below <!--TODO: add direct link-->about hierarchy).</para>
     </section>
     <section>
       <title>TAG components</title>
@@ -387,10 +378,10 @@
               <para><emphasis role="bold">Markup nodes.</emphasis> Markup nodes correspond roughly
                 to element nodes in XML, and each instance of markup is represented by its own node.
                 The only property of a Markup node is a <code>name</code>, which is analogous to the
-                XML generic identifier. Markup nodes are connected to the one or more text Nodes by
-                a hyperedge, where the Markup node is the head and a set of Text nodes is the tail.
-                There is no requirement that the Text nodes in the tail of a Markup-to-Text
-                hyperedge be continuous.</para>
+                XML generic identifier. Markup nodes are connected to the
+                <!--TODO: remove "the"?-->one or more text Nodes by a hyperedge, where the Markup
+                node is the head and a set of Text nodes is the tail. There is no requirement that
+                the Text nodes in the tail of a Markup-to-Text hyperedge be continuous.</para>
             </listitem>
             <listitem>
               <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
