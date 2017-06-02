@@ -188,9 +188,18 @@
         either order or hierarchy. Hypergraphs are especially valuable for text modeling because
         they can be implemented using sets, and methods for reasoning over and operating on sets are
         proven and well known.</para>
+      <para>Like LMNL and unlike XML, TAG is defined as a data model, rather than by its syntax. At
+        present TAG does not have its own syntactic representation.</para>
     </section>
     <section>
       <title>How TAG represents selected structural properties of text</title>
+      <section>
+        <title>Overview</title>
+        <para>This section describes in an introductory way how TAG represents order, textual
+          content, markup, overlap, and discontinuity. Some of these issues are taken up in more
+          detail later, after we introduce the types of nodes, edges, and hyperedges that make up
+          the TAG model of text.</para>
+      </section>
       <section>
         <title>Order</title>
         <para>A distinctive feature of the TAG model is that textual content is an ordered set of
@@ -637,34 +646,20 @@
       provide an abstract description of the problem, of one or more XML workarounds, and their
       GODDAG and LMNL counterparts (as appropriate), illustrated with examples drawn from use cases
       in Digital Humanities research projects.</para>
-    <para>As was noted above, the principal challenge to XML as a model of text is generally
-      regarded as overlap, that is, that text has structural properties that humans care about that
-      cannot be modeled directly as a tree, or, at least, as a rooted and ordered directed acyclic
-      graph that does not permit multiple parentage and that is constructed from the seven types of
-      nodes that constitute the XQuery and XPath data model.[<xref linkend="W3C_xdm"/> §6] But
-      although overlap has received most of the attention, it is only one challenge to XML modeling,
-      and regarding overlap as <emphasis role="ital">the problem</emphasis>, instead of as <emphasis
-        role="ital">a symptom of the problem</emphasis>, has led us to think more narrowly than we
-      should about alternatives to OHCO. If what text <quote>really is</quote> is not an ordered
-      hierarchy of content objects, what is it instead? The issues are well known to the XML
-      community, so why have they come largely (although not entirely) to be eclipsed by overlap in
-      discussions of what’s difficult about modeling documents in XML? These challenges, which have
-      been negotiated in XML modeling and processing through workarounds, find a natural solution in
-      the TAG model described here, as well as, at least in some respects, in LMNL and
-      GODDAG/TexMECS.</para>
     <!-- Michael and Claus 2008 emphasize that TEI markup requires semantics, while ours is in the model
       TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser -->
     <!-- TexMECS requires quotations to be divided in the model, while we don't -->
     <section>
       <title>Overlap</title>
-      <para>The challenge to modeling texts in XML that has attracted the most attention is overlap,
-        but overlap is sometimes described as a property of XML serialization, rather than of the
-        XML data model. Or, more precisely, overlap is one thing in the XML data model and a
-        different, but related thing in an XML serialization. In the data model, overlap refers to
-        multiple concurrent trees or partial trees, a situation that is not possible in XML because
-        XML is defined as a single tree. Notice in the image below how the phrase <quote>Two vast
-          and trunkless legs of stone Stand in the desart</quote> begins in the middle of line 2 and
-        ends in the middle of line 3, so that a tree of phrases overlaps a tree of lines:</para>
+      <para>The challenge to text modeling in XML that has attracted the most attention is overlap.
+        For example, notice in the image below how the phrase <quote>Two vast and trunkless legs of
+          stone Stand in the desart</quote> begins in the middle of line 2 and ends in the middle of
+        line 3, an absence of synchronicity between verse lines and sentences that is called
+          <emphasis role="ital">enjambment</emphasis>.<footnote>
+          <para>In this example we have tagged phrases, rather than sentences, but since phrases are
+            constituents of sentences, a phrase break that crosses a metrical line boundary normally
+            also entails a sentence break, and therefore an enjambment.</para>
+        </footnote> :</para>
       <figure xml:id="ozymandias">
         <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
         <mediaobject>
@@ -680,9 +675,9 @@
             mouse events.]</para>
         </caption>
       </figure>
-      <para>Piez’s illustration is actually of LMNL ranges (see below), rather than of XML element
-        trees. The same structure might be visualized as independent overlapping trees as follows,
-        where cyan represents the tree of metrical lines and green represents the tree of linguistic
+      <para>Piez’s illustration is actually of LMNL ranges, rather than of XML element trees. The
+        same structure might be visualized as independent overlapping trees as follows, where cyan
+        represents the tree of metrical lines and green represents the tree of linguistic
         phrases:</para>
       <figure xml:id="ozymandias_trees">
         <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
@@ -703,22 +698,49 @@
       <programlisting>&lt;line&gt;&lt;phrase&gt;Who said —&lt;/phrase&gt; &lt;phrase&gt;“Two vast and trunkless legs of stone&lt;/line&gt;
 &lt;line&gt;Stand in the desart….&lt;/phrase&gt; &lt;phrase&gt;Near them,&lt;/phrase&gt; &lt;phrase&gt;on the sand&lt;/phrase&gt;&lt;/line&gt;</programlisting>
       <para>New XML users often misunderstand the prohibition against overlap as a prohibition
-        against overlapping <emphasis role="ital">tags</emphasis>, but if that were the issue, it
-        could be remedied by simply removing the prohibition. The reality is that tags are a feature
-        only of the <emphasis role="ital">serialization</emphasis> of XML, and XML as a <emphasis
-          role="ital">data model</emphasis> has hierarchical elements, rather than tags. The reason
-        overlap is prohibited, then, has nothing to do with a rule about tags; the rule about tags
-        exists because tags must represent the data model, the hierarchy in the data model prohibits
-        multiple parentage, and overlap would require that a <code>Text</code> node have more than
-        one parent. Overlap is possible in GODDAG not because TexMECS permits overlapping tags, but
-        because GODDAG permits <code>Text</code> nodes to have multiple parents and TexMECS
-        serializes the GODDAG model. LMNL sawtooth syntax may look like XML syntax with the
-        prohibition against overlapping tags removed, but the real difference is at the level of the
-        data model: LMNL <emphasis role="ital">ranges</emphasis> may overlap, but the content
-        between XML start and end tags is a sequence of descendant <emphasis role="ital">nodes in a
-          tree</emphasis>, and not a range of textual atoms.</para>
+        against overlapping <emphasis role="ital">tags</emphasis>, but if that were the entire
+        issue, it could be remedied by simply removing the syntactic prohibition. But the rule about
+        tags exists because tags must represent the data model, the hierarchy in the data model
+        prohibits multiple parentage, and overlap would permit a node to have more than one parent.
+        Overlap is possible in GODDAG only incidentally because TexMECS permits overlapping tags; at
+        a higher level it is because GODDAG permits <code>Text</code> nodes to have multiple parents
+        and TexMECS serializes the GODDAG model. LMNL sawtooth syntax may look like XML syntax with
+        the prohibition against overlapping tags removed, but the real difference is at the level of
+        the data model: LMNL <emphasis role="ital">ranges</emphasis> can overlap and XML tags cannot
+        because the content between XML start and end tags is a sequence of descendant <emphasis
+          role="ital">nodes in a tree</emphasis>, and not a <emphasis role="ital">range of textual
+          atoms</emphasis>.</para>
+      <para>TAG represents overlap naturally because the TAG counterpart to an XML element is a
+        directed hyperedge that associates a head Markup node with a set of tail Text nodes. To tag
+        a line of poetry in the example above, TAG would create a hyperedge from a Markup node with
+        the <code>name</code> property value of <quote>line</quote> (comparable to a
+          <code>&lt;line&gt;</code> element in XML) to a set of Text nodes (comparable to
+          <code>Text</code> nodes in XML). Sets are unordered, but because the TAG model requires
+          <quote>sequence</quote> edges between Text nodes, which record the continuous order of the
+        text stream (comparable to the sequence of atoms in the LMNL model), the textual content of
+        the line is fully specified by (= can be retrieved by examining) the membership of the set
+        of tail Text nodes and the sequence edges between them. In the illustration below, the black
+        arrows represent regular edges that connect Text nodes in order, the irregular colored
+        bounding lines demarcate the sets of tail Text nodes, and a similarly colored arrow points
+        into them from their Markup node heads:</para>
+      <figure xml:id="overlap_hypergraph">
+        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="ozymandias_hypergraph.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>A hypergraph representing overlap of phrases and metrical lines.</para>
+        </caption>
+      </figure>
+      <para>Additional use cases involving overlap challenges in XML include pages vs paragraphs in
+        publications of novels, folios vs texts in medieval manuscripts, and speeches vs metrical
+        lines in drama. Overlap in poetic structures has been explored in detail in <xref
+          linkend="piez_2014"/>, which also discusses an unusual structural paradox involving
+        Chapter 24 of Mary Shelley’s <emphasis role="ital">Frankenstein</emphasis>. Overlap
+        involving word and metrical foot boundaries in poetry are discussed below.</para>
     </section>
-
     <section>
       <title>Discontinuity</title>
       <para><xref linkend="sperberg-huitfeldt_2008"/> discusses the following paragraph from Lewis
@@ -766,27 +788,44 @@
         records it through coindexed annotations. That dependency seems to locate discontinuity in
         an application layer, since whether coindexed annotations represent discontinuity is not an
         inherent property of the coindexing.</para>
+      <para>TAG prioritizes the representation of text structures, including discontinuity, in the
+        model, without dependency on application-layer semantics. The example from Alice in
+        Wonderland described above would have the following form in TAG:</para>
+      <figure xml:id="discontinuity_hypergraph">
+        <title>Lewis Carroll, <quote>Alice in Wonderland</quote></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="discontinuity_hypergraph.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>Each hyperedge points from a markup node head (identifying the type of text
+            structure) to a tail set of text nodes. Normal edges connect the text nodes in
+            order.</para>
+          <para>In the TAG model, a discontinuous textual object is represented the same way as a
+            continuous one, as an ordered set of Text nodes that form the tail of a Markup-to-Text
+            hyperedge.</para>
+        </caption>
+      </figure>
     </section>
-
     <section>
       <title>Hierarchy, containment and dominance</title>
       <para>The challenges that have emerged from our experience of XML as a model of text involve
         not only the <emphasis role="ital">limitations</emphasis> of OHCO, but also its <emphasis
-          role="ital">tyranny</emphasis>. If text is understood as an ordered hierarchy of content
-        objects, are there aspects of text that are not ordered (O), are there aspects that are not
+          role="ital">tyranny</emphasis>. If text is understood as an Ordered Hierarchy of Content
+        Objects, are there aspects of text that are not ordered (O), are there aspects that are not
         hierarchical (H, by which we mean not just that they are not mono-hierarchical, but that
         they are not hierarchical at all), and does the model create content objects artifactually,
         that is, where they are not perceived as inherent properties of the text being modeled (CO)?
         XML requires us to model all content as both ordered and hierarchical, and it represents
         content objects as elements (at least as content objects are described in <xref
-          linkend="derose_1990"/>). The GODDAG and LMNL alternatives to XML, which are discussed
-        below, both grew out of a recognition that not all properties of text can be modeled
-        effectively as a single hierarchy, and their focus is not limited to that issue, but they
-        differ in the extent to which they interrogate features of text that may not be
-        hierarchical, that may not be ordered, and that may not involve what a human would consider
-        a content object.</para>
+          linkend="derose_1990"/>). GODDAG and LMNL both grew out of a recognition that not all
+        properties of text can be modeled effectively as a single hierarchy, and their focus is not
+        limited to that issue, but they differ in the extent to which they interrogate features of
+        text that may not be hierarchical, that may not be ordered, and that may not involve what a
+        human would consider a content object.</para>
       <para>As was mentioned earlier, the XML data model does not distinguish containment from
-        dominance, which Tennison explains as follows: <blockquote>
+        dominance, which Tennison explains and illustrates as follows: <blockquote>
           <para>Containment is a happenstance relationship between ranges while dominance is one
             that has a meaningful semantic. A page may happen to <emphasis role="ital"
               >contain</emphasis> a stanza, but a poem <emphasis role="ital">dominates</emphasis>
@@ -795,11 +834,11 @@
       <para>In XML, an ancestor element both <emphasis role="bold">contains</emphasis> (starts
         before and ends after in the serialization) its descendants and <emphasis role="bold"
           >dominates</emphasis> them (is connected to them by a path that travels only downward in
-        the tree). In the Shakespearean sonnet below, the <code>&lt;poem></code> element both
-        contains and dominates three <code>&lt;quatrain></code> elements and one
-          <code>&lt;couplet></code> element, and the <code>&lt;quatrain></code> and
-          <code>&lt;couplet></code> elements both contain and dominate <code>&lt;line></code>
-        elements:</para>
+        the tree). In the XML view below of the Shakespearean sonnet the we used as a TAG example
+        above, the <code>&lt;poem></code> element both contains and dominates three
+          <code>&lt;quatrain></code> elements and one <code>&lt;couplet></code> element, and the
+          <code>&lt;quatrain></code> and <code>&lt;couplet></code> elements both contain and
+        dominate <code>&lt;line></code> elements:</para>
       <programlisting>&lt;poem&gt;
     &lt;quatrain&gt;
         &lt;line&gt;No longer mourn for me when I am dead&lt;/line&gt;
@@ -837,7 +876,14 @@
       </figure>
       <para>LMNL recognizes that what has been identified as <quote>overlapping hierarchy</quote> in
         XML might, at least sometimes, be understood instead as overlapping containment, except that
-        XML cannot represent containment separately from hierarchy. </para>
+        XML cannot represent containment separately from hierarchy.</para>
+      <para>Note that the XML representation differs from the TAG representation because XML
+        requires a hierarchy, which TAG permits, but does not require. The XML representation has a
+        root element (<code>&lt;poem></code>) because a tree must have a root, and the
+          <code>&lt;quatrain></code> and <code>&lt;couplet></code> elements are parents not of Text
+        nodes, but of <code>&lt;line></code> elements. TAG is able to model these XML-like
+        structures, but it is not required to do so because it separates containment and datatyping
+        from hierarchy. </para>
     </section>
     <section>
       <title>Data typing and artificial hierarchy</title>
@@ -1122,62 +1168,6 @@
     <title>How TAG addresses structures that are awkward for XML</title>
     <para>In this section we illustrate how several types of structures that are awkward for XML can
       be represented in a natural way in TAG. </para>
-    <section>
-      <title>Overlap</title>
-      <para>TAG represents overlap naturally because the TAG counterpart to an XML element is a
-        directed hyperedge that associates a head markup node with a set of tail nodes. To tag a
-        line of poetry in the example above, TAG would create a hyperedge from a markup node with
-        the name <quote>line</quote> (comparable to a <code>&lt;line&gt;</code> element in XML) to a
-        set of text nodes (comparable to <code>Text</code> nodes in XML). Sets are unordered, but
-        because the TAG automatically creates <quote>sequence</quote> edges between text nodes,
-        which record the continuous order of the text stream (comparable to the sequence of atoms in
-        the LMNL model), the textual content of the line is fully specified by (= can be retrieved
-        by examining) the membership of the set of tail nodes and the sequence edges between them.
-        In the illustration below, the black arrows represent regular edges that connect text nodes
-        in order, the irregular colored bounding lines demarcate the sets of tail nodes, and a
-        similarly colored arrow points into them from their markup node heads:</para>
-      <figure xml:id="overlap_hypergraph">
-        <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="ozymandias_hypergraph.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>A hypergraph representing overlap of phrases and metrical lines.</para>
-        </caption>
-      </figure>
-      <para>The absence of synchronicity between verse lines and sentences in poetry is called
-          <emphasis role="ital">enjambment</emphasis>.<footnote>
-          <para>In this example we have tagged phrases, rather than sentences, but since phrases are
-            constituents of sentences, a phrase break that crosses a metrical line boundary normally
-            also entails a sentence break, and therefore an enjambment.</para>
-        </footnote> Additional use cases involving overlap challenges in XML include pages vs
-        paragraphs in publications of novels, folios vs texts in medieval manuscripts, and speeches
-        vs metrical lines in drama. Overlap in poetic structures has been explored in detail in
-          <xref linkend="piez_2014"/>, which also discusses an unusual structural paradox involving
-        Chapter 24 of Mary Shelley’s <emphasis role="ital">Frankenstein</emphasis>. Overlap
-        involving word and metrical foot boundaries in poetry are discussed below.</para>
-    </section>
-    <section>
-      <title>Discontinuity</title>
-      <para>TAG prioritizes the representation of text structures, including discontinuity, in the
-        model, without dependency on application-layer semantics. The example from Alice in
-        Wonderland described above would have the following form in our graph:</para>
-      <figure xml:id="discontinuity_hypergraph">
-        <title>Lewis Carroll, <quote>Alice in Wonderland</quote></title>
-        <mediaobject>
-          <imageobject>
-            <imagedata format="png" fileref="discontinuity_hypergraph.png"/>
-          </imageobject>
-        </mediaobject>
-        <caption>
-          <para>Each hyperedge points from a markup node head (identifying the type of text
-            structure) to a tail set of text nodes. Normal edges connect the text nodes in
-            order.</para>
-        </caption>
-      </figure>
-    </section>
     <section>
       <title>Hierarchy, containment ant dominance</title>
       <para>The corresponding XML tree, illustrated earlier, includes a <code>&lt;poem&gt;</code>
