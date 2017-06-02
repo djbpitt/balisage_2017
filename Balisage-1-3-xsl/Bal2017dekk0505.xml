@@ -668,8 +668,6 @@
       provide an abstract description of the problem, of one or more XML workarounds, and their
       GODDAG, TexMECS, and LMNL counterparts (as appropriate), illustrated with examples drawn from
       use cases in Digital Humanities research projects.</para>
-    <!-- TexMECS has a strategy for this, while LMNL doesn't; do we need a TexMECS parser ? ANSWER: we have a TexMECS parser now.-->
-    <!-- TexMECS requires quotations to be divided in the model, while we don't -->
     <section>
       <title>Overlap</title>
       <para>The challenge to text modeling in XML that has attracted the most attention is overlap.
@@ -1009,9 +1007,9 @@
       <para>The reason tokenizing tagged text is awkward in XML even where overlap is not a risk is
         that the markup and text are intertwined in a way that makes it impossible to ignore markup
         during tokenization while retaining access to it after the process is complete. Although it
-        is not usually described this way, the use of white space to separate words is may
-        <!--TODO: remove is?-->be understood as pseudo-markup, which means that the words in tagged
-        text potentially represent overlapping hierarchies.<footnote>
+        is not usually described this way, the use of white space to separate words may be
+        understood as pseudo-markup, which means that the words in tagged text potentially represent
+        overlapping hierarchies.<footnote>
           <para>See <quote>Mixed content as a type of overlap</quote> in <xref
               linkend="birnbaum_2015"/>.</para>
         </footnote></para>
@@ -1430,15 +1428,6 @@ And mock you with me after I am gone.</programlisting>
             </footnote></para>
         </listitem>
       </itemizedlist></para>
-    <!--explain the differences between graph models and trees and ranges? Or leave that
-        discussion out?-->
-    <!--Reading Wendell's papers/articles about LMNL and Luminescent I can't help but notice
-        that it is mainly about modeling text using LMNL, querying (using xLMNL and xQuery
-        extensions) and visualising data. These are all read only operations. The goal of the TAG
-        model and its implementation in Alexandria is that it can be used to read as well as write
-        textual data and annotations. This opens up a lot of new possibilities and makes it a
-        'complete' text repository system, comparable to XML databases albeit in a far more
-        experimental state and a much lower level of maturity.-->
   </appendix>
   <bibliography>
     <title>Works cited</title>
