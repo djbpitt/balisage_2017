@@ -151,7 +151,7 @@
       that higher level. The Text As Graph model that we introduce below is not intended to be a
       solution to <quote>the overlap problem in XML</quote>; it is built around a fresh
       consideration of the textual structures, both latent and overt, that a data model will need to
-      be able to represent.<footnote>
+      be able to represent. <!--Add something about convergence with LMNL and GODDAG.--><footnote>
         <para>The desiderata TAG seeks to satisfy are described in a requirements document in <xref
             linkend="requirements"/>.</para>
       </footnote></para>
