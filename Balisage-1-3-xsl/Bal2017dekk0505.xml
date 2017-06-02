@@ -574,13 +574,17 @@
                 not required to have text.</para>
             </listitem>
             <listitem>
-              <para>Two contiguous Text nodes are in the tail of all of the same Markup-to-Text
-                hyperedges (in this case, they should be merged into a single Text node)</para>
+              <para>two contiguous Text nodes are in the tail of all of the same Markup-to-Text hyperedges<footnote>
+                  <para>In this case, they should be merged into a single Text node. This is
+                    comparable to the XML prohibition against Text nodes that are nearest siblings
+                    of other Text nodes. One difference is that in TAG, nearest-sibling Text nodes
+                    are permitted in the tail of a Markup-to-Text hyperedge as long as one of them
+                    is also in the tail of at least one other Markup-to-Text hyperedge.</para>
+                </footnote></para>
             </listitem>
             <listitem>
               <para>a regular (one-to-one) edge from an Annotation node points to anything other
-                than a single Text node (but Annotation nodes may form the head of a hyperedge that
-                points to Markup or Annotation nodes), or points to nothing at all</para>
+                than a single Text node</para>
             </listitem>
             <listitem>
               <para>a Text node is not part of a continuous chain that begins at a Document node or
@@ -604,8 +608,8 @@
             <listitem>
               <para>the tail of a hyperedge contains anything except a non-empty set of Text nodes
                 (Markup-to-Text hyperedge), a non-empty set of Markup nodes (Markup-to-Markup
-                hyperedges), or a single Markup or Annotation node (Annotation-to-Markup and
-                Annotation-to-Annotation hyperedges)</para>
+                hyperedge), or a single Markup or Annotation node (Annotation-to-Markup and
+                Annotation-to-Annotation hyperedge)</para>
             </listitem>
             <listitem>
               <para>the tail of a regular edge is anything other than a Text node or a Document
