@@ -257,10 +257,9 @@
           connects all Text nodes in the document except those in annotations.<footnote>
             <para>See also the discussion of unordered content and transpositions in <xref
                 linkend="to_do"/>.</para>
-          </footnote> Annotations (see below
-          <!--TODO: add direct link rather than 'below', 'above'.-->), which typically encode
-          metadata, can be understood as ancillary documents, and their textual content is modeled
-          as separate chains that begin at the Annotation node.</para>
+          </footnote> Annotations (see below), which typically encode metadata, can be understood as
+          ancillary documents, and their textual content is modeled as separate chains that begin at
+          the Annotation node.</para>
       </section>
       <section>
         <title>Markup</title>
@@ -320,9 +319,10 @@
           involves two elements with the same generic identifier) is not a special case in TAG
           because two Markup nodes with the same <code>name</code> property (datatype) each is the
           head of its own hyperedge. Overlap in TAG, as in LMNL, is a matter of containment, rather
-          than of dominance, the two are not distinct in the XML data model, and although the GODDAG
-          developers have identified the importance of the difference, it is unclear how GODDAG
-          would express it. [<xref linkend="sperberg-huitfeldt_2008"/>]</para>
+          than of dominance. The GODDAG developers have identified the importance of the difference
+            [<xref linkend="sperberg-huitfeldt_2000"/>, <xref linkend="sperberg_2008-bielefeld"/>,
+            <xref linkend="sperberg-huitfeldt_2008"/>], while in XML the two are not
+          distinct.</para>
       </section>
       <section>
         <title>Discontinuity</title>
