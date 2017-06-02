@@ -328,14 +328,22 @@
         <title>Discontinuity</title>
         <para>In XML, GODDAG, and LMNL, discontinuity is expressed with more than one element
           (XML/GODDAG) or more than one range (LMNL), and the fact that the discontinuous parts
-          (with respect to hierarchical or linear structure) form a whole must be encoded
-          separately. In TAG, discontinuity in the Text nodes that constitute the tail of a
-          Markup-to-Text hyperedge is modeled exactly the same way as continuity because the Text
-          nodes are not required to be continuous. This means there is only one Markup node for all
-          the Text nodes in an instance of discontinuous markup, and no obligatory partitioning into
-          segments that would then require subsequent reunification (higher in the hierarchy in
-          GODDAG, in the limen and with coindexed annotation values in LMNL) is
-          needed.<!--TODO: Add the fact that the TexMECS syntax actually is able to express discontinuity natively using the pause and resume tags.--></para>
+          (with respect to hierarchical or linear structure) form a whole must be encoded separately
+          and that would then require subsequent reunification is needed (higher in the hierarchy in
+          GODDAG, in the limen and with coindexed annotation values in LMNL). In TAG, discontinuity
+          in the Text nodes that constitute the tail of a Markup-to-Text hyperedge is modeled
+          exactly the same way as continuity because the Text nodes are not required to be
+          continuous. This means there is only one Markup node for all the Text nodes in an instance
+          of discontinuous markup, and no obligatory partitioning into segments is needed. TexMECS
+          syntax is capable of modeling discontinuity directly with suspend-tags and resume-tags
+            [<xref linkend="huitfeldt_2003"/> §2.2.4], but if a TexMECS document is to be parsed
+          into GODDAG, the fragments are modeled as separate structural components, and the
+          difference between GODDAG and XML in this respect is that because GODDAG permits multiple
+          parentage, it is possible to create an additional parent node for the fragments. TAG,
+          then, views fragmentation that must be reunited as an undesirable side-effect of the XML,
+          GODDAG, and LMNL models, and regards linearly discontinuous content as a single item
+          (which may be separated when necessary, such as for serialization in LMNL sawtooth
+          syntax), rather than as two objects that may be united when necessary.</para>
       </section>
     </section>
     <section>
