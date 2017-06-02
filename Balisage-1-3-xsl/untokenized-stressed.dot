@@ -1,0 +1,16 @@
+digraph G {
+	{ node [rank = same]; document[fillcolor=beige, style=filled]; fake[style=invis]; line[style=filled, fillcolor="#00ff00"]; fake3[style=invis]; fake4[style=invis];}
+	{ node [rank=same, style=filled, fillcolor=pink]; Nol[label="No l"]; o; nger[label="nger m"]; ou; rn;}
+	{ node [rank=same, style=filled, fillcolor=cyan]; fake1[style=invis]; stress1[label=stress]; fake2[style=invis]; stress2[label=stress] }
+	document -> line -> fake[constraint=false, style=invis]
+	document -> Nol
+	Nol -> o -> nger -> ou -> rn [constraint=false, minlen=2]
+	fake -> o[style=invis]
+	line -> nger[style=invis]
+	fake3 -> ou[style=invis]
+	fake4 -> rn[style=invis]
+	Nol -> fake1[style=invis]
+	o -> stress1[style=invis]
+	nger -> fake2[style=invis]
+	ou -> stress2[style=invis]
+}

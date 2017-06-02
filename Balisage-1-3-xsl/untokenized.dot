@@ -1,0 +1,4 @@
+digraph G {
+	{ node [rank=same]; document[style=filled, fillcolor=beige]; line[style=filled, fillcolor=green] }
+	document -> { text[label="No longer mourn for me when I am dead", style=filled, fillcolor=pink]}
+}

@@ -1,0 +1,26 @@
+digraph G {
+	{ node [rank=same]; document[style=filled, fillcolor=beige]; fake1[style=invis]; fake2[style=invis]; fake3[style=invis]; line[style=filled, fillcolor=green];  fake4[style=invis]; fake5[style=invis]; fake6[style=invis]; fake7[style=invis];}
+	{ node [rank=same, style=filled, fillcolor=pink]; No; longer; mourn; for; me; when; I; am; dead; }
+	{ node [rank=same, style=filled, fillcolor="#00ff00"]; word1[label=word]; word2[label=word]; word3[label=word]; word4[label=word]; word5[label=word]; word6[label=word]; word7[label=word]; word8[label=word]; word9[label=word]; }
+	{ edge [constraint=false, minlen=2]; No -> longer -> mourn -> for -> me -> when -> I -> am -> dead }
+	{ edge [constraint=false, style=invis, minlen=2]; document -> line }
+	{ edge [constraint=false, style=invis]; fake1 -> fake2 -> fake3 -> line -> fake4 -> fake5 -> fake6 -> fake7; }
+	document -> No
+	fake1 -> longer[style=invis]
+	fake2 -> mourn[style=invis]
+	fake3 -> for[style=invis]
+	line -> me[style=invis]
+	fake4 -> when[style=invis]
+	fake5 -> I[style=invis]
+	fake6 -> am[style=invis]
+	fake7 -> dead[style=invis]
+	No -> word1[style=invis]
+	longer -> word2[style=invis]
+	mourn -> word3[style=invis]
+	for -> word4[style=invis]
+	me -> word5[style=invis]
+	when -> word6[style=invis]
+	I -> word7[style=invis]
+	am -> word8[style=invis]
+	dead -> word9[style=invis]
+}

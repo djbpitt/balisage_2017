@@ -1018,12 +1018,25 @@
         markup.</para>
       <para>In TAG, however, Markup nodes point to Text nodes from a different layer, which makes it
         possible to tokenize the text without interference from the markup. The tokenization splits
-        larger text nodes into smaller ones, but they remain in the tail of their old Markup-to-Text
-        hyperedges, while new Markup-to-Text hyperedges are added to tag the new individual
-        words.</para>
-      <para><emphasis role="ital">TODO: Add illustration before and after word
-          tokenization</emphasis>
-      </para>
+        larger Text nodes into smaller ones, but they remain in the tail of their old Markup-to-Text
+        hyperedges, while new Markup-to-Text hyperedges are added to tag the new individual words.
+        To reduce the clutter, we have simplified the text in the comparison of hypergraphs before
+        and after the word tokenization below, as if the entire poem consisted of a single line that
+        contained only three words:</para>
+      <figure xml:id="untokenized">
+        <title>A simplified poem without word tokenization</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="untokenized-stressed.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>Without word tokenization, there are five Text nodes, three of which are not marked
+            up individually and two of which form the tails of Markup-to-Text hyperedges with a
+              <code>name</code> property of <quote>stress</quote>, indicating that these are
+            stressed vowels.</para>
+        </caption>
+      </figure>
       <para>Much as poetic emjambment in the Shelley poem above cannot be modeled by tagging both
         phrases and feet in XML because it would create an overlap situation, poetic caesura, the
         regular correspondence of foot and word boundaries within poetic lines, cannot be modeled in
