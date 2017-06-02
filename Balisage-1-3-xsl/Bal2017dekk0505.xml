@@ -289,8 +289,8 @@
           situation does not engender overlap concerns. Annotations on Markup nodes provide
           supplementary information (metadata) about the node, similarly to attributes in XML,
           except that in TAG, as in LMNL, annotations can have rich content, and are not limited to
-          just a name and an atomic value. (As in XML and unlike in LMNL, annotations on a Markup or
-          Annotation node in TAG are unordered.)<!--TODO: remove parenthesis?--></para>
+          just a name and an atomic value. As in XML and unlike in LMNL, annotations on a Markup or
+          Annotation node in TAG are unordered.</para>
         <para>In TAG, as in LMNL, a document is not required to express a hierarchy. Where dominance
           relations must be modeled, TAG uses Markup-to-Markup hyperedges to implement a hierarchy.
           The fact that hierarchy is optional is an important distinction from XML (single
@@ -322,8 +322,7 @@
           head of its own hyperedge. Overlap in TAG, as in LMNL, is a matter of containment, rather
           than of dominance, the two are not distinct in the XML data model, and although the GODDAG
           developers have identified the importance of the difference, it is unclear how GODDAG
-          would express it. [<xref linkend="sperberg-huitfeldt_2008"
-          />]<!--TODO:  I don't think it is unclear; dominance is the default relation in GODDAG unless there overlap between the leaf nodes of two parent nodes of a text node .Then the relation is regarded as containment.--></para>
+          would express it. [<xref linkend="sperberg-huitfeldt_2008"/>]</para>
       </section>
       <section>
         <title>Discontinuity</title>
