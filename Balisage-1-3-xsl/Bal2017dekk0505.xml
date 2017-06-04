@@ -1204,7 +1204,7 @@
       Netherlands at <link xlink:href="https://github.com/HuygensING/alexandria-markup"/>. As was
       noted above, at present TAG does not have its own syntax, although strategies for import and
       export are under active development. Alexandria is able to parse and import flat LMNL sawtooth
-      syntax, but it treats the syntax as an expresssion of TAG properties, rather than LMNL ones.
+      syntax, but it treats the syntax as an expression of TAG properties, rather than LMNL ones.
       This means, for example, that although annotations on the same object in LMNL are ordered,
       because those in TAG are not, this order is not treated as informational during import or
       export, or internally. It also means that TAG structures that are not naturally represented in
@@ -1226,9 +1226,9 @@
       data model into LMNL sawtooth syntax involves traversal over an instance. The traversal begins
       with the Document node, which must have a single directed regular edge that points to the
       first Text node. We then follow the Markup-to-Text hyperedges that are connected to this Text node.<footnote>
-        <para>Although Markup-to-Text hyperedges are directed from the Markup node to the Text node,
-          graph traversal may follow incoming edges back to their heads as easily as it follows
-          outgoing edges to their tails.</para>
+        <para>Although Markup-to-Text hyperedges are directed from the Markup node to the Text
+          nodes, graph traversal may follow incoming edges back to their heads as easily as it
+          follows outgoing edges to their tails.</para>
       </footnote> There can be zero or more Markup-to-Text hyperedges on a Text node, each of which
       is headed by one Markup node. The traversal collects all the Markup nodes that point to the
       Text node, and for each of them it writes a start tag, where the order of multiple start tags
