@@ -415,7 +415,7 @@
                 permits anonymous annotations (see below for an example of how these might be used).
                 Markup nodes are connected to one or more text Nodes by a hyperedge, where the
                 Markup node is the head and a set of Text nodes is the tail. There is no requirement
-                that the Text nodes in the tail of a Markup-to-Text hyperedge be continuous.</para>
+                that the Text nodes in the tail of a Markup-to-Text hyperedge be contiguous.</para>
             </listitem>
             <listitem>
               <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
@@ -996,13 +996,13 @@
     </section>
     <section>
       <title>White space as crypto-overlap</title>
-      <para>In natural language processing tokenization is the process of breakup a string of plain
+      <para>In natural language processing tokenization is the process of breaking up a string of plain
         text characters into substrings (typically words and punctuation), often while removing
         token separators in the process. Tokenization in XML is performed using regular expressions
         and the <code>tokenize()</code> function, but <code>tokenize()</code> atomizes its first
         argument, which means that it cannot be used on tagged text without losing the markup in the
         process. Even tokenization that would not create overlap-based well-formedness violations,
-        such splitting and tagging the words of a line of poetry in which the stressed vowels are
+        such as splitting and tagging the words of a line of poetry in which the stressed vowels are
         tagged as <code>&lt;stress></code>, requires intermediate temporary manipulations, such as
         converting the markup to text, tokenizing with <code>tokenize()</code>, and then converting
         the temporary text back into markup, or adding additional markup, tokenizing with
@@ -1112,7 +1112,7 @@
       <para>The situation is especially complicated in the case of XML because although it does not
         have a data model, it also has three almost-data-models: XML DOM [<xref linkend="W3C_DOM"
         />], which is an object model and API; the XML InfoSet [<xref linkend="W3C_xmlinfoset"/>],
-        which is an information model; and XDM [<xref linkend="W3C_xdm"/>], which is data model for
+        which is an information model; and XDM [<xref linkend="W3C_xdm"/>], which is a data model for
         processing XML. Our inferred data model for XML for comparative purposes here includes the
         seven node types specified in XDM (not the twelve of XML DOM or the eleven types of
         information items of the XML InfoSet), along with the structural properties of the ordered
@@ -1120,7 +1120,7 @@
         well-formed XML (e.g., attribute nodes on an element are unordered). Our aim is not to
         create a data model for XML, which lies far outside the scope of this paper, but to identify
         features of the way XML models text that can be used comparatively to help explain features
-        TAG. </para>
+        of TAG. </para>
       <para>The fact that some of our objects of comparison are serializations and others are data
         models matters because, as the etymology of the term implies, serialization is an ordered
         linear expression, which is not a requirement of data models. If, for example, a paragraph
@@ -1338,10 +1338,10 @@ And mock you with me after I am gone.</programlisting>
     <section>
       <title>Markup language</title>
       <para>TAG does not define a markup language, that is, a syntactic form that can be used to tag
-        text and for import and export serialization. Aswas noted above, Alexandria can parse LMNL
+        text and for import and export serialization. As was noted above, Alexandria can parse LMNL
         syntax (into the TAG data model, not the LMNL one, so it is not so much parsing LMNL as
         borrowing LMNL syntax to express TAG relationships), the same is true of TexMECS, and
-        similar support is planned XML syntax. None of these three grammars is capable or
+        similar support is planned for XML syntax. None of these three grammars is capable of
         representing all of the features of TAG. We leave open the question of how to provide a
         character-string serialization of a TAG document.</para>
     </section>
