@@ -996,13 +996,13 @@
     </section>
     <section>
       <title>White space as crypto-overlap</title>
-      <para>In natural language processing tokenization is the process of breakup a string of plain
+      <para>In natural language processing tokenization is the process of breaking up a string of plain
         text characters into substrings (typically words and punctuation), often while removing
         token separators in the process. Tokenization in XML is performed using regular expressions
         and the <code>tokenize()</code> function, but <code>tokenize()</code> atomizes its first
         argument, which means that it cannot be used on tagged text without losing the markup in the
         process. Even tokenization that would not create overlap-based well-formedness violations,
-        such splitting and tagging the words of a line of poetry in which the stressed vowels are
+        such as splitting and tagging the words of a line of poetry in which the stressed vowels are
         tagged as <code>&lt;stress></code>, requires intermediate temporary manipulations, such as
         converting the markup to text, tokenizing with <code>tokenize()</code>, and then converting
         the temporary text back into markup, or adding additional markup, tokenizing with
@@ -1338,10 +1338,10 @@ And mock you with me after I am gone.</programlisting>
     <section>
       <title>Markup language</title>
       <para>TAG does not define a markup language, that is, a syntactic form that can be used to tag
-        text and for import and export serialization. Aswas noted above, Alexandria can parse LMNL
+        text and for import and export serialization. As was noted above, Alexandria can parse LMNL
         syntax (into the TAG data model, not the LMNL one, so it is not so much parsing LMNL as
         borrowing LMNL syntax to express TAG relationships), the same is true of TexMECS, and
-        similar support is planned XML syntax. None of these three grammars is capable or
+        similar support is planned for XML syntax. None of these three grammars is capable of
         representing all of the features of TAG. We leave open the question of how to provide a
         character-string serialization of a TAG document.</para>
     </section>
