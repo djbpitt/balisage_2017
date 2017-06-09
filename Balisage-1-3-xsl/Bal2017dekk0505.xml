@@ -10,7 +10,6 @@
   <!-- Verify that all items in bibliography are cited in body   -->
   <info>
     <abstract>
-
       <para>The XML tree paradigm has several well-known limitations for document modeling and
         processing. Some of these have received a lot of attention (especially overlap), some have
         received less (e.g., discontinuity, simultaneity, transposition, white space as
@@ -109,14 +108,14 @@
           information that is not always expressed explicitly. For example, a capitalized reference
           to <quote>London</quote> is formally marked as a proper noun by capitalization, but
           whether it is a placename in England (or Ohio or Ontario or elsewhere) or the personal
-          name of a US writer is not represented formally.</para>
+          surname of a US writer is not represented formally.</para>
       </footnote> The conventions at work in plain text do not formally, completely, unambiguously,
       or in a wholly standardized way differentiate the content of a document from the coded
       representation of its structure (or, perhaps more accurately, structures), which problematizes
       using plain text for document processing (whether for data mining, publication, or other
       purposes). The challenges this poses have come to be addressed by representing the structural
-      properties of a document not with plain-text characters (which might be considered
-      pseudo-markup), but through standardized, formal markup, such as XML.</para>
+      properties of a document not through plain-text characters (which might be considered
+      pseudo-markup), but through formal, standardized markup, such as XML.</para>
     <para>The XML data model is an ordered tree, or, more precisely, a rooted and ordered directed
       acyclic graph that prohibits multiple parentage, which in the document-processing community
       has come to be understood as representing an Ordered Hierarchy of Content Objects (OHCO). It
@@ -177,8 +176,8 @@
         traditional graphs, the edges of which can connect only two nodes with each other, because
         the edges in a hypergraph can connect more than two nodes with one another, and for that
         reason they are called <emphasis role="bold">hyperedges</emphasis>. Hypergraphs can have
-        directed and undirected hyperedges, and TAG uses only directed hyperedges, which assert
-        directed a relationship between two non-empty sets of nodes, one for the source (called the
+        directed and undirected hyperedges, and TAG uses only directed hyperedges, which assert a
+        directed relationship between two non-empty sets of nodes, one for the source (called the
           <emphasis role="bold">head</emphasis>) and one for the target (called the <emphasis
           role="bold">tail</emphasis>). As we explain below, in the TAG model, the directionality of
         a hyperedge may be used for purposes other than modeling an order or a hierarchy of the
@@ -230,9 +229,9 @@
       <section>
         <title>Order</title>
         <para>A distinctive feature of the TAG model is that textual content is an ordered set of
-          Text nodes, but Markup and Annotation nodes are not ordered. Because markup all points
-          directly or through intermediaries to Text nodes, the order of Markup nodes becomes a
-          derived property of the order of the Text nodes to which the markup applies.<footnote>
+          Text nodes, but Markup and Annotation nodes are not ordered. Because Markup nodes all
+          point directly or through intermediaries to Text nodes, the order of Markup nodes becomes
+          a derived property of the order of the Text nodes to which the markup applies.<footnote>
             <para>The same applies to Annotation nodes, which are not ordered, but which are
               attached to either Markup or other Annotation nodes. Two Markup nodes that point to
               the same Text nodes are not ordered with respect to each other, since the inferred
@@ -241,8 +240,8 @@
               below about Markup dominance.</para>
           </footnote> This bottom-up perspective on order within a document distinguishes TAG from
           the top-down, ordered-tree perspective of XML and GODDAG, where, contrary to TAG, the
-          order of nodes (including <code>Text</code> nodes) is derived, through depth-first
-          traversal, from the order of their parent nodes.<footnote>
+          order of nodes (including Text nodes) is derived, through depth-first traversal, from the
+          order of their parent nodes.<footnote>
             <para>The XML InfoSet specification defines a children property on element information
               items, the value of which is <quote>[a]n ordered list of child information items, in
                 document order</quote>. [<xref linkend="W3C_xmlinfoset"/>, §2.2] This means that
@@ -257,11 +256,12 @@
       </section>
       <section>
         <title>Textual content</title>
-        <para>Textual content in TAG is expressed by nodes of type Text, each of which represents a
-          segment of textual content (Text nodes may also be empty). The order of the text is stored
-          as directed regular (one-to-one) edges between pairs of Text nodes; this chain begins at
-          the Document node, which points to the first Text node, and a single, unbroken chain
-          connects all Text nodes in the document except those in annotations.<footnote>
+        <para>Textual content in TAG is expressed by nodes with a <emphasis role="bold"
+            >type</emphasis> value of <quote>text</quote>, each of which represents a segment of
+          textual content (Text nodes may also be empty). The order of the text is stored as
+          directed regular (one-to-one) edges between pairs of Text nodes; this chain begins at the
+          Document node, which points to the first Text node, and a single, unbroken chain connects
+          all Text nodes in the document except those in annotations.<footnote>
             <para>See also the discussion of unordered content and transpositions in <xref
                 linkend="to_do"/>.</para>
           </footnote> Annotations (see below), which typically encode metadata, can be understood as
@@ -270,7 +270,7 @@
       </section>
       <section>
         <title>Markup</title>
-        <para>Markup in XML performs four functions simultaneously: <emphasis role="bold"
+        <para>Markup in XML serves four purposes simultaneously: <emphasis role="bold"
             >containment</emphasis>, <emphasis role="bold">dominance</emphasis> (<emphasis
             role="bold">hierarchy</emphasis>), <emphasis role="bold">datatyping</emphasis>, and
             <emphasis role="bold">order</emphasis>. In XML, an ancestor element both <emphasis
@@ -302,17 +302,19 @@
           The fact that hierarchy is optional is an important distinction from XML (single
           hierarchy) and GODDAG (one or more hierarchies).</para>
         <para>Markup nodes do not contain other Markup nodes; Markup nodes identify (point to) sets
-          of Text nodes, and the Text nodes may form a subset relationship. This means that in TAG
-          it is not meaningful to ask whether a single set of Text nodes identified with one Markup
-          node as a paragraph and with a different Markup node as a quotation represents a paragraph
-          that consists of a quotation or a quotation that consists of a paragraph. Where the
-          hierarchy of coextensive paragraphs and quotations matters, the relationship may be
-          modeled, but as one of dominance (hierarchy), rather than of containment.</para>
-        <para>The separation of these four functions means that Markup always provides datatyping,
-          since Markup nodes have a <code>name</code> property. Because the target of Markup is a
-          non-empty set of Text nodes, and Text nodes are ordered and have intrinsic subset
-          relationships, Markup also specifies order and containment, but only indirectly. The
-          specification of dominance is optional, and is entirely a property of Markup nodes.</para>
+          of Text nodes, and the Text nodes may participate in subset relationships with one
+          another. This means that in TAG it is not meaningful to ask whether a single set of Text
+          nodes identified with one Markup node as a paragraph and with a different Markup node as a
+          quotation represents a paragraph that consists of a quotation or a quotation that consists
+          of a paragraph. Where the hierarchy of coextensive paragraphs and quotations matters, the
+          relationship may be modeled, but as one of dominance (hierarchy), rather than of
+          containment.</para>
+        <para>The separation of these four functions means that Markup provide datatyping through
+          their <code>name</code> property, although this property is optional (see the discussion
+          of Scope of reference, below). Because the target of Markup is a non-empty set of Text
+          nodes, and Text nodes are ordered and have intrinsic subset relationships, Markup also
+          specifies order and containment, but only indirectly. The specification of dominance is
+          optional, and is entirely a property of Markup nodes.</para>
       </section>
       <section>
         <title>Overlap and self-overlap</title>
@@ -356,8 +358,8 @@
           GODDAG permits multiple parentage, it is possible to create an additional parent node for
           the fragments. TAG, then, views fragmentation that must be reunited as an undesirable
           side-effect of the XML, GODDAG, and LMNL models, and regards linearly discontinuous
-          content as a single item (which may be separated when necessary, such as for serialization
-          in LMNL sawtooth syntax), rather than as two objects that may be united when
+          content as a single item that may be separated when necessary, such as for serialization
+          in LMNL sawtooth syntax, rather than as two objects that may be united when
           necessary.</para>
       </section>
     </section>
@@ -377,9 +379,9 @@
             </listitem>
             <listitem>
               <para><emphasis role="bold">Text nodes.</emphasis> The textual content of a TAG
-                document is stored in one or more Text nodes, roughly comparable to XML
-                  <code>Text</code> nodes. The order of the Text nodes is represented by directed
-                edges that connect them in textual order.<footnote>
+                document is stored in one or more Text nodes, roughly comparable to XML Text nodes.
+                The order of the Text nodes is represented by directed edges that connect them in
+                textual order.<footnote>
                   <para>All main text in the document forms a single chain of Text nodes, and the
                     same is true of the Text in an annotation. See also <xref linkend="to_do"/> for
                     a discussion of simultaneous text and contradictory order.</para>
@@ -388,7 +390,7 @@
                 comparable to the string value of an XML Text node. Text nodes in TAG may be empty;
                 pointing from a Markup node to an empty Text node provides functionality comparable
                 to that of empty elements in XML.<footnote>
-                  <para>Empty elements play a smaller roll in TAG than in XML because TAG does not
+                  <para>Empty elements play a smaller role in TAG than in XML because TAG does not
                     problematize overlap. This means that it does not need to create empty elements
                     to simulate the start and end tags of a subordinate hierarchy, as is the case in
                     some XML markup strategies.</para>
@@ -411,10 +413,11 @@
                 to element nodes in XML, and each instance of markup is represented by its own node.
                 The only property of a Markup node is a <code>name</code>, which is analogous to the
                 XML generic identifier, but TAG also permits anonymous Markup nodes, much as LMNL
-                permits anonymous annotations (see below for an example of how these might be used).
-                Markup nodes are connected to one or more text Nodes by a hyperedge, where the
-                Markup node is the head and a set of Text nodes is the tail. There is no requirement
-                that the Text nodes in the tail of a Markup-to-Text hyperedge be contiguous.</para>
+                permits anonymous annotations (see below, under Scope of reference, for an example
+                of how these might be used). Markup nodes are connected to one or more Text nodes by
+                a hyperedge, where the Markup node is the head and a set of Text nodes is the tail.
+                There is no requirement that the Text nodes in the tail of a Markup-to-Text
+                hyperedge be contiguous.</para>
             </listitem>
             <listitem>
               <para><emphasis role="bold">Annotation nodes.</emphasis> Annotation nodes represent
@@ -517,8 +520,8 @@
                   These make it possible to add annotations to annotations, that is, to represent
                   metadata about annotations. This feature is borrowed from LMNL. As with
                   Annotation-to-Markup hyperedges, the head is the set of annotations being added,
-                  and in this case the tail is Annotation node (rather than Markup node) to which
-                  they are being added.</para>
+                  and in this case the tail is the Annotation node (rather than Markup node) to
+                  which they are being added.</para>
               </listitem>
             </itemizedlist>
           </para>
@@ -611,8 +614,8 @@
                   <para>In this case, they should be merged into a single Text node. This is
                     comparable to the XML prohibition against Text nodes that are nearest siblings
                     of other Text nodes. One difference is that in TAG, nearest-sibling Text nodes
-                    are permitted in the tail of a Markup-to-Text hyperedge as long as one of them
-                    is also in the tail of at least one other Markup-to-Text hyperedge.</para>
+                    are permitted in the tail of a Markup-to-Text hyperedge as long as they are not
+                    all in the tail of all of the same Markup-to-Text hyperedges.</para>
                 </footnote></para>
             </listitem>
             <listitem>
@@ -644,9 +647,13 @@
                 hyperedge), or a single Markup or Annotation node (Annotation-to-Markup and
                 Annotation-to-Annotation hyperedge)</para>
             </listitem>
+          </itemizedlist><itemizedlist>
             <listitem>
-              <para>the tail of a regular edge is anything other than a Text node or a Document
-                node</para>
+              <para>the head of a regular edge is anything other than a Document node, Annotation
+                node, or Text node</para>
+            </listitem>
+            <listitem>
+              <para>the tail of a regular edge is anything other than a Text node</para>
             </listitem>
             <listitem>
               <para>the head or tail of a hyperedge is empty or contains nodes that are not all of
@@ -657,7 +664,7 @@
                 tail</para>
             </listitem>
             <listitem>
-              <para>an Annotation or Markup node does not have a name</para>
+              <para>an Annotation node does not have a name</para>
             </listitem>
           </itemizedlist></para>
       </section>
