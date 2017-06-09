@@ -716,9 +716,9 @@
         </mediaobject>
         <caption>
           <para>Projecting two independent trees over a common set of words. In XML the individual
-            words would be not be children of <code>&lt;line&gt;</code> and
-              <code>&lt;phrase&gt;</code> elements, and would instead be grouped inside
-              <code>Text</code> node children of those elements.</para>
+            words would not be children of <code>&lt;line&gt;</code> and <code>&lt;phrase&gt;</code>
+            elements, and would instead be grouped inside Text node children of those
+            elements.</para>
         </caption>
       </figure>
       <para>Because it is not possible to represent the preceding structure in XML markup, the
@@ -728,29 +728,29 @@
       <para>New XML users often misunderstand the prohibition against overlap as a prohibition
         against overlapping <emphasis role="ital">tags</emphasis>, but if that were the entire
         issue, it could be remedied by simply removing the syntactic prohibition. But the rule about
-        tags exists because tags must represent the data model, the hierarchy in the data model
-        prohibits multiple parentage, and overlap would permit a node to have more than one parent.
-        Overlap is possible in GODDAG only incidentally because TexMECS permits overlapping tags; at
-        a higher level it is because GODDAG permits <code>Text</code> nodes to have multiple parents
-        and TexMECS serializes the GODDAG model. LMNL sawtooth syntax may look like XML syntax with
-        the prohibition against overlapping tags removed, but the real difference is at the level of
-        the data model: LMNL <emphasis role="ital">ranges</emphasis> can overlap and XML tags cannot
-        because the content between XML start and end tags is a sequence of descendant <emphasis
-          role="ital">nodes in a tree</emphasis>, and not a <emphasis role="ital">range of textual
-          atoms</emphasis>.</para>
+        tags exists because tags must represent the data model, which is a tree, and the hierarchy
+        in the data model prohibits multiple parentage, and overlap would permit a node to have more
+        than one parent. Overlap is possible in GODDAG only incidentally because TexMECS permits
+        overlapping tags; at a higher level it is because GODDAG permits Text nodes to have multiple
+        parents and TexMECS serializes the GODDAG model. LMNL sawtooth syntax may look like XML
+        syntax with the prohibition against overlapping tags removed, but the real difference is at
+        the level of the data model: LMNL <emphasis role="ital">ranges</emphasis> can overlap and
+        XML tags cannot because the content between XML start and end tags is a sequence of
+        descendant <emphasis role="ital">nodes in a tree</emphasis>, and not a <emphasis role="ital"
+          >range of textual atoms</emphasis>.</para>
       <para>TAG represents overlap naturally because the TAG counterpart to an XML element is a
         directed hyperedge that associates a head Markup node with a set of tail Text nodes. To tag
         a line of poetry in the example above, TAG would create a hyperedge from a Markup node with
         the <code>name</code> property value of <quote>line</quote> (comparable to a
-          <code>&lt;line&gt;</code> element in XML) to a set of Text nodes (comparable to
-          <code>Text</code> nodes in XML). Sets are unordered, but because the TAG model requires
-          <quote>sequence</quote> edges between Text nodes, which record the continuous order of the
-        text stream (comparable to the sequence of atoms in the LMNL model), the textual content of
-        the line is fully specified by (= can be retrieved by examining) the membership of the set
-        of tail Text nodes and the sequence edges between them. In the illustration below, the black
-        arrows represent regular edges that connect Text nodes in order, the irregular colored
-        bounding lines demarcate the sets of tail Text nodes, and a similarly colored arrow points
-        into them from their Markup node heads:</para>
+          <code>&lt;line&gt;</code> element in XML) to a set of Text nodes (comparable to Text nodes
+        in XML). Sets are unordered, but because the TAG model requires <quote>sequence</quote>
+        edges between Text nodes, which record the continuous order of the text stream (comparable
+        to the sequence of atoms in the LMNL model), the textual content of the line is fully
+        specified by (= can be retrieved by examining) the membership of the set of tail Text nodes
+        and the sequence edges between them. In the illustration below, the black arrows represent
+        regular edges that connect Text nodes in order, the irregular colored bounding lines
+        demarcate the sets of tail Text nodes, and a similarly colored arrow points into them from
+        their Markup node heads:</para>
       <figure xml:id="overlap_hypergraph">
         <title>Percy Bysshe Shelley, <quote>Ozymandias</quote></title>
         <mediaobject>
@@ -767,11 +767,11 @@
         lines in drama. Overlap in poetic structures has been explored in detail in <xref
           linkend="piez_2014"/>, which also discusses an unusual structural paradox involving
         Chapter 24 of Mary Shelley’s <emphasis role="ital">Frankenstein</emphasis>. Overlap
-        involving word and metrical foot boundaries in poetry are discussed below.</para>
+        involving word and metrical foot boundaries in poetry is discussed below.</para>
     </section>
     <section>
       <title>Discontinuity</title>
-      <para><xref linkend="sperberg-huitfeldt_2008"/> discusses the following paragraph from Lewis
+      <para><xref linkend="sperberg-huitfeldt_2008"/> offer the following paragraph from Lewis
         Carroll’s <emphasis role="ital">Alice in Wonderland</emphasis> as an example of
         discontinuity:</para>
       <blockquote>
@@ -785,11 +785,11 @@
         layer), yet our human intuition is that there is a single quotation, and that the model,
         therefore, should represent it as a single object.<footnote>
           <para>It is possible to interpret the content of the <code>&lt;quotation></code> element
-            as three child nodes: a <code>Text</code> node, an intervening element that holds the
-            narrative interjection, and then another <code>Text</code>, and in that sense the
-            quotation is one object, although that object incorporates something that is not part of
-            what a human understands as the quotation. <xref linkend="sperberg-huitfeldt_2008"/>
-            explains why this is unsatisfactory (see especially their footnote 2).</para>
+            as three child nodes: a Text node, an intervening element that holds the narrative
+            interjection, and then another Text node, and in that sense the quotation is one object,
+            although that object incorporates something that is not part of what a human understands
+            as the quotation. <xref linkend="sperberg-huitfeldt_2008"/> explains why this is
+            unsatisfactory (see especially their footnote 2).</para>
         </footnote> As <xref linkend="sperberg-huitfeldt_2008"/> also observe, there is a sense in
         which <quote>book</quote> and <quote>without</quote> are adjacent and a different sense in
         which <quote>book</quote> and <quote>thought</quote> are adjacent. The XML data model cannot
@@ -817,7 +817,7 @@
         an application layer, since whether coindexed annotations represent discontinuity is not an
         inherent property of the coindexing. As was noted earlier, TexMECS is capable of modeling
         discontinuity directly with suspend-tags and resume-tags, but if a TexMECS document is to be
-        parsed into GODDAG, the fragments are modeled as separate structural components</para>
+        parsed into GODDAG, the fragments are then modeled as separate structural components</para>
       <para>TAG prioritizes the representation of text structures, including discontinuity, in the
         model, without dependency on application-layer semantics. The example from Alice in
         Wonderland described above would have the following form in TAG:</para>
@@ -829,8 +829,8 @@
           </imageobject>
         </mediaobject>
         <caption>
-          <para>Each hyperedge points from a markup node head (identifying the type of text
-            structure) to a tail set of text nodes. Normal edges connect the text nodes in order. In
+          <para>Each hyperedge points from a Markup node head (identifying the type of text
+            structure) to a tail set of Text nodes. Normal edges connect the Text nodes in order. In
             the TAG model, then, a discontinuous textual object is represented the same way as a
             continuous one, as an ordered set of Text nodes that form the tail of a Markup-to-Text
             hyperedge.</para>
@@ -851,14 +851,17 @@
           linkend="derose_1990"/>). GODDAG and LMNL both grew out of a recognition that not all
         properties of text can be modeled effectively as a single hierarchy, and their focus is not
         limited to that issue, but they differ in the extent to which they interrogate features of
-        text that may not be hierarchical, that may not be ordered, and that may not involve what a
-        human would consider a content object.</para>
+        text that may not be hierarchical at all, that may not be ordered, and that may not involve
+        what a human would consider a content object.</para>
       <para>As was mentioned earlier, the XML data model does not distinguish containment from
         dominance, which Tennison explains and illustrates as follows: <blockquote>
           <para>Containment is a happenstance relationship between ranges while dominance is one
             that has a meaningful semantic. A page may happen to <emphasis role="ital"
               >contain</emphasis> a stanza, but a poem <emphasis role="ital">dominates</emphasis>
-            the stanzas that it contains.[<xref linkend="tennison_2008"/>]</para>
+            the stanzas that it contains.<footnote>
+              <para>This wording (<quote>dominates the stanzas it contains</quote>) means that
+                dominance presupposes containment, but the reverse is not the case.</para>
+            </footnote>[<xref linkend="tennison_2008"/>]</para>
         </blockquote></para>
       <para>In XML, an ancestor element both <emphasis role="bold">contains</emphasis> (starts
         before and ends after in the serialization) its descendants and <emphasis role="bold"
@@ -905,15 +908,15 @@
       </figure>
       <para>In the earlier TAG example of this sonnet, a Markup-to-Text hyperedge defines the tail
         as a set of Text nodes and labels (datatypes) it. In the TAG version of this example, all
-        quatrain and line Markup-to-Text edges point to sets of Text nodes, and containment is
-        modeled by subset relations among the tails of Markup nodes. Where the Text nodes that
-        constitute the tail of a Markup-to-Text hyperedge with the <code>name</code> property of
-          <quote>line</quote> form a subset of the Text nodes that constitute the tail of a
-        Markup-to-Text edge with the <code>name</code> property of <quote>quatrain</quote>, the
-        quatrain contains the line.<footnote>
-          <para>Note that the quatrain Markup node does not contain or have any other direct
-            relationship to the line Markup node. It is the set of Text nodes of the quatrain that
-            contains the set of Text nodes of the line.</para>
+        quatrain and line Markup-to-Text hyperedges point to sets of Text nodes, and containment is
+        modeled by subset relations among the Text-node tails of those hyperedges. Where the Text
+        nodes that constitute the tail of a Markup-to-Text hyperedge with the <code>name</code>
+        property of <quote>line</quote> form a proper subset of the Text nodes that constitute the
+        tail of a Markup-to-Text hyperedge with the <code>name</code> property of
+          <quote>quatrain</quote>, the quatrain contains the line.<footnote>
+          <para>The quatrain Markup node does not contain or have any other direct relationship to
+            the line Markup node. It is the set of Text nodes of the quatrain that contains the set
+            of Text nodes of the line.</para>
         </footnote> In this emphasis on containment, rather than dominance, TAG is similar to flat
         LMNL, except that LMNL ranges must be continuous (LMNL handles discontinuity separately),
         while contiguity is not relevant in defining the set of Text nodes that may serve as the
@@ -924,10 +927,15 @@
         (which would point, through a hyperedge, to the set of all Text nodes in the poem), and,
         optionally, add a one-to-many Markup-to-Markup hyperedge from it to the Markup nodes with
           <quote>quatrain</quote> and <quote>couplet</quote>
-        <code>name</code> property values to specify dominance. In other words, Markup-to-Text nodes
-        model containment, rather than dominance (indirectly, through subset properties of the Text
-        nodes to which they point), and where it is important to distinguish dominance from
-        containment, the TAG model supports this through Markup-to-Markup hyperedges.</para>
+        <code>name</code> property values to specify dominance.<footnote>
+          <para>Because, as the Tennison quote above illustrates, dominance presupposes containment,
+            it is not strictly necessary to create a Markup-to-Text hyperedge for the
+              <code>&lt;poem></code> element if it is the head of a Markup-to-Markup hyperedge.
+          </para>
+        </footnote> In other words, Markup-to-Text nodes model containment, rather than dominance
+        (indirectly, through subset properties of the Text nodes to which they point), and where it
+        is important to distinguish dominance from containment, the TAG model supports this through
+        Markup-to-Markup hyperedges.</para>
       <para>One final consequence of the XML conflation of containment and dominance is that when
         exactly the same text must be tagged in two ways simultaneously, XML requires one of the
         elements to contain the other. But, as was noted above, if a Markup node with the
@@ -960,13 +968,13 @@
         </mediaobject>
         <caption>
           <para>In XML, the three words of the title are spread over two levels of the hierarchy.
-            Cyan ellipses are element nodes and pink rectangles are <code>Text</code> nodes.</para>
+            Cyan ellipses are element nodes and pink rectangles are Text nodes.</para>
         </caption>
       </figure>
       <para>If we wish to specify in XML that the first and third words of the title are of type
           <quote>name</quote>, we can tag them as elements of that type, with the result that the
-          <code>Text</code> nodes they contain wind up on a different level of the hierarchy than
-        the conjunction between them.<footnote>
+        Text nodes they contain wind up on a different level of the hierarchy than the conjunction
+        between them.<footnote>
           <para>It is possible to tag the conjunction, as well, so as to push the word
               <quote>and</quote> down to the same hierarchical level as the names, but we have not
             observed that in practice. If the markup process involves tagging what the user
@@ -989,27 +997,28 @@
           </imageobject>
         </mediaobject>
         <caption>
-          <para>In this TAG example, the markup on names specifies their type without imposing a
-            hierarchy. The title contains three text nodes, represented by pink ellipses. Markup
-            nodes are green (for names) and cyan (for titles), and the document node is
+          <para>In this TAG example, the markup on names specifies their type and content without
+            imposing a hierarchy. The title contains three text nodes, represented by pink ellipses.
+            Markup nodes are green (for names) and cyan (for titles), and the document node is
             beige.</para>
         </caption>
       </figure>
-      <para>As illustrated in the example above, markup of text nodes in the TAG model, unlike in
+      <para>As illustrated in the example above, markup of Text nodes in the TAG model, unlike in
         XML, does not create a hierarchical layer as a side effect of datatyping. As we have seen
         earlier, it is possible to represent hierarchy in TAG, but it is not an inescapable
         consequence of all markup, as it is in XML.</para>
     </section>
     <section>
       <title>White space as crypto-overlap</title>
-      <para>In natural language processing tokenization is the process of breaking up a string of
-        plain text characters into substrings (typically words and punctuation), often while
-        removing token separators in the process. Tokenization in XML is performed using regular
-        expressions and the <code>tokenize()</code> function, but <code>tokenize()</code> atomizes
-        its first argument, which means that it cannot be used on tagged text without losing the
-        markup in the process. Even tokenization that would not create overlap-based well-formedness
-        violations, such as splitting and tagging the words of a line of poetry in which the
-        stressed vowels are tagged as <code>&lt;stress></code>, requires intermediate temporary
+      <para>In natural language processing, tokenization is the process of breaking up a string of
+        plain text characters into substrings (typically words and punctuation, which may be
+        adjacent or separated by white space), often while removing token separators in the process.
+        Tokenization in XML is performed using regular expressions and the <code>tokenize()</code>
+        function, but <code>tokenize()</code> atomizes its first argument, which means that it
+        cannot be used on tagged text without losing the markup in the process. Even tokenization
+        that would not create overlap-based well-formedness violations, such as splitting and
+        tagging the words of a line of poetry in which the stressed vowels are tagged as
+          <code>&lt;stress></code> (see the illustration below), requires intermediate temporary
         manipulations, such as converting the markup to text, tokenizing with
           <code>tokenize()</code>, and then converting the temporary text back into markup, or
         adding additional markup, tokenizing with <code>&lt;xsl:for-each-group></code>, and then
@@ -1049,9 +1058,19 @@
         </caption>
       </figure>
       <para>Because stress is marked on a single vowel sound, XML is capable of tagging the
-        individual words while retaining the stress markup, since no overlap would result. Here we
-        have added Markup-to-Text nodes to tag the words, which can be determined by tokenizing the
-        text without interference from the existing (stress) markup:</para>
+        individual words while retaining the stress markup, since no overlap would result. For that
+        reason, the following XML representation, which tags both words and stressed vowels, is well
+        formed:<programlisting>&lt;line>
+  &lt;word>No&lt;/word>
+  &lt;word>l&lt;stress>o&lt;/stress>nger&lt;/word>
+  &lt;word>m&lt;stress>ou&lt;/stress>rn&lt;/word>
+&lt;/line></programlisting></para>
+      <para>Yet if we try to use <code>tokenize()</code> to add the <code>&lt;word></code> markup to
+        a line that already contains the <code>&lt;stress></code> markup, the latter will be lost
+        during atomization.</para>
+      <para>This is not a challenge for TAG. In the example below, we have added Markup-to-Text
+        nodes to tag the words, which can be determined by tokenizing the text without interference
+        from the existing (stress) markup:</para>
       <para><emphasis>TODO: Add illustration</emphasis>
       </para>
       <para>The additional markup requires additional division of Text nodes, but all modifications
