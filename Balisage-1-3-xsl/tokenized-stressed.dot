@@ -1,28 +1,39 @@
 digraph G {
-/*	{ node [rank = same]; document[fillcolor=beige, style=filled]; fake[style=invis]; fake1[style=invis]; fake3[style=invis]; line[style=filled, fillcolor="#00ff00"]; fake4[style=invis]; fake5[style=invis]; fake6[style=invis];}
-	{ node [rank = same, style=filled, fillcolor=pink]; No; l; o; n; ger; m; ou; rn; }
-	No -> l -> o -> n -> ger -> m -> ou -> rn [constraint=false]
+	{ node [rank=same]; top1[style=invis]; top2[style=invis]; top3[style=invis]; line[style=filled, fillcolor="#00ff00"]; top4[style=invis]; top5[style=invis]; top6[style=invis];}
+	top1 -> top2 -> top3 -> line -> top4 -> top5 -> top6 [constraint=false, style=invis]
+	{ node [rank = same]; document[fillcolor=beige, style=filled]; fake1[style=invis]; fake2[style=invis]; null[style=invis]; fake3[style=invis]; fake4[style=invis]; fake5[style=invis];}
+	top1 -> document[style=invis]
+	top2 -> fake1[style=invis]
+	top3 -> fake2[style=invis]
+	line -> null[style=invis]
+	top4 -> fake3[style=invis]
+	top5 -> fake4[style=invis]
+	top6 -> fake5[style=invis]
+	{ node [rank=same, style=filled, fillcolor=pink]; No; l; o; nger; m; ou; rn;}
+	document -> fake1 -> fake2 -> null -> fake3 -> fake4[constraint=false, style=invis]
 	document -> No
-	fake -> l[style=invis]
-	fake1 -> o[style=invis]
-	fake3 -> n[style=invis]
-	line -> ger[style=invis]
-	fake4 -> m[style=invis]
-	fake5 -> ou[style=invis]
-	fake6 -> rn[style=invis]
-{node [rank=same] w1[style=filled, fillcolor=orange, label=word]; stuff1[style=invis]; stress1[style=filled, fillcolor=cyan, label=stress]; w4[style=invis]; w5[style=invis]; stuff2[style=filled, fillcolor=orange, label=word]; stress2[style=filled, fillcolor=cyan, label=stress]; w8[style=invis]}
-foot1[style=filled, fillcolor=violet, label=foot]
-foot2[style=filled, fillcolor=violet, label=foot]
-w4[label=word, style=filled, fillcolor=orange]
-w6[style=filled, fillcolor=cyan, label=stress]
-No -> w1[style=invis]
-l -> stuff1[style=invis]
-o -> stress1[style=invis]
-n -> w4[style=invis]
-ger -> w5[style=invis]
-m -> stuff2[style=invis]
-ou -> w6[style=invis]
-rn -> w8[style=invis]
-stuff1 -> foot1[style=invis]
-stuff2 -> foot2[style=invis]*/
+	fake1 -> l[style=invis]
+	fake2 -> o[style=invis]
+	null -> nger[style=invis]
+	fake3 -> m[style=invis]
+	fake4 -> ou[style=invis]
+	fake5 -> rn[style=invis]
+	No -> l -> o -> nger -> m -> ou -> rn [constraint=false, minlen=2]
+	{ node [rank=same]; wordplace1[style=invis]; fake6[style=invis]; stress2[style=filled, fillcolor=cyan, label=stress]; wordplace2[style=invis]; fake7[style=invis]; fake8[style=invis]; stress3[style=filled, fillcolor=cyan, label=stress]; wordplace3[style=invis]; fake9[style=invis]}
+	{ node [rank=same]; word1[style=filled, fillcolor=orange, label=word]; fake10[style=invis]; word2[style=filled, fillcolor=orange, label=word]; fake13[style=invis]; fake14[style=invis]; word3[style=filled, fillcolor=orange, label=word]}
+	No -> wordplace1[style=invis]
+	l -> fake6[style=invis]
+	o -> stress2[style=invis]
+	o -> wordplace2[style=invis]
+	nger -> fake7[style=invis]
+	m -> fake8[style=invis]
+	ou -> stress3[style=invis]
+	ou -> wordplace3[style=invis]
+	rn -> fake9[style=invis]
+	wordplace1 -> word1[style=invis]
+	fake6 -> fake10[style=invis]
+	wordplace2 -> word2[style=invis]
+	fake7 -> fake13[style=invis]
+	fake8 -> fake14[style=invis]
+	wordplace3 -> word3[style=invis]
 }
