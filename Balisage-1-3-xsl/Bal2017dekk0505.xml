@@ -1066,13 +1066,30 @@
   &lt;word>m&lt;stress>ou&lt;/stress>rn&lt;/word>
 &lt;/line></programlisting></para>
       <para>Yet if we try to use <code>tokenize()</code> to add the <code>&lt;word></code> markup to
-        a line that already contains the <code>&lt;stress></code> markup, the latter will be lost
-        during atomization.</para>
-      <para>This is not a challenge for TAG. In the example below, we have added Markup-to-Text
-        nodes to tag the words, which can be determined by tokenizing the text without interference
-        from the existing (stress) markup:</para>
+        a line that already contains the <code>&lt;stress></code> markup, the
+          <code>&lt;stress></code> markup will be lost during atomization.</para>
+      <para>This situation is not a challenge for TAG. In the example below, we have added
+        Markup-to-Text nodes to tag the words, which can be determined by tokenizing the text on
+        white space. Tokenization is possible because the Text nodes are not interrupted by the
+        markup, which points to them without being inserted between them (syntactically) and without
+        pushing them to different levels of the hierarchy (in the tree structure):</para>
       <para><emphasis>TODO: Add illustration</emphasis>
       </para>
+      <figure xml:id="tokenized">
+        <title>A simplified poem with word tokenization</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="tokenized-stressed.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>With word tokenization, there are now Text nodes. Two of them still form the tails
+            of Markup-to-Text hyperedges with a <code>name</code> property of <quote>stress</quote>,
+            indicating that these are stressed vowels. There are now also three Markup-to-Text
+            hyperedges with a <code>name</code> property of <quote>word</quote>; the first points to
+            a single Text node, and the others each point to three Text nodes.</para>
+        </caption>
+      </figure>
       <para>The additional markup requires additional division of Text nodes, but all modifications
         are local, and the only part of the graph that has to be updated is the part to which the
         markup is being added.</para>
