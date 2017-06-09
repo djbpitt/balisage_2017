@@ -10,20 +10,19 @@
   <!-- Verify that all items in bibliography are cited in body   -->
   <info>
     <abstract>
+
       <para>The XML tree paradigm has several well-known limitations for document modeling and
-        processing, some of which have received a lot of attention (especially overlap; see the
-        overviews in <xref linkend="sperberg-huitfeldt_2000"/>, <xref linkend="derose_2004"/>, and
-          <xref linkend="peroni_2014"/>) and some of which have received less (e.g., discontinuity,
-        simultaneity, transposition, white space as crypto-overlap). Many of these have
-        work-arounds, also well known, that—as is implicit in the term
-        <quote>work-around</quote>—have disadvantages, but because they get the job done and because
-        XML has a large user community with diverse levels of technological expertise, it is
-        difficult to overcome inertia and move to a technology that might offer a more comprehensive
-        fit with the full range of document structures with which researchers need to interact both
-        intellectually and programmatically. Proceeding from a high-level view of why XML has the
-        limitations it has, this presentation explores how an alternative model of Text as Graph
-        (TAG) might address these types of structures and tasks in a more natural and idiomatic way
-        than is available within an XML paradigm.</para>
+        processing. Some of these have received a lot of attention (especially overlap), some have
+        received less (e.g., discontinuity, simultaneity, transposition, white space as
+        crypto-overlap). Many of these have work-arounds, also well known, but—as is implicit in the
+        term “work-around”—these work-arounds have disadvantages. Because they get the job done,
+        however, and because XML has a large user community with diverse levels of technological
+        expertise, it is difficult to overcome inertia and move to a technology that might offer a
+        more comprehensive fit with the full range of document structures with which researchers
+        need to interact both intellectually and programmatically. A high-level analysis of why XML
+        has the limitations it has can enable us to explore how an alternative model of Text as
+        Graph (TAG) might address these types of structures and tasks in a more natural and
+        idiomatic way than is available within an XML paradigm.</para>
     </abstract>
     <author>
       <personname>
@@ -996,17 +995,18 @@
     </section>
     <section>
       <title>White space as crypto-overlap</title>
-      <para>In natural language processing tokenization is the process of breaking up a string of plain
-        text characters into substrings (typically words and punctuation), often while removing
-        token separators in the process. Tokenization in XML is performed using regular expressions
-        and the <code>tokenize()</code> function, but <code>tokenize()</code> atomizes its first
-        argument, which means that it cannot be used on tagged text without losing the markup in the
-        process. Even tokenization that would not create overlap-based well-formedness violations,
-        such as splitting and tagging the words of a line of poetry in which the stressed vowels are
-        tagged as <code>&lt;stress></code>, requires intermediate temporary manipulations, such as
-        converting the markup to text, tokenizing with <code>tokenize()</code>, and then converting
-        the temporary text back into markup, or adding additional markup, tokenizing with
-          <code>&lt;xsl:for-each-group></code>, and then removing the temporary markup.</para>
+      <para>In natural language processing tokenization is the process of breaking up a string of
+        plain text characters into substrings (typically words and punctuation), often while
+        removing token separators in the process. Tokenization in XML is performed using regular
+        expressions and the <code>tokenize()</code> function, but <code>tokenize()</code> atomizes
+        its first argument, which means that it cannot be used on tagged text without losing the
+        markup in the process. Even tokenization that would not create overlap-based well-formedness
+        violations, such as splitting and tagging the words of a line of poetry in which the
+        stressed vowels are tagged as <code>&lt;stress></code>, requires intermediate temporary
+        manipulations, such as converting the markup to text, tokenizing with
+          <code>tokenize()</code>, and then converting the temporary text back into markup, or
+        adding additional markup, tokenizing with <code>&lt;xsl:for-each-group></code>, and then
+        removing the temporary markup.</para>
       <para>The reason tokenizing tagged text is awkward in XML even where overlap is not a risk has
         one explanation in terms of the syntax and another in terms of the data model. In terms of
         the syntax, the markup and text are intertwined in a way that makes it impossible to ignore
@@ -1112,9 +1112,9 @@
       <para>The situation is especially complicated in the case of XML because although it does not
         have a data model, it also has three almost-data-models: XML DOM [<xref linkend="W3C_DOM"
         />], which is an object model and API; the XML InfoSet [<xref linkend="W3C_xmlinfoset"/>],
-        which is an information model; and XDM [<xref linkend="W3C_xdm"/>], which is a data model for
-        processing XML. Our inferred data model for XML for comparative purposes here includes the
-        seven node types specified in XDM (not the twelve of XML DOM or the eleven types of
+        which is an information model; and XDM [<xref linkend="W3C_xdm"/>], which is a data model
+        for processing XML. Our inferred data model for XML for comparative purposes here includes
+        the seven node types specified in XDM (not the twelve of XML DOM or the eleven types of
         information items of the XML InfoSet), along with the structural properties of the ordered
         tree that are relevant for understanding (but not necessarily adequate for processing)
         well-formed XML (e.g., attribute nodes on an element are unordered). Our aim is not to
