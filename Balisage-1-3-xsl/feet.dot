@@ -1,0 +1,41 @@
+digraph G {
+	{ node [rank=same]; top1[style=invis]; top2[style=invis]; foot1[label=foot, style=filled, fillcolor=violet]; line[style=filled, fillcolor="#00ff00"]; top4[style=invis]; top7[style=invis]; foot2[label=foot, style=filled, fillcolor=violet]; top6[style=invis];}
+	top1 -> top2 -> foot1 -> line -> top7 -> top4 -> foot2 -> top6 [constraint=false, style=invis]
+	{ node [rank = same]; document[fillcolor=beige, style=filled]; fake1[style=invis]; fake2[style=invis]; null[style=invis]; fake15[style=invis]; fake3[style=invis][style=invis]; fake4[style=invis]; fake5[style=invis];}
+	top1 -> document[style=invis]
+	top2 -> fake1[style=invis]
+	foot1 -> fake2[style=invis]
+	line -> null[style=invis]
+	top4 -> fake3[style=invis]
+	foot2 -> fake4[style=invis]
+	top6 -> fake5[style=invis]
+	top7 -> fake15[style=invis]
+	{ node [rank=same, style=filled, fillcolor=pink]; No; l; o; n; ger; m; ou; rn;}
+	document -> fake1 -> fake2 -> null -> fake15 -> fake3 -> fake4 -> fake5 [constraint=false, style=invis]
+	document -> No
+	fake1 -> l[style=invis]
+	fake2 -> o[style=invis]
+	null -> n[style=invis]
+	fake3 -> m[style=invis]
+	fake4 -> ou[style=invis]
+	fake5 -> rn[style=invis]
+	fake15 -> ger[style=invis]
+	No -> l -> o -> n -> ger -> m -> ou -> rn [constraint=false, minlen=2]
+	{ node [rank=same]; wordplace1[style=invis]; fake6[style=invis]; stress2[style=filled, fillcolor=cyan, label=stress]; wordplace2[style=invis]; fake7[style=invis]; fake8[style=invis]; stress3[style=filled, fillcolor=cyan, label=stress]; wordplace3[style=invis]; fake9[style=invis]}
+	{ node [rank=same]; word1[style=filled, fillcolor=orange, label=word]; fake10[style=invis]; word2[style=filled, fillcolor=orange, label=word]; fake13[style=invis]; fake14[style=invis]; word3[style=filled, fillcolor=orange, label=word]}
+	No -> wordplace1[style=invis]
+	l -> fake6[style=invis]
+	o -> stress2[style=invis]
+	o -> wordplace2[style=invis]
+	n -> fake7[style=invis]
+	m -> fake8[style=invis]
+	ou -> stress3[style=invis]
+	ou -> wordplace3[style=invis]
+	rn -> fake9[style=invis]
+	wordplace1 -> word1[style=invis]
+	fake6 -> fake10[style=invis]
+	wordplace2 -> word2[style=invis]
+	fake7 -> fake13[style=invis]
+	fake8 -> fake14[style=invis]
+	wordplace3 -> word3[style=invis]
+}

@@ -1013,12 +1013,12 @@
       <para>In natural language processing, tokenization is the process of breaking up a string of
         plain text characters into substrings (typically words and punctuation, which may be
         adjacent or separated by white space), often while removing token separators in the process.
-        Tokenization in XML is performed using regular expressions and the <code>tokenize()</code>
-        function, but <code>tokenize()</code> atomizes its first argument, which means that it
-        cannot be used on tagged text without losing the markup in the process. Even tokenization
-        that would not create overlap-based well-formedness violations, such as splitting and
-        tagging the words of a line of poetry in which the stressed vowels are tagged as
-          <code>&lt;stress></code> (see the illustration below), requires intermediate temporary
+        Tokenization of plain text in XML is performed using regular expressions and the
+          <code>tokenize()</code> function, but <code>tokenize()</code> atomizes its first argument,
+        which means that it cannot be used on tagged text without losing the markup in the process.
+        Even tokenization that would not create overlap-based well-formedness violations, such as
+        splitting and tagging the words of a line of poetry in which the stressed vowels are tagged
+        as <code>&lt;stress></code> (see the illustration below), requires intermediary temporary
         manipulations, such as converting the markup to text, tokenizing with
           <code>tokenize()</code>, and then converting the temporary text back into markup, or
         adding additional markup, tokenizing with <code>&lt;xsl:for-each-group></code>, and then
@@ -1035,14 +1035,14 @@
           <para>See <quote>Mixed content as a type of overlap</quote> in <xref
               linkend="birnbaum_2015"/>.</para>
         </footnote></para>
-      <para>In TAG, however, Markup nodes on one layer point to Text nodes on another (the same
-        other layer regardless of whether they are also the targets of markup), which makes it
-        possible to tokenize the text without interference from the markup. The tokenization splits
-        larger Text nodes into smaller ones, but they remain in the tail of their old Markup-to-Text
-        hyperedges, while new Markup-to-Text hyperedges are added to tag the new individual words.
-        In the simplified illustrations below, we have created a poem that consists entirely of a
-        single three-word line (<quote>No longer mourn</quote>). In the first illustration, the
-        stressed vowels are tagged but the words are not:</para>
+      <para>In TAG, however, Markup nodes on one layer point to Text nodes on another layer, one
+        that contains nothing but Text nodes, which makes it possible to tokenize the text without
+        interference from the markup. The tokenization splits larger Text nodes into smaller ones,
+        but they remain in the tail of their old Markup-to-Text hyperedges, while new Markup-to-Text
+        hyperedges are added to tag the new individual words. In the simplified illustrations below,
+        we have created a <quote>poem</quote> that consists entirely of a single three-word line
+          (<quote>No longer mourn</quote>). In the first illustration, the stressed vowels are
+        tagged but the words are not:</para>
       <figure xml:id="untokenized">
         <title>A simplified poem without word tokenization</title>
         <mediaobject>
@@ -1057,14 +1057,15 @@
             stressed vowels.</para>
         </caption>
       </figure>
-      <para>Because stress is marked on a single vowel sound, XML is capable of tagging the
+      <para>Because stress is marked on a single vowel sound, XML would be capable of tagging the
         individual words while retaining the stress markup, since no overlap would result. For that
         reason, the following XML representation, which tags both words and stressed vowels, is well
-        formed:<programlisting>&lt;line>
-  &lt;word>No&lt;/word>
-  &lt;word>l&lt;stress>o&lt;/stress>nger&lt;/word>
-  &lt;word>m&lt;stress>ou&lt;/stress>rn&lt;/word>
-&lt;/line></programlisting></para>
+        formed:</para>
+      <programlisting>&lt;line&gt;
+  &lt;word>No&lt;/word&gt;
+  &lt;word&gt;l&lt;stress&gt;o&lt;/stress&gt;nger&lt;/word&gt;
+  &lt;word&gt;m&lt;stress&gt;ou&lt;/stress&gt;rn&lt;/word&gt;
+&lt;/line&gt;</programlisting>
       <para>Yet if we try to use <code>tokenize()</code> to add the <code>&lt;word></code> markup to
         a line that already contains the <code>&lt;stress></code> markup, the
           <code>&lt;stress></code> markup will be lost during atomization.</para>
@@ -1073,8 +1074,6 @@
         white space. Tokenization is possible because the Text nodes are not interrupted by the
         markup, which points to them without being inserted between them (syntactically) and without
         pushing them to different levels of the hierarchy (in the tree structure):</para>
-      <para><emphasis>TODO: Add illustration</emphasis>
-      </para>
       <figure xml:id="tokenized">
         <title>A simplified poem with word tokenization</title>
         <mediaobject>
@@ -1083,16 +1082,26 @@
           </imageobject>
         </mediaobject>
         <caption>
-          <para>With word tokenization, there are now Text nodes. Two of them still form the tails
-            of Markup-to-Text hyperedges with a <code>name</code> property of <quote>stress</quote>,
-            indicating that these are stressed vowels. There are now also three Markup-to-Text
-            hyperedges with a <code>name</code> property of <quote>word</quote>; the first points to
-            a single Text node, and the others each point to three Text nodes.</para>
+          <para>With word tokenization, there are now seven Text nodes. Two of them still form the
+            tails of Markup-to-Text hyperedges with a <code>name</code> property of
+              <quote>stress</quote>, indicating that these are stressed vowels. There are now also
+            three Markup-to-Text hyperedges with a <code>name</code> property of
+            <quote>word</quote>; the first points to a single Text node, and the others each point
+            to three Text nodes.</para>
         </caption>
       </figure>
       <para>The additional markup requires additional division of Text nodes, but all modifications
         are local, and the only part of the graph that has to be updated is the part to which the
-        markup is being added.</para>
+        markup is being added.<footnote>
+          <para>What tokenization on white space should do with the white space is a processing
+            issue, and not part of the model. The white space could form its own Text nodes, which
+            would be members of the tails of the <quote>line</quote> Markup-to-Text hyperedges, but
+            not of the tails of any of the <quote>word</quote> Markup-to-Text hyperedges. Or
+            trailing white space could be regarded as part of the word it follows, and therefore
+            included inside the Tails of the <quote>word</quote> Markup-to-Text hyperedges. In this
+            example, the white space would not form separate Text nodes; e.g., the first Text node
+            would consist of three characters, <quote>No</quote> followed by a space.</para>
+        </footnote></para>
       <para>The preceding example does not create overlap because the Text nodes that are marked up
         for stress are subsets of those that are marked up as words. But if we also want to tag
         poetic feet, which are needed to identify caesura (a regular coincidence of word and foot
