@@ -1041,8 +1041,8 @@
         but they remain in the tail of their old Markup-to-Text hyperedges, while new Markup-to-Text
         hyperedges are added to tag the new individual words. In the simplified illustrations below,
         we have created a <quote>poem</quote> that consists entirely of a single three-word line
-          (<quote>No longer mourn</quote>). In the first illustration, the stressed vowels are
-        tagged but the words are not:</para>
+          (<quote>No longer mourn</quote>). In the firt of these illustrations, the stressed vowels
+        are tagged but the words are not:</para>
       <figure xml:id="untokenized">
         <title>A simplified poem without word tokenization</title>
         <mediaobject>
@@ -1066,9 +1066,9 @@
   &lt;word&gt;l&lt;stress&gt;o&lt;/stress&gt;nger&lt;/word&gt;
   &lt;word&gt;m&lt;stress&gt;ou&lt;/stress&gt;rn&lt;/word&gt;
 &lt;/line&gt;</programlisting>
-      <para>Yet if we try to use <code>tokenize()</code> to add the <code>&lt;word></code> markup to
-        a line that already contains the <code>&lt;stress></code> markup, the
-          <code>&lt;stress></code> markup will be lost during atomization.</para>
+      <para>Yet if we try to use <code>tokenize()</code> in a transformation to add the
+          <code>&lt;word></code> markup to a line that already contains the <code>&lt;stress></code>
+        markup, the <code>&lt;stress></code> markup will be lost during atomization.</para>
       <para>This situation is not a challenge for TAG. In the example below, we have added
         Markup-to-Text nodes to tag the words, which can be determined by tokenizing the text on
         white space. Tokenization is possible because the Text nodes are not interrupted by the
@@ -1085,9 +1085,9 @@
           <para>With word tokenization, there are now seven Text nodes. Two of them still form the
             tails of Markup-to-Text hyperedges with a <code>name</code> property of
               <quote>stress</quote>, indicating that these are stressed vowels. There are now also
-            three Markup-to-Text hyperedges with a <code>name</code> property of
-            <quote>word</quote>; the first points to a single Text node, and the others each point
-            to three Text nodes.</para>
+            three Markup-to-Text hyperedges with a <code>name</code> property of <quote>word</quote>
+            (in orange); the first points to a single Text node, and the others each point to three
+            Text nodes.</para>
         </caption>
       </figure>
       <para>The additional markup requires additional division of Text nodes, but all modifications
@@ -1112,10 +1112,36 @@
         consequences of syntactic overlap doesn’t mean that the the overlap isn’t there. A data
         model that can represent both feet and words explicitly, and that could identify caesura as
         a relationship between those two types of structural components, would represent explicitly
-        the human understanding of caesura, and the explicit representation of structure is what
-        markup is all about. In the illustration below, we have added foot markup to the previous
-        example:</para>
-      <para><emphasis role="bital">TODO: Add illustration</emphasis></para>
+        the human understanding of caesura, and the explicit representation of structure is much of
+        what markup is all about. In the illustration below, we have added foot markup to the
+        previous example:</para>
+      <figure xml:id="feet">
+        <title>A simplified poem with word and foot markup</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="feet.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>When we tag the feet by adding Markup-to-Text hyperedges with a <code>name</code>
+            property value of <quote>foot</quote> (in violet), we create overlap between feet and
+            words, since the word <quote>longer</quote> is split between the ictic second syllable
+            of the first iamb and the non-ictic first syllable of the second.</para>
+        </caption>
+      </figure>
+      <para>A corresponding XML-like structure that tags words and feet would not be well formed
+        because the <code>&lt;foot&gt;</code> elements would overlap with the
+          <code>&lt;word&gt;</code> elements:</para>
+      <programlisting>&lt;line&gt;&lt;foot&gt;&lt;word&gt;no&lt;/word&gt;&lt;word&gt;lon&lt;/foot&gt;&lt;foot&gt;ger&lt;/word&gt;&lt;word&gt;mourn&lt;/word&gt;&lt;/foot&gt;&lt;/line&gt;</programlisting>
+      <para>In XML, <quote>[t]he identification of caesura requires the identification of both feet
+          and words, which are not coextensive and which frequently overlap. The challenge, then, is
+          to locate where foot and line boundaries coincide without employing markup in a way that
+          would violate well-formedness overlap constraints.</quote> [<xref linkend="birnbaum_2015"
+        />] In TAG, where overlap is not an issue, caesura is possible when two adjacent Text nodes
+        are in the tails of different Markup-to-Text <quote>word</quote> hyperedges and different
+        Markup-to-Text <quote>foot</quote> hyperedges. Caesura is typically 1) at or near the middle
+        of the line, and 2) implemented consistently, so not every coincidence of word and foot
+        boundaries proclaims a caesura; that coincidence is necessary, but not sufficient.</para>
     </section>
     <section>
       <title>Scope of reference</title>
