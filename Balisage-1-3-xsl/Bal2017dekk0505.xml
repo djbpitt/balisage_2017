@@ -1379,15 +1379,16 @@
     <para>TAG is a graph-based model that consists of a set of nodes and edges (both regular,
       one-to-one edges and hyperedges). Only Text nodes are ordered, and the order of Markup nodes
       is derived from the order of the Text nodes to which they point. TAG models containment
-      through subset relations, overlap through intersection where neither set is a subset of the
-      other, and it deals naturally with discontinuity because there is no requirement that sets of
-      nodes be contiguous. TAG is capable of modeling hierarchy, but it is not required to do so,
+      through subset relations, and overlap through intersection where neither set is a subset of
+      the other, and it deals naturally with discontinuity because there is no requirement that sets
+      of nodes be contiguous. TAG is capable of modeling hierarchy, but it is not required to do so,
       and it is possible to have multiple hierarchies. TAG separates the datatyping role of tagging
       from issues of hierarchy, so it is possible to label a set of Text nodes with a Markup-to-Text
-      hyperedge without affecting hierarchical relations. A root node is optional. At the moment
-      there is a single text order, but TAG recognizes the need for greater nuance in this area,
-      about which see <xref linkend="to_do"/>, which also identifies other issues that TAG does not
-      (yet) address.</para>
+      hyperedge without affecting hierarchical relations, and it also possible to annotate a set of
+      Text nodes with naming them, that is, without the equivalent of an XML generic identifier. A
+      root node is optional. At the moment there is a single text order, but TAG recognizes the need
+      for greater nuance in this area, about which see <xref linkend="to_do"/>, which also
+      identifies other issues that TAG does not (yet) address.</para>
   </section>
   <appendix xml:id="sonnet-71_text" xreflabel="Appendix A">
     <title>William Shakespeare, Sonnet 71</title>
