@@ -1346,12 +1346,12 @@
       representation of the TAG data model, rather than of GODDAG. The implementation in the current
       system loads the TAG model into memory, but persistence of the nodes and hyperedges in a
       key-value store on disk is under development. </para>
-    <para>As an example of importing into Alexandria, assume a document that consists of just the
-      text <quote>Hello, World</quote>. When we import this plain-text document into Alexandria
-      using the LMNL import, a very simple graph is created, consisting of two nodes and one regular
-      edge. One node is the TAG Document node; the other is a TAG Text node that contains all of the
-      text. A regular edge is created from the Document node to the Text node, which associates the
-      text with the document.</para>
+    <para>As an example of importing into Alexandria, consider a document that consists of just the
+      plain text <quote>Hello, World</quote>. When we import this plain-text document into
+      Alexandria, a very simple graph is created, consisting of two nodes and one regular edge. One
+      node is the TAG Document node; the other is a TAG Text node that contains all of the text. A
+      regular edge is created from the Document node to the Text node, which associates the text
+      with the document.</para>
     <para><emphasis>TODO: Add example of parsing LMNL markup during import</emphasis></para>
     <para>As an example of exporting a simple document from Alexandria, a serialization of the TAG
       data model into LMNL sawtooth syntax involves traversal over an instance. The traversal begins
@@ -1372,7 +1372,7 @@
       node we write end tags; and for the set of Markup nodes that are only on the new Text node we
       write start tags. At the conclusion of the traversal (which can be recognized because only the
       final Text node does not have an outgoing regular edge), we write end tags for all associated
-      Markup-to-Text edges.</para>
+      Markup-to-Text hyperedges.</para>
   </section>
   <section>
     <title>Conclusions</title>
