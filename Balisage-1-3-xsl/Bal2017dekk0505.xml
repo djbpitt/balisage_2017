@@ -119,10 +119,10 @@
     <para>The XML data model is an ordered tree, or, more precisely, a rooted and ordered directed
       acyclic graph that prohibits multiple parentage, which in the document-processing community
       has come to be understood as representing an Ordered Hierarchy of Content Objects (OHCO). It
-      is well known that the OHCO model works well for describing structures that consist of single
-      ordered hierarchies, such as the exhaustive tesselated division of a novel into chapters and
-      the chapters into paragraphs, but it is not well suited to modeling structures that cannot be
-      represented fully by a single tree.<footnote>
+      is well known that the OHCO model works reasonably well for describing structures that consist
+      of single ordered hierarchies, such as the exhaustive tesselated division of a novel into
+      chapters and the chapters into paragraphs, but it is not well suited to modeling structures
+      that cannot be represented fully by a single tree.<footnote>
         <para>The OHCO literature is already familiar to the Balisage audience, and it is not our
           goal to provide an exhaustive bibliography. The seminal papers that advocated for OHCO as
           a document model are <xref linkend="coombs_1987"/> and <xref linkend="derose_1990"/>; the
@@ -155,6 +155,12 @@
         <para>The desiderata TAG seeks to satisfy are described in a requirements document in <xref
             linkend="requirements"/>.</para>
       </footnote></para>
+    <para>Below we offer examples of where text is not only not hierarchical (not just not
+      mono-hierarchical, but sometimes not hierarchical at all), but also where it is not ordered,
+      as well as places where XML creates artifactual content objects that do not clearly correspond
+      to what a human would consider a textual content object. In other words, TAG seeks to
+      interrogate and address the O, the H, and the CO of OHCO, and not only the well-known
+      multiple-hierarchy challenge.</para>
   </section>
   <section>
     <title>The TAG/hypergraph model for text</title>
@@ -1228,8 +1234,8 @@
         bit surprisingly in the context of Balisage, which describes itself as <quote>the <emphasis
             role="ital">markup</emphasis> conference</quote>, our focus here is not on markup (that
         is, on syntax and serialization), but on the data models that may be expressed through
-        markup, which means that for comparative purposes we must infer a data model from the
-        syntactic specifications. </para>
+        markup, which means that for comparative purposes we may sometimes need to infer a data
+        model from a syntactic specification. </para>
       <para>The situation is especially complicated in the case of XML because although it does not
         have a data model, it also has three almost-data-models: XML DOM [<xref linkend="W3C_DOM"
         />], which is an object model and API; the XML InfoSet [<xref linkend="W3C_xmlinfoset"/>],
@@ -1240,8 +1246,8 @@
         tree that are relevant for understanding (but not necessarily adequate for processing)
         well-formed XML (e.g., attribute nodes on an element are unordered). Our aim is not to
         create a data model for XML, which lies far outside the scope of this paper, but to identify
-        features of the way XML models text that can be used comparatively to help explain features
-        of TAG. </para>
+        features of the way XML models text that can be used comparatively to help elucidate
+        features of TAG. </para>
       <para>The fact that some of our objects of comparison are serializations and others are data
         models matters because, as the etymology of the term implies, serialization is an ordered
         linear expression, which is not a requirement of data models. If, for example, a paragraph
@@ -1258,34 +1264,34 @@
     </section>
     <section>
       <title>Semantics versus application level</title>
-      <para>Another challenge involves distinguishing properties that inhere in the structure of the
-        text being modeled from those that depend on semantics that must be interpreted at a higher
-        (application) level. A failure to make this distinction may have two types of consequences
-        (which are really aspects of the same thing, the delegation of information that should be
-        part of the model to the application layer): either the application must know that some
-        properties of the model are not informational and are to be ignored, or the application must
-        know that there is information that is not represented entirely by the model and must
-        therefore be added during processing. If, however, the model explicitly represents the
-        structural properties of the text and nothing else, the application level is freed from
-        having to supplement the model, and can concentrate on features that are truly
-        application-specific.</para>
+      <para>Another challenge for text modeling involves distinguishing properties that inhere in
+        the structure of the text being modeled from those that depend on semantics that must be
+        interpreted at a higher (application) level. A failure to make this distinction may have two
+        types of consequences (which are really aspects of the same thing, the delegation of
+        information that should be part of the model to the application layer): either the
+        application must know that some properties of the model are not informational and are to be
+        ignored, or the application must know that there is information that is not represented
+        entirely by the model and must therefore be added during processing. If, however, the model
+        explicitly represents the structural properties of the text and nothing else, the
+        application level is freed from having to supplement the model, and can concentrate on
+        features that are truly application-specific.</para>
       <para>Moving structural information out of the application layer and into the model is a
         priority in the design of TAG, and here are two illustrations of the issue:<itemizedlist>
           <listitem>
-            <para>The pairing of start and end tags in XML (or LMNL sawtooth syntax or TexMECS)
-              markup is inherent in the markup itself, and is available during parsing with no
-              reference to semantics. In contrast, the pairing of XML milestones that are used to
-              simulate container tags as a work-around for overlap (see the discussion of Trojan
-              markup in <xref linkend="derose_2004"/>) depends on semantics. XML applications do not
-              have to know that regular start and end tags delimit an element because that
-              information is an inalienable feature of all XML documents that is fully specified by
-              the syntax, but they do know (unless it is specified at the application level) when
-              empty tags are being used to simulate the beginning and end of a content object and
-              when they are not, or which pseudo-start-tags are to be associated with which
-              pseudo-end-tags. Insofar as whether something is a content object is a property of the
-              text being modeled, a robust and efficient strategy would represent it as part of the
-              model itself, instead of requiring that it be handled through semantic information
-              that is available only at the application level.</para>
+            <para>The pairing of start and end tags in XML markup is inherent in the markup itself,
+              and is available during parsing with no reference to semantics. In contrast, the
+              pairing of XML milestones that are used to simulate container tags as a work-around
+              for overlap (see the discussion of Trojan markup in <xref linkend="derose_2004"/>)
+              depends on semantics. XML applications do not need to know that regular start and end
+              tags delimit an element because that information is an inalienable feature of all XML
+              documents that is fully specified by the syntax, but they do need to know when empty
+              tags are being used to simulate the beginning and end of a content object and when
+              they are not, or which pseudo-start-tags are to be associated with which
+              pseudo-end-tags. Insofar as whether something is a content object is a property of our
+              understanding and representation of the text, a robust and efficient strategy would
+              represent all structural features as parts of the model itself, instead of requiring
+              that some of them be handled through semantic information that is available only at
+              the application level.</para>
           </listitem>
           <listitem>
             <para>Because XML models an ordered hierarchy, element always have order, which requires
@@ -1296,26 +1302,30 @@
               error and its correction. How those should be rendered is the proper business of the
               application layer, but the XML model requires that one option proceed or follow the
               other even when the order does not represent an inherent, informational property of
-              the text being modeled. This means that, incorrectly (from the perspective of what the
-              marked-up text means), an XML processor will regard two TEI documents as different if
-              they differ only in the order of the children of their <code>&lt;choice&gt;</code>
-              elements unless the processor is given access to TEI markup semantics. Specifying an
-              arbitrary order as a schema enhancement will avoid raising an error, but at the cost
-              of making order information in some situations and arbitrary in others. A more robust
-              and efficient strategy would not impose order when it must then be ignored, so that a
-              processor will know when order is informational and when it is not from the model,
-              without recourse to semantics.</para>
+              the text being modeled. This has the undesirable consequence that, incorrectly (from
+              the perspective of what the marked-up text means), an XML processor will regard two
+              TEI documents as different if they differ only in the order of the children of their
+                <code>&lt;choice&gt;</code> elements unless the processor is given access to TEI
+              markup semantics. Imposing an arbitrary order as a schema enhancement (for example,
+              requiring that an abbreviation always precede its expansion inside a TEI
+                <code>&lt;choice></code> element) will avoid the problem of distinguishing when two
+              documents should be considered the same or different, but at the cost of making order
+              informational in some situations and arbitrary in others, that is, of imposing order
+              on something that is not inherently ordered. A more robust and efficient model would
+              not specify order when it must then be ignored, so that a processor will know when
+              order is informational and when it is not from the model, without recourse to
+              semantics.</para>
           </listitem>
         </itemizedlist></para>
-      <para>The issue of pairing pseudo-start-tags with pseudo-end-tags does not arise in TAG not
-        only because TAG does not at present have its own syntactic expression (although we can
-        represent features of TAG by borrowing LMNL sawtooth syntax or TexMECS), but also because
-        the fact that TAG permits overlap makes such workarounds unnecessary. The second issue is
-        more challenging, and because TAG currently models text as a single chain of Text nodes, it
-        does not yet distinguish situations where order is not informational. But because that is a
-        feature of what text is (that is, because the O of OHCO is as much an issue as the H), it is
-        a design requirement that we intend to address as development continues (see <xref
-          linkend="to_do"/>).</para>
+      <para>Concerning the first of these issues, matching up pseudo-start-tags with pseudo-end-tags
+        during processing does not arise in TAG not only because TAG does not at present have its
+        own syntactic expression (although we can represent some features of TAG by borrowing LMNL
+        sawtooth syntax or TexMECS), but also because the fact that TAG permits overlap makes such
+        workarounds unnecessary. The second issue is more challenging, and because TAG currently
+        models text as a single chain of Text nodes, it does not yet distinguish situations where
+        order is not informational. But because that is a feature of what text is (that is, because
+        the O of OHCO is as much an issue as the H), it is a design requirement that we intend to
+        address as development continues (see <xref linkend="to_do"/>).</para>
     </section>
   </section>
   <section>
