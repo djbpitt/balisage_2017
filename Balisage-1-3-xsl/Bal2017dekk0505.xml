@@ -1148,28 +1148,69 @@
       <para>Footnotes can be understood as annotations on text, but in XML they are typically
         represented by elements at the location where the note reference should occur in a reading
         text, as with the <code>&lt;footnote></code> element in DocBook or the
-          <code>&lt;note></code> element in TEI. The anchoring of footnotes at a point in the text
-        stream, instead of as annotations on an string of text with a beginning and end, is
-        problematic because it does not mark explicitly the scope of the note, such as whether a
-        footnote reference at the end of a paragraph refers to the preceding sentence or two
-        sentences or more, or to the entire paragraph. The TEI <code>&lt;note></code> element avoids
-        this limitation because it can point to an arbitrary target with XPointer, but this is an
-        indirect way of specifying what might have been represented more immediately as an attribute
-        if XML attributes were able to model rich content, and to annotate something other than an
-        element with a generic identifier that specifies its type.</para>
+          <code>&lt;note></code> element in TEI. Anchoring a footnote at a point in the text stream,
+        instead of as an annotation on a string of (possibly tagged) text with a beginning and an
+        end, is problematic because it does not mark explicitly the scope of the note, such as
+        whether a footnote reference at the end of a paragraph refers to the preceding sentence or
+        two sentences or more, or to the entire paragraph. The TEI <code>&lt;note></code> element
+        avoids this limitation because it can point to an arbitrary target with XPointer, but this
+        stand-off strategy is an indirect way of specifying what might have been represented more
+        immediately as an attribute if XML attributes were able 1) to model rich content, and 2) to
+        annotate something other than an element that bears a generic identifier that specifies its type.<footnote>
+          <para>Concerning this last point, when a footnote applies to a paragraph, the paragraph is
+            already a structural unit independently of the footnote reference. But when a footnote
+            applies to the last two sentences of a longer paragraph, the two sentences become a unit
+            only because they are the target of the footnote. That does make them a structural
+            component, but assigning a generic identifier like <code>&lt;footnote_target&gt;</code>
+            to them is a concession to the XML prohibition against anonymous elements, that is, to
+            the fact that XML elements always require a generic identifier that provides explicit
+            datatyping. The generic identifier is redundant because a <code>@footnote</code>
+            attribute on the element conveys by itself that its target is the parent element.</para>
+        </footnote></para>
       <para>TAG avoids the XML prohibition against markup in attribute values because in TAG the
         text of an annotation can be a target of markup, just like the main text, and the annotation
         itself can even be annotated. It avoids the scope of reference problem because the
         annotation can point to a Markup node with a name if an appropriate one exists (such as
         paragraph in a document that marks up paragraphs), but because TAG permits anonymous Markup
-        nodes, it is also possible to annotate arbitrary text by pointing to it with a
+        nodes (that is, because the <code>name</code> property of Markup-to-Text hyperedges is
+        optional), it is also possible to annotate arbitrary text by pointing to it with a
         Markup-to-Text hyperedge from an anonymous Markup node. This means that footnote-like
         relationships can be modeled in TAG as what they are: rich-text annotations on text
         regardless of whether the target of the annotation corresponds to a Content Object with an
-        identifiable type. TAG is similar to LMNL in this respect, except that text being footnoted
-        that is discontinuous is no different from continuous text in TAG; it is a set of Text nodes
-        that constitute the tail of a Markup-to-Text hyperedge.</para>
-      <para><emphasis role="ital">TODO: Add illustration of footnote Annotation</emphasis></para>
+        identifiable type. TAG is similar to LMNL in this respect, except that in Tag text being
+        footnoted that is discontinuous is no different from continuous text; it is a set of Text
+        nodes that constitute the tail of a Markup-to-Text hyperedge.</para>
+      <para>In the simplified example below, we add a footnote to the second and third lines of a
+        poem by using an Annotation note (orange) to point to a Markup node (violet) that is the
+        head of an anonymous Markup-to-Text hyperedge, and the text of the annotation also has
+        markup (a sky blue Markup node with a <code>name</code> property of <quote>emphasis</quote>
+        points to a single Text node). Neither of these features is available with attribute markup
+        in XML because elements must have generic identifiers (= cannot be anonymous) and attributes
+        cannot contain markup. And if the footnote target happens to be something that would create
+        overlap in XML (e.g., if it runs from the middle of one line to the middle of another and
+        the lines have been tagged explicitly), XML is further encumbered by the prohibition against
+        overlap.</para>
+      <figure xml:id="note">
+        <title>A poem with an annotation (footnote) on lines 2 and 3</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata format="png" fileref="note.png"/>
+          </imageobject>
+        </mediaobject>
+        <caption>
+          <para>The violet ellipse is an anonymous Markup node that serves as the head of a
+            Markup-to-Text hyperedge and points to the Text nodes for lines 2 and 3 of the poem. The
+            orange ellipse is an annotation on the anonymous Markup node. Annotations have their own
+            textual content, which is represented by a chain of Text nodes that begins with the
+            Annotation node, much as the main text is represented by a chain of Text nodes that
+            begins with the Document node. The text of an annotation may be the target of markup,
+            and in this example a Markup-to-Text hyperedge with a <code>name</code> property of
+              <quote>emphasis</quote> points to a single Text node.</para>
+        </caption>
+      </figure>
+      <para>Insofar as a footnote can be considered metadata about text, the structure illustrated
+        above does not require us to assign a type to the target of the annotation as a side effect
+        of referring to it, and it allows us to add markup to the footnote text itself. </para>
     </section>
     <section>
       <title>Data model versus syntax</title>
