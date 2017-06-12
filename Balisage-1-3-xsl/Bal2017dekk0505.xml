@@ -653,7 +653,6 @@
                 hyperedge), or a single Markup or Annotation node (Annotation-to-Markup and
                 Annotation-to-Annotation hyperedge)</para>
             </listitem>
-          </itemizedlist><itemizedlist>
             <listitem>
               <para>the head of a regular edge is anything other than a Document node, Annotation
                 node, or Text node</para>
