@@ -72,12 +72,16 @@
         >http://www.obdurodon.org</link>
     </author>
     <keywordset role="author">
-      <keyword>graph database</keyword>
-      <keyword>text as graph</keyword>
-      <keyword>TAG</keyword>
-      <keyword>simultaneity</keyword>
-      <keyword>overlap</keyword>
+      <keyword>containment</keyword>
+      <keyword>data model</keyword>
       <keyword>discontinuity</keyword>
+      <keyword>graph database</keyword>
+      <keyword>hierarchy</keyword>
+      <keyword>hypergraph</keyword>
+      <keyword>overlap</keyword>
+      <keyword>simultaneity</keyword>
+      <keyword>TAG</keyword>
+      <keyword>text as graph</keyword>
       <keyword>mixed content</keyword>
       <keyword>white space</keyword>
     </keywordset>
