@@ -11,8 +11,8 @@
   <info>
     <abstract>
       <para>The XML tree paradigm has several well-known limitations for document modeling and
-        processing. Some of these have received a lot of attention (especially overlap), some have
-        received less (e.g., discontinuity, simultaneity, transposition, white space as
+        processing. Some of these have received a lot of attention (especially overlap), and some
+        have received less (e.g., discontinuity, simultaneity, transposition, white space as
         crypto-overlap). Many of these have work-arounds, also well known, but—as is implicit in the
         term “work-around”—these work-arounds have disadvantages. Because they get the job done,
         however, and because XML has a large user community with diverse levels of technological
