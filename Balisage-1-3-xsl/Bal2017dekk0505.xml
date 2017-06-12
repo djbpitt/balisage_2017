@@ -1622,12 +1622,12 @@ And mock you with me after I am gone.</programlisting>
             as plain text on export and the parsing of such serializations on import. TAG does not
             currently have its own syntax. Our Alexandria implementation can read and write LMNL
             syntax, and it is intended to be able to read and write XML and TexMECS.<footnote>
-              <para>This list item refers to syntactic representations that were developed to
-                represent data models other than TAG: XML syntax and the XML data model, LMNL
-                sawtooth syntax and the LMNL data model, and TexMECS and GODDAG data model. When we
-                speak about parsing XML or LMNL or TexMECS <emphasis role="ital">syntax</emphasis>
-                into Alexandria, we mean that it is parsed into the TAG data model, and not into XML
-                or LMNL or GODDAG data models.</para>
+              <para>This list item refers to syntactic representations that were developed for data
+                models other than TAG: XML syntax and the XML data model, LMNL sawtooth syntax and
+                the LMNL data model, and TexMECS and GODDAG data model. When we speak about parsing
+                XML or LMNL or TexMECS <emphasis role="ital">syntax</emphasis> into Alexandria, we
+                mean that it is parsed into the TAG data model, and not into XML or LMNL or GODDAG
+                data models.</para>
               <para>XML angle-bracketed markup, LMNL sawtooth markup, and TexMECS all are capable of
                 representing some but not all features of TAG. For example, LMNL supports
                 annotations on annotations, while TexMECS doesn’t. More subtly, because annotations
