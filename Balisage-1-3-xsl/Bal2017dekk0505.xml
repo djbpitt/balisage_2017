@@ -1170,8 +1170,9 @@
             component, but assigning a generic identifier like <code>&lt;footnote_target&gt;</code>
             to them is a concession to the XML prohibition against anonymous elements, that is, to
             the fact that XML elements always require a generic identifier that provides explicit
-            datatyping. The generic identifier is redundant because a <code>@footnote</code>
-            attribute on the element conveys by itself that its target is the parent element.</para>
+            datatyping. The generic identifier is redundant because it repeats, in a different way,
+            information that is already present by virtue of pointing at or referring to the
+            sentences from a footnote.</para>
         </footnote></para>
       <para>TAG avoids the XML prohibition against markup in attribute values because in TAG the
         Text nodes of an annotation can be a target of markup, just like those of the main text, and
