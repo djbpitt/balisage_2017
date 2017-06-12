@@ -1411,11 +1411,18 @@ Lest the wise world should look into your moan,
 And mock you with me after I am gone.</programlisting>
   </appendix>
   <appendix xml:id="to_do" xreflabel="Appendix B">
-    <title>Features of text not represented in TAG or in Alexandria</title>
+    <title>Features of text not currently represented in TAG or in Alexandria</title>
     <para>The following are not currently part of the TAG model, but they are recognized as
       necessary components of a textual data model, and under development.</para>
     <section>
       <title>Order</title>
+      <para>TAG, like XML, is currently fully ordered, but some textual meaning is either unordered
+        (simultaneity) or multiordered (transposition). The fully ordered set of Text nodes in the
+        current TAG model and its implementation in Alexandria is easily traversed, but simultaneity
+        and transposition present challenges to traversal that we are still evaluating. TAG intends
+        to support the representation of both simultaneity and transposition in the model, in
+        distinction from XML, where the model is an ordered tree and deviations from a single order
+        must be handled at the application layer.</para>
       <section>
         <title>Simultaneity</title>
         <para>All Text nodes in TAG are ordered, but modeling text as a partially ordered set,
@@ -1425,36 +1432,81 @@ And mock you with me after I am gone.</programlisting>
           correction. In XML, artifactual order of this sort cannot be excluded from the model, and
           must therefore be ignored at the application level, and TAG, as described above, currently
           has the same limitation. Ideally, sets of Text nodes that are not mutually ordered
-          logically would not have order in the model.</para>
-        <para>Not only are the children of <code>&lt;choice&gt;</code> ordered artificially, but the
-            <code>&lt;choice&gt;</code> element itself is an artifactual Content Object, as it
-          represents as an element in the hierarchy a property that is fundamentally an issue of
-          traversal. The same is true of the TEI <code>&lt;app></code> element in the parallel
-          segmentation representation of textual variation. Both the artifactual order and the
-          artifactual wrapper must be interpreted at the application layer, and the information they
-          add is not about the document content as much as it is about the markup, viz., that
-          although XML is an ordered tree, the order of their children is not informational. As a
-          pointer to an alternative model, the Variant Graph used to express textual variation in
-          the open-source CollateX collation tool [<xref linkend="collatex"/>] represents
-          alternative readings without these sorts of wrappers, and could be used to model
+          logically would not be represented as ordered in the model.</para>
+        <para>Not only does XML order the children of <code>&lt;choice&gt;</code> even though they
+          have no logical order,<footnote>
+            <para>As was noted above, this is problematic because it means that two TEI documents
+              that differ only in the order of the children of their <code>&lt;choice&gt;</code>
+              elements are not deep-equal. This means that the XML data model imposes a property
+              that not only is not present in the meaning of the document, but also leads to an
+              erroneous representation of that meaning that can be corrected only through special
+              handling at the application layer.</para>
+          </footnote> but the <code>&lt;choice&gt;</code> element itself is an artifactual Content
+          Object, as it represents as an element in the hierarchy a property that is fundamentally
+          an issue of traversal. The same is true of the TEI <code>&lt;app></code> element in the
+          parallel segmentation representation of textual variation. Both the artifactual order and
+          the artifactual wrapper must be interpreted at the application layer, and the information
+          they add is not about the document content as much as it is about the markup, viz., that
+          although XML is an ordered tree, the order of the children of these particular elements is
+          not informational.</para>
+        <para>One possible way to an alternative model is suggested by the Variant Graph that is
+          used to represent textual variation in the open-source CollateX collation tool [<xref
+            linkend="collatex"/>]. The variant graph represents alternative readings (from different
+          manuscript witnesses) without wrapper constructions, and could be used to model
           simultaneous alternatives in TAG without either artifactual order or artifactual wrappers.
-          For example, an abbreviation and its expansion might be represented as:</para>
-        <para><emphasis role="ital">TODO: Add illustration</emphasis></para>
-        <para>Because currently Text nodes in TAG are fully ordered, it is not possible to model
-          simultaneity through multiple ordering edges between Text nodes.</para>
+          For example, an abbreviation and its expansion might be represented through a directed
+          acyclic multigraph as:</para>
+        <figure xml:id="flotus">
+          <title>Abbreviation and expansion</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata format="png" fileref="flotus.png"/>
+            </imageobject>
+          </mediaobject>
+          <caption>
+            <para>From <link
+                xlink:href="https://www.nytimes.com/interactive/2016/11/02/fashion/how-to-dress-like-michelle-obama.html"
+                >What would Michelle do?</link>, <emphasis role="ital">New York Times</emphasis>,
+              2016-11-02. There is no artifactual wrapper element, like TEI
+                <code>&lt;choice&gt;</code>.</para>
+          </caption>
+        </figure>
+        <para>Because currently Text nodes in TAG are fully ordered, it is not now possible to model
+          simultaneity through multiple, differently labeled ordering edges between Text nodes. We
+          are exploring strategies for remedying this limitation.</para>
       </section>
       <section>
         <title>Transposition</title>
         <para>Representing alternative orders of the same content, as may be needed in critical
           editions in which the textual witnesses may contain some of the same words, but with
-          reordering, poses a challenge for data models based on a single linear textual order.
-          Insofar as a critical text may be modeled as a single document, and two witnesses may
-          differ through transposition, the representation of transposition is a requirement for a
-          satisfactory data model. The representation of transposition is also part of the Variant
-          Graph structure used to model textual variation in the open-source CollateX collation tool
-            [<xref linkend="collatex"/>], and suggests a way to incorporate transposition into TAG,
-          but because currently Text nodes in TAG are fully ordered, it is not possible to model
-          transpositions in TAG as alternative orders.</para>
+          reordering, poses a challenge for data models based on a single linear textual order,
+          including, at the moment, TAG. Insofar as a critical text may be instantiated as a single
+          document, and two witnesses may differ through transposition, the representation of
+          transposition is a requirement for a satisfactory text model. The representation of
+          transposition is also part of the Variant Graph structure used to model textual variation
+          in the open-source CollateX collation tool [<xref linkend="collatex"/>], and suggests a
+          way to incorporate transposition into TAG, but because currently Text nodes in TAG are
+          fully ordered, it is not now possible to model transpositions in TAG as alternative
+          orders. In the following hypothetical transposition scenario, each set of labeled edges
+          forms a single complete order with no cycles:</para>
+        <figure xml:id="stormy">
+          <title>Transposition</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata format="png" fileref="stormy.png"/>
+            </imageobject>
+          </mediaobject>
+          <caption>
+            <para>Witness A (black and blue edges) reads <quote>It was a dark and stormy
+                night</quote> and witness B (black and red edges) reads <quote>It was a stormy and
+                dark night</quote>. The edges for witness A (labeled either only <quote>A</quote> or
+                <quote>A,B</quote>) describe an acyclic directed graph, as do those for witness B
+              (labeled only <quote>B</quote> or <quote>A,B</quote>).</para>
+          </caption>
+        </figure>
+        <para>The multigraph above uses labeled edges to avoid cycles, and suggests a possibility
+          for supporting transpositions, which is a necessary part of modeling multi-witness
+          critical texts.</para>
       </section>
     </section>
     <section>
@@ -1480,16 +1532,8 @@ And mock you with me after I am gone.</programlisting>
   </appendix>
   <appendix xml:id="snark" xreflabel="Appendix C">
     <title>Hypergraph visualization</title>
-    <para>The image below visualize hypergraph properties of part of Lewis Carroll’s <quote>Hunting
-        of the Snark</quote>. The Document node, represented by a black circle, is at the top. Text
-      nodes are hexagons outlined in white and filled in black, and they are connected by black
-      lines that begin at the Document node. Markup nodes of type <quote>Line</quote> are
-      represented by horizontal white lines; a new verse line begins after an old one ends. Markup
-      nodes of type <quote>Voice</quote>, <quote>Stanza</quote>, and <quote>Phrase</quote> are
-      represented by irregular backgrounds of chartreuse yellow, magenta, and purple, respectively.
-      A Markup node of type <quote>Page</quote>, in orange, contains all of the Text nodes. The
-      image models containment with no statement of dominance, although dominance could be asserted
-      by adding Markup-to-Markup edges.</para>
+    <para>The image below visualizes hypergraph properties of part of Lewis Carroll’s <quote>Hunting
+        of the Snark</quote>.</para>
     <figure xml:id="snark_hypergraph">
       <title>Lewis Carroll, <quote>The hunting of the Snark</quote> (excerpt)</title>
       <mediaobject>
@@ -1502,6 +1546,15 @@ And mock you with me after I am gone.</programlisting>
           hierarchy (dominance).</para>
       </caption>
     </figure>
+    <para> To aid in legibility, the Document node, which is obligatory in TAG, is not shown. Text
+      nodes are black hexagons with white text, and they are connected in a single chain by black
+      bars. Markup nodes of type <quote>Line</quote>, <quote>Voice</quote>, <quote>Stanza</quote>,
+        <quote>Phrase</quote>, <quote>Page</quote>, and <quote>Excerpt</quote> are represented by
+      irregular backgrounds of white, chartreuse yellow, magenta, blue, orange, and green,
+      respectively. Annotation nodes on <quote>Excerpt</quote>, <quote>Page</quote>, and
+        <quote>Voice</quote> Markup nodes have names and properties. The image models containment
+      with no statement of dominance, although dominance could be asserted by adding
+      Markup-to-Markup hyperedges.</para>
   </appendix>
   <appendix xml:id="requirements" xreflabel="Appendix D">
     <title>Requirements</title>

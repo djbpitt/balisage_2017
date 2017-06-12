@@ -1,0 +1,9 @@
+digraph G {
+	rankdir=LR 
+	document[style=filled, fillcolor=beige]
+	{node [style=filled, fillcolor=pink]; What; would; FLOTUS; exp[label="First Lady of The United States"]; wear[label="wear?"] }
+	What -> would 
+	would -> FLOTUS -> wear[label=abbrev]
+	would -> exp -> wear[label=expansion]
+	document -> What [constraint=false]
+}

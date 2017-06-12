@@ -1,0 +1,9 @@
+digraph {
+	rankdir=LR
+	document[style=filled, fillcolor=beige]
+	{ node [style=filled, fillcolor=pink] It; was; a; dark; and; stormy; night[label="night."]; }
+	It -> was -> a [label="A,B"]
+	a -> dark -> and -> stormy -> night [label=A, color=blue]
+	a -> stormy -> and -> dark -> night [label=B, color=red]
+	document -> It [constraint=false, minlen=2, label="A,B "]
+}
