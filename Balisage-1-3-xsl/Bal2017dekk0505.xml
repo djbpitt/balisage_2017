@@ -512,8 +512,8 @@
                   Markup nodes point to Text nodes, and not to the <quote>line</quote> Markup nodes
                   (although Markup-to-Markup hyperedges can be added if that is needed). This is an
                   important difference from the XML tree structure, where Text nodes would be the
-                  children of <code>&lt;line></code> elements, but not of the
-                    <code>&lt;quatrain></code> and <code>&lt;couplet></code> elements.</para>
+                  children of <code>&lt;line&gt;</code> elements, but not of the
+                    <code>&lt;quatrain&gt;</code> and <code>&lt;couplet&gt;</code> elements.</para>
               </listitem>
             </itemizedlist></para>
         </section>
@@ -793,7 +793,7 @@
         two elements (and relying on semantics to stitch together the pieces in the application
         layer), yet our human intuition is that there is a single quotation, and that the model,
         therefore, should represent it as a single object.<footnote>
-          <para>It is possible to interpret the content of the <code>&lt;quotation></code> element
+          <para>It is possible to interpret the content of the <code>&lt;quotation&gt;</code> element
             as three child nodes: a Text node, an intervening element that holds the narrative
             interjection, and then another Text node, and in that sense the quotation is one object,
             although that object incorporates something that is not part of what a human understands
@@ -876,10 +876,10 @@
         before and ends after in the serialization) its descendants and <emphasis role="bold"
           >dominates</emphasis> them (is connected to them by a path that travels only downward in
         the tree). In the XML view below of the Shakespearean sonnet the we used as a TAG example
-        above, the <code>&lt;poem></code> element both contains and dominates three
-          <code>&lt;quatrain></code> elements and one <code>&lt;couplet></code> element, and the
-          <code>&lt;quatrain></code> and <code>&lt;couplet></code> elements both contain and
-        dominate <code>&lt;line></code> elements:</para>
+        above, the <code>&lt;poem&gt;</code> element both contains and dominates three
+          <code>&lt;quatrain&gt;</code> elements and one <code>&lt;couplet&gt;</code> element, and the
+          <code>&lt;quatrain&gt;</code> and <code>&lt;couplet&gt;</code> elements both contain and
+        dominate <code>&lt;line&gt;</code> elements:</para>
       <programlisting>&lt;poem&gt;
     &lt;quatrain&gt;
         &lt;line&gt;No longer mourn for me when I am dead&lt;/line&gt;
@@ -939,7 +939,7 @@
         <code>name</code> property values to specify dominance.<footnote>
           <para>Because, as the Tennison quote above illustrates, dominance presupposes containment,
             it is not strictly necessary to create a Markup-to-Text hyperedge for the
-              <code>&lt;poem></code> element if it is the head of a Markup-to-Markup hyperedge.
+              <code>&lt;poem&gt;</code> element if it is the head of a Markup-to-Markup hyperedge.
           </para>
         </footnote> In other words, Markup-to-Text nodes model containment, rather than dominance
         (indirectly, through subset properties of the Text nodes to which they point), and where it
@@ -1027,10 +1027,10 @@
         which means that it cannot be used on tagged text without losing the markup in the process.
         Even tokenization that would not create overlap-based well-formedness violations, such as
         splitting and tagging the words of a line of poetry in which the stressed vowels are tagged
-        as <code>&lt;stress></code> (see the illustration below), requires intermediary temporary
+        as <code>&lt;stress&gt;</code> (see the illustration below), requires intermediary temporary
         manipulations, such as converting the markup to text, tokenizing with
           <code>tokenize()</code>, and then converting the temporary text back into markup, or
-        adding additional markup, tokenizing with <code>&lt;xsl:for-each-group></code>, and then
+        adding additional markup, tokenizing with <code>&lt;xsl:for-each-group&gt;</code>, and then
         removing the temporary markup.</para>
       <para>The reason tokenizing tagged text is awkward in XML even where overlap is not a risk has
         one explanation in terms of the syntax and another in terms of the data model. In terms of
@@ -1076,8 +1076,8 @@
   &lt;word&gt;m&lt;stress&gt;ou&lt;/stress&gt;rn&lt;/word&gt;
 &lt;/line&gt;</programlisting>
       <para>Yet if we try to use <code>tokenize()</code> in a transformation to add the
-          <code>&lt;word></code> markup to a line that already contains the <code>&lt;stress></code>
-        markup, the <code>&lt;stress></code> markup will be lost during atomization.</para>
+          <code>&lt;word&gt;</code> markup to a line that already contains the <code>&lt;stress&gt;</code>
+        markup, the <code>&lt;stress&gt;</code> markup will be lost during atomization.</para>
       <para>This situation is not a challenge for TAG. In the example below, we have added
         Markup-to-Text nodes to tag the words, which can be determined by tokenizing the text on
         white space. Tokenization is possible because the Text nodes are not interrupted by the
@@ -1156,13 +1156,13 @@
       <title>Scope of reference</title>
       <para>Footnotes can be understood as annotations on text, but in XML they are typically
         represented by elements at the location where the note reference should occur in a reading
-        text, as with the <code>&lt;footnote></code> element in DocBook or the
-          <code>&lt;note></code> element in TEI. Anchoring a footnote at a point in the text stream,
+        text, as with the <code>&lt;footnote&gt;</code> element in DocBook or the
+          <code>&lt;note&gt;</code> element in TEI. Anchoring a footnote at a point in the text stream,
         instead of as an annotation on a string of (possibly tagged) text with a beginning and an
         end, is problematic because it does not mark explicitly the scope of the note, such as
         whether a footnote reference at the end of a paragraph points to the preceding sentence or
         the preceding two sentences or more, or to the entire paragraph. The TEI
-          <code>&lt;note></code> element avoids this limitation because it can point to an arbitrary
+          <code>&lt;note&gt;</code> element avoids this limitation because it can point to an arbitrary
         target with XPointer, but this stand-off strategy is an indirect way of specifying what
         might have been represented more immediately as an attribute if XML attributes were able 1)
         to model rich content, and 2) to annotate something without being forced to give it a
@@ -1312,7 +1312,7 @@
                 <code>&lt;choice&gt;</code> elements unless the processor is given access to TEI
               markup semantics. Imposing an arbitrary order as a schema enhancement (for example,
               requiring that an abbreviation always precede its expansion inside a TEI
-                <code>&lt;choice></code> element) will avoid the problem of distinguishing when two
+                <code>&lt;choice&gt;</code> element) will avoid the problem of distinguishing when two
               documents should be considered the same or different, but at the cost of making order
               informational in some situations and arbitrary in others, that is, of imposing order
               on something that is not inherently ordered. A more robust and efficient model would
@@ -1447,7 +1447,7 @@ And mock you with me after I am gone.</programlisting>
               handling at the application layer.</para>
           </footnote> but the <code>&lt;choice&gt;</code> element itself is an artifactual Content
           Object, as it represents as an element in the hierarchy a property that is fundamentally
-          an issue of traversal. The same is true of the TEI <code>&lt;app></code> element in the
+          an issue of traversal. The same is true of the TEI <code>&lt;app&gt;</code> element in the
           parallel segmentation representation of textual variation. Both the artifactual order and
           the artifactual wrapper must be interpreted at the application layer, and the information
           they add is not about the document content as much as it is about the markup, viz., that
