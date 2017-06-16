@@ -19,5 +19,5 @@ The XML tree paradigm has several well-known limitations for document modeling a
 * Program: <https://www.balisage.net/2017/Program.html>
 * General author instructions: <http://www.balisage.net/authorinstructions.html>
 * Schema, documentation, XSLT for transformation: <http://www.balisage.net/tagset.html>
-* Tag set documentation: <http://www.balisage.net/DocumentModels/BalisageTL/index.html> (also in the repo in the [BalisageTL](BalisageTL) subdirectory
+* Tag set documentation: <http://www.balisage.net/DocumentModels/BalisageTL/index.html> (also in the repo in the **\<reponame\>/BalisageTL** subdirectory
 
