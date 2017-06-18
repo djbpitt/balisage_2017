@@ -168,7 +168,11 @@
       well-known multiple-hierarchy challenge.</para>
   </section>
   <section>
-    <title>The TAG/hypergraph model for text</title>
+    <title>The TAG/hypergraph model for text<footnote>
+        <para>We have created <link>https://github.com/HuygensING/TAG</link> as a portal where we
+          intend to maintain links to all of our work on TAG as a model and on the Alexandria
+          implementation that we discuss below.</para>
+      </footnote></title>
     <section>
       <title>Overview</title>
       <para>The Text As Graph (TAG) data model consists of a directed property hypergraph for
@@ -1564,6 +1568,25 @@ And mock you with me after I am gone.</programlisting>
           that share a label, and suggests a possibility for supporting transpositions, which is a
           necessary part of modeling multi-witness critical texts.</para>
       </section>
+      <section>
+        <title>Intratextual variation</title>
+        <para>Intratextual variation, such as additions, deletions, and rearrangements in a genetic
+          textual edition, pose a special challenge for at least three reasons. First, because
+          intratextual variation is local (that is, an addition in one place is likely to be
+          independent of an addition in another), it cannot be addressed easily through the creation
+          of pseudo-witnesses, such as an Additions witness and a Deletions witness, or a separate
+          witness for each hand identifiable in the manuscript—especially because the same person
+          may created additions and deletions and then layered additions and deletions onto those
+          additions and deletions. Second, the intratextual variation may affect the markup, and not
+          only the Text nodes; for example, one paragraph may be divided into two, or a section may
+          be demoted to a subsection, without any change to the avlues of the Text nodes themselves.
+          Third, a critical edition may include multiple witnesses, each of which may have
+          introtextual variation, which is challenging not only from a modeling perspective, but
+          also from a philological one, since it problematizes determining what a particular witness
+          says for the purpose of comparison with other witnesses. For an experimental investigation
+          of these issues in an XML context see <emphasis role="bold">add reference to Elli’s and
+            Ronald’s abstract and add that to the bibliography.</emphasis></para>
+      </section>
     </section>
     <section>
       <title>Constraint language</title>
@@ -1572,8 +1595,49 @@ And mock you with me after I am gone.</programlisting>
     </section>
     <section>
       <title>Query language</title>
-      <para>TAG does not yet have a query language that expresses queries in terms of operations on
-        sets of nodes and edges.</para>
+      <para>TAG, and the Alexandria implementation, do not yet have a query language that expresses
+        queries in terms of operations on sets of nodes and edges. Here we provide some concise
+        examples of how such queries might operate in the terms of the model, which at that level
+        involves a traversal of the Text nodes, since those are the only ordered part of the model.
+        This naïve approach would not be performative and would not be implemented directly; a TAG
+        application, like any database of any type, would employ indices, alternative data
+        structures, caching, and other features that are not part of the model, but that can be used
+        to maximalize performance.<footnote>
+          <para>Indices achieve their optimization during querying partially at the expense of
+            increasing the cost of updating, since parts of the index must be rebuilt when the
+            content is edited. However, not only can index updates be deferred, but, more
+            importantly, modifications to a TAG document are local because, among other things, they
+            do not depend on character offsets, and therefore are not propagated across the entire
+            document. This obviates much of the expense of updating in a character-offset-based
+            standoff model.</para>
+        </footnote></para>
+      <section>
+        <title>Sample query: Find all lines in the second quatrain of a sonnet</title>
+        <para>Quatrains are stanzas that consist of four poetic lines, and an Elizabethan sonnet
+          consists of three quatrains followed by a couplet, for a total of fourteen lines. Assume a
+          document where lines and quatrains are Markup nodes that point to sets of Text nodes.
+          Start at the Document node and navigate to the first Text node, which is part of the first
+          quatrain. Follow that Text node up to its associated Markup node that has a
+            <code>name</code> property value of <quote>quatrain</quote>; it points to the set of all
+          of the Text nodes in the quatrain. Follow the chain of Text nodes until the first one not
+          in that set, which will be at the beginning of the second quatrain. Follow its hyperedge
+          up to the associated <quote>quatrain</quote> Markup node, which points to the set of all
+          of the Text nodes in its tail, that is, all of the text of the second quatrain. If you
+          need the line markup, and not just the text of the lines, return the Text nodes with their
+          associated Markup-to-Text hyperedges that originate in Markup nodes with a
+            <code>name</code> property value of <quote>line</quote>, that is, with their line
+          markup.</para>
+      </section>
+      <section>
+        <title>Sample query: Find enjambment</title>
+        <para>Enjambment is a poetic phenomenon where a sentence (or sometimes a phrase) crosses a
+          line boundary. Assume a document where lines and sentences are Markup nodes that point to
+          sets of Text nodes. Traverse the Text nodes starting at the Document node. Any adjacent
+          Text nodes in the tail of the same Markup-to-Text hyperedge with a Markup node
+            <code>name</code> property vaue of <quote>sentence</quote>, but in the tails of
+          different Markup-to-Text hyperedges with a Markup node <code>name</code> property value of
+            <quote>line</quote>, represents an enjambment.</para>
+      </section>
     </section>
     <section>
       <title>Markup language</title>
