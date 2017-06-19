@@ -1,0 +1,1 @@
+pandoc -t slidy -s tag.md -o tag_slidy.html
