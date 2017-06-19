@@ -1818,6 +1818,14 @@ And mock you with me after I am gone.</programlisting>
       Claus and C. Michael Sperberg-McQueen. <quote>TexMECS. An experimental markup meta-language
         for complex documents.</quote> Revision of 5 October 2003.
         <link>http://mlcd.blackmesatech.com/mlcd/2003/Papers/texmecs.html</link></bibliomixed>
+    <bibliomixed xml:id="huitfeldt_2009" xreflabel="Huitfeldt, Sperberg-McQueen, and Marcoux 2009"
+      >Huitfeldt, Claus, C. M. Sperberg-McQueen and Yves Marcoux. “Markup Meaning and Mereology.”
+      Presented at Balisage: The Markup Conference 2009, Montréal, Canada, August 11–14, 2009. In
+        <emphasis role="italic">Proceedings of Balisage: The Markup Conference 2009</emphasis>.
+      Balisage Series on Markup Technologies, vol. 3 (2009). DOI: 10.4242/BalisageVol3.Huitfeldt01.
+        <link
+        xlink:href="http://www.balisage.net/Proceedings/vol3/html/Huitfeldt01/BalisageVol3-Huitfeldt01.html"
+      /></bibliomixed>
     <bibliomixed xml:id="iacob_2005" xreflabel="Iacob and Dekhtyar 2005">Iacob, Ionut Emil and Alex
       Dekhtyar. <quote>Concurrent markup hierarchies: a computer science approach.</quote>
       <link>http://tomcat-stable.hcmc.uvic.ca:8080/ach/site/xhtml.xq?id=174</link>
@@ -1889,6 +1897,11 @@ And mock you with me after I am gone.</programlisting>
       <emphasis role="ital">Research in humanities computing</emphasis>, ed. Nancy Ide and Susan
       Hockey. Oxford: Oxford University Press. 1996.
         <link>http://cds.library.brown.edu/resources/stg/monographs/ohco.html#derose</link></bibliomixed>
+    <bibliomixed xml:id="sperberg_2008" xreflabel="Sperberg-McQueen and Huitfeldt 2008"
+      >Sperberg-McQueen, C. M., and Claus Huitfeldt. “Containment and dominance in Goddag
+      structures”. Talk at conference on "Processing Text-Technological Resources", Center for
+      interdisciplinary research, University of Bielefeld, March 2008. <link
+        xlink:href="http://cmsmcq.com/2008/bielefeld/slides.html#(1)"/></bibliomixed>
     <bibliomixed xml:id="sperberg-huitfeldt_2000" xreflabel="Sperberg-McQueen and Huitfeldt 2000"
       >Sperberg-McQueen, C. M. and Claus Huitfeldt. <quote>GODDAG: a data structure for overlapping
         hierarchies.</quote>
