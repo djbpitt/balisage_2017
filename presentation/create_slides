@@ -1,1 +1,1 @@
-pandoc -t slidy -s tag.md -o tag_slidy.html
+pandoc -t slidy -s -o tag_slidy.html -V slidy-url=./slidy tag.md

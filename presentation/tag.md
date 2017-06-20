@@ -4,30 +4,143 @@
 
 # Outline
 
-* What’s hard for XML
-* What TAG looks like
-* How TAG deals with 
+* What’s a model for
+* How TAG works
+* Five things that are hard for XML, but not for TAG
+* Three things that are hard for XML and (currently) for TAG
+* Conclusion 
 
-____
+# What’s a model for
 
-# What tasks are hard for XML
+* Real XML start and end tags are part of the model. No semantics required.
+* Parsing Trojan milestones requires application semantics.
+* “What text really is” belongs in the model, and not at the application layer.
 
-* Overlap
+# How TAG works
+
+## Terminology
+
+* **Markup:** comparable to XML elements
+* **Annotation:** comparable to XML attributes, except that 1) annotation text may have markup, and 2) annotations on annotations are permitted
+
+## Components
+
+TAG is a **hypergraph** model
+
+* **Nodes** (Document, Text, Markup, Annotation)
+* **Edges** (one-to-one; textual order)
+* **Hyperedges** (one-to-many, many-to-one; markup and annotation)
+
+Operations in TAG are operations on sets of nodes and edges
+
+# Five things that are hard for XML, but not for TAG
+
+* Multiple hierarchies (overlap)
 * Discontinuity
+* Artifactual hierarchy
+* White space as crypto-overlap
+* Scope of reference
 
 ____
 
-# What TAG looks like
+# Multiple hierarchies: overlap in XML
 
-* Nodes
-* Edges
-* Hyperedges
+Percy Bysshe Shelley, “Ozymandias”
 
+> Who said — **“Two vast and trunkless lets of stone  
+Stand in the desart....** Near them, on the sand
+
+```xml
+<line>
+	<phrase>Who said —</phrase>
+	<phrase>“Two vast and trunkless legs of stone**
+</line>
+<line>
+	Stand in the desart….</phrase>
+	<phrase>Near them,</phrase>
+	<phrase>on the sand</phrase>
+</line>
+```
 ____
 
-# How TAG deals with tasks
+# Multiple hierarchies (overlap) in TAG
+____
 
-Gracefully
+# Discontinuity in XML
+
+Lewis Carroll, *Alice in Wonderland*
+
+> Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, **“and what is the use of a book,”** thought Alice **“without pictures or conversation?”**
+ 
+```xml
+<p>Alice was beginning to get very tired of sitting by her sister 
+on the bank, and of having nothing to do: once or twice she had 
+peeped into the book her sister was reading, but it had no pictures 
+or conversations in it, <q>and what is the use of a book,</q> 
+thought Alice <q>without pictures or conversation?</q></p>
+``` 
+____
+
+# Discontinuity in TAG
+____
+
+# Artificial hierarchy in XML
+
+```xml
+<title><name>Romeo</name> and <name>Juliet</name></title>
+```
+
+![](../Balisage-1-3-xsl/romeo_xml.png)
+
+# Artificial hierarchy in TAG
+____
+
+# White space as crypo-overlap in XML
+
+Percy Bysshe Shelley, “Ozymandias”
+
+> Who said two vast and trunkless legs of stone
+ 
+```xml
+<line>
+	<foot>Who said</foot>
+	<foot>two vast</foot>
+	<foot>and trunk</foot><foot>less legs</foot>
+	<foot>of stone</foot>
+</line>
+```
+
+```xml
+<foot><word>and</word> <word>trunk</foot><foot>less</word> <word>legs</word></foot>
+```
+
+# White space as crypto-overlap in TAG
+____
+
+# Scope of reference in XML
+
+> Textual content in TAG is expressed by nodes with a **type** value of “text”, each of which represents a segment of textual content (Text nodes may also be empty). The order of the text is stored as directed regular (one-to-one) edges between pairs of Text nodes; this chain begins at the Document node, which points to the first Text node, and a single, unbroken chain connects all Text nodes in the document except those in annotations.<sup>11</sup>
+
+```xml
+<p>Textual content in TAG is expressed by nodes with a **type** 
+value of “text”, each of which represents a segment of textual 
+content (Text nodes may also be empty). The order of the text is 
+stored as directed regular (one-to-one) edges between pairs of Text 
+nodes; this chain begins at the Document node, which points to the 
+first Text node, and a single, unbroken chain connects all Text 
+nodes in the document except those in annotations.<fn><p>[Footnote
+content goes here.]</p></fn></p>
+``` 
+ 
+Is the footnote on the last sentence, the last two sentences, or the entire paragraph?
+
+# Scope of reference in TAG
+
+# Three things that are hard for XML and (currently) for TAG
+
+* Simultaneity
+* Transposition
+* Intratextual and intertextual variation
 
 ____
 
@@ -35,3 +148,4 @@ ____
 
 Thank you!
 
+TAG and Alexandria portal: <https://github.com/HuygensING/TAG>
