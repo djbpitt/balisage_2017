@@ -12,9 +12,17 @@
 
 # What’s a model for
 
-* Real XML start and end tags are part of the model. No semantics required.
+* Parsing real XML start and end tags is automatic because they’re part of the model. No semantics required.
 * Parsing Trojan milestones requires application semantics.
 * “What text really is” belongs in the model, and not at the application layer.
+
+# So what is text really?
+
+## What text isn’t
+
+* Not (always) ordered
+* Not (always) hierarchical (not just not always monohierarchical, but sometimes not hierarchical at all)
+* Not every XML element is a real Content Object
 
 # How TAG works
 
