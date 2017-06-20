@@ -63,7 +63,7 @@ Stand in the desart....** Near them, on the sand
 ```
 ____
 
-# Multiple hierarchies (overlap) in TAG
+# Multiple hierarchies: overlap in TAG
 ____
 
 # Discontinuity in XML
@@ -82,6 +82,9 @@ thought Alice <q>without pictures or conversation?</q></p>
 ____
 
 # Discontinuity in TAG
+
+<img src="../Balisage-1-3-xsl/discontinuity_hypergraph_transparent.png" width="98%"/>
+
 ____
 
 # Artificial hierarchy in XML
@@ -90,12 +93,17 @@ ____
 <title><name>Romeo</name> and <name>Juliet</name></title>
 ```
 
-![](../Balisage-1-3-xsl/romeo_xml.png)
+![](../Balisage-1-3-xsl/romeo_xml_transparent.png)
 
-# Artificial hierarchy in TAG
 ____
 
-# White space as crypo-overlap in XML
+# Artificial hierarchy in TAG
+
+![](../Balisage-1-3-xsl/romeo_hypergraph_transparent.png)
+
+____
+
+# White space as crypto-overlap in XML
 
 Percy Bysshe Shelley, “Ozymandias”
 
@@ -119,7 +127,7 @@ ____
 
 # Scope of reference in XML
 
-> Textual content in TAG is expressed by nodes with a **type** value of “text”, each of which represents a segment of textual content (Text nodes may also be empty). The order of the text is stored as directed regular (one-to-one) edges between pairs of Text nodes; this chain begins at the Document node, which points to the first Text node, and a single, unbroken chain connects all Text nodes in the document except those in annotations.<sup>11</sup>
+> Textual content in TAG is expressed by nodes with a **type** value of “text”, each of which represents a segment of textual content (Text nodes may also be empty). The order of the text is stored as directed regular (one-to-one) edges between pairs of Text nodes; this chain begins at the Document node, which points to the first Text node, and a single, unbroken chain connects all Text nodes in the document except those in annotations.<sup>23</sup>
 
 ```xml
 <p>Textual content in TAG is expressed by nodes with a **type** 
@@ -140,7 +148,20 @@ Is the footnote on the last sentence, the last two sentences, or the entire para
 
 * Simultaneity
 * Transposition
-* Intratextual and intertextual variation
+* Intratextual variation
+
+____
+
+# Simultaneity
+
+____
+
+# Transposition
+
+____
+
+
+# Intratextual variation
 
 ____
 
@@ -148,4 +169,6 @@ ____
 
 Thank you!
 
-TAG and Alexandria portal: <https://github.com/HuygensING/TAG>
+* TAG (Text As Graph) is the data model  
+* Alexandria is a text repository and graph database for text
+* TAG and Alexandria portal: <https://github.com/HuygensING/TAG>
