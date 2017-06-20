@@ -665,7 +665,7 @@
                 Annotation node </para>
             </listitem>
             <listitem>
-              <para>a Markup node is the head of more than one Markup-toText hyperedge or more than
+              <para>a Markup node is the head of more than one Markup-to-Text hyperedge or more than
                 one Markup-to-Markup hyperedge<footnote>
                   <para>A Markup node may be the head of both a single Markup-to-Text hyperedge and
                     a single Markup-to-Markup hyperedge. For example, in the Shakespeaerean sonnet
@@ -1576,12 +1576,12 @@ And mock you with me after I am gone.</programlisting>
           independent of an addition in another), it cannot be addressed easily through the creation
           of pseudo-witnesses, such as an Additions witness and a Deletions witness, or a separate
           witness for each hand identifiable in the manuscript—especially because the same person
-          may created additions and deletions and then layered additions and deletions onto those
+          may have created additions and deletions and then layered additions and deletions onto those
           additions and deletions. Second, the intratextual variation may affect the markup, and not
           only the Text nodes; for example, one paragraph may be divided into two, or a section may
-          be demoted to a subsection, without any change to the avlues of the Text nodes themselves.
+          be demoted to a subsection, without any change to the values of the Text nodes themselves.
           Third, a critical edition may include multiple witnesses, each of which may have
-          introtextual variation, which is challenging not only from a modeling perspective, but
+          intratextual variation, which is challenging not only from a modeling perspective, but
           also from a philological one, since it problematizes determining what a particular witness
           says for the purpose of comparison with other witnesses. For an experimental investigation
           of these issues in an XML context see <emphasis role="bold">add reference to Elli’s and
@@ -1634,7 +1634,7 @@ And mock you with me after I am gone.</programlisting>
           line boundary. Assume a document where lines and sentences are Markup nodes that point to
           sets of Text nodes. Traverse the Text nodes starting at the Document node. Any adjacent
           Text nodes in the tail of the same Markup-to-Text hyperedge with a Markup node
-            <code>name</code> property vaue of <quote>sentence</quote>, but in the tails of
+            <code>name</code> property value of <quote>sentence</quote>, but in the tails of
           different Markup-to-Text hyperedges with a Markup node <code>name</code> property value of
             <quote>line</quote>, represents an enjambment.</para>
       </section>
