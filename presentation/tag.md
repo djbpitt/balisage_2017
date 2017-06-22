@@ -190,7 +190,7 @@ ____
 
 * Simultaneity
 * Transposition
-* Intratextual variation
+* Intradocumentary variation
 
 ____
 
@@ -207,7 +207,7 @@ ____
 ____
 
 
-# Intratextual variation
+# Intradocumentary variation
 
 ____
 
