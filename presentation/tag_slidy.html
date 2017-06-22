@@ -72,9 +72,18 @@ Ronald Haentjens Dekker and David J. Birnbaum
 <div id="whats-a-model-for" class="slide section level1">
 <h1>What’s a model for</h1>
 <ul>
-<li>Real XML start and end tags are part of the model. No semantics required.</li>
+<li>Parsing real XML start and end tags is automatic because they’re part of the model. No semantics required.</li>
 <li>Parsing Trojan milestones requires application semantics.</li>
 <li>“What text really is” belongs in the model, and not at the application layer.</li>
+</ul>
+</div>
+<div id="so-what-is-text-really" class="slide section level1">
+<h1>So what is text really?</h1>
+<h2 id="what-text-isnt">What text isn’t</h2>
+<ul>
+<li>Not (always) ordered</li>
+<li>Not (always) hierarchical (not just not always monohierarchical, but sometimes not hierarchical at all)</li>
+<li>Not every XML element is a real Content Object</li>
 </ul>
 </div>
 <div id="how-tag-works" class="slide section level1">
@@ -92,6 +101,19 @@ Ronald Haentjens Dekker and David J. Birnbaum
 <li><strong>Hyperedges</strong> (one-to-many, many-to-one; markup and annotation)</li>
 </ul>
 <p>Operations in TAG are operations on sets of nodes and edges</p>
+</div>
+<div id="two-types-of-challenges-for-xml-one-shared-with-tag" class="slide section level1">
+<h1>Two types of challenges for XML (one shared with TAG)</h1>
+<h2 id="modeling-challenges">Modeling challenges</h2>
+<ul>
+<li>If it isn’t in the model and requires a workaround, workarounds vary, which risks inconsistency in a corpus</li>
+<li>E.g.: In an overlap situation, which hierarchy is represented by container tags and which by milestones?</li>
+</ul>
+<h2 id="lexical-challenges">Lexical challenges</h2>
+<ul>
+<li>The same structural markup unit may have different name properties in different documents</li>
+<li>Inherently a matter of lexical semantics, which affects TAG as much as XML</li>
+</ul>
 </div>
 <div id="five-things-that-are-hard-for-xml-but-not-for-tag" class="slide section level1">
 <h1>Five things that are hard for XML, but not for TAG</h1>
@@ -120,8 +142,13 @@ Stand in the desart....</strong> Near them, on the sand</p>
     <span class="kw">&lt;phrase&gt;</span>on the sand<span class="kw">&lt;/phrase&gt;</span>
 <span class="kw">&lt;/line&gt;</span></code></pre></div>
 </div>
+<div id="multiple-hierarchies-projecting-two-trees-over-the-same-text-nodes" class="slide section level1">
+<h1>Multiple hierarchies: projecting two trees over the same text nodes</h1>
+<p><img src="../Balisage-1-3-xsl/ozymandias_trees_transparent.png" width="99%"/></p>
+</div>
 <div id="multiple-hierarchies-overlap-in-tag" class="slide section level1">
 <h1>Multiple hierarchies: overlap in TAG</h1>
+<p><img src="../Balisage-1-3-xsl/ozymandias_hypergraph.png" width="99%"/></p>
 </div>
 <div id="discontinuity-in-xml" class="slide section level1">
 <h1>Discontinuity in XML</h1>
@@ -137,7 +164,7 @@ thought Alice <span class="kw">&lt;q&gt;</span>without pictures or conversation?
 </div>
 <div id="discontinuity-in-tag" class="slide section level1">
 <h1>Discontinuity in TAG</h1>
-<p><img src="../Balisage-1-3-xsl/discontinuity_hypergraph_transparent.png" width="98%"/></p>
+<p><img src="../Balisage-1-3-xsl/discontinuity_hypergraph_transparent.png" width="99%"/></p>
 </div>
 <div id="artificial-hierarchy-in-xml" class="slide section level1">
 <h1>Artificial hierarchy in XML</h1>
@@ -166,10 +193,12 @@ thought Alice <span class="kw">&lt;q&gt;</span>without pictures or conversation?
     <span class="kw">&lt;foot&gt;</span>and trunk<span class="kw">&lt;/foot&gt;&lt;foot&gt;</span>less legs<span class="kw">&lt;/foot&gt;</span>
     <span class="kw">&lt;foot&gt;</span>of stone<span class="kw">&lt;/foot&gt;</span>
 <span class="kw">&lt;/line&gt;</span></code></pre></div>
+<p>The following pseudo-XML is not well formed:</p>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;foot&gt;&lt;word&gt;</span>and<span class="kw">&lt;/word&gt;</span> <span class="kw">&lt;word&gt;</span>trunk<span class="kw">&lt;/foot&gt;&lt;foot&gt;</span>less<span class="kw">&lt;/word&gt;</span> <span class="kw">&lt;word&gt;</span>legs<span class="kw">&lt;/word&gt;&lt;/foot&gt;</span></code></pre></div>
 </div>
 <div id="white-space-as-crypto-overlap-in-tag" class="slide section level1">
 <h1>White space as crypto-overlap in TAG</h1>
+<p><img src="../Balisage-1-3-xsl/feet_transparent.png" width="99%"/> ____</p>
 </div>
 <div id="scope-of-reference-in-xml" class="slide section level1">
 <h1>Scope of reference in XML</h1>

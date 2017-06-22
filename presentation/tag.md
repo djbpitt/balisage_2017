@@ -41,6 +41,22 @@ TAG is a **hypergraph** model
 
 Operations in TAG are operations on sets of nodes and edges
 
+____
+
+# Two types of challenges for XML (one shared with TAG)
+
+## Modeling challenges
+
+* If it isn’t in the model and requires a workaround, workarounds vary, which risks inconsistency in a corpus
+* E.g.: In an overlap situation, which hierarchy is represented by container tags and which by milestones?
+
+## Lexical challenges
+
+* The same structural markup unit may have different name properties in different documents
+* Inherently a matter of lexical semantics, which affects TAG as much as XML
+
+____
+
 # Five things that are hard for XML, but not for TAG
 
 * Multiple hierarchies (overlap)
@@ -71,7 +87,16 @@ Stand in the desart....** Near them, on the sand
 ```
 ____
 
+# Multiple hierarchies: projecting two trees over the same text nodes
+
+<img src="../Balisage-1-3-xsl/ozymandias_trees_transparent.png" width="99%"/>
+
+____
+
 # Multiple hierarchies: overlap in TAG
+
+<img src="../Balisage-1-3-xsl/ozymandias_hypergraph_transparent.png" width="99%"/>
+
 ____
 
 # Discontinuity in XML
@@ -91,7 +116,7 @@ ____
 
 # Discontinuity in TAG
 
-<img src="../Balisage-1-3-xsl/discontinuity_hypergraph_transparent.png" width="98%"/>
+<img src="../Balisage-1-3-xsl/discontinuity_hypergraph_transparent.png" width="99%"/>
 
 ____
 
@@ -125,12 +150,15 @@ Percy Bysshe Shelley, “Ozymandias”
 	<foot>of stone</foot>
 </line>
 ```
+The following pseudo-XML is not well formed:
 
 ```xml
 <foot><word>and</word> <word>trunk</foot><foot>less</word> <word>legs</word></foot>
 ```
 
 # White space as crypto-overlap in TAG
+
+<img src="../Balisage-1-3-xsl/feet_transparent.png" width="99%"/>
 ____
 
 # Scope of reference in XML
