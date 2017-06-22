@@ -1570,22 +1570,31 @@ And mock you with me after I am gone.</programlisting>
       </section>
       <section>
         <title>Intratextual variation</title>
-        <para>Intratextual variation, such as additions, deletions, and rearrangements in a genetic
-          textual edition, pose a special challenge for at least three reasons. First, because
-          intratextual variation is local (that is, an addition in one place is likely to be
-          independent of an addition in another), it cannot be addressed easily through the creation
-          of pseudo-witnesses, such as an Additions witness and a Deletions witness, or a separate
-          witness for each hand identifiable in the manuscript—especially because the same person
-          may have created additions and deletions and then layered additions and deletions onto those
-          additions and deletions. Second, the intratextual variation may affect the markup, and not
-          only the Text nodes; for example, one paragraph may be divided into two, or a section may
-          be demoted to a subsection, without any change to the values of the Text nodes themselves.
-          Third, a critical edition may include multiple witnesses, each of which may have
-          intratextual variation, which is challenging not only from a modeling perspective, but
-          also from a philological one, since it problematizes determining what a particular witness
-          says for the purpose of comparison with other witnesses. For an experimental investigation
-          of these issues in an XML context see <emphasis role="bold">add reference to Elli’s and
-            Ronald’s abstract and add that to the bibliography.</emphasis></para>
+        <para>Intradocumentary variation (see <emphasis role="bold">add reference to the TEI WG-GE
+            model and put it in biography</emphasis> - such as additions, deletions, and
+          rearrangements - pose a special challenge at least two main reasons. First, an edition may
+          include multiple witnesses, each of which may have intradocumentary variation. For
+          instance, the same person may have created additions and deletions and then layered
+          additions and deletions onto those additions and deletions. This is challenging not only
+          from a modeling perspective, but also from a philological one. A intuitive and widely-used
+          approach would be to select one revision layer per witness for the purpose of comparison
+          with other witnesses, but that has as consequence that the other layers are ignored.
+          Another approach is to create pseudo-witnesses, i.e.  an "Additions" witness and a
+          "Deletions" witness. However, the pseudo-witness approach falls short because
+          intradocumentary variation is local: an addition in one place is likely to be independent
+          of an addition in another. Let's assume a witness A with three identifiable layers of
+          revision that are split in three pseudo-witnesses, and a witness B with five identifiable
+          layers of revision and thus five pseudo-witnesses. If we were to collate these eight
+          pseudo-witnesses, it would become a highly speculative and hypothetical matter. What is
+          more, it is unfeasible to create a pseudo-witness for revisions that are made mid-sentence
+          ("currente calamo"), or in the case of open variants.</para>
+        <para>Second, the intradocumentary variation may affect not only the Text nodes but also the
+          markup hierarchy. For example, one paragraph may be divided into two, or a section may be
+          demoted to a subsection, without any change to the values of the Text nodes themselves.
+          The same may apply to <emphasis role="ital">inter</emphasis>documentary variation: when
+          one paragraph in witness A becomes two paragraphs in witness B. For an experimental
+          investigation of these issues in an XML context see <emphasis role="bold">add reference to
+            Elli’s and Ronald’s abstract and add that to the bibliography.</emphasis></para>
       </section>
     </section>
     <section>
