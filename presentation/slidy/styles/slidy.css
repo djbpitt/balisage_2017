@@ -401,3 +401,4 @@ div.initial_prompt { display: none; visibility: hidden }
   div.slide.first-slide { page-break-before: avoid }
 }
 
+img.three-d {max-width: 100%; height: auto;}

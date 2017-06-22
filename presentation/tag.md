@@ -43,6 +43,29 @@ Operations in TAG are operations on sets of nodes and edges
 
 ____
 
+# TAG in 3D
+
+<img class="three-d" src="../Balisage-1-3-xsl/3d_new_sets.png"/>
+
+____
+
+# TAG in 3D
+
+<img class="three-d" src="../Balisage-1-3-xsl/3d_new_layers.png"/>
+
+____
+
+#TAG in 3D
+
+<img class="three-d" src="../Balisage-1-3-xsl/3d_new_discontinuity.png"/>
+
+____
+
+# TAG in 3D
+
+<img class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/>
+
+
 # Two types of challenges for XML (one shared with TAG)
 
 ## Modeling challenges
