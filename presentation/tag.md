@@ -178,7 +178,13 @@ content goes here.]</p></fn></p>
  
 Is the footnote on the last sentence, the last two sentences, or the entire paragraph?
 
+____
+
 # Scope of reference in TAG
+
+<img src="../Balisage-1-3-xsl/note_transparent.png" width="99%"/>
+
+____
 
 # Three things that are hard for XML and (currently) for TAG
 
@@ -190,9 +196,13 @@ ____
 
 # Simultaneity
 
+<img src="../Balisage-1-3-xsl/flotus_transparent.png"/>
+
 ____
 
 # Transposition
+
+<img src="../Balisage-1-3-xsl/stormy_transparent.png"/>
 
 ____
 
