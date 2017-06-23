@@ -1809,7 +1809,7 @@ And mock you with me after I am gone.</programlisting>
         role="ital">Journal of computing in higher education</emphasis>, 1.2 (1990): 3–26.
       doi:10.1007/BF02941632.
         <link>http://www.cip.ifi.lmu.de/~langeh/test/1990%20-%20DeRose%20-%20What%20is%20Text,%20really%3F.pdf</link></bibliomixed>
-    <bibliomixed xml:id="durusau" xreflabel="Durusau and O’Donnell 2002">Durusau, Patrick and
+    <!--<bibliomixed xml:id="durusau" xreflabel="Durusau and O’Donnell 2002">Durusau, Patrick and
       Matthew Brook O’Donnell. <quote>JITTs (Just-In-Time-Trees)</quote>, presentation at New York
       XML SIG, January 2002. (Slides for <quote>Just-In-Time-Trees (JITTs): Next Step in the
         Evolution of Markup?</quote>, <emphasis role="ital">InterCharge: newsletter of the
@@ -1821,7 +1821,7 @@ And mock you with me after I am gone.</programlisting>
     <bibliomixed xml:id="hasibi_2014" xreflabel="Hasibi and Bratsberg 2014">Hasibi, Faegheh and
       Svein Erik Bratsberg. <quote>Non-hierarchical structures: how to model and index
         overlaps?</quote> Presented at Balisage: The Markup Conference. August 2014.
-        <link>http://hasibi.com/files/balisage14-overlap.pdf</link></bibliomixed>
+        <link>http://hasibi.com/files/balisage14-overlap.pdf</link></bibliomixed>  -->
     <bibliomixed xml:id="hilbert_2005" xreflabel="Hilbert, Schonefeld, and Witt 2005">Hilbert,
       Mirco, Oliver Schonefeld, and Andreas Witt. <quote>Making CONCUR work.</quote>
       <emphasis role="ital">Proceedings of Extreme Markup Languages</emphasis> 2005.
@@ -1830,7 +1830,7 @@ And mock you with me after I am gone.</programlisting>
       Claus and C. Michael Sperberg-McQueen. <quote>TexMECS. An experimental markup meta-language
         for complex documents.</quote> Revision of 5 October 2003.
         <link>http://mlcd.blackmesatech.com/mlcd/2003/Papers/texmecs.html</link></bibliomixed>
-    <bibliomixed xml:id="huitfeldt_2009" xreflabel="Huitfeldt, Sperberg-McQueen, and Marcoux 2009"
+    <!--<bibliomixed xml:id="huitfeldt_2009" xreflabel="Huitfeldt, Sperberg-McQueen, and Marcoux 2009"
       >Huitfeldt, Claus, C. M. Sperberg-McQueen and Yves Marcoux. “Markup Meaning and Mereology.”
       Presented at Balisage: The Markup Conference 2009, Montréal, Canada, August 11–14, 2009. In
         <emphasis role="ital">Proceedings of Balisage: The Markup Conference 2009</emphasis>.
@@ -1846,7 +1846,7 @@ And mock you with me after I am gone.</programlisting>
       Kazuyo Kaneko. <quote>Parsing concurrent XML.</quote>
       <emphasis role="ital">Workshop on Web Information Management (WIDM’04) at ACM CIKM’04
         Proceedings</emphasis>, Washington DC., November 12, 2004, 23–30.
-        <link>http://digitalcommons.calpoly.edu/csse_fac/129</link></bibliomixed>
+        <link>http://digitalcommons.calpoly.edu/csse_fac/129</link></bibliomixed>-->
     <bibliomixed xml:id="ide_2007" xreflabel="Ide and Suderman 2007">Ide, Nancy and Keith Suderman.
         <quote>GrAF: a graph-based format for linguistic annotations.</quote> Proceedings of the
       Linguistic Annotation Workshop, held in conjunction with ACL 2007, Prague, June 28–29, 1–8.
@@ -1854,7 +1854,7 @@ And mock you with me after I am gone.</programlisting>
     <bibliomixed xml:id="LMNL_data" xreflabel="LMNL data model">LMNLWiki. <quote>LMNL data
         model.</quote> From the <emphasis role="ital">Lost Archives of LMNL</emphasis>.
         <link>http://www.lmnl.net/prose/data-model/data-model-spec.html</link></bibliomixed>
-    <bibliomixed xml:id="LMNL_ranges" xreflabel="LMNL range relations">LMNLWiki <quote>Range
+    <!--<bibliomixed xml:id="LMNL_ranges" xreflabel="LMNL range relations">LMNLWiki <quote>Range
         relationships.</quote> From the <emphasis role="ital">Lost Archives of LMNL</emphasis>.
         <link xlink:href="http://lmnl-markup.org/specs/archive/Range_relationships.xhtml"
       /></bibliomixed>
@@ -1876,7 +1876,7 @@ And mock you with me after I am gone.</programlisting>
         algebra: toward a formal model of markup.</quote>
       <emphasis role="ital">Proceedings of Extreme Markup Languages</emphasis> 2002. <link
         xlink:href="http://conferences.idealliance.org/extreme/html/2002/Nicol01/EML2002Nicol01.html"
-      /></bibliomixed>
+      /></bibliomixed>-->
     <bibliomixed xml:id="peroni_2014" xreflabel="Peroni et al. 2014">Peroni, Silvio, Francesco Poggi
       and Fabio Vitali. <quote>Overlapproaches in documents: a definitive classification (in OWL,
         2!).</quote> Presented at Balisage: The Markup Conference 2014, Washington, DC, August 5 -
@@ -1898,11 +1898,11 @@ And mock you with me after I am gone.</programlisting>
         role="ital">Proceedings of Balisage: The Markup Conference 2014. Balisage series on markup
         technologies,</emphasis> vol. 13 (2014). DOI: 10.4242/BalisageVol13.Piez01.
         <link>http://www.balisage.net/Proceedings/vol13/html/Piez01/BalisageVol13-Piez01.html</link></bibliomixed>
-    <bibliomixed xml:id="piez_2015" xreflabel="Piez 2015">Piez, Wendell. <quote>TEI in LMNL:
+    <!--<bibliomixed xml:id="piez_2015" xreflabel="Piez 2015">Piez, Wendell. <quote>TEI in LMNL:
         implications for modeling</quote>, <emphasis role="ital">Journal of the Text Encoding
         Initiative</emphasis> [Online], Issue 8 | December 2014 - December 2015, Online since 21
       November 2015, connection on 08 March 2017. URL: <link>http://jtei.revues.org/1337</link>;
-      DOI: 10.4000/jtei.1337.</bibliomixed>
+      DOI: 10.4000/jtei.1337.</bibliomixed>-->
     <bibliomixed xml:id="renear_1996" xreflabel="Renear, Mylonas, and Durand 1996">Renear, Allen H.,
       Elli Mylonas, and David G. Durand. <quote>Refining our notion of what text really is: the
         problem of overlapping hierarchies.</quote>
@@ -1937,9 +1937,9 @@ And mock you with me after I am gone.</programlisting>
         Markup Conference 2008. Balisage Series on Markup Technologies</emphasis>, vol. 1 (2008).
       DOI: 10.4242/BalisageVol1.Sperberg-McQueen01.
         <link>http://www.balisage.net/Proceedings/vol1/html/Sperberg-McQueen01/BalisageVol1-Sperberg-McQueen01.html</link></bibliomixed>
-    <bibliomixed xml:id="tennison_2007" xreflabel="Tennison 2007">Tennison, Jeni. <quote>Creole:
+    <!--<bibliomixed xml:id="tennison_2007" xreflabel="Tennison 2007">Tennison, Jeni. <quote>Creole:
         validating overlapping markup.</quote> Presented at XTech 2007.
-        <link>http://www.princexml.com/howcome/2007/xtech/papers/output/0077-30.pdf</link></bibliomixed>
+        <link>http://www.princexml.com/howcome/2007/xtech/papers/output/0077-30.pdf</link></bibliomixed>-->
     <bibliomixed xml:id="tennison_2008" xreflabel="Tennison 2008">Tennison, Jeni. <quote>Overlap,
         containment and dominance. <emphasis role="ital">Jeni’s musings</emphasis>, 2008-12-06. </quote>
       <link>http://www.jenitennison.com/2008/12/06/overlap-containment-and-dominance.html</link></bibliomixed>
