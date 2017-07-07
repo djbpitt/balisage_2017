@@ -1775,9 +1775,8 @@ And mock you with me after I am gone.</programlisting>
               demoted to a subsection, without any change to the values of the Text nodes
               themselves. The same may apply to <emphasis role="ital">inter</emphasis>documentary
               variation: when one paragraph in witness A becomes two paragraphs in witness B. For an
-              experimental investigation of these issues in an XML context see <emphasis role="bold"
-                >add reference to Elli’s and Ronald’s abstract and add that to the
-                bibliography.</emphasis></para>
+              experimental investigation of these issues in an XML context see <xref
+                linkend="bleeker_2017"/>.</para>
           </listitem>
         </orderedlist>
       </section>
@@ -1980,6 +1979,9 @@ And mock you with me after I am gone.</programlisting>
       10.4242/BalisageVol15.Birnbaum01. <link
         xlink:href="https://www.balisage.net/Proceedings/vol15/html/Birnbaum01/BalisageVol15-Birnbaum01.html"
       /></bibliomixed>
+    <bibliomixed xml:id="bleeker_2017" xreflabel="Bleeker 2017">Bleeker, Elli. <quote>Mapping
+        invention in writing: digital infrastructure and the role of the genetic editor.</quote> PhD
+      dissertation, University of Antwerp, 2017.</bibliomixed>
     <bibliomixed xml:id="collatex" xreflabel="CollateX">CollateX.
         <link>https://pypi.python.org/pypi/collatex</link></bibliomixed>
     <bibliomixed xml:id="coombs_1987" xreflabel="Coombs et al. 1987">Coombs, James H., Allen H.
