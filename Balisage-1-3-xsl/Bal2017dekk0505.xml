@@ -1239,10 +1239,12 @@
         Text nodes of an annotation can be a target of markup, just like those of the main text. TAG
         avoids the scope of reference problem because the annotation can point to a Markup node with
         a name if an appropriate one exists (such as paragraph in a document that marks up
-        paragraphs), but because TAG permits anonymous Markup nodes (that is, because the
-          <code>name</code> property of Markup nodes is optional), it is also possible to annotate
-        arbitrary text without giving it the equivalent of an XML generic identifier. This means
-        that footnote-like relationships can be modeled in TAG as what they are: rich-text
+        paragraphs). In the example below, because TAG permits anonymous Markup nodes (that is,
+        because the <code>name</code> property of Markup nodes is optional), we annotate arbitrary
+        text without giving it the equivalent of an XML generic identifier, although in a revision
+        currently under development, we are exploring pointing directly from the annotation to the
+        Text nodes, which would obviate the need for the anonymous Markup node. With either of these
+        approaches, footnote-like relationships can be modeled in TAG as what they are: rich-text
         annotations on text regardless of whether the target of the annotation corresponds to a
         Content Object with an identifiable type. TAG is similar to LMNL in this respect, except
         that in TAG text being footnoted that is discontinuous is no different from continuous text;
