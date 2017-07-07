@@ -1806,7 +1806,7 @@ And mock you with me after I am gone.</programlisting>
       <title>Lewis Carroll, <quote>The hunting of the Snark</quote> (excerpt)</title>
       <mediaobject>
         <imageobject>
-          <imagedata format="png" fileref="snark_ortho_final.png"/>
+          <imagedata format="png" fileref="3d_new_top-fs8.png"/>
         </imageobject>
       </mediaobject>
       <caption>
@@ -1814,15 +1814,14 @@ And mock you with me after I am gone.</programlisting>
           hierarchy (dominance).</para>
       </caption>
     </figure>
-    <para> To aid in legibility, the Document node, which is obligatory in TAG, is not shown. Text
-      nodes are black hexagons with white text, and they are connected in a single chain by black
-      bars. Markup nodes of type <quote>Line</quote>, <quote>Voice</quote>, <quote>Stanza</quote>,
-        <quote>Phrase</quote>, <quote>Page</quote>, and <quote>Excerpt</quote> are represented by
-      irregular backgrounds of white, chartreuse yellow, magenta, blue, orange, and green,
-      respectively. Annotation nodes on <quote>Excerpt</quote>, <quote>Page</quote>, and
-        <quote>Voice</quote> Markup nodes have names and properties. The image models containment
-      with no statement of dominance, although dominance could be asserted by adding
-      Markup-to-Markup hyperedges.</para>
+    <para> Text nodes are black hexagons with white text, and they are connected in a single chain
+      (which starts at the Document node) by black bars. Markup nodes of type <quote>Line</quote>,
+        <quote>Voice</quote>, <quote>Stanza</quote>, <quote>Sentence</quote>, <quote>Page</quote>, and
+        <quote>Excerpt</quote> are represented by irregular backgrounds of white, chartreuse yellow,
+      magenta, blue, orange, and green, respectively. Annotation nodes on <quote>Excerpt</quote>,
+        <quote>Page</quote>, and <quote>Voice</quote> Markup nodes have names and properties. The
+      image models containment with no statement of dominance, although dominance could be asserted
+      by adding Markup-to-Markup hyperedges.</para>
   </appendix>
   <appendix xml:id="requirements" xreflabel="Appendix D">
     <title>Requirements</title>
