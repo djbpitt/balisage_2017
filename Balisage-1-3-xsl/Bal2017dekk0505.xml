@@ -1799,7 +1799,7 @@ And mock you with me after I am gone.</programlisting>
     </section>
   </appendix>
   <appendix xml:id="snark" xreflabel="Appendix C">
-    <title>Hypergraph visualization</title>
+    <title>Hypergraph visualizations</title>
     <para>The image below visualizes hypergraph properties of part of Lewis Carroll’s <quote>Hunting
         of the Snark</quote>.</para>
     <figure xml:id="snark_hypergraph">
@@ -1822,6 +1822,7 @@ And mock you with me after I am gone.</programlisting>
         <quote>Excerpt</quote>, <quote>Page</quote>, and <quote>Voice</quote> Markup nodes have
       names and properties. The image models containment with no statement of dominance, although
       dominance could be asserted by adding Markup-to-Markup hyperedges.</para>
+    <para>The following images emphasize different aspects of the model:</para>
     <figure xml:id="snark_discontinuity">
       <title>Lewis Carroll, <quote>The hunting of the Snark</quote> (excerpt)</title>
       <mediaobject>
@@ -1830,8 +1831,8 @@ And mock you with me after I am gone.</programlisting>
         </imageobject>
       </mediaobject>
       <caption>
-        <para>This hypergraph models the containment and order of the text, with no statement of
-          hierarchy (dominance).</para>
+        <para>The image shows how discontinuous parts of the same unit are combined and annotated in
+          the model.</para>
       </caption>
     </figure>
     <figure xml:id="snark_layers">
@@ -1842,8 +1843,8 @@ And mock you with me after I am gone.</programlisting>
         </imageobject>
       </mediaobject>
       <caption>
-        <para>This hypergraph models the containment and order of the text, with no statement of
-          hierarchy (dominance).</para>
+        <para>The image shows the layering of different types of Markup on the same Text
+          nodes.</para>
       </caption>
     </figure>
     <figure xml:id="snark_perspective">
@@ -1854,8 +1855,10 @@ And mock you with me after I am gone.</programlisting>
         </imageobject>
       </mediaobject>
       <caption>
-        <para>This hypergraph models the containment and order of the text, with no statement of
-          hierarchy (dominance).</para>
+        <para>The image provides a closer look at the layering. The higher voice levels contain text
+          spoken by the Baker but reported by the narrator, which is why they are the targets of
+          more than one Markup node of with a <code>name</code> property value of
+            <quote>voice</quote>.</para>
       </caption>
     </figure>
     <figure xml:id="snark_sets">
@@ -1866,8 +1869,7 @@ And mock you with me after I am gone.</programlisting>
         </imageobject>
       </mediaobject>
       <caption>
-        <para>This hypergraph models the containment and order of the text, with no statement of
-          hierarchy (dominance).</para>
+        <para>The image illustrates how annotations may have their own Text nodes.</para>
       </caption>
     </figure>
   </appendix>
