@@ -1458,21 +1458,19 @@
       it to the list of opened Markups.</para></listitem></itemizedlist>
     </section>
     <section>
-      <title>Hi, Mom!</title>
-    <para>TAGQL
-    =
+      <title>TAGQL: A query language for TAG</title>
+    <para>The query language uses an SQL-like syntax, e.g.:</para>
     
-    For the query language we've chosen a SQL-like syntax:
+    <programlisting>select text from markup where name='a'</programlisting>
     
-    select text from markup where name='a'
-    
-    This returns the content of the text nodes marked up with 'a'
+      <para>The preceding returns the content of the text nodes marked up with 'a'.</para>
     
     
     
-    Alexandria Markup Server API
-    =
-    The Alexandria Markup server has a REST API:
+    </section>
+    <section>
+      <title>Alexandria Markup Server API</title>
+    <para>The Alexandria Markup server has a REST API:
     
     GET     /documents
     (out: json) - returns a list of the urls of the stored documents
