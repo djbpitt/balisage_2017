@@ -170,7 +170,7 @@
   <section>
     <title>The TAG/hypergraph model for text<footnote>
         <para>We have created <link>https://github.com/HuygensING/TAG</link> as a portal where we
-          intend to maintain links to all of our work on TAG as a model and on the Alexandria
+          intend to maintain links to all of our work on TAG as a model and on the Alexandria Markup
           implementation that we discuss below.</para>
       </footnote></title>
     <section>
@@ -1287,10 +1287,10 @@
       <para>Syntax is not necessarily the same as a data model. A data model could, at least in
         principle, be serialized in multiple ways, and syntax developed to represent one data model
         could be coopted to represent a different one. TAG does not at present have its own
-        serialization syntax, and the Alexandria implementation described below can read and write
-        LMNL sawtooth syntax and TexMECS (parsing the results as a representation of the TAG data
-        model, rather than of LMNL or GODDAG), and it is intended to be able to do the same with XML
-        syntax.</para>
+        serialization syntax, and the Alexandria Markup implementation described below can read and
+        write LMNL sawtooth syntax and TexMECS (parsing the results as a representation of the TAG
+        data model, rather than of LMNL or GODDAG), and it is intended to be able to do the same
+        with XML syntax.</para>
       <para>One challenge of comparing TAG to XML, LMNL, GODDAG, and TexMECS is that TAG, like LMNL
         and GODDAG, is a data model, while XML and TexMECS are defined by their syntax. Perhaps a
         bit surprisingly in the context of Balisage, which describes itself as <quote>the <emphasis
@@ -1391,164 +1391,198 @@
     </section>
   </section>
   <section>
-    <title>TAG in Alexandria</title>
+    <title>TAG in the Alexandria Markup text repository</title>
     <para>The Alexandria Markup text repository system is an open-source read/write implementation
       of the TAG model currently under development by the Huygens Institute for the History of the
       Netherlands at <link xlink:href="https://github.com/HuygensING/alexandria-markup"/>. As was
       noted above, at present TAG does not have its own syntax, although strategies for import and
-      export are under active development. Alexandria is able to parse and import flat LMNL sawtooth
-      syntax, but it treats the syntax as an expression of TAG properties, rather than LMNL ones.
-      This means, for example, that although annotations on the same object in LMNL are ordered,
-      because those in TAG are not, this order is not treated as informational during import or
-      export, or internally. It also means that TAG structures that are not naturally represented in
-      flat LMNL syntax, such as the Document node or discontinuous sets of Text nodes, require
-      special handling. Alexandria is not intended to be an implementation of LMNL, and the use of
-      LMNL sawtooth syntax in TAG should not be misunderstood as representing the LMNL data model.
-      Alexandria is also able to import and parse TexMECS syntax, which it also interprets as a
-      representation of the TAG data model, rather than of GODDAG. The implementation in the current
-      system loads the TAG model into memory, but persistence of the nodes and hyperedges in a
-      key-value store on disk is under development. </para>
+      export are under active development. Alexandria Markup is able to parse and import flat LMNL
+      sawtooth syntax, but it treats the syntax as an expression of TAG properties, rather than LMNL
+      ones. This means, for example, that although annotations on the same object in LMNL are
+      ordered, because those in TAG are not, this order is not treated as informational during
+      import or export, or internally. It also means that TAG structures that are not naturally
+      represented in flat LMNL syntax, such as the Document node or discontinuous sets of Text
+      nodes, require special handling. Alexandria Markup is not intended to be an implementation of
+      LMNL, and the use of LMNL sawtooth syntax in TAG should not be misunderstood as representing
+      the LMNL data model. Alexandria Markup is also able to import and parse TexMECS syntax, which
+      it also interprets as a representation of the TAG data model, rather than of GODDAG. The
+      implementation in the current system loads the TAG model into memory, but persistence of the
+      nodes and hyperedges in a key-value store on disk is under development. </para>
     <section>
-      <title>Importing plain text into Alexandria</title>
-      <para>As an example of importing into Alexandria, consider a document that consists of just the
-      plain text <quote>Hello, World</quote>. When we import this plain-text document into
-      Alexandria, a very simple graph is created, consisting of two nodes and one regular edge. One
-      node is the TAG Document node; the other is a TAG Text node that contains all of the text. A
-      regular edge is created from the Document node to the Text node, which associates the text
-      with the document.</para>
+      <title>Importing plain text into Alexandria Markup</title>
+      <para>As an example of importing into Alexandria Markup, consider a document that consists of
+        just the plain text <quote>Hello, World</quote>. When we import this plain-text document
+        into Alexandria Markup, a very simple graph is created, consisting of two nodes and one
+        regular edge. One node is the TAG Document node; the other is a TAG Text node that contains
+        all of the text. A regular edge is created from the Document node to the Text node, which
+        associates the text with the document.</para>
     </section>
-    
+
     <section>
-      <title>Importing LMNL into Alexandria</title>
-      <para>We created a lexer grammar for LMNL syntax. The lexer tokenizes the LMNL text, setting the
-        type of the token according to the current context (e.g., annotations inside annotations, inside
-        range start or end tags, etc.). The stream of tokens is then parsed in the 
-        importer, where the token type is used to determine in which part of the LMNL syntax we are: in the 
-        start or end tag of a range or annotation, inside an annotation, or in the text.</para>
-      <para>At the start of the import, we create a new Document node, which serves as the head of the chain
-        of Text nodes for the main text layer. We deal with parser events in the following ways:</para>
-    
-    <itemizedlist><listitem><para>For each range start tag we create a new Markup node, which we add  to a list of 
-      open Markup contexts.</para></listitem>
-      
-      <listitem><para>For each string of text we create a new Text node, which we add to the tail of the Markup-to-Text
-        hyperedges for all open Markup contexts. We also add the Text node to the chain of Text nodes.</para></listitem>
-      
-      <listitem><para>After each range end tag we remove the corresponding Markup node from the list of open Markup contexts.</para></listitem>
-      
-      <listitem><para>For each annotation start tag we create a new Annotation node, which we add to an annotation list for the current Markup node. 
-        Unless the annotation is empty, we now set this Annotation as the current text layer, which means that until we come to the annotation close tag for 
-        this annotation, all new Text nodes and Markup nodes will be added to this annotation. When we encounter the corresponding annotation 
-        end tag, we close this Annotation and return to the previous text layer.</para></listitem>
-    </itemizedlist></section>
-    <section>    
-    <title>Importing TexMECS into Alexandria</title>
-      <para>We created a lexer and parser for TexMECS syntax. At the start of the import, we create a new Document node.
-        We deal with parser events in the following ways:</para>
-    
-    <itemizedlist><listitem><para>After each start tag, we create a new Markup, add this Markup to the list of open Markups, and to the Document.
-    
-    </para></listitem><listitem><para>For each text token we create a new TextNode, we link this TextNode to all the open Markups, connect it to the previous TextNode, and add it to the Document.
-    
-    </para></listitem><listitem><para>After each end tag we remove the corresponding Markup from the list of open Markups.
-    
-    </para></listitem><listitem><para>After each suspend tag we remove the corresponding Markup from the list of open Markups, and add it to the list of suspended Markups.
-    
-    </para></listitem><listitem><para>After each resume tag we remove the corresponding Markup from the list of suspended Markups, and add 
-      it to the list of opened Markups.</para></listitem></itemizedlist>
+      <title>Importing LMNL into Alexandria Markup</title>
+      <para>The lexer uses a grammar to tokenize the LMNL text, setting the type of the token
+        according to the current context (e.g., annotations inside annotations, inside range start
+        or end tags, etc.). The stream of tokens is then parsed in the importer, which is also
+        sensitive to the context.</para>
+      <para>At the start of the import, we create a new Document node, which serves as the head of
+        the chain of Text nodes for the main text layer. We deal with parser events in the following
+        ways:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>For each range start tag we create a new Markup node, which we add to a list of open
+            Markup contexts.</para>
+        </listitem>
+
+        <listitem>
+          <para>For each string of text we create a new Text node, which we add to the tail of the
+            Markup-to-Text hyperedges for all open Markup contexts. We also add the Text node to the
+            chain of Text nodes.</para>
+        </listitem>
+
+        <listitem>
+          <para>After each range end tag we remove the corresponding Markup node from the list of
+            open Markup contexts.</para>
+        </listitem>
+
+        <listitem>
+          <para>For each annotation start tag we create a new Annotation node, which we add to an
+            annotation list for the current Markup node. Unless the annotation is empty, we now set
+            this Annotation as the current text layer, which means that until we come to the
+            annotation close tag for this annotation, all new Text nodes and Markup nodes will be
+            added to this annotation. When we encounter the corresponding annotation end tag, we
+            close this Annotation and return to the previous text layer.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Importing TexMECS into Alexandria Markup</title>
+      <para>We use a lexer and parser to interpret TexMECS syntax. At the start of the import, we
+        create a new Document node. We deal with parser events in the following ways:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>After each start tag, we create a new Markup node and add it to the list of open
+            Markup nodes, and to the Document. </para>
+        </listitem>
+        <listitem>
+          <para>For each string of text we create a new Text node, which we add to the tail of the
+            Markup-to-Text hyperedges for all open Markup contexts. We also add the Text node to the
+            chain of Text nodes.</para>
+        </listitem>
+        <listitem>
+          <para>After each end tag we remove the corresponding Markup node from the list of open
+            Markup contextss. </para>
+        </listitem>
+        <listitem>
+          <para>After each suspend tag we remove the corresponding Markup node from the list of open
+            Markup contexts, and add it to the list of suspended Markup contexts. </para>
+        </listitem>
+        <listitem>
+          <para>After each resume tag we remove the corresponding Markup node from the list of
+            suspended Markup contexts, and add it to the list of open Markup contexts.</para>
+        </listitem>
+      </itemizedlist>
     </section>
     <section>
       <title>TAGQL: A query language for TAG</title>
-    <para>The query language uses an SQL-like syntax, e.g.:</para>
-    
-    <programlisting>select text from markup where name='a'</programlisting>
-    
+      <para>The query language uses an SQL-like syntax, e.g.:</para>
+      <programlisting>select text from markup where name='a'</programlisting>
       <para>The preceding returns the content of the text nodes marked up with 'a'.</para>
-    
-    
-    
     </section>
     <section>
-      <title>The Alexandria markup server API</title>
-    <para>The Alexandria markup server has a REST API:
-    
-    GET     /documents
-    (out: json) - returns a list of the urls of the stored documents
-    
-    POST    /documents/lmnl
-    (in: lmnl text) add a document using a lmnl text, returns the id of the document in the Location header
-    
-    POST    /documents/texmecs
-    (in: texmecs text) add a document using a TexMECS text, returns the id of the document in the Location header
-    
-    GET     /documents/{uuid}
-    (out: json) returns information about the document
-    
-    GET     /documents/{uuid}/lmnl
-    (out: text) returns a lmnl representation of the document
-    
-    GET     /documents/{uuid}/latex
-    (out: latex text) returns a visualization of the main document layer as text nodes and markup nodes
-    
-    GET     /documents/{uuid}/markupdepth
-    (out: latex text) returns the main text nodes of the document, color-coded for the number of different markup nodes per text node.
-    
-    GET     /documents/{uuid}/matrix
-    (out: latex text) returns the optimized text node / markup matrix of the document
-    
-    GET     /documents/{uuid}/kdtree
-    (out: latex text) returns the kd-tree of the document
-    
-    POST    /documents/{uuid}/query
-    (in: text, out: json) execute a query on the document, return results as json
-    
-    
-    </para></section>
+      <title>The Alexandria Markup server API</title>
+      <para>The Alexandria Markup server has a REST API, which includes the following:</para>
+      <table>
+        <tr>
+          <th>Method</th>
+          <th>I/O format</th>
+          <th>output</th>
+        </tr>
+        <tr>
+          <td>GET /documents</td>
+          <td>(out: json)</td>
+          <td>returns a list of the urls of the stored documents</td>
+        </tr>
+        <tr>
+          <td>POST /documents/lmnl</td>
+          <td>(in: lmnl text)</td>
+          <td>add a document using a lmnl text, returns the id of the document in the Location
+            header </td>
+        </tr>
+        <tr>
+          <td>POST /documents/texmecs</td>
+          <td>(in: texmecs text)</td>
+          <td>add a document using a TexMECS text, returns the id of the document in the Location
+            header </td>
+        </tr>
+        <tr>
+          <td>GET /documents/{uuid}</td>
+          <td>(out: json)</td>
+          <td>returns information about the document </td>
+        </tr>
+        <tr>
+          <td>GET /documents/{uuid}/lmnl</td>
+          <td>(out: text)</td>
+          <td>returns a representation of the document in sawtooth syntax </td>
+        </tr>
+        <tr>
+          <td>POST /documents/{uuid}/query</td>
+          <td>(in: text, out: json)</td>
+          <td>execute a query on the document, return results as json</td>
+        </tr>
+      </table>
+
+    </section>
     <section>
       <title>Java/Python clients</title>
-      <para>There are clients in Java and Python that, given the URL of an Alexandria Markup server, can connect to it in a way that hides the details of the REST protocol.
-    The client code handles the setting of the required HTTP headers, the formatting of the input and the interpreting of the results.</para>
+      <para>There are clients in Java and Python that, given the URL of an Alexandria Markup server,
+        can connect to it in a way that hides the details of the REST protocol. The client code
+        handles the setting of the required HTTP headers, the formatting of the input and the
+        interpreting of the results.</para>
     </section>
-    
+
     <section>
-      <title>Do stuff here</title>
-      <para>As an example of exporting a simple document from Alexandria, a serialization of the TAG
-      data model into LMNL sawtooth syntax involves traversal over an instance. The traversal begins
-      with the Document node, which must have a single directed regular edge that points to the
-      first Text node. We then follow the Markup-to-Text hyperedges that are connected to this Text node.<footnote>
-        <para>Although Markup-to-Text hyperedges are directed from the Markup node to the Text
-          nodes, graph traversal may follow incoming edges back to their heads as easily as it
-          follows outgoing edges to their tails.</para>
-      </footnote> There can be zero or more Markup-to-Text hyperedges on a Text node, each of which
-      is headed by one Markup node. The traversal collects all the Markup nodes that point to the
-      Text node, and for each of them it writes a start tag, where the order of multiple start tags
-      is not part of the TAG model, and is therefore at the discretion of the implementation. We
-      then proceed to the next Text node by following the outgoing regular Text-to-Text edge, which
-      connects all Text nodes (except those on annotations) in a single chain. As before, we collect
-      all Markup nodes connected to the new Text node, and we then calculate the differences between
-      the sets of Markup nodes that point to the two Text nodes under consideration. For the
-      intersection we do nothing; for the set of Markup nodes that are only on the previous Text
-      node we write end tags; and for the set of Markup nodes that are only on the new Text node we
-      write start tags. At the conclusion of the traversal (which can be recognized because only the
-      final Text node does not have an outgoing regular edge), we write end tags for all associated
-      Markup-to-Text hyperedges.</para>
-  </section>
-  <section>
-    <title>Conclusions</title>
-    <para>TAG is a graph-based model that consists of a set of nodes and edges (both regular,
-      one-to-one edges and hyperedges). Only Text nodes are ordered, and the order of Markup nodes
-      is derived from the order of the Text nodes to which they point. TAG models containment
-      through subset relations, and overlap through intersection where neither set is a subset of
-      the other, and it deals naturally with discontinuity because there is no requirement that sets
-      of nodes be contiguous. TAG is capable of modeling hierarchy, but it is not required to do so,
-      and it is possible to have multiple hierarchies. TAG separates the datatyping role of tagging
-      from issues of hierarchy, so it is possible to label a set of Text nodes with a Markup-to-Text
-      hyperedge without affecting hierarchical relations, and it also possible to annotate a set of
-      Text nodes with naming them, that is, without the equivalent of an XML generic identifier. A
-      root node is optional. At the moment there is a single text order, but TAG recognizes the need
-      for greater nuance in this area, about which see <xref linkend="to_do"/>, which also
-      identifies other issues that TAG does not (yet) address.</para>
-  </section>
+      <title>Exporting from Alexandria Markup in sawtooth syntax</title>
+      <para>As an example of exporting a simple document from Alexandria Markup, a serialization of
+        the TAG data model into LMNL sawtooth syntax involves traversal over an instance. The
+        traversal begins with the Document node, which must have a single directed regular edge that
+        points to the first Text node. We then follow the Markup-to-Text hyperedges that are
+        connected to this Text node.<footnote>
+          <para>Although Markup-to-Text hyperedges are directed from the Markup node to the Text
+            nodes, graph traversal may follow incoming edges back to their heads as easily as it
+            follows outgoing edges to their tails.</para>
+        </footnote> There can be zero or more Markup-to-Text hyperedges on a Text node, each of
+        which is headed by one Markup node. The traversal collects all the Markup nodes that point
+        to the Text node, and for each of them it writes a start tag, where the order of multiple
+        start tags is not part of the TAG model, and is therefore at the discretion of the
+        implementation. We then proceed to the next Text node by following the outgoing regular
+        Text-to-Text edge, which connects all Text nodes (except those on annotations) in a single
+        chain. As before, we collect all Markup nodes connected to the new Text node, and we then
+        calculate the differences between the sets of Markup nodes that point to the two Text nodes
+        under consideration. For the intersection we do nothing; for the set of Markup nodes that
+        are only on the previous Text node we write end tags; and for the set of Markup nodes that
+        are only on the new Text node we write start tags. At the conclusion of the traversal (which
+        can be recognized because only the final Text node does not have an outgoing regular edge),
+        we write end tags for all associated Markup-to-Text hyperedges.</para>
+    </section>
+    <section>
+      <title>Conclusions</title>
+      <para>TAG is a graph-based model that consists of a set of nodes and edges (both regular,
+        one-to-one edges and hyperedges). Only Text nodes are ordered, and the order of Markup nodes
+        is derived from the order of the Text nodes to which they point. TAG models containment
+        through subset relations, and overlap through intersection where neither set is a subset of
+        the other, and it deals naturally with discontinuity because there is no requirement that
+        sets of nodes be contiguous. TAG is capable of modeling hierarchy, but it is not required to
+        do so, and it is possible to have multiple hierarchies. TAG separates the datatyping role of
+        tagging from issues of hierarchy, so it is possible to label a set of Text nodes with a
+        Markup-to-Text hyperedge without affecting hierarchical relations, and it also possible to
+        annotate a set of Text nodes with naming them, that is, without the equivalent of an XML
+        generic identifier. A root node is optional. At the moment there is a single text order, but
+        TAG recognizes the need for greater nuance in this area, about which see <xref
+          linkend="to_do"/>, which also identifies other issues that TAG does not (yet)
+        address.</para>
+    </section>
   </section>
   <appendix xml:id="sonnet-71_text" xreflabel="Appendix A">
     <title>William Shakespeare, Sonnet 71</title>
@@ -1571,18 +1605,18 @@ Lest the wise world should look into your moan,
 And mock you with me after I am gone.</programlisting>
   </appendix>
   <appendix xml:id="to_do" xreflabel="Appendix B">
-    <title>Features of text not currently represented in TAG or in Alexandria</title>
+    <title>Features of text not currently represented in TAG or in Alexandria Markup</title>
     <para>The following are not currently part of the TAG model, but they are recognized as
       necessary components of a textual data model, and under development.</para>
     <section>
       <title>Order</title>
       <para>TAG, like XML, is currently fully ordered, but some textual meaning is either unordered
         (simultaneity) or multiordered (transposition). The fully ordered set of Text nodes in the
-        current TAG model and its implementation in Alexandria is easily traversed, but simultaneity
-        and transposition present challenges to traversal that we are still evaluating. TAG intends
-        to support the representation of both simultaneity and transposition in the model, in
-        distinction from XML, where the model is an ordered tree and deviations from a single order
-        must be handled at the application layer.</para>
+        current TAG model and its implementation in Alexandria Markup is easily traversed, but
+        simultaneity and transposition present challenges to traversal that we are still evaluating.
+        TAG intends to support the representation of both simultaneity and transposition in the
+        model, in distinction from XML, where the model is an ordered tree and deviations from a
+        single order must be handled at the application layer.</para>
       <section>
         <title>Simultaneity</title>
         <para>All Text nodes in TAG are ordered, but modeling text as a partially ordered set,
@@ -1707,14 +1741,13 @@ And mock you with me after I am gone.</programlisting>
     </section>
     <section>
       <title>Query language</title>
-      <para>TAG, and the Alexandria implementation, do not yet have a query language that expresses
-        queries in terms of operations on sets of nodes and edges. Here we provide some concise
-        examples of how such queries might operate in the terms of the model, which at that level
-        involves a traversal of the Text nodes, since those are the only ordered part of the model.
-        This naïve approach would not be performative and would not be implemented directly; a TAG
-        application, like any database of any type, would employ indices, alternative data
-        structures, caching, and other features that are not part of the model, but that can be used
-        to maximalize performance.<footnote>
+      <para>The query language, which is currently in an early stage of design and implementation,
+        operates on sets of nodes and edges. Here we provide some concise examples of how such
+        queries might operate in the terms of the model, which at that level involves a traversal of
+        the Text nodes, since those are the only ordered part of the model. This naïve approach
+        would not be performative and would not be implemented directly; a TAG application, like any
+        database of any type, would employ indices, alternative data structures, caching, and other
+        features that are not part of the model, but that can be used to maximalize performance.<footnote>
           <para>Indices achieve their optimization during querying partially at the expense of
             increasing the cost of updating, since parts of the index must be rebuilt when the
             content is edited. However, not only can index updates be deferred, but, more
@@ -1754,10 +1787,10 @@ And mock you with me after I am gone.</programlisting>
     <section>
       <title>Markup language</title>
       <para>TAG does not define a markup language, that is, a syntactic form that can be used to tag
-        text and for import and export serialization. As was noted above, Alexandria can parse LMNL
-        syntax (into the TAG data model, not the LMNL one, so it is not so much parsing LMNL as
-        borrowing LMNL syntax to express TAG relationships), the same is true of TexMECS, and
-        similar support is planned for XML syntax. None of these three grammars is capable of
+        text and for import and export serialization. As was noted above, Alexandria Markup can
+        parse LMNL syntax (into the TAG data model, not the LMNL one, so it is not so much parsing
+        LMNL as borrowing LMNL syntax to express TAG relationships), the same is true of TexMECS,
+        and similar support is planned for XML syntax. None of these three grammars is capable of
         representing all of the features of TAG. We leave open the question of how to provide a
         character-string serialization of a TAG document.</para>
     </section>
@@ -1852,24 +1885,25 @@ And mock you with me after I am gone.</programlisting>
         <listitem>
           <para>With respect to I/O, a system that implements the model should support serialization
             as plain text on export and the parsing of such serializations on import. TAG does not
-            currently have its own syntax. Our Alexandria implementation can read and write LMNL
-            syntax, and it is intended to be able to read and write XML and TexMECS.<footnote>
+            currently have its own syntax. Our Alexandria Markup implementation can read and write
+            LMNL sawtooth syntax and can read TexMECS, and it is intended to be able to read and
+            write XML.<footnote>
               <para>This list item refers to syntactic representations that were developed for data
                 models other than TAG: XML syntax and the XML data model, LMNL sawtooth syntax and
                 the LMNL data model, and TexMECS and GODDAG data model. When we speak about parsing
-                XML or LMNL or TexMECS <emphasis role="ital">syntax</emphasis> into Alexandria, we
-                mean that it is parsed into the TAG data model, and not into XML or LMNL or GODDAG
-                data models.</para>
+                XML or LMNL or TexMECS <emphasis role="ital">syntax</emphasis> into Alexandria
+                Markup, we mean that it is parsed into the TAG data model, and not into XML or LMNL
+                or GODDAG data models.</para>
               <para>XML angle-bracketed markup, LMNL sawtooth markup, and TexMECS all are capable of
                 representing some but not all features of TAG. For example, LMNL supports
                 annotations on annotations, while TexMECS doesn’t. More subtly, because annotations
-                on the same object are ordered in LMNL but not in TAG, when Alexandria parses LMNL
-                syntax, it is not parsing it into the LMNL data model because, among other things,
-                it creates unordered annotations. TexMECS supports hierarchy, while LMNL sawtooth
-                syntax does not. LMNL can represent hierarchy through the <emphasis role="ital"
-                  >limen</emphasis>, but the limen currently has no defined representation in the
-                syntax. [<xref linkend="piez_2008"/>] We leave unresolved for now the question of
-                how to serialize fully all information in a TAG document.</para>
+                on the same object are ordered in LMNL but not in TAG, when Alexandria Markup parses
+                LMNL syntax, it is not parsing it into the LMNL data model because, among other
+                things, it creates unordered annotations. TexMECS supports hierarchy, while LMNL
+                sawtooth syntax does not. LMNL can represent hierarchy through the <emphasis
+                  role="ital">limen</emphasis>, but the limen currently has no defined
+                representation in the syntax. [<xref linkend="piez_2008"/>] We leave unresolved for
+                now the question of how to serialize fully all information in a TAG document.</para>
             </footnote></para>
         </listitem>
         <listitem>
