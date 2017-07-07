@@ -1576,34 +1576,34 @@
         </tr>
         <tr>
           <td>GET /documents</td>
-          <td>(out: json)</td>
+          <td>out: json</td>
           <td>returns a list of the urls of the stored documents</td>
         </tr>
         <tr>
           <td>POST /documents/lmnl</td>
-          <td>(in: lmnl text)</td>
+          <td>in: lmnl text</td>
           <td>add a document using a lmnl text, returns the id of the document in the Location
             header </td>
         </tr>
         <tr>
           <td>POST /documents/texmecs</td>
-          <td>(in: texmecs text)</td>
+          <td>in: texmecs text</td>
           <td>add a document using a TexMECS text, returns the id of the document in the Location
             header </td>
         </tr>
         <tr>
           <td>GET /documents/{uuid}</td>
-          <td>(out: json)</td>
+          <td>out: json</td>
           <td>returns information about the document </td>
         </tr>
         <tr>
           <td>GET /documents/{uuid}/lmnl</td>
-          <td>(out: text)</td>
+          <td>out: text</td>
           <td>returns a representation of the document in sawtooth syntax </td>
         </tr>
         <tr>
           <td>POST /documents/{uuid}/query</td>
-          <td>(in: text, out: json)</td>
+          <td>in: text, out: json</td>
           <td>execute a query on the document, return results as json</td>
         </tr>
       </table>
@@ -2008,8 +2008,7 @@ And mock you with me after I am gone.</programlisting>
         <link>http://nl.ijs.si/et/talks/tsujiilab-crossing/crossing.pdf</link></bibliomixed>
     <bibliomixed xml:id="hasibi_2014" xreflabel="Hasibi and Bratsberg 2014">Hasibi, Faegheh and
       Svein Erik Bratsberg. <quote>Non-hierarchical structures: how to model and index
-        overlaps?</quote> Presented at Balisage: The Markup Conference. August 2014.
-        <link>http://hasibi.com/files/balisage14-overlap.pdf</link></bibliomixed>  -->
+        overlaps?</quote> <link>http://hasibi.com/files/balisage14-overlap.pdf</link></bibliomixed>  -->
     <bibliomixed xml:id="hilbert_2005" xreflabel="Hilbert, Schonefeld, and Witt 2005">Hilbert,
       Mirco, Oliver Schonefeld, and Andreas Witt. <quote>Making CONCUR work.</quote>
       <emphasis role="ital">Proceedings of Extreme Markup Languages</emphasis> 2005.
