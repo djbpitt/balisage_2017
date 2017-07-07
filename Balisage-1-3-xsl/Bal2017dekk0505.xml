@@ -1816,12 +1816,60 @@ And mock you with me after I am gone.</programlisting>
     </figure>
     <para> Text nodes are black hexagons with white text, and they are connected in a single chain
       (which starts at the Document node) by black bars. Markup nodes of type <quote>Line</quote>,
-        <quote>Voice</quote>, <quote>Stanza</quote>, <quote>Sentence</quote>, <quote>Page</quote>, and
-        <quote>Excerpt</quote> are represented by irregular backgrounds of white, chartreuse yellow,
-      magenta, blue, orange, and green, respectively. Annotation nodes on <quote>Excerpt</quote>,
-        <quote>Page</quote>, and <quote>Voice</quote> Markup nodes have names and properties. The
-      image models containment with no statement of dominance, although dominance could be asserted
-      by adding Markup-to-Markup hyperedges.</para>
+        <quote>Voice</quote>, <quote>Stanza</quote>, <quote>Sentence</quote>, <quote>Page</quote>,
+      and <quote>Excerpt</quote> are represented by irregular backgrounds of white, chartreuse
+      yellow, magenta, blue, orange, and green, respectively. Annotation nodes on
+        <quote>Excerpt</quote>, <quote>Page</quote>, and <quote>Voice</quote> Markup nodes have
+      names and properties. The image models containment with no statement of dominance, although
+      dominance could be asserted by adding Markup-to-Markup hyperedges.</para>
+    <figure xml:id="snark_discontinuity">
+      <title>Lewis Carroll, <quote>The hunting of the Snark</quote> (excerpt)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata format="png" fileref="3d_new_discontinuity.png"/>
+        </imageobject>
+      </mediaobject>
+      <caption>
+        <para>This hypergraph models the containment and order of the text, with no statement of
+          hierarchy (dominance).</para>
+      </caption>
+    </figure>
+    <figure xml:id="snark_layers">
+      <title>Lewis Carroll, <quote>The hunting of the Snark</quote> (excerpt)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata format="png" fileref="3d_new_layers.png"/>
+        </imageobject>
+      </mediaobject>
+      <caption>
+        <para>This hypergraph models the containment and order of the text, with no statement of
+          hierarchy (dominance).</para>
+      </caption>
+    </figure>
+    <figure xml:id="snark_perspective">
+      <title>Lewis Carroll, <quote>The hunting of the Snark</quote> (excerpt)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata format="png" fileref="3d_new_perspective.png"/>
+        </imageobject>
+      </mediaobject>
+      <caption>
+        <para>This hypergraph models the containment and order of the text, with no statement of
+          hierarchy (dominance).</para>
+      </caption>
+    </figure>
+    <figure xml:id="snark_sets">
+      <title>Lewis Carroll, <quote>The hunting of the Snark</quote> (excerpt)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata format="png" fileref="3d_new_sets.png"/>
+        </imageobject>
+      </mediaobject>
+      <caption>
+        <para>This hypergraph models the containment and order of the text, with no statement of
+          hierarchy (dominance).</para>
+      </caption>
+    </figure>
   </appendix>
   <appendix xml:id="requirements" xreflabel="Appendix D">
     <title>Requirements</title>
