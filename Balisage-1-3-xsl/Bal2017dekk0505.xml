@@ -1523,13 +1523,12 @@
             property value of <quote>sonneteer</quote>.</para>
         </listitem>
       </itemizedlist>
-      <para>The query language operates on sets of nodes and edges. Here we provide some concise
-        examples of how such queries might operate in the terms of the model, which at that level
-        involves a traversal of the Text nodes, since those are the only ordered part of the model.
-        This naïve approach would not be performative and would not be implemented directly; a TAG
-        application, like any database of any type, would employ indices, alternative data
-        structures, caching, and other features that are not part of the model, but that can be used
-        to maximalize performance.<footnote>
+      <para>The query language operates on sets of nodes and edges. Below are some concise examples
+        of how such queries might operate in terms of the model, which at that level involves a
+        traversal of the Text nodes, since those are the only ordered part of the model. This naïve
+        approach would not be performative and would not be implemented directly; a TAG application,
+        like any database of any type, would employ indices, alternative data structures, caching,
+        and other features that are not part of the model, but that can be used to maximalize performance.<footnote>
           <para>Indices achieve their optimization during querying partially at the expense of
             increasing the cost of updating, since parts of the index must be rebuilt when the
             content is edited. However, not only can index updates be deferred, but, more
