@@ -1469,8 +1469,8 @@
     
     </section>
     <section>
-      <title>Alexandria Markup Server API</title>
-    <para>The Alexandria Markup server has a REST API:
+      <title>The Alexandria markup server API</title>
+    <para>The Alexandria markup server has a REST API:
     
     GET     /documents
     (out: json) - returns a list of the urls of the stored documents
@@ -1503,10 +1503,10 @@
     (in: text, out: json) execute a query on the document, return results as json
     
     
-    Java/Python clients
-    =
-    
-    There are clients in Java and Python that, given the URL of an Alexandria Markup server, can connect to it in a way that hides the details of the REST protocol.
+    </para></section>
+    <section>
+      <title>Java/Python clients</title>
+      <para>There are clients in Java and Python that, given the URL of an Alexandria Markup server, can connect to it in a way that hides the details of the REST protocol.
     The client code handles the setting of the required HTTP headers, the formatting of the input and the interpreting of the results.</para>
     </section>
     
