@@ -1409,86 +1409,162 @@
       implementation in the current system loads the TAG model into memory, but persistence of the
       nodes and hyperedges in a key-value store on disk is under development. </para>
     <section>
-      <title>Importing plain text into Alexandria Markup</title>
-      <para>As an example of importing into Alexandria Markup, consider a document that consists of
-        just the plain text <quote>Hello, World</quote>. When we import this plain-text document
-        into Alexandria Markup, a very simple graph is created, consisting of two nodes and one
-        regular edge. One node is the TAG Document node; the other is a TAG Text node that contains
-        all of the text. A regular edge is created from the Document node to the Text node, which
-        associates the text with the document.</para>
+      <title>Importing documents into Alexandria</title>
+      <section>
+        <title>Importing plain text into Alexandria Markup</title>
+        <para>As an example of importing into Alexandria Markup, consider a document that consists
+          of just the plain text <quote>Hello, World</quote>. When we import this plain-text
+          document into Alexandria Markup, a very simple graph is created, consisting of two nodes
+          and one regular edge. One node is the TAG Document node; the other is a TAG Text node that
+          contains all of the text. A regular edge is created from the Document node to the Text
+          node, which associates the text with the document.</para>
+      </section>
+      <section>
+        <title>Importing LMNL into Alexandria Markup</title>
+        <para>The lexer uses a grammar to tokenize the LMNL text, setting the type of the token
+          according to the current context (e.g., annotations inside annotations, inside range start
+          or end tags, etc.). The stream of tokens is then parsed in the importer, which is also
+          sensitive to the context.</para>
+        <para>At the start of the import, we create a new Document node, which serves as the head of
+          the chain of Text nodes for the main text layer. We deal with parser events in the
+          following ways:</para>
+        <itemizedlist>
+          <listitem>
+            <para>For each range start tag we create a new Markup node, which we add to a list of
+              open Markup contexts.</para>
+          </listitem>
+          <listitem>
+            <para>For each string of text we create a new Text node, which we add to the tail of the
+              Markup-to-Text hyperedges for all open Markup contexts. We also add the Text node to
+              the chain of Text nodes.</para>
+          </listitem>
+          <listitem>
+            <para>After each range end tag we remove the corresponding Markup node from the list of
+              open Markup contexts.</para>
+          </listitem>
+          <listitem>
+            <para>For each annotation start tag we create a new Annotation node, which we add to an
+              annotation list for the current Markup node. Unless the annotation is empty, we now
+              set this Annotation as the current text layer, which means that until we come to the
+              annotation close tag for this annotation, all new Text nodes and Markup nodes will be
+              added to this annotation. When we encounter the corresponding annotation end tag, we
+              close this Annotation and return to the previous text layer.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+      <section>
+        <title>Importing TexMECS into Alexandria Markup</title>
+        <para>We use a lexer and parser to interpret TexMECS syntax. At the start of the import, we
+          create a new Document node. We deal with parser events in the following ways:</para>
+        <itemizedlist>
+          <listitem>
+            <para>After each start tag, we create a new Markup node and add it to the list of open
+              Markup nodes, and to the Document. </para>
+          </listitem>
+          <listitem>
+            <para>For each string of text we create a new Text node, which we add to the tail of the
+              Markup-to-Text hyperedges for all open Markup contexts. We also add the Text node to
+              the chain of Text nodes.</para>
+          </listitem>
+          <listitem>
+            <para>After each end tag we remove the corresponding Markup node from the list of open
+              Markup contextss. </para>
+          </listitem>
+          <listitem>
+            <para>After each suspend tag we remove the corresponding Markup node from the list of
+              open Markup contexts, and add it to the list of suspended Markup contexts. </para>
+          </listitem>
+          <listitem>
+            <para>After each resume tag we remove the corresponding Markup node from the list of
+              suspended Markup contexts, and add it to the list of open Markup contexts.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
     </section>
-
     <section>
-      <title>Importing LMNL into Alexandria Markup</title>
-      <para>The lexer uses a grammar to tokenize the LMNL text, setting the type of the token
-        according to the current context (e.g., annotations inside annotations, inside range start
-        or end tags, etc.). The stream of tokens is then parsed in the importer, which is also
-        sensitive to the context.</para>
-      <para>At the start of the import, we create a new Document node, which serves as the head of
-        the chain of Text nodes for the main text layer. We deal with parser events in the following
-        ways:</para>
-
+      <title>Exporting from Alexandria Markup in sawtooth syntax</title>
+      <para>As an example of exporting a simple document from Alexandria Markup, a serialization of
+        the TAG data model into LMNL sawtooth syntax involves traversal over an instance. The
+        traversal begins with the Document node, which must have a single directed regular edge that
+        points to the first Text node. We then follow the Markup-to-Text hyperedges that are
+        connected to this Text node.<footnote>
+          <para>Although Markup-to-Text hyperedges are directed from the Markup node to the Text
+            nodes, graph traversal may follow incoming edges back to their heads as easily as it
+            follows outgoing edges to their tails.</para>
+        </footnote> There can be zero or more Markup-to-Text hyperedges on a Text node, each of
+        which is headed by one Markup node. The traversal collects all the Markup nodes that point
+        to the Text node, and for each of them it writes a start tag, where the order of multiple
+        start tags is not part of the TAG model, and is therefore at the discretion of the
+        implementation. We then proceed to the next Text node by following the outgoing regular
+        Text-to-Text edge, which connects all Text nodes (except those on annotations) in a single
+        chain. As before, we collect all Markup nodes connected to the new Text node, and we then
+        calculate the differences between the sets of Markup nodes that point to the two Text nodes
+        under consideration. For the intersection we do nothing; for the set of Markup nodes that
+        are only on the previous Text node we write end tags; and for the set of Markup nodes that
+        are only on the new Text node we write start tags. At the conclusion of the traversal (which
+        can be recognized because only the final Text node does not have an outgoing regular edge),
+        we write end tags for all associated Markup-to-Text hyperedges.</para>
+    </section>
+    <section>
+      <title>TAGQL: A query language for TAG in Alexandria Markup</title>
+      <para>The Alexandria Markup query language for TAG, which is currently in an early stage of
+        design and implementation, uses an SQL-like syntax. For example:</para>
       <itemizedlist>
         <listitem>
-          <para>For each range start tag we create a new Markup node, which we add to a list of open
-            Markup contexts.</para>
+          <programlisting>select text from markup where name='a'</programlisting>
+          <para>returns the content of the Text nodes marked up with <quote>a</quote>.</para>
         </listitem>
-
         <listitem>
-          <para>For each string of text we create a new Text node, which we add to the tail of the
-            Markup-to-Text hyperedges for all open Markup contexts. We also add the Text node to the
-            chain of Text nodes.</para>
-        </listitem>
-
-        <listitem>
-          <para>After each range end tag we remove the corresponding Markup node from the list of
-            open Markup contexts.</para>
-        </listitem>
-
-        <listitem>
-          <para>For each annotation start tag we create a new Annotation node, which we add to an
-            annotation list for the current Markup node. Unless the annotation is empty, we now set
-            this Annotation as the current text layer, which means that until we come to the
-            annotation close tag for this annotation, all new Text nodes and Markup nodes will be
-            added to this annotation. When we encounter the corresponding annotation end tag, we
-            close this Annotation and return to the previous text layer.</para>
+          <programlisting>select annotationText('encoding:resp') from markup where name='sonneteer'</programlisting>
+          <para>return the values of all Annotation nodes with a <code>name</code> property value of
+              <quote>resp</quote> where the annotation is on another Annotation node, which has a
+              <code>name</code> property value of <quote>encoding</quote>, and the
+              <quote>encoding</quote> annotation is on a Markup node with the <code>name</code>
+            property value of <quote>sonneteer</quote>.</para>
         </listitem>
       </itemizedlist>
-    </section>
-    <section>
-      <title>Importing TexMECS into Alexandria Markup</title>
-      <para>We use a lexer and parser to interpret TexMECS syntax. At the start of the import, we
-        create a new Document node. We deal with parser events in the following ways:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>After each start tag, we create a new Markup node and add it to the list of open
-            Markup nodes, and to the Document. </para>
-        </listitem>
-        <listitem>
-          <para>For each string of text we create a new Text node, which we add to the tail of the
-            Markup-to-Text hyperedges for all open Markup contexts. We also add the Text node to the
-            chain of Text nodes.</para>
-        </listitem>
-        <listitem>
-          <para>After each end tag we remove the corresponding Markup node from the list of open
-            Markup contextss. </para>
-        </listitem>
-        <listitem>
-          <para>After each suspend tag we remove the corresponding Markup node from the list of open
-            Markup contexts, and add it to the list of suspended Markup contexts. </para>
-        </listitem>
-        <listitem>
-          <para>After each resume tag we remove the corresponding Markup node from the list of
-            suspended Markup contexts, and add it to the list of open Markup contexts.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-    <section>
-      <title>TAGQL: A query language for TAG</title>
-      <para>The query language uses an SQL-like syntax, e.g.:</para>
-      <programlisting>select text from markup where name='a'</programlisting>
-      <para>The preceding returns the content of the text nodes marked up with 'a'.</para>
+      <para>The query language operates on sets of nodes and edges. Here we provide some concise
+        examples of how such queries might operate in the terms of the model, which at that level
+        involves a traversal of the Text nodes, since those are the only ordered part of the model.
+        This naïve approach would not be performative and would not be implemented directly; a TAG
+        application, like any database of any type, would employ indices, alternative data
+        structures, caching, and other features that are not part of the model, but that can be used
+        to maximalize performance.<footnote>
+          <para>Indices achieve their optimization during querying partially at the expense of
+            increasing the cost of updating, since parts of the index must be rebuilt when the
+            content is edited. However, not only can index updates be deferred, but, more
+            importantly, modifications to a TAG document are local because, among other things, they
+            do not depend on character offsets, and therefore are not propagated across the entire
+            document. This obviates much of the expense of updating in a character-offset-based
+            standoff model.</para>
+        </footnote></para>
+      <section>
+        <title>Sample query: Find all lines in the second quatrain of a sonnet</title>
+        <para>Quatrains are stanzas that consist of four poetic lines, and an Elizabethan sonnet
+          consists of three quatrains followed by a couplet, for a total of fourteen lines. Assume a
+          document where lines and quatrains are Markup nodes that point to sets of Text nodes.
+          Start at the Document node and navigate to the first Text node, which is part of the first
+          quatrain. Follow that Text node up to its associated Markup node that has a
+            <code>name</code> property value of <quote>quatrain</quote>; it points to the set of all
+          of the Text nodes in the quatrain. Follow the chain of Text nodes until the first one not
+          in that set, which will be at the beginning of the second quatrain. Follow its hyperedge
+          up to the associated <quote>quatrain</quote> Markup node, which points to the set of all
+          of the Text nodes in its tail, that is, all of the text of the second quatrain. If you
+          need the line markup, and not just the text of the lines, return the Text nodes with their
+          associated Markup-to-Text hyperedges that originate in Markup nodes with a
+            <code>name</code> property value of <quote>line</quote>, that is, with their line
+          markup.</para>
+      </section>
+      <section>
+        <title>Sample query: Find enjambment</title>
+        <para>Enjambment is a poetic phenomenon where a sentence (or sometimes a phrase) crosses a
+          line boundary. Assume a document where lines and sentences are Markup nodes that point to
+          sets of Text nodes. Traverse the Text nodes starting at the Document node. Any adjacent
+          Text nodes in the tail of the same Markup-to-Text hyperedge with a Markup node
+            <code>name</code> property value of <quote>sentence</quote>, but in the tails of
+          different Markup-to-Text hyperedges with a Markup node <code>name</code> property value of
+            <quote>line</quote>, represents an enjambment.</para>
+      </section>
     </section>
     <section>
       <title>The Alexandria Markup server API</title>
@@ -1497,7 +1573,7 @@
         <tr>
           <th>Method</th>
           <th>I/O format</th>
-          <th>output</th>
+          <th>Response</th>
         </tr>
         <tr>
           <td>GET /documents</td>
@@ -1532,7 +1608,6 @@
           <td>execute a query on the document, return results as json</td>
         </tr>
       </table>
-
     </section>
     <section>
       <title>Java/Python clients</title>
@@ -1541,48 +1616,22 @@
         handles the setting of the required HTTP headers, the formatting of the input and the
         interpreting of the results.</para>
     </section>
-
-    <section>
-      <title>Exporting from Alexandria Markup in sawtooth syntax</title>
-      <para>As an example of exporting a simple document from Alexandria Markup, a serialization of
-        the TAG data model into LMNL sawtooth syntax involves traversal over an instance. The
-        traversal begins with the Document node, which must have a single directed regular edge that
-        points to the first Text node. We then follow the Markup-to-Text hyperedges that are
-        connected to this Text node.<footnote>
-          <para>Although Markup-to-Text hyperedges are directed from the Markup node to the Text
-            nodes, graph traversal may follow incoming edges back to their heads as easily as it
-            follows outgoing edges to their tails.</para>
-        </footnote> There can be zero or more Markup-to-Text hyperedges on a Text node, each of
-        which is headed by one Markup node. The traversal collects all the Markup nodes that point
-        to the Text node, and for each of them it writes a start tag, where the order of multiple
-        start tags is not part of the TAG model, and is therefore at the discretion of the
-        implementation. We then proceed to the next Text node by following the outgoing regular
-        Text-to-Text edge, which connects all Text nodes (except those on annotations) in a single
-        chain. As before, we collect all Markup nodes connected to the new Text node, and we then
-        calculate the differences between the sets of Markup nodes that point to the two Text nodes
-        under consideration. For the intersection we do nothing; for the set of Markup nodes that
-        are only on the previous Text node we write end tags; and for the set of Markup nodes that
-        are only on the new Text node we write start tags. At the conclusion of the traversal (which
-        can be recognized because only the final Text node does not have an outgoing regular edge),
-        we write end tags for all associated Markup-to-Text hyperedges.</para>
-    </section>
-    <section>
-      <title>Conclusions</title>
-      <para>TAG is a graph-based model that consists of a set of nodes and edges (both regular,
-        one-to-one edges and hyperedges). Only Text nodes are ordered, and the order of Markup nodes
-        is derived from the order of the Text nodes to which they point. TAG models containment
-        through subset relations, and overlap through intersection where neither set is a subset of
-        the other, and it deals naturally with discontinuity because there is no requirement that
-        sets of nodes be contiguous. TAG is capable of modeling hierarchy, but it is not required to
-        do so, and it is possible to have multiple hierarchies. TAG separates the datatyping role of
-        tagging from issues of hierarchy, so it is possible to label a set of Text nodes with a
-        Markup-to-Text hyperedge without affecting hierarchical relations, and it also possible to
-        annotate a set of Text nodes with naming them, that is, without the equivalent of an XML
-        generic identifier. A root node is optional. At the moment there is a single text order, but
-        TAG recognizes the need for greater nuance in this area, about which see <xref
-          linkend="to_do"/>, which also identifies other issues that TAG does not (yet)
-        address.</para>
-    </section>
+  </section>
+  <section>
+    <title>Conclusions</title>
+    <para>TAG is a graph-based model that consists of a set of nodes and edges (both regular,
+      one-to-one edges and hyperedges). Only Text nodes are ordered, and the order of Markup nodes
+      is derived from the order of the Text nodes to which they point. TAG models containment
+      through subset relations, and overlap through intersection where neither set is a subset of
+      the other, and it deals naturally with discontinuity because there is no requirement that sets
+      of nodes be contiguous. TAG is capable of modeling hierarchy, but it is not required to do so,
+      and it is possible to have multiple hierarchies. TAG separates the datatyping role of tagging
+      from issues of hierarchy, so it is possible to label a set of Text nodes with a Markup-to-Text
+      hyperedge without affecting hierarchical relations, and it also possible to annotate a set of
+      Text nodes with naming them, that is, without the equivalent of an XML generic identifier. A
+      root node is optional. At the moment there is a single text order, but TAG recognizes the need
+      for greater nuance in this area, about which see <xref linkend="to_do"/>, which also
+      identifies other issues that TAG does not (yet) address.</para>
   </section>
   <appendix xml:id="sonnet-71_text" xreflabel="Appendix A">
     <title>William Shakespeare, Sonnet 71</title>
@@ -1738,51 +1787,6 @@ And mock you with me after I am gone.</programlisting>
       <title>Constraint language</title>
       <para>Constraints in this paper are expressed in prose. They should be expressed formally in a
         more complete specification.</para>
-    </section>
-    <section>
-      <title>Query language</title>
-      <para>The query language, which is currently in an early stage of design and implementation,
-        operates on sets of nodes and edges. Here we provide some concise examples of how such
-        queries might operate in the terms of the model, which at that level involves a traversal of
-        the Text nodes, since those are the only ordered part of the model. This naïve approach
-        would not be performative and would not be implemented directly; a TAG application, like any
-        database of any type, would employ indices, alternative data structures, caching, and other
-        features that are not part of the model, but that can be used to maximalize performance.<footnote>
-          <para>Indices achieve their optimization during querying partially at the expense of
-            increasing the cost of updating, since parts of the index must be rebuilt when the
-            content is edited. However, not only can index updates be deferred, but, more
-            importantly, modifications to a TAG document are local because, among other things, they
-            do not depend on character offsets, and therefore are not propagated across the entire
-            document. This obviates much of the expense of updating in a character-offset-based
-            standoff model.</para>
-        </footnote></para>
-      <section>
-        <title>Sample query: Find all lines in the second quatrain of a sonnet</title>
-        <para>Quatrains are stanzas that consist of four poetic lines, and an Elizabethan sonnet
-          consists of three quatrains followed by a couplet, for a total of fourteen lines. Assume a
-          document where lines and quatrains are Markup nodes that point to sets of Text nodes.
-          Start at the Document node and navigate to the first Text node, which is part of the first
-          quatrain. Follow that Text node up to its associated Markup node that has a
-            <code>name</code> property value of <quote>quatrain</quote>; it points to the set of all
-          of the Text nodes in the quatrain. Follow the chain of Text nodes until the first one not
-          in that set, which will be at the beginning of the second quatrain. Follow its hyperedge
-          up to the associated <quote>quatrain</quote> Markup node, which points to the set of all
-          of the Text nodes in its tail, that is, all of the text of the second quatrain. If you
-          need the line markup, and not just the text of the lines, return the Text nodes with their
-          associated Markup-to-Text hyperedges that originate in Markup nodes with a
-            <code>name</code> property value of <quote>line</quote>, that is, with their line
-          markup.</para>
-      </section>
-      <section>
-        <title>Sample query: Find enjambment</title>
-        <para>Enjambment is a poetic phenomenon where a sentence (or sometimes a phrase) crosses a
-          line boundary. Assume a document where lines and sentences are Markup nodes that point to
-          sets of Text nodes. Traverse the Text nodes starting at the Document node. Any adjacent
-          Text nodes in the tail of the same Markup-to-Text hyperedge with a Markup node
-            <code>name</code> property value of <quote>sentence</quote>, but in the tails of
-          different Markup-to-Text hyperedges with a Markup node <code>name</code> property value of
-            <quote>line</quote>, represents an enjambment.</para>
-      </section>
     </section>
     <section>
       <title>Markup language</title>
