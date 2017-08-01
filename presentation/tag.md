@@ -6,6 +6,11 @@ ____
 
 # Teaser
 
+<!-- <style>
+img { width:100%; height:auto; }
+</style>
+-->
+
 <img class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/>
 
 <!--
@@ -121,9 +126,14 @@ ____
 
 # Discontinuity in TAG
 
+Lewis Carroll, Alice in Wonderland
+
+Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, “and what is the use of a book,” thought Alice “without pictures or conversation?”
+
 <img src="../Balisage-1-3-xsl/discontinuity_hypergraph_transparent.png" width="99%"/>
 
 ____
+
 # Textual phenomena II
 
 * White space as crypto-overlap
@@ -149,3 +159,110 @@ The following pseudo-XML is not well formed:
 ```xml
 <foot><word>and</word> <word>trunk</foot><foot>less</word> <word>legs</word></foot>
 ```
+
+# Data typing causes artificial hierarchy in XML
+
+```xml
+<title><name>Romeo</name> and <name>Juliet</name></title>
+```
+
+![](../Balisage-1-3-xsl/romeo_xml_transparent.png)
+
+____
+
+# Data typing in TAG
+
+![](../Balisage-1-3-xsl/romeo_hypergraph_transparent.png)
+
+____
+
+
+# White space as crypto-overlap in TAG
+
+<img src="../Balisage-1-3-xsl/feet_transparent.png" width="99%"/>
+____
+
+# Footnotes (scope of reference) in XML
+
+> Textual content in TAG is expressed by nodes with a **type** value of “text”, each of which represents a segment of textual content (Text nodes may also be empty). The order of the text is stored as directed regular (one-to-one) edges between pairs of Text nodes; this chain begins at the Document node, which points to the first Text node, and a single, unbroken chain connects all Text nodes in the document except those in annotations.<sup>23</sup>
+
+```xml
+<p>Textual content in TAG is expressed by nodes with a **type** 
+value of “text”, each of which represents a segment of textual 
+content (Text nodes may also be empty). The order of the text is 
+stored as directed regular (one-to-one) edges between pairs of Text 
+nodes; this chain begins at the Document node, which points to the 
+first Text node, and a single, unbroken chain connects all Text 
+nodes in the document except those in annotations.<fn><p>[Footnote
+content goes here.]</p></fn></p>
+``` 
+ 
+Is the footnote on the last sentence, the last two sentences, or the entire paragraph?
+
+____
+
+# Footnotes (scope of reference) in TAG
+
+<img src="../Balisage-1-3-xsl/note_transparent.png" width="99%"/>
+
+Scope of footnote is made clear by the hyperedge coming from the anonymous markup node. Plus content of footnote is not part of the content of the document. 
+
+
+____
+
+# Prototype implementation
+
+* Alexandria Markup is a prototype implementation of TAG.
+* Based on client/server architecture
+* REST protocol
+* Server is written in Java
+* Clients available in Java and Python
+* License; Open source; Apache license
+* Able to import files encoded in LMNL Sawtooth syntax
+* Able to import files encoded in TexMECS syntax
+* Query language is in early stage of implementation
+* Validation...
+* TAG portal: http://github etc
+
+____
+
+# What is text really?
+
+- (un)ordered
+- (dis)continuous
+- hierarchie(s)
+
+___
+
+# Conclusion
+
+TAG is a new text model thatdoes not impose a hierarchy, but it allows one or more. It currently supports one order, but could be extended to allow unordered content or multiple orders. It thus addresses several textual phenomena that cannot be represented in other models without resorting to workarounds. As such it allows us to map and process textual phenomena in a natural and idiomatic way.
+
+
+____
+
+
+# Three things that are hard for XML and (currently) for TAG
+
+* Simultaneity
+* Transposition
+* Intradocumentary variation
+
+____
+
+# Simultaneity
+
+<img src="../Balisage-1-3-xsl/flotus_transparent.png"/>
+
+____
+
+# Transposition
+
+<img src="../Balisage-1-3-xsl/stormy_transparent.png"/>
+
+# Intradocumentary variation
+
+____
+
+
+ 
