@@ -2,6 +2,8 @@
 % Ronald Haentjens Dekker and David J. Birnbaum
 % Balisage: The Markup Conference, August 2017
 
+____
+
 # Teaser
 
 <img class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/>
@@ -10,9 +12,11 @@
 I propose that text, in essence, could be seen as this [show 3D visualization] 
 -->
 
+____
+
 # Goal
 
-* Research and development project
+* Part of Research and Development project
 * Coming up with a new model for textual data containing
   generic markup
 * Able to deal with many textual phenomena 
@@ -21,6 +25,9 @@ I propose that text, in essence, could be seen as this [show 3D visualization]
 * Either human made or machine made
 * Keeping as much logic as possible out of the application layer
 
+____
+
+
 # Textual Phenomena I
 
 * Overlap (multiple hierarchies) 
@@ -28,6 +35,8 @@ I propose that text, in essence, could be seen as this [show 3D visualization]
 
 More to come...
 
+
+____
 
 # Overlap (multiple hierarchies)
  
@@ -74,6 +83,47 @@ ____
 
 # Model: Text as Graph
 
+## Terminology
+
+* **Markup:** comparable to XML elements
+* **Annotation:** comparable to XML attributes, except that 1) annotation text may have markup, and 2) annotations on annotations are permitted
+
+## Components
+
+TAG is a **hypergraph** model
+
+* **Nodes** (Document, Text, Markup, Annotation)
+* **Edges** (one-to-one; textual order)
+* **Hyperedges** (one-to-many, many-to-one; markup and annotation)
+
+Operations in TAG are operations on sets of nodes and edges
+
+____
+
+# TAG in 3D (Video is preferred here)
+
+<img class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/>
+
+____
+
+# Overlap (multiple hierarchies) in TAG
+
+Percy Bysshe Shelley, “Ozymandias”
+
+> Who said — **“Two vast and trunkless lets of stone  
+Stand in the desart....** Near them, on the sand
+
+<img src="../Balisage-1-3-xsl/ozymandias_hypergraph_transparent.png" width="99%"/>
+
+<!-- ai the hierarchies are not really all that visible here, since the "dominate" relation is not used. Say something here about the difference between containment and dominance? -->
+
+____
+
+# Discontinuity in TAG
+
+<img src="../Balisage-1-3-xsl/discontinuity_hypergraph_transparent.png" width="99%"/>
+
+____
 # Textual phenomena II
 
 * White space as crypto-overlap
