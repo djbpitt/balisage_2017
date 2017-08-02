@@ -176,10 +176,10 @@ William Shakespeare, Sonnet #71
 
 ```xml
 <line>
-	<foot>No lon</foot><foot>ger mourn</foot>
-	<foot>for me</foot>
-	<foot>when I</foot>
-	<foot>am dead</foot>
+	<foot>No l<stress>o</stress>n</foot><foot>ger m<stress>ou</stress>rn</foot>
+	<foot>for m<stress>e</stress></foot>
+	<foot>when <stress>I</stress></foot>
+	<foot>am d<stress>ea</stress>d</foot>
 </line>
 ```
 
@@ -187,10 +187,10 @@ The following pseudo-XML is not well formed:
 
 ```xml
 <line>
-	<foot><word>No</word> <word>lon</foot><foot>ger</word> <word>mourn</word></foot> 
-	<foot><word>for</word> <word>me</word></foot>
-	<foot><word>when</word> <word>I</word></foot>
-	<foot><word>am</word> <word>dead</word></foot>
+	<foot><word>No</word> <word>l<stress>o</stress>n</foot><foot>ger</word> <word>m<stress>ou</stress>rn</word></foot> 
+	<foot><word>for</word> <word>m<stress>e</stress></word></foot>
+	<foot><word>when</word> <word><stress>I</stress></word></foot>
+	<foot><word>am</word> <word>d<stress>ea</stress>d</word></foot>
 </line>
 ```
 
