@@ -21,14 +21,14 @@ ____
 
 # Goal
 
-* Part of Research and Development project
-* Coming up with a new model for textual data containing
+* Academic Research and Development project
+* New model for textual data containing
   generic markup
 * Able to deal with many textual phenomena 
 * Suitable for (focus on) mixed content
-* Allowing for many layers of annotation 
-* Either human made or machine made
-* Keeping as much logic as possible out of the application layer
+* Multiple layers of annotation 
+* Either manual or machine assisted
+* Separation of model and application layer
 
 ____
 
