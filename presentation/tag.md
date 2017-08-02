@@ -174,7 +174,8 @@ The following pseudo-XML is not well formed:
 
 ```xml
 <line>
-	<foot><word>No</word> <word>l<stress>o</stress>n</foot><foot>ger</word> <word>m<stress>ou</stress>rn</word></foot> 
+	<foot><word>No</word> <word>l<stress>o</stress>n</foot><foot>ger</word>
+		<word>m<stress>ou</stress>rn</word></foot> 
 	<foot><word>for</word> <word>m<stress>e</stress></word></foot>
 	<foot><word>when</word> <word><stress>I</stress></word></foot>
 	<foot><word>am</word> <word>d<stress>ea</stress>d</word></foot>
