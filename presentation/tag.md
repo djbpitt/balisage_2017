@@ -170,6 +170,11 @@ The following pseudo-XML is not well formed:
 <!-- element boundary in the middle of a word -->
 <!-- if you tag the text for both feet and words you get overlap. It is implicit. We were letting the white space function as pseudo markup. Once we make it explicit we have overlap. -->
 
+# White space as crypto-overlap in TAG
+
+<img src="../Balisage-1-3-xsl/feet_transparent.png" width="99%"/>
+____
+
 # Data typing causes artifactual hierarchy in XML
 
 ```xml
@@ -187,10 +192,6 @@ ____
 ____
 
 
-# White space as crypto-overlap in TAG
-
-<img src="../Balisage-1-3-xsl/feet_transparent.png" width="99%"/>
-____
 
 # Footnotes (scope of reference) in XML
 
