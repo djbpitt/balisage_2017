@@ -223,14 +223,13 @@ ____
 > Textual content in TAG is expressed by nodes with a **type** value of “text”, each of which represents a segment of textual content (Text nodes may also be empty). The order of the text is stored as directed regular (one-to-one) edges between pairs of Text nodes; this chain begins at the Document node, which points to the first Text node, and a single, unbroken chain connects all Text nodes in the document except those in annotations.<sup>23</sup>
 
 ```xml
-<p>Textual content in TAG is expressed by nodes with a type 
-value of “text”, each of which represents a segment of textual 
-content (Text nodes may also be empty). The order of the text is 
-stored as directed regular (one-to-one) edges between pairs of Text 
-nodes; this chain begins at the Document node, which points to the 
-first Text node, and a single, unbroken chain connects all Text 
-nodes in the document except those in annotations.<fn><p>[Haentjens
-Dekker and Birnbaum 2017]</p></fn></p>
+<p>Textual content in TAG is expressed by nodes with a strong>type</strong> 
+value of “text”, each of which represents a segment of textual content 
+(Text nodes may also be empty). The order of the text is stored as directed 
+regular (one-to-one) edges between pairs of Text nodes; this chain begins at 
+the Document node, which points to the first Text node, and a single, 
+unbroken chain connects all Text nodes in the document except those in 
+annotations.<fn><p>[Haentjens Dekker and Birnbaum 2017]</p></fn></p>
 ``` 
  
 1. Is the footnote text part of the main text?
