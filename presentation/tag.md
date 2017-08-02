@@ -15,6 +15,9 @@ img { width:100%; height:auto; }
 
 <!--
 I propose that text, in essence, could be seen as this [show 3D visualization] 
+
+Excerpt of:
+The Hunting of the Snark (An Agony in 8 Fits) is a poem written by English writer Lewis Carroll.
 -->
 
 ____
@@ -112,16 +115,23 @@ Operations in TAG are operations on sets of nodes and edges
 <!-- there is a lot of accumulated knowledge about reasoning over and operation with sets -->
 ____
 
+
 # TAG in 3D
 
-<video height="70%" controls>
+<video height="80%" controls>
   <source src="animation/output.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-<!--
-<img class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/>
--->
+____
+
+
+# TAG Flyby
+
+<video height="80%" controls>
+  <source src="animation/snark-fly.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ____
 
