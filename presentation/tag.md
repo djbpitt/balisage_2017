@@ -112,7 +112,7 @@ Operations in TAG are operations on sets of nodes and edges
 <!-- there is a lot of accumulated knowledge about reasoning over and operation with sets -->
 ____
 
-# TAG in 3D (Video is preferred here)
+# TAG in 3D
 
 <video height="70%" controls>
   <source src="animation/output.mp4" type="video/mp4">
