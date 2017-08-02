@@ -170,7 +170,7 @@ The following pseudo-XML is not well formed:
 <!-- element boundary in the middle of a word -->
 <!-- if you tag the text for both feet and words you get overlap. It is implicit. We were letting the white space function as pseudo markup. Once we make it explicit we have overlap. -->
 
-# White space crypto-overlap
+# White space as crypto-overlap
 
 William Shakespeare, Sonnet #71
 
