@@ -59,90 +59,39 @@ Ronald Haentjens Dekker and David J. Birnbaum
   </p>
   <p class="date">Balisage: The Markup Conference, August 2017</p>
 </div>
-<div id="outline" class="slide section level1">
-<h1>Outline</h1>
+<div id="teaser" class="slide section level1">
+<h1>Teaser</h1>
+<!-- <style>
+img { width:100%; height:auto; }
+</style>
+-->
+<p><img style="width: 70%; height: auto;" class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/></p>
+<!--
+I propose that text, in essence, could be seen as this [show 3D visualization] 
+-->
+</div>
+<div id="goal" class="slide section level1">
+<h1>Goal</h1>
 <ul>
-<li>What’s a model for</li>
-<li>How TAG works</li>
-<li>Five things that are hard for XML, but not for TAG</li>
-<li>Three things that are hard for XML and (currently) for TAG</li>
-<li>Conclusion</li>
+<li>Part of Research and Development project</li>
+<li>Coming up with a new model for textual data containing generic markup</li>
+<li>Able to deal with many textual phenomena</li>
+<li>Suitable for (focus on) mixed content</li>
+<li>Allowing for many layers of annotation</li>
+<li>Either human made or machine made</li>
+<li>Keeping as much logic as possible out of the application layer</li>
 </ul>
 </div>
-<div id="whats-a-model-for" class="slide section level1">
-<h1>What’s a model for</h1>
+<div id="textual-phenomena-i" class="slide section level1">
+<h1>Textual Phenomena I</h1>
 <ul>
-<li>Parsing real XML start and end tags is automatic because they’re part of the model. No semantics required.</li>
-<li>Parsing Trojan milestones requires application semantics.</li>
-<li>“What text really is” belongs in the model, and not at the application layer.</li>
-</ul>
-</div>
-<div id="so-what-is-text-really" class="slide section level1">
-<h1>So what is text really?</h1>
-<h2 id="what-text-isnt">What text isn’t</h2>
-<ul>
-<li>Not (always) ordered</li>
-<li>Not (always) hierarchical (not just not always monohierarchical, but sometimes not hierarchical at all)</li>
-<li>Not every XML element is a real Content Object</li>
-</ul>
-</div>
-<div id="how-tag-works" class="slide section level1">
-<h1>How TAG works</h1>
-<h2 id="terminology">Terminology</h2>
-<ul>
-<li><strong>Markup:</strong> comparable to XML elements</li>
-<li><strong>Annotation:</strong> comparable to XML attributes, except that 1) annotation text may have markup, and 2) annotations on annotations are permitted</li>
-</ul>
-<h2 id="components">Components</h2>
-<p>TAG is a <strong>hypergraph</strong> model</p>
-<ul>
-<li><strong>Nodes</strong> (Document, Text, Markup, Annotation)</li>
-<li><strong>Edges</strong> (one-to-one; textual order)</li>
-<li><strong>Hyperedges</strong> (one-to-many, many-to-one; markup and annotation)</li>
-</ul>
-<p>Operations in TAG are operations on sets of nodes and edges</p>
-</div>
-<div id="tag-in-3d" class="slide section level1">
-<h1>TAG in 3D</h1>
-<p><img class="three-d" src="../Balisage-1-3-xsl/3d_new_sets.png"/></p>
-</div>
-<div id="tag-in-3d-1" class="slide section level1">
-<h1>TAG in 3D</h1>
-<p><img class="three-d" src="../Balisage-1-3-xsl/3d_new_layers.png"/></p>
-</div>
-<div id="tag-in-3d-2" class="slide section level1">
-<h1>TAG in 3D</h1>
-<p><img class="three-d" src="../Balisage-1-3-xsl/3d_new_discontinuity.png"/></p>
-</div>
-<div id="tag-in-3d-3" class="slide section level1">
-<h1>TAG in 3D</h1>
-<p><img class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/></p>
-</div>
-<div id="two-types-of-challenges-for-xml-one-shared-with-tag" class="slide section level1">
-<h1>Two types of challenges for XML (one shared with TAG)</h1>
-<h2 id="modeling-challenges">Modeling challenges</h2>
-<ul>
-<li>If it isn’t in the model and requires a workaround, workarounds vary, which risks inconsistency in a corpus</li>
-<li>E.g.: In an overlap situation, which hierarchy is represented by container tags and which by milestones?</li>
-</ul>
-<h2 id="lexical-challenges">Lexical challenges</h2>
-<ul>
-<li>The same structural markup unit may have different name properties in different documents</li>
-<li>Inherently a matter of lexical semantics, which affects TAG as much as XML</li>
-</ul>
-</div>
-<div id="five-things-that-are-hard-for-xml-but-not-for-tag" class="slide section level1">
-<h1>Five things that are hard for XML, but not for TAG</h1>
-<ul>
-<li>Multiple hierarchies (overlap)</li>
+<li>Overlap (multiple hierarchies)</li>
 <li>Discontinuity</li>
-<li>Artifactual hierarchy</li>
-<li>White space as crypto-overlap</li>
-<li>Scope of reference</li>
 </ul>
+<p>More to come...</p>
 </div>
-<div id="multiple-hierarchies-overlap-in-xml" class="slide section level1">
-<h1>Multiple hierarchies: overlap in XML</h1>
+<div id="overlap-multiple-hierarchies" class="slide section level1">
+<h1>Overlap (multiple hierarchies)</h1>
 <p>Percy Bysshe Shelley, “Ozymandias”</p>
 <blockquote>
 <p>Who said — <strong>“Two vast and trunkless lets of stone<br />
@@ -162,10 +111,6 @@ Stand in the desart....</strong> Near them, on the sand</p>
 <h1>Multiple hierarchies: projecting two trees over the same text nodes</h1>
 <p><img src="../Balisage-1-3-xsl/ozymandias_trees_transparent.png" width="99%"/></p>
 </div>
-<div id="multiple-hierarchies-overlap-in-tag" class="slide section level1">
-<h1>Multiple hierarchies: overlap in TAG</h1>
-<p><img src="../Balisage-1-3-xsl/ozymandias_hypergraph_transparent.png" width="99%"/></p>
-</div>
 <div id="discontinuity-in-xml" class="slide section level1">
 <h1>Discontinuity in XML</h1>
 <p>Lewis Carroll, <em>Alice in Wonderland</em></p>
@@ -178,27 +123,52 @@ peeped into the book her sister was reading, but it had no pictures
 or conversations in it, <span class="kw">&lt;q&gt;</span>and what is the use of a book,<span class="kw">&lt;/q&gt;</span> 
 thought Alice <span class="kw">&lt;q&gt;</span>without pictures or conversation?<span class="kw">&lt;/q&gt;&lt;/p&gt;</span></code></pre></div>
 </div>
+<div id="model-text-as-graph" class="slide section level1">
+<h1>Model: Text as Graph</h1>
+<h2 id="terminology">Terminology</h2>
+<ul>
+<li><strong>Markup:</strong> comparable to XML elements</li>
+<li><strong>Annotation:</strong> comparable to XML attributes, except that 1) annotation text may have markup, and 2) annotations on annotations are permitted</li>
+</ul>
+<h2 id="components">Components</h2>
+<p>TAG is a <strong>hypergraph</strong> model</p>
+<ul>
+<li><strong>Nodes</strong> (Document, Text, Markup, Annotation)</li>
+<li><strong>Edges</strong> (one-to-one; textual order)</li>
+<li><strong>Hyperedges</strong> (one-to-many, many-to-one; markup and annotation)</li>
+</ul>
+<p>Operations in TAG are operations on sets of nodes and edges</p>
+</div>
+<div id="tag-in-3d-video-is-preferred-here" class="slide section level1">
+<h1>TAG in 3D (Video is preferred here)</h1>
+<p><img class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/></p>
+</div>
+<div id="overlap-multiple-hierarchies-in-tag" class="slide section level1">
+<h1>Overlap (multiple hierarchies) in TAG</h1>
+<p>Percy Bysshe Shelley, “Ozymandias”</p>
+<blockquote>
+<p>Who said — <strong>“Two vast and trunkless lets of stone<br />
+Stand in the desart....</strong> Near them, on the sand</p>
+</blockquote>
+<p><img src="../Balisage-1-3-xsl/ozymandias_hypergraph_transparent.png" width="99%"/></p>
+<!-- ai the hierarchies are not really all that visible here, since the "dominate" relation is not used. Say something here about the difference between containment and dominance? -->
+</div>
 <div id="discontinuity-in-tag" class="slide section level1">
 <h1>Discontinuity in TAG</h1>
+<p>Lewis Carroll, Alice in Wonderland</p>
+<p>Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, “and what is the use of a book,” thought Alice “without pictures or conversation?”</p>
 <p><img src="../Balisage-1-3-xsl/discontinuity_hypergraph_transparent.png" width="99%"/></p>
 </div>
-<div id="artificial-hierarchy-in-xml" class="slide section level1">
-<h1>Artificial hierarchy in XML</h1>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;title&gt;&lt;name&gt;</span>Romeo<span class="kw">&lt;/name&gt;</span> and <span class="kw">&lt;name&gt;</span>Juliet<span class="kw">&lt;/name&gt;&lt;/title&gt;</span></code></pre></div>
-<div class="figure">
-<img src="../Balisage-1-3-xsl/romeo_xml_transparent.png" />
-
+<div id="textual-phenomena-ii" class="slide section level1">
+<h1>Textual phenomena II</h1>
+<ul>
+<li>White space as crypto-overlap</li>
+<li>Datatyping and artificial hierarchy</li>
+<li>Footnotes (Scope of reference)</li>
+</ul>
 </div>
-</div>
-<div id="artificial-hierarchy-in-tag" class="slide section level1">
-<h1>Artificial hierarchy in TAG</h1>
-<div class="figure">
-<img src="../Balisage-1-3-xsl/romeo_hypergraph_transparent.png" />
-
-</div>
-</div>
-<div id="white-space-as-crypto-overlap-in-xml" class="slide section level1">
-<h1>White space as crypto-overlap in XML</h1>
+<div id="white-space-as-crypto-overlap" class="slide section level1">
+<h1>White space as crypto-overlap</h1>
 <p>Percy Bysshe Shelley, “Ozymandias”</p>
 <blockquote>
 <p>Who said two vast and trunkless legs of stone</p>
@@ -212,12 +182,27 @@ thought Alice <span class="kw">&lt;q&gt;</span>without pictures or conversation?
 <p>The following pseudo-XML is not well formed:</p>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;foot&gt;&lt;word&gt;</span>and<span class="kw">&lt;/word&gt;</span> <span class="kw">&lt;word&gt;</span>trunk<span class="kw">&lt;/foot&gt;&lt;foot&gt;</span>less<span class="kw">&lt;/word&gt;</span> <span class="kw">&lt;word&gt;</span>legs<span class="kw">&lt;/word&gt;&lt;/foot&gt;</span></code></pre></div>
 </div>
+<div id="data-typing-causes-artificial-hierarchy-in-xml" class="slide section level1">
+<h1>Data typing causes artificial hierarchy in XML</h1>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;title&gt;&lt;name&gt;</span>Romeo<span class="kw">&lt;/name&gt;</span> and <span class="kw">&lt;name&gt;</span>Juliet<span class="kw">&lt;/name&gt;&lt;/title&gt;</span></code></pre></div>
+<div class="figure">
+<img src="../Balisage-1-3-xsl/romeo_xml_transparent.png" />
+
+</div>
+</div>
+<div id="data-typing-in-tag" class="slide section level1">
+<h1>Data typing in TAG</h1>
+<div class="figure">
+<img src="../Balisage-1-3-xsl/romeo_hypergraph_transparent.png" />
+
+</div>
+</div>
 <div id="white-space-as-crypto-overlap-in-tag" class="slide section level1">
 <h1>White space as crypto-overlap in TAG</h1>
 <p><img src="../Balisage-1-3-xsl/feet_transparent.png" width="99%"/> ____</p>
 </div>
-<div id="scope-of-reference-in-xml" class="slide section level1">
-<h1>Scope of reference in XML</h1>
+<div id="footnotes-scope-of-reference-in-xml" class="slide section level1">
+<h1>Footnotes (scope of reference) in XML</h1>
 <blockquote>
 <p>Textual content in TAG is expressed by nodes with a <strong>type</strong> value of “text”, each of which represents a segment of textual content (Text nodes may also be empty). The order of the text is stored as directed regular (one-to-one) edges between pairs of Text nodes; this chain begins at the Document node, which points to the first Text node, and a single, unbroken chain connects all Text nodes in the document except those in annotations.<sup>23</sup></p>
 </blockquote>
@@ -231,9 +216,47 @@ nodes in the document except those in annotations.<span class="kw">&lt;fn&gt;&lt
 content goes here.]<span class="kw">&lt;/p&gt;&lt;/fn&gt;&lt;/p&gt;</span></code></pre></div>
 <p>Is the footnote on the last sentence, the last two sentences, or the entire paragraph?</p>
 </div>
-<div id="scope-of-reference-in-tag" class="slide section level1">
-<h1>Scope of reference in TAG</h1>
+<div id="footnotes-scope-of-reference-in-tag" class="slide section level1">
+<h1>Footnotes (scope of reference) in TAG</h1>
 <p><img src="../Balisage-1-3-xsl/note_transparent.png" width="99%"/></p>
+<p>Scope of footnote is made clear by the hyperedge coming from the anonymous markup node. Plus content of footnote is not part of the content of the document.</p>
+</div>
+<div id="prototype-implementation" class="slide section level1">
+<h1>Prototype implementation</h1>
+<ul>
+<li>Alexandria Markup is a prototype implementation of TAG.</li>
+<li>Based on client/server architecture</li>
+<li>REST protocol</li>
+<li>Server is written in Java</li>
+<li>Clients available in Java and Python</li>
+<li>License; Open source; Apache license</li>
+<li>Able to import files encoded in LMNL Sawtooth syntax</li>
+<li>Able to import files encoded in TexMECS syntax</li>
+<li>Query language is in early stage of implementation</li>
+<li>Validation...</li>
+<li>TAG portal: http://github etc</li>
+</ul>
+</div>
+<div id="what-is-text-really" class="slide section level1">
+<h1>What is text really?</h1>
+<ul>
+<li>(un)ordered</li>
+<li>(dis)continuous</li>
+<li>hierarchie(s)</li>
+</ul>
+</div>
+<div id="so-what-is-text-really" class="slide section level1">
+<h1>So what is text really?</h1>
+<h2 id="what-text-isnt">What text isn’t</h2>
+<ul>
+<li>Not (always) ordered</li>
+<li>Not (always) hierarchical (not just not always monohierarchical, but sometimes not hierarchical at all)</li>
+<li>Not every XML element is a real Content Object</li>
+</ul>
+</div>
+<div id="conclusion" class="slide section level1">
+<h1>Conclusion</h1>
+<p>TAG is a new text model that does not impose a hierarchy, but it allows one or more. It currently supports one order, but could be extended to allow unordered content or multiple orders. It thus addresses several textual phenomena that cannot be represented in other models without resorting to workarounds. As such it allows us to map and process textual phenomena in a natural and idiomatic way.</p>
 </div>
 <div id="three-things-that-are-hard-for-xml-and-currently-for-tag" class="slide section level1">
 <h1>Three things that are hard for XML and (currently) for TAG</h1>
@@ -254,15 +277,8 @@ content goes here.]<span class="kw">&lt;/p&gt;&lt;/fn&gt;&lt;/p&gt;</span></code
 <div id="intradocumentary-variation" class="slide section level1">
 <h1>Intradocumentary variation</h1>
 </div>
-<div id="conclusions" class="slide section level1">
-<h1>Conclusions</h1>
-<p>Thank you!</p>
-<ul>
-<li>TAG (Text As Graph) is the data model<br />
-</li>
-<li>Alexandria is a text repository and graph database for text</li>
-<li>TAG and Alexandria portal: <a href="https://github.com/HuygensING/TAG" class="uri">https://github.com/HuygensING/TAG</a></li>
-</ul>
+<div class="slide section level1">
+
 </div>
 </body>
 </html>

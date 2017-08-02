@@ -11,7 +11,7 @@ img { width:100%; height:auto; }
 </style>
 -->
 
-<img class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/>
+<img style="width: 70%; height: auto;" class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/>
 
 <!--
 I propose that text, in essence, could be seen as this [show 3D visualization] 
