@@ -258,14 +258,14 @@ ____
 * Able to import files encoded in LMNL Sawtooth syntax
 * Able to import files encoded in TexMECS syntax
 * Query language in early stage of implementation
-* Schema language Validation in early stage of development
+* Schema language validation in early stage of development
 * TAG portal: <https://github.com/HuygensING/TAG>
 
 ____
 
 # Key TAG features
 
-1. Represent textual properties at the level of the model and in a natural and idiomatic way
+1. Represents textual properties at the level of the model and in a natural and idiomatic way
 1. Addresses several textual phenomena that cannot all be represented in other models without workarounds or dependence on markup semantics at the application level
 1. Does not impose a hierarchy, but allows one or more
 1. Currently supports one order, but could be extended to allow unordered content or multiple orders
