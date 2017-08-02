@@ -205,30 +205,34 @@ ____
 
 
 
-# Footnotes (scope of reference) in XML
+# Two challenges of footnotes in XML
+
+1. Main text vs annotation text
+1. Scope of reference
 
 > Textual content in TAG is expressed by nodes with a **type** value of “text”, each of which represents a segment of textual content (Text nodes may also be empty). The order of the text is stored as directed regular (one-to-one) edges between pairs of Text nodes; this chain begins at the Document node, which points to the first Text node, and a single, unbroken chain connects all Text nodes in the document except those in annotations.<sup>23</sup>
 
 ```xml
-<p>Textual content in TAG is expressed by nodes with a **type** 
+<p>Textual content in TAG is expressed by nodes with a type 
 value of “text”, each of which represents a segment of textual 
 content (Text nodes may also be empty). The order of the text is 
 stored as directed regular (one-to-one) edges between pairs of Text 
 nodes; this chain begins at the Document node, which points to the 
 first Text node, and a single, unbroken chain connects all Text 
-nodes in the document except those in annotations.<fn><p>[Footnote
-content goes here.]</p></fn></p>
+nodes in the document except those in annotations.<fn><p>[Haentjens Dekker and Birnbaum 2017]</p></fn></p>
 ``` 
  
-Is the footnote on the last sentence, the last two sentences, or the entire paragraph?
+1. Is the footnote text part of the main text?
+1. Is the footnote on the last sentence, the last two sentences, or the entire paragraph?
 
 ____
 
-# Footnotes (scope of reference) in TAG
+# Footnotes in TAG
 
 <img src="../Balisage-1-3-xsl/note_transparent.png" width="99%"/>
 
-Scope of footnote is made clear by the hyperedge coming from the anonymous markup node. Plus content of footnote is not part of the content of the document. 
+1. Content of footnote is not part of the main content of the document.
+2. Scope of footnote is represented by the hyperedge pointing to the anonymous Markup node.  
 
 
 ____
