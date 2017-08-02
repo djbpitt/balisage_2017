@@ -4,7 +4,7 @@
 
 ____
 
-# Teaser
+# Text as multidimensional
 
 <!-- <style>
 img { width:100%; height:auto; }
