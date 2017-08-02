@@ -240,7 +240,7 @@ ____
 
 # Prototype implementation
 
-* Alexandria Markup is a prototype implementation of TAG.
+* Alexandria Markup is a prototype implementation of TAG
 * Client/server architecture
 * REST protocol
 * Server is written in Java
@@ -250,55 +250,14 @@ ____
 * Able to import files encoded in TexMECS syntax
 * Query language in early stage of implementation
 * Schema language Validation in early stage of development
-* TAG portal: http://github etc
+* TAG portal: <https://github.com/HuygensING/TAG>
 
 ____
 
-# What is text really?
+# Key TAG features
 
-- (un)ordered
-- (dis)continuous
-- hierarchie(s)
+1. Represent textual properties at the level of the model and in a natural and idiomatic way
+1. Addresses several textual phenomena that cannot all be represented in other models without workarounds or dependence on markup semantics at the application level
+1. Does not impose a hierarchy, but allows one or more
+1. Currently supports one order, but could be extended to allow unordered content or multiple orders
 
-# So what is text really?
-
-## What text isn’t
-
-* Not (always) ordered
-* Not (always) hierarchical (not just not always monohierarchical, but sometimes not hierarchical at all)
-* Not every XML element is a real Content Object
-
-___
-
-# Conclusion
-
-TAG is a new text model that does not impose a hierarchy, but it allows one or more. It currently supports one order, but could be extended to allow unordered content or multiple orders. It thus addresses several textual phenomena that cannot be represented in other models without resorting to workarounds. As such it allows us to map and process textual phenomena in a natural and idiomatic way.
-
-
-____
-
-
-# Three things that are hard for XML and (currently) for TAG
-
-* Simultaneity
-* Transposition
-* Intradocumentary variation
-
-____
-
-# Simultaneity
-
-<img src="../Balisage-1-3-xsl/flotus_transparent.png"/>
-
-____
-
-# Transposition
-
-<img src="../Balisage-1-3-xsl/stormy_transparent.png"/>
-
-# Intradocumentary variation
-
-____
-
-
- 
