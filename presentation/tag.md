@@ -241,15 +241,15 @@ ____
 # Prototype implementation
 
 * Alexandria Markup is a prototype implementation of TAG.
-* Based on client/server architecture
+* Client/server architecture
 * REST protocol
 * Server is written in Java
 * Clients available in Java and Python
-* License; Open source; Apache license
+* Open source Apache license
 * Able to import files encoded in LMNL Sawtooth syntax
 * Able to import files encoded in TexMECS syntax
-* Query language is in early stage of implementation
-* Validation...
+* Query language in early stage of implementation
+* Schema language Validation in early stage of development
 * TAG portal: http://github etc
 
 ____
