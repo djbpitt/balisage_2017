@@ -167,6 +167,8 @@ The following pseudo-XML is not well formed:
 ```xml
 <foot><word>and</word> <word>trunk</foot><foot>less</word> <word>legs</word></foot>
 ```
+<!-- element boundary in the middle of a word -->
+<!-- if you tag the text for both feet and words you get overlap. It is implicit. We were letting the white space function as pseudo markup. Once we make it explicit we have overlap. -->
 
 # Data typing causes artifactual hierarchy in XML
 
