@@ -270,3 +270,18 @@ ____
 1. Does not impose a hierarchy, but allows one or more
 1. Currently supports one order, but could be extended to allow unordered content or multiple orders
 
+____
+
+# Thank you!
+
+Ronald Haentjens Dekker  
+Head of Research and Development and Software Architect  
+Huygens ING  
+ronald.dekker@huygens.knaw.nl
+
+David J. Birnbaum  
+Professor and Chair  
+Department of Slavic Languages and Literatures, University of Pittsburgh  
+djbpitt@gmail.com  
+<http://www.obdurodon.org>
+
