@@ -145,7 +145,8 @@ ____
 
 * White space as crypto-overlap
 * Datatyping and artifactual hierarchy
-* Footnotes (Scope of reference)
+* Main-text content and annotation content
+* Scope of reference
 
 # White space as crypto-overlap
 
