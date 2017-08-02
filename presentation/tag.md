@@ -4,7 +4,7 @@
 
 ____
 
-# Text as multidimensional
+# Text is multidimensional
 
 <!-- <style>
 img { width:100%; height:auto; }
@@ -47,13 +47,13 @@ ____
  
 Percy Bysshe Shelley, “Ozymandias”
 
-> Who said — **“Two vast and trunkless lets of stone  
+> Who said — **“Two vast and trunkless legs of stone  
 Stand in the desart....** Near them, on the sand
 
 ```xml
 <line>
 	<phrase>Who said —</phrase>
-	<phrase>“Two vast and trunkless legs of stone**
+	<phrase>“Two vast and trunkless legs of stone
 </line>
 <line>
 	Stand in the desart….</phrase>
@@ -84,18 +84,23 @@ peeped into the book her sister was reading, but it had no pictures
 or conversations in it, <q>and what is the use of a book,</q> 
 thought Alice <q>without pictures or conversation?</q></p>
 ``` 
+
+<!--
+Any XML processor knows that XML start and end tags go together. In TEI attributes needs to added to indicate that the two go together. The application needs to deal with this difference.
+-->
 ____
 
 # Model: Text as Graph
 
 ## Terminology
 
+* **Text:** comparable to XML text nodes (Document node is there to know where to begin)
 * **Markup:** comparable to XML elements
 * **Annotation:** comparable to XML attributes, except that 1) annotation text may have markup, and 2) annotations on annotations are permitted
 
 ## Components
 
-TAG is a **hypergraph** model
+TAG is a directed **hypergraph** model
 
 * **Nodes** (Document, Text, Markup, Annotation)
 * **Edges** (one-to-one; textual order)
@@ -103,6 +108,8 @@ TAG is a **hypergraph** model
 
 Operations in TAG are operations on sets of nodes and edges
 
+<!-- explain what a hypergraph is -->
+<!-- there is a lot of accumulated knowledge about reasoning over and operation with sets -->
 ____
 
 # TAG in 3D (Video is preferred here)
