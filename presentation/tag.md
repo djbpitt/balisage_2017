@@ -114,7 +114,14 @@ ____
 
 # TAG in 3D (Video is preferred here)
 
+<video height="70%" controls>
+  <source src="animation/output.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<!--
 <img class="three-d" src="../Balisage-1-3-xsl/3d_new_perspective.png"/>
+-->
 
 ____
 
