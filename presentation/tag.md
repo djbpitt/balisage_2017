@@ -33,7 +33,7 @@ ____
 ____
 
 
-# Textual Phenomena I
+# Textual phenomena I
 
 * Overlap (multiple hierarchies) 
 * Discontinuity
@@ -122,7 +122,7 @@ ____
 
 Percy Bysshe Shelley, “Ozymandias”
 
-> Who said — **“Two vast and trunkless lets of stone  
+> Who said — **“Two vast and trunkless legs of stone  
 Stand in the desart....** Near them, on the sand
 
 <img src="../Balisage-1-3-xsl/ozymandias_hypergraph_transparent.png" width="99%"/>
@@ -133,7 +133,7 @@ ____
 
 # Discontinuity in TAG
 
-Lewis Carroll, Alice in Wonderland
+Lewis Carroll, *Alice in Wonderland*
 
 Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, “and what is the use of a book,” thought Alice “without pictures or conversation?”
 
@@ -144,7 +144,7 @@ ____
 # Textual phenomena II
 
 * White space as crypto-overlap
-* Datatyping and artificial hierarchy
+* Datatyping and artifactual hierarchy
 * Footnotes (Scope of reference)
 
 # White space as crypto-overlap
@@ -167,7 +167,7 @@ The following pseudo-XML is not well formed:
 <foot><word>and</word> <word>trunk</foot><foot>less</word> <word>legs</word></foot>
 ```
 
-# Data typing causes artificial hierarchy in XML
+# Data typing causes artifactual hierarchy in XML
 
 ```xml
 <title><name>Romeo</name> and <name>Juliet</name></title>
