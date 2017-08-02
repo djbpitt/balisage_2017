@@ -181,23 +181,6 @@ Stand in the desart....</strong> Near them, on the sand</p>
 </div>
 <div id="white-space-as-crypto-overlap" class="slide section level1">
 <h1>White space as crypto-overlap</h1>
-<p>Percy Bysshe Shelley, “Ozymandias”</p>
-<blockquote>
-<p>Who said two vast and trunkless legs of stone</p>
-</blockquote>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;line&gt;</span>
-    <span class="kw">&lt;foot&gt;</span>Who said<span class="kw">&lt;/foot&gt;</span>
-    <span class="kw">&lt;foot&gt;</span>two vast<span class="kw">&lt;/foot&gt;</span>
-    <span class="kw">&lt;foot&gt;</span>and trunk<span class="kw">&lt;/foot&gt;&lt;foot&gt;</span>less legs<span class="kw">&lt;/foot&gt;</span>
-    <span class="kw">&lt;foot&gt;</span>of stone<span class="kw">&lt;/foot&gt;</span>
-<span class="kw">&lt;/line&gt;</span></code></pre></div>
-<p>The following pseudo-XML is not well formed:</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;foot&gt;&lt;word&gt;</span>and<span class="kw">&lt;/word&gt;</span> <span class="kw">&lt;word&gt;</span>trunk<span class="kw">&lt;/foot&gt;&lt;foot&gt;</span>less<span class="kw">&lt;/word&gt;</span> <span class="kw">&lt;word&gt;</span>legs<span class="kw">&lt;/word&gt;&lt;/foot&gt;</span></code></pre></div>
-<!-- element boundary in the middle of a word -->
-<!-- if you tag the text for both feet and words you get overlap. It is implicit. We were letting the white space function as pseudo markup. Once we make it explicit we have overlap. -->
-</div>
-<div id="white-space-as-crypto-overlap-1" class="slide section level1">
-<h1>White space as crypto-overlap</h1>
 <p>William Shakespeare, Sonnet #71</p>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;line&gt;</span>
     <span class="kw">&lt;foot&gt;</span>No l<span class="kw">&lt;stress&gt;</span>o<span class="kw">&lt;/stress&gt;</span>n<span class="kw">&lt;/foot&gt;&lt;foot&gt;</span>ger m<span class="kw">&lt;stress&gt;</span>ou<span class="kw">&lt;/stress&gt;</span>rn<span class="kw">&lt;/foot&gt;</span>
