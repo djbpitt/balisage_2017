@@ -219,7 +219,8 @@ content (Text nodes may also be empty). The order of the text is
 stored as directed regular (one-to-one) edges between pairs of Text 
 nodes; this chain begins at the Document node, which points to the 
 first Text node, and a single, unbroken chain connects all Text 
-nodes in the document except those in annotations.<fn><p>[Haentjens Dekker and Birnbaum 2017]</p></fn></p>
+nodes in the document except those in annotations.<fn><p>[Haentjens
+Dekker and Birnbaum 2017]</p></fn></p>
 ``` 
  
 1. Is the footnote text part of the main text?
