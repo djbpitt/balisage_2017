@@ -59,8 +59,8 @@ Ronald Haentjens Dekker and David J. Birnbaum
   </p>
   <p class="date">Balisage: The Markup Conference, August 2017</p>
 </div>
-<div id="text-as-multidimensional" class="slide section level1">
-<h1>Text as multidimensional</h1>
+<div id="text-is-multidimensional" class="slide section level1">
+<h1>Text is multidimensional</h1>
 <!-- <style>
 img { width:100%; height:auto; }
 </style>
@@ -94,12 +94,12 @@ I propose that text, in essence, could be seen as this [show 3D visualization]
 <h1>Overlap (multiple hierarchies)</h1>
 <p>Percy Bysshe Shelley, “Ozymandias”</p>
 <blockquote>
-<p>Who said — <strong>“Two vast and trunkless lets of stone<br />
+<p>Who said — <strong>“Two vast and trunkless legs of stone<br />
 Stand in the desart....</strong> Near them, on the sand</p>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;line&gt;</span>
     <span class="kw">&lt;phrase&gt;</span>Who said —<span class="kw">&lt;/phrase&gt;</span>
-    <span class="kw">&lt;phrase&gt;</span>“Two vast and trunkless legs of stone**
+    <span class="kw">&lt;phrase&gt;</span>“Two vast and trunkless legs of stone
 <span class="kw">&lt;/line&gt;</span>
 <span class="kw">&lt;line&gt;</span>
     Stand in the desart….<span class="kw">&lt;/phrase&gt;</span>
@@ -122,22 +122,28 @@ on the bank, and of having nothing to do: once or twice she had
 peeped into the book her sister was reading, but it had no pictures 
 or conversations in it, <span class="kw">&lt;q&gt;</span>and what is the use of a book,<span class="kw">&lt;/q&gt;</span> 
 thought Alice <span class="kw">&lt;q&gt;</span>without pictures or conversation?<span class="kw">&lt;/q&gt;&lt;/p&gt;</span></code></pre></div>
+<!--
+Any XML processor knows that XML start and end tags go together. In TEI attributes needs to added to indicate that the two go together. The application needs to deal with this difference.
+-->
 </div>
 <div id="model-text-as-graph" class="slide section level1">
 <h1>Model: Text as Graph</h1>
 <h2 id="terminology">Terminology</h2>
 <ul>
+<li><strong>Text:</strong> comparable to XML text nodes (Document node is there to know where to begin)</li>
 <li><strong>Markup:</strong> comparable to XML elements</li>
 <li><strong>Annotation:</strong> comparable to XML attributes, except that 1) annotation text may have markup, and 2) annotations on annotations are permitted</li>
 </ul>
 <h2 id="components">Components</h2>
-<p>TAG is a <strong>hypergraph</strong> model</p>
+<p>TAG is a directed <strong>hypergraph</strong> model</p>
 <ul>
 <li><strong>Nodes</strong> (Document, Text, Markup, Annotation)</li>
 <li><strong>Edges</strong> (one-to-one; textual order)</li>
 <li><strong>Hyperedges</strong> (one-to-many, many-to-one; markup and annotation)</li>
 </ul>
 <p>Operations in TAG are operations on sets of nodes and edges</p>
+<!-- explain what a hypergraph is -->
+<!-- there is a lot of accumulated knowledge about reasoning over and operation with sets -->
 </div>
 <div id="tag-in-3d-video-is-preferred-here" class="slide section level1">
 <h1>TAG in 3D (Video is preferred here)</h1>
