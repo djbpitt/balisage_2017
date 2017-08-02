@@ -232,11 +232,19 @@ ____
 - (dis)continuous
 - hierarchie(s)
 
+# So what is text really?
+
+## What text isn’t
+
+* Not (always) ordered
+* Not (always) hierarchical (not just not always monohierarchical, but sometimes not hierarchical at all)
+* Not every XML element is a real Content Object
+
 ___
 
 # Conclusion
 
-TAG is a new text model thatdoes not impose a hierarchy, but it allows one or more. It currently supports one order, but could be extended to allow unordered content or multiple orders. It thus addresses several textual phenomena that cannot be represented in other models without resorting to workarounds. As such it allows us to map and process textual phenomena in a natural and idiomatic way.
+TAG is a new text model that does not impose a hierarchy, but it allows one or more. It currently supports one order, but could be extended to allow unordered content or multiple orders. It thus addresses several textual phenomena that cannot be represented in other models without resorting to workarounds. As such it allows us to map and process textual phenomena in a natural and idiomatic way.
 
 
 ____
