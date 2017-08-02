@@ -155,27 +155,7 @@ ____
 * Main-text content and annotation content
 * Scope of reference
 
-# White space as crypto-overlap
-
-Percy Bysshe Shelley, “Ozymandias”
-
-> Who said two vast and trunkless legs of stone
- 
-```xml
-<line>
-	<foot>Who said</foot>
-	<foot>two vast</foot>
-	<foot>and trunk</foot><foot>less legs</foot>
-	<foot>of stone</foot>
-</line>
-```
-The following pseudo-XML is not well formed:
-
-```xml
-<foot><word>and</word> <word>trunk</foot><foot>less</word> <word>legs</word></foot>
-```
-<!-- element boundary in the middle of a word -->
-<!-- if you tag the text for both feet and words you get overlap. It is implicit. We were letting the white space function as pseudo markup. Once we make it explicit we have overlap. -->
+____
 
 # White space as crypto-overlap
 
