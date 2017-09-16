@@ -184,20 +184,18 @@
       <para>Graph models for text and markup have been proposed before (GODDAG [see, e.g., <xref
           linkend="sperberg-huitfeldt_2000"/>], GrAF [see, e.g., <xref linkend="ide_2007"/>]), but
         the model advanced in this paper differs from those because it incorporates a <emphasis
-          role="bold">hypergraph</emphasis> (<link
-          xlink:href="https://en.wikipedia.org/wiki/Hypergraph"/>). Hypergraphs are especially
-        valuable for text modeling because they can be implemented using sets, and methods for
-        reasoning over and operating on sets are proven and well known (<link
-          xlink:href="https://en.wikipedia.org/wiki/Set_(mathematics)"/>). Hypergraphs differ from
-        traditional graphs, the edges of which can connect only two nodes with each other, because
-        the edges in a hypergraph can connect more than two nodes with one another, and for that
-        reason they are called <emphasis role="bold">hyperedges</emphasis>. Hypergraphs can have
-        directed and undirected hyperedges, and TAG uses only directed hyperedges, which assert a
-        directed relationship between two non-empty sets of nodes, one for the source (called the
-          <emphasis role="bold">head</emphasis>) and one for the target (called the <emphasis
-          role="bold">tail</emphasis>). As we explain below, in the TAG model, the directionality of
-        a hyperedge may be used for purposes other than modeling an order or a hierarchy of the
-        nodes.</para>
+          role="bold">hypergraph</emphasis> [<xref linkend="hypergraph"/>]. Hypergraphs are
+        especially valuable for text modeling because they can be implemented using sets, and
+        methods for reasoning over and operating on sets are proven and well known [<xref
+          linkend="set"/>]. Hypergraphs differ from traditional graphs, the edges of which can
+        connect only two nodes with each other, because the edges in a hypergraph can connect more
+        than two nodes with one another, and for that reason they are called <emphasis role="bold"
+          >hyperedges</emphasis>. Hypergraphs can have directed and undirected hyperedges, and TAG
+        uses only directed hyperedges, which assert a directed relationship between two non-empty
+        sets of nodes, one for the source (called the <emphasis role="bold">head</emphasis>) and one
+        for the target (called the <emphasis role="bold">tail</emphasis>). As we explain below, in
+        the TAG model, the directionality of a hyperedge may be used for purposes other than
+        modeling an order or a hierarchy of the nodes.</para>
       <para>Like LMNL and GODDAG, both of which are discussed in more detail below, and unlike XML,
         TAG is defined as a data model, rather than by its syntax. At present TAG does not have its
         own syntactic representation.</para>
@@ -218,24 +216,27 @@
               <quote>line</quote>). A chain of regular (one-to-one) edges, represented by solid
             black arrowheads, begins at the Document node and connects the Text nodes in order. Text
             nodes in this case are entire lines of text, but they could also be smaller units; see
-            the discussion of Overlap, below.</para>
+            the discussion of Overlap, below. There are additional whitespace-only Text nodes
+            between the lines, but these have been omitted here to reduce the complexity of the
+            diagram.</para>
         </caption>
       </figure>
       <para>The illustration of a TAG hypergraph of William Shakespearea’s Sonnet 71 (<xref
-          linkend="sonnet-71_text"/>), above, includes a Document node, fourteen Text nodes, and
-        eighteen Markup nodes (fourteen with their <code>name</code> property value equal to
-          <quote>line</quote>, three to <quote>quatrain</quote>, and one to <quote>couplet</quote>).
-        Regular (one-to-one) edges start at the Document node and chain all Text nodes in textual
-        order. Hyperedges point from the Markup nodes into sets of Text nodes. In this case,
-        hyperedges that start in Markup nodes with the <code>name</code> property of
-          <quote>line</quote> happen to point to a set that consists of a single Text node, and
-        those with <code>name</code> property values of <quote>quatrain</quote> and
-          <quote>couplet</quote> happen to point to sets of four and two Text nodes, respectively.
-        Note that in TAG, in contrast to XML, a Markup node corresponding to the XML root element,
-        although permitted, is not required, and we’ve omitted it here. Also in contrast to XML, the
-          <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes point directly to the Text
-        nodes, and not to <quote>line</quote> Markup nodes (although that, too, is possible; see the
-        discussion of hierarchy below).</para>
+          linkend="sonnet-71_text"/>), above, includes a Document node, fourteen Text nodes (as
+        noted above, there are also white-space-only Text nodes between the lines, but these have
+        been omitted here to reduce the complexity of the diagram), and eighteen Markup nodes
+        (fourteen with their <code>name</code> property value equal to <quote>line</quote>, three to
+          <quote>quatrain</quote>, and one to <quote>couplet</quote>). Regular (one-to-one) edges
+        start at the Document node and chain all Text nodes in textual order. Hyperedges point from
+        the Markup nodes into sets of Text nodes. In this case, hyperedges that start in Markup
+        nodes with the <code>name</code> property of <quote>line</quote> happen to point to a set
+        that consists of a single Text node, and those with <code>name</code> property values of
+          <quote>quatrain</quote> and <quote>couplet</quote> happen to point to sets of four and two
+        Text nodes, respectively. Note that in TAG, in contrast to XML, a Markup node corresponding
+        to the XML root element, although permitted, is not required, and we’ve omitted it here.
+        Also in contrast to XML, the <quote>quatrain</quote> and <quote>couplet</quote> Markup nodes
+        point directly to the Text nodes, and not to <quote>line</quote> Markup nodes (although
+        that, too, is possible; see the discussion of hierarchy below).</para>
     </section>
     <section>
       <title>How TAG represents selected structural properties of text</title>
@@ -247,14 +248,17 @@
         <title>Order</title>
         <para>A distinctive feature of the TAG model is that textual content is an ordered set of
           Text nodes, but Markup and Annotation nodes are not ordered. Because Markup nodes all
-          point directly or through intermediaries to Text nodes, the order of Markup nodes becomes
-          a derived property of the order of the Text nodes to which the markup applies.<footnote>
+          point directly or through intermediaries to Text nodes, to the extent that Markup nodes
+          might be said to have order, their order is only a derived property of the order of the
+          Text nodes to which the markup applies.<footnote>
             <para>The same applies to Annotation nodes, which are not ordered, but which are
               attached to either Markup or other Annotation nodes. Two Markup nodes that point to
               the same Text nodes are not ordered with respect to each other, since the inferred
               order of a Markup node is a derived property of the set of Text nodes to which it is
-              attached, and in this example the markup is attached to the same Text nodes. See also
-              below about markup dominance.</para>
+              attached, and in this example the markup is attached to the same Text nodes. The order
+              of Markup nodes that point to overlapping or discontinuous sets of Text nodes is
+              similarly undefined, since the relative order of the sets of Text nodes in the tails
+              is not strictly defined. See also below about markup dominance.</para>
           </footnote> This bottom-up perspective on order within a document distinguishes TAG from
           the top-down, ordered-tree perspective of XML and GODDAG, where, contrary to TAG, the
           order of nodes (including Text nodes) is derived, through depth-first traversal, from the
@@ -269,7 +273,13 @@
               generalized GODDAG other than the stand-off version implemented in EARMARK, which does
               not store the Text nodes in memory. [<xref linkend="peroni_2014"/>]</para>
           </footnote> In this respect TAG is closer to LMNL, where order in the document also
-          inheres at the lowest level, which in LMNL is the atoms that make up the content.</para>
+          inheres at the lowest level, which in LMNL is start position of a range in the sequence of
+          atoms that make up the content.<footnote>
+            <para>LMNL ranges may be said to have relative <emphasis role="bold">start
+                order</emphasis>, but not relative order. Unlike the tails of TAG Markup nodes, LMNL
+              ranges cannot be discontinuous, which simplifies the inventory of positional
+              relationships that can obtain between ranges.[<xref linkend="LMNL_ranges"/>]</para>
+          </footnote></para>
       </section>
       <section>
         <title>Textual content</title>
@@ -328,10 +338,11 @@
           containment.</para>
         <para>The separation of these four functions means that a Markup node provides datatyping
           through its <code>name</code> property, although this property is optional (see the
-          discussion of Scope of reference, below). Because the tail of a Markup-to-Text is a
-          non-empty set of Text nodes, and Text nodes are ordered and have intrinsic subset
-          relationships, markup also specifies order and containment, but only indirectly. The
-          specification of dominance is optional, and is entirely a property of Markup nodes.</para>
+          discussion of Scope of reference, below). Because the tail of a Markup-to-Text hyperedge
+          is a non-empty set of Text nodes, and Text nodes are ordered and have intrinsic subset and
+          other interrelationships, markup may also specify order and containment, but only
+          indirectly. The specification of dominance is optional, and is entirely a property of
+          Markup nodes.</para>
       </section>
       <section>
         <title>Overlap and self-overlap</title>
@@ -408,7 +419,7 @@
         <para>The following types of nodes are supported by TAG:<itemizedlist>
             <listitem>
               <para><emphasis role="bold">Document nodes.</emphasis> Each Document node represents a
-                single document stored in the graph.<footnote>
+                single document.<footnote>
                   <para>What constitutes a document is a hermeneutic question that TAG does not seek
                     to answer.</para>
                 </footnote> It is connected by a regular edge to the first Text node in the
@@ -2024,8 +2035,12 @@ And mock you with me after I am gone.</programlisting>
       Balisage Series on Markup Technologies, vol. 3 (2009). DOI: 10.4242/BalisageVol3.Huitfeldt01.
         <link
         xlink:href="http://www.balisage.net/Proceedings/vol3/html/Huitfeldt01/BalisageVol3-Huitfeldt01.html"
-      /></bibliomixed>
-    <bibliomixed xml:id="iacob_2005" xreflabel="Iacob and Dekhtyar 2005">Iacob, Ionut Emil and Alex
+      /></bibliomixed>-->
+    <bibliomixed xml:id="hypergraph" xreflabel="Hypergraph: Wikipedia">Wikipedia contributors,
+      "Hypergraph," Wikipedia, The Free Encyclopedia,
+        <link>https://en.wikipedia.org/w/index.php?title=Hypergraph</link> (accessed September 16,
+      2017).</bibliomixed>
+    <!--<bibliomixed xml:id="iacob_2005" xreflabel="Iacob and Dekhtyar 2005">Iacob, Ionut Emil and Alex
       Dekhtyar. <quote>Concurrent markup hierarchies: a computer science approach.</quote>
       <link>http://tomcat-stable.hcmc.uvic.ca:8080/ach/site/xhtml.xq?id=174</link>
     </bibliomixed>
@@ -2041,11 +2056,11 @@ And mock you with me after I am gone.</programlisting>
     <bibliomixed xml:id="LMNL_data" xreflabel="LMNL data model">LMNLWiki. <quote>LMNL data
         model.</quote> From the <emphasis role="ital">Lost Archives of LMNL</emphasis>.
         <link>http://www.lmnl.net/prose/data-model/data-model-spec.html</link></bibliomixed>
-    <!--<bibliomixed xml:id="LMNL_ranges" xreflabel="LMNL range relations">LMNLWiki <quote>Range
+    <bibliomixed xml:id="LMNL_ranges" xreflabel="LMNL range relations">LMNLWiki <quote>Range
         relationships.</quote> From the <emphasis role="ital">Lost Archives of LMNL</emphasis>.
         <link xlink:href="http://lmnl-markup.org/specs/archive/Range_relationships.xhtml"
       /></bibliomixed>
-    <bibliomixed xml:id="marcoux_2008" xreflabel="Marcous 2008">Marcoux, Yves. <quote>Graph
+    <!--<bibliomixed xml:id="marcoux_2008" xreflabel="Marcous 2008">Marcoux, Yves. <quote>Graph
         characterization of overlap-only TexMECS and other overlapping markup formalisms.</quote>
       Presented at Balisage: The Markup Conference 2008, Montréal, Canada, August 12 - 15, 2008. In
         <emphasis role="ital">Proceedings of Balisage: The Markup Conference</emphasis> 2008.
@@ -2096,6 +2111,10 @@ And mock you with me after I am gone.</programlisting>
       <emphasis role="ital">Research in humanities computing</emphasis>, ed. Nancy Ide and Susan
       Hockey. Oxford: Oxford University Press. 1996.
         <link>http://cds.library.brown.edu/resources/stg/monographs/ohco.html</link></bibliomixed>
+    <bibliomixed xml:id="set" xreflabel="Set: Wikipedia">Wikipedia contributors, "Set
+      (mathematics)," Wikipedia, The Free Encyclopedia,
+        <link>https://en.wikipedia.org/w/index.php?title=Set_(mathematics)</link> (accessed
+      September 16, 2017 ).</bibliomixed>
     <bibliomixed xml:id="sperberg_2008" xreflabel="Sperberg-McQueen and Huitfeldt 2008"
       >Sperberg-McQueen, C. M., and Claus Huitfeldt. “Containment and dominance in Goddag
       structures”. Talk at conference on "Processing Text-Technological Resources", Center for
