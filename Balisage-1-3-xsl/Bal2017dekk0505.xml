@@ -690,7 +690,8 @@
             </listitem>
             <listitem>
               <para>a Markup-to-Text hyperedge has anything other than a single Markup node in its
-                head and anything other than a non-empty set of Text nodes in its tail</para>
+                head and anything other than a non-empty set of Text nodes that are in the same
+                chain (but not necessarily contiguously) in its tail</para>
             </listitem>
             <listitem>
               <para>a Markup-to-Markup hyperedge has anything other than a single Markup node in its
@@ -892,8 +893,10 @@
           <para>Each hyperedge points from a Markup node head (identifying the type of text
             structure) to a tail set of Text nodes. Normal edges connect the Text nodes in order. In
             the TAG model, then, a discontinuous textual object is represented the same way as a
-            continuous one, as an ordered set of Text nodes that form the tail of a Markup-to-Text
-            hyperedge.</para>
+            continuous one, as an ordered set of Text nodes that form the tail of a Markup-to-Text hyperedge.<footnote>
+              <para>The comma in the second Text node might more properly be regarded as part of the
+                narrative interpolation, and not of Alice’s quoted speech.</para>
+            </footnote></para>
         </caption>
       </figure>
       <para>Other examples of discontinuity involve stage directions in dramatic text, such as the
@@ -909,8 +912,8 @@
           three are to remain friends, I must be treated as a woman of business, permanently single
           [to Frank] and permanently unromantic [to Praed].</para>
       </blockquote>
-      <para>Here the last two stage directions interrupt not just the speech, but the
-        sentence.</para>
+      <para>Here the last four stage directions interrupt not just the speech, but the sentences in
+        which they occur.</para>
     </section>
     <section>
       <title>Hierarchy, containment and dominance</title>
@@ -978,17 +981,18 @@
           </imageobject>
         </mediaobject>
         <caption>
-          <para>The XML tree encodes containment and hierarchy in the same way.</para>
+          <para>The XML tree encodes containment and dominance in the same way.</para>
         </caption>
       </figure>
       <para>In the earlier TAG example of this sonnet, a Markup-to-Text hyperedge defines the tail
         as a set of Text nodes and labels (datatypes) it. In the TAG version of this example, all
-        quatrain and line Markup-to-Text hyperedges point to sets of Text nodes, and containment is
-        modeled by subset relations among the Text-node tails of those hyperedges. Where the Text
-        nodes that constitute the tail of a Markup-to-Text hyperedge with the <code>name</code>
-        property (on the Markup node) of <quote>line</quote> form a proper subset of the Text nodes
-        that constitute the tail of a Markup-to-Text hyperedge with the <code>name</code> property
-        (on the Markup node) of <quote>quatrain</quote>, the quatrain contains the line.<footnote>
+        quatrain, couplet, and line Markup-to-Text hyperedges point to sets of Text nodes, and
+        containment is modeled by subset relations among the Text-node tails of those hyperedges.
+        Where the Text nodes that constitute the tail of a Markup-to-Text hyperedge with the
+          <code>name</code> property (on the Markup node) of <quote>line</quote> form a proper
+        subset of the Text nodes that constitute the tail of a Markup-to-Text hyperedge with the
+          <code>name</code> property (on the Markup node) of <quote>quatrain</quote>, the quatrain
+        contains the line, and the same is true of the relationship between couplets and lines.<footnote>
           <para>The quatrain Markup node does not contain or have any other direct relationship to
             the line Markup node. It is the set of Text nodes of the quatrain that contains the set
             of Text nodes of the line.</para>
@@ -1026,7 +1030,7 @@
     </section>
     <section>
       <title>Artifactual hierarchy</title>
-      <para>As we described above, in XML, markup is (among other things) a form of datatyping, and
+      <para>As we described above, markup in XML is (among other things) a form of datatyping, and
         the XML spec uses the word <quote>type</quote> explicitly in this meaning:<blockquote>
           <para>Each element has a type, identified by name, sometimes called its <quote>generic
               identifier</quote> (GI) [<xref linkend="W3C_xml"/> §3]</para>
@@ -1089,16 +1093,16 @@
       <para>In natural language processing, tokenization is the process of breaking up a string of
         plain text characters into substrings (typically words and punctuation, which may be
         adjacent or separated by white space), often while removing token separators in the process.
-        Tokenization of plain text in XML is performed using regular expressions and the
-          <code>tokenize()</code> function, but <code>tokenize()</code> atomizes its first argument,
-        which means that it cannot be used on tagged text without losing the markup in the process.
-        Even tokenization that would not create overlap-based well-formedness violations, such as
-        splitting and tagging the words of a line of poetry in which the stressed vowels are tagged
-        as <code>&lt;stress&gt;</code> (see the illustration below), requires intermediary temporary
-        manipulations, such as converting the markup to text, tokenizing with
-          <code>tokenize()</code>, and then converting the temporary text back into markup, or
-        adding additional markup, tokenizing with <code>&lt;xsl:for-each-group&gt;</code>, and then
-        removing the temporary markup.</para>
+        Tokenization of plain text when processing XML is commonly performed using regular
+        expressions and the <code>tokenize()</code> function, but <code>tokenize()</code> atomizes
+        its first argument, which means that it cannot be used on tagged text without losing the
+        markup in the process. Even tokenization that would not create overlap-based well-formedness
+        violations, such as splitting and tagging the words of a line of poetry in which the
+        stressed vowels are tagged as <code>&lt;stress&gt;</code> (see the illustration below),
+        requires intermediary temporary manipulations, such as converting the markup to text,
+        tokenizing with <code>tokenize()</code>, and then converting the temporary text back into
+        markup, or adding additional markup, tokenizing with
+        <code>&lt;xsl:for-each-group&gt;</code>, and then removing the temporary markup.</para>
       <para>The reason tokenizing tagged text is awkward in XML even where overlap is not a risk has
         one explanation in terms of the syntax and another in terms of the data model. In terms of
         the syntax, the markup and text are intertwined in a way that makes it impossible to ignore
@@ -1117,7 +1121,7 @@
         but they remain in the tail of their old Markup-to-Text hyperedges, while new Markup-to-Text
         hyperedges are added to tag the new individual words. In the simplified illustrations below,
         we have created a <quote>poem</quote> that consists entirely of a single three-word line
-          (<quote>No longer mourn</quote>). In the firt of these illustrations, the stressed vowels
+          (<quote>No longer mourn</quote>). In the first of these illustrations, the stressed vowels
         are tagged but the words are not:</para>
       <figure xml:id="untokenized">
         <title>A simplified poem without word tokenization</title>
@@ -1184,7 +1188,7 @@
         poetic feet, which are needed to identify caesura (a regular coincidence of word and foot
         boundaries in the lines of a poem), overlap would become an issue in XML. One work-around in
         an XML environment has turned out to involve, surprisingly, tagging neither the feet nor the
-        words (see [<xref linkend="birnbaum_2015"/>]), deriving both from other properties of the
+        words (see <xref linkend="birnbaum_2015"/>), deriving both from other properties of the
         line during processing, but the fact that we can use white-space pseudo-markup to escape the
         consequences of syntactic overlap doesn’t mean that the the overlap isn’t there. A data
         model that can represent both feet and words explicitly, and that could identify caesura as
@@ -1366,7 +1370,7 @@
               level.</para>
           </listitem>
           <listitem>
-            <para>Because XML models an ordered hierarchy, element always have order, which requires
+            <para>Because XML models an ordered hierarchy, elements always have order, which requires
               the application layer to distinguish situations where order is semantically meaningful
               from situations where it isn’t. For example, the TEI <code>&lt;choice&gt;</code>
               element has the semantics of associating content objects that do not have a natural
@@ -1588,29 +1592,29 @@
         <tr>
           <td>GET /documents</td>
           <td>out: json</td>
-          <td>returns a list of the urls of the stored documents</td>
+          <td>return a list of the urls of the stored documents</td>
         </tr>
         <tr>
           <td>POST /documents/lmnl</td>
           <td>in: lmnl text</td>
-          <td>add a document using a lmnl text, returns the id of the document in the Location
+          <td>add a document using a lmnl text, return the id of the document in the Location
             header </td>
         </tr>
         <tr>
           <td>POST /documents/texmecs</td>
           <td>in: texmecs text</td>
-          <td>add a document using a TexMECS text, returns the id of the document in the Location
+          <td>add a document using a TexMECS text, return the id of the document in the Location
             header </td>
         </tr>
         <tr>
           <td>GET /documents/{uuid}</td>
           <td>out: json</td>
-          <td>returns information about the document </td>
+          <td>return information about the document </td>
         </tr>
         <tr>
           <td>GET /documents/{uuid}/lmnl</td>
           <td>out: text</td>
-          <td>returns a representation of the document in sawtooth syntax </td>
+          <td>return a representation of the document in sawtooth syntax </td>
         </tr>
         <tr>
           <td>POST /documents/{uuid}/query</td>
