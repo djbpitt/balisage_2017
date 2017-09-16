@@ -1188,8 +1188,8 @@
         poetic feet, which are needed to identify caesura (a regular coincidence of word and foot
         boundaries in the lines of a poem), overlap would become an issue in XML. One work-around in
         an XML environment has turned out to involve, surprisingly, tagging neither the feet nor the
-        words (see <xref linkend="birnbaum_2015"/>), deriving both from other properties of the
-        line during processing, but the fact that we can use white-space pseudo-markup to escape the
+        words (see <xref linkend="birnbaum_2015"/>), deriving both from other properties of the line
+        during processing, but the fact that we can use white-space pseudo-markup to escape the
         consequences of syntactic overlap doesn’t mean that the the overlap isn’t there. A data
         model that can represent both feet and words explicitly, and that could identify caesura as
         a relationship between those two types of structural components, would represent explicitly
@@ -1370,27 +1370,27 @@
               level.</para>
           </listitem>
           <listitem>
-            <para>Because XML models an ordered hierarchy, elements always have order, which requires
-              the application layer to distinguish situations where order is semantically meaningful
-              from situations where it isn’t. For example, the TEI <code>&lt;choice&gt;</code>
-              element has the semantics of associating content objects that do not have a natural
-              order with respect to one another, such as an abbreviation and its expansion or an
-              error and its correction. How those should be rendered is the proper business of the
-              application layer, but the XML model requires that one option proceed or follow the
-              other even when the order does not represent an inherent, informational property of
-              the text being modeled. This has the undesirable consequence that, incorrectly (from
-              the perspective of what the marked-up text means), an XML processor will regard two
-              TEI documents as different if they differ only in the order of the children of their
-                <code>&lt;choice&gt;</code> elements unless the processor is given access to TEI
-              markup semantics. Imposing an arbitrary order as a schema enhancement (for example,
-              requiring that an abbreviation always precede its expansion inside a TEI
-                <code>&lt;choice&gt;</code> element) will avoid the problem of distinguishing when
-              two documents should be considered the same or different, but at the cost of making
-              order informational in some situations and arbitrary in others, that is, of imposing
-              order on something that is not inherently ordered. A more robust and efficient model
-              would not specify order when it must then be ignored, so that a processor will know
-              when order is informational and when it is not from the model, without recourse to
-              semantics.</para>
+            <para>Because XML models an ordered hierarchy, elements always have order, which
+              requires the application layer to distinguish situations where order is semantically
+              meaningful from situations where it isn’t. For example, the TEI
+                <code>&lt;choice&gt;</code> element has the semantics of associating content objects
+              that do not have a natural order with respect to one another, such as an abbreviation
+              and its expansion or an error and its correction. How those should be rendered is the
+              proper business of the application layer, but the XML model requires that one option
+              proceed or follow the other even when the order does not represent an inherent,
+              informational property of the text being modeled. This has the undesirable consequence
+              that, incorrectly (from the perspective of what the marked-up text means), an XML
+              processor will regard two TEI documents as different if they differ only in the order
+              of the children of their <code>&lt;choice&gt;</code> elements unless the processor is
+              given access to TEI markup semantics. Imposing an arbitrary order as a schema
+              enhancement (for example, requiring that an abbreviation always precede its expansion
+              inside a TEI <code>&lt;choice&gt;</code> element) will avoid the problem of
+              distinguishing when two documents should be considered the same or different, but at
+              the cost of making order informational in some situations and arbitrary in others,
+              that is, of imposing order on something that is not inherently ordered. A more robust
+              and efficient model would not specify order when it must then be ignored, so that a
+              processor will know when order is informational and when it is not from the model,
+              without recourse to semantics.</para>
           </listitem>
         </itemizedlist></para>
       <para>Concerning the first of these issues, matching up pseudo-start-tags with pseudo-end-tags
@@ -1597,8 +1597,8 @@
         <tr>
           <td>POST /documents/lmnl</td>
           <td>in: lmnl text</td>
-          <td>add a document using a lmnl text, return the id of the document in the Location
-            header </td>
+          <td>add a document using a lmnl text, return the id of the document in the Location header
+          </td>
         </tr>
         <tr>
           <td>POST /documents/texmecs</td>
@@ -1669,7 +1669,7 @@ And mock you with me after I am gone.</programlisting>
   </appendix>
   <appendix xml:id="to_do" xreflabel="Appendix B">
     <title>Features of text not currently represented in TAG or in Alexandria Markup</title>
-    <para>The following are not currently part of the TAG model, but they are recognized as
+    <para>The following features are not currently part of the TAG model, but they are recognized as
       necessary components of a textual data model, and under development.</para>
     <section>
       <title>Order</title>
@@ -1768,7 +1768,7 @@ And mock you with me after I am gone.</programlisting>
       <section>
         <title>Intradocumentary variation</title>
         <para>Intradocumentary variation (see <xref linkend="ge"/>), such as additions, deletions,
-          and rearrangements, pose a special challenge at least two reasons:</para>
+          and rearrangements, pose a special challenge for at least two reasons:</para>
         <orderedlist>
           <listitem>
             <para>An edition may include multiple witnesses, each of which may have intradocumentary
@@ -1896,7 +1896,7 @@ And mock you with me after I am gone.</programlisting>
       no extraneous artifactual properties that an application must then know to ignore. XML uses
       the term <quote>markup</quote> to identify both elements and attributes, while in the list
       below we use the TAG terminology, where the term <quote>markup</quote> refers to the
-      counterpart to XML elements and <quote>annotation</quote> to the counterpart to XML
+      counterpart of XML elements and <quote>annotation</quote> to the counterpart of XML
       attributes.</para>
     <para>The following are characteristics we might ask of an improved text model:<itemizedlist>
         <listitem>
